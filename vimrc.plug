@@ -1,9 +1,10 @@
 call plug#begin('~/.vim/plug')
 
 Plug 'yianwillis/vimcdoc'
-Plug 'tomasr/molokai'
+" Plug 'flazz/vim-colorschemes'
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
+Plug 'chxuan/change-colorscheme'
 Plug 'scrooloose/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
@@ -68,7 +69,6 @@ Plug 'sjl/gundo.vim'
 " Plug 'raimondi/delimitmate'
 Plug 'rhysd/clever-f.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'chxuan/change-colorscheme'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 call plug#end()
