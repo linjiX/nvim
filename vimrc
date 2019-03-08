@@ -156,11 +156,8 @@ let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 let g:tagbar_left = 1
 
-" nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>F :NERDTreeFind<CR>
-" nmap <leader>t :TagbarToggle<CR>
-nmap <F5> :ToggleNERDTreeAndTagbar<CR>
-nmap <leader>q :ToggleNERDTreeAndTagbar<CR>
+nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
@@ -185,17 +182,6 @@ let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
-
-nmap <F9> <Plug>CtrlSFPrompt
-vmap <F9>C <Plug>CtrlSFVwordPath
-vmap <F9>c <Plug>CtrlSFVwordExec
-nmap <F9>C <Plug>CtrlSFCwordPath
-nmap <F9>c <Plug>CtrlSFCwordExec
-nmap <F9>F <Plug>CtrlSFCCwordPath
-nmap <F9>f <Plug>CtrlSFCCwordExec
-nmap <F9>P <Plug>CtrlSFPwordPath
-nmap <F9>p <Plug>CtrlSFPwordExec
-nnoremap <F9>o :CtrlSFToggle<CR>
 
 nmap <leader>f <Plug>CtrlSFPrompt
 vmap <leader>fC <Plug>CtrlSFVwordPath
@@ -241,8 +227,6 @@ nmap <leader>6 <Plug>AirlineSelectTab6
 nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
-" nmap <leader>- <Plug>AirlineSelectPrevTab
-" nmap <leader>+ <Plug>AirlineSelectNextTab
 
 " -- YouCompleteMe --
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plug/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
@@ -261,16 +245,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 " let g:ycm_goto_buffer_command = 'new-tab'
 
-nnoremap <F2> :YcmCompleter GoTo<CR>
-nnoremap <F3> :YcmCompleter GetType<CR>
-nnoremap <F7> :YcmDiags<CR>
-nnoremap <F8> :YcmCompleter FixIt<CR>
-
-nnoremap <leader>yy :YcmCompleter GoTo<CR>
-nnoremap <leader>yt :YcmCompleter GetType<CR>
-let g:ycm_key_detailed_diagnostics = '<leader>yd'
-" nnoremap <leader>d :YcmDiags<CR>
-nnoremap <leader>yf :YcmCompleter FixIt<CR>
+nnoremap <leader>j :YcmCompleter GoTo<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>d :YcmDiags<CR>
+nnoremap <leader>x :YcmCompleter FixIt<CR>
 
 
 " -- UltiSnips --
@@ -285,7 +263,6 @@ let g:cpp_class_decl_highlight = 1
 
 
 "-- FSwitch --
-nnoremap <F6> :FSHere<CR>
 nnoremap <leader>s :FSHere<CR>
 
 autocmd BufEnter *.h let b:fswitchdst  = 'cpp,cc,c'
@@ -304,10 +281,6 @@ nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
 let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=file'"
 let g:formatters_cpp = ['my_custom_cpp']
 let g:autoformat_verbosemode = 1
-
-"-- rainbow --
-let g:rainbow_active = 0
-nmap <leader>r :RainbowToggle<CR>
 
 "-- vim-rooter --
 let g:rooter_manual_only = 1
@@ -334,16 +307,9 @@ omap aM <Plug>(textobj-comment-big-a)
 nnoremap <leader>o :BB<CR>
 nnoremap <leader>i :BF<CR>
 
-nnoremap <C-right> :bn<CR>
-nnoremap <C-left> :bp<CR>
-nnoremap <C-up> :BW<CR>
-" nnoremap <C-down> :set bufhidden=wipe<CR>
-
-inoremap <C-right> <ESC>:bn<CR>
-inoremap <C-left> <ESC>:bp<CR>
-inoremap <C-up> <ESC>:BW<CR>
-" inoremap <C-down> <ESC>:set bufhidden=wipe<CR>
-"nnoremap <C-up> :bdelete<CR>
+nnoremap <leader>n :bn<CR>
+nnoremap <leader>p :bp<CR>
+nnoremap <leader>q :BW<CR>
 
 "-- Gundo --
 if has('python3')
@@ -357,6 +323,32 @@ let g:gundo_close_on_revert = 1
 "-- clever-f.vim --
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
+
+"-- rainbow --
+let g:rainbow_active = 0
+nmap <leader>r :RainbowToggle<CR>
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['darkyellow', 'darkcyan', 'darkmagenta', 'darkgreen', 'darkred'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
 
 "-- Promptline --
 "let g:promptline_preset = {
