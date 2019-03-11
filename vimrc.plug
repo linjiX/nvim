@@ -46,6 +46,7 @@ Plug 'tacahiroy/ctrlp-funky'
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'mileszs/ack.vim'
 "Plug 'yuttie/comfortable-motion.vim'
 Plug 'terryma/vim-smooth-scroll'

@@ -163,11 +163,12 @@ nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
 let g:NERDSpaceDelims = 1
 
 "-- CrtlP --
-let g:ctrlp_max_height = 10
+let g:ctrlp_max_height = 13
 let g:ctrlp_extensions = ['funky']
 let g:ctrlp_funky_syntax_highlight = 1
-let g:ctrlp_root_markers = ['.root']
+" let g:ctrlp_root_markers = ['.root']
 let g:ctrlp_by_filename = 1
+let g:ctrlp_working_path_mode = 'wra'
 " let g:ctrlp_show_hidden = 1
 if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
@@ -179,23 +180,75 @@ endif
 let g:ctrlsf_ackprg = 'ag'
 let g:ctrlsf_position = "right"
 let g:ctrlsf_default_root = 'project'
-let g:ctrlsf_extra_root_markers = ['.root']
+" let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
 
-nmap <leader>f <Plug>CtrlSFPrompt
-vmap <leader>fC <Plug>CtrlSFVwordPath
-vmap <leader>fc <Plug>CtrlSFVwordExec
-nmap <leader>fC <Plug>CtrlSFCwordPath
-nmap <leader>fc <Plug>CtrlSFCwordExec
-nmap <leader>fF <Plug>CtrlSFCCwordPath
-nmap <leader>ff <Plug>CtrlSFCCwordExec
-nmap <leader>fP <Plug>CtrlSFPwordPath
-nmap <leader>fp <Plug>CtrlSFPwordExec
-nnoremap <leader>fo :CtrlSFToggle<CR>
+nmap <leader>s <Plug>CtrlSFPrompt
+vmap <leader>sC <Plug>CtrlSFVwordPath
+vmap <leader>sc <Plug>CtrlSFVwordExec
+nmap <leader>sC <Plug>CtrlSFCwordPath
+nmap <leader>sc <Plug>CtrlSFCwordExec
+nmap <leader>sS <Plug>CtrlSFCCwordPath
+nmap <leader>ss <Plug>CtrlSFCCwordExec
+nmap <leader>sP <Plug>CtrlSFPwordPath
+nmap <leader>sp <Plug>CtrlSFPwordExec
+nnoremap <leader>so :CtrlSFToggle<CR>
 
 " -- FZF --
 let g:fzf_layout = { 'down': '~30%' }
+nmap <leader>zz :Files<CR>
+nmap <leader>zg :GFiles<CR>
+nmap <leader>zG :GFiles?<CR>
+nmap <leader>zb :Buffers<CR>
+nmap <leader>zc :Colors<CR>
+nmap <leader>za :Ag<CR>
+nmap <leader>zr :Rg<CR>
+nmap <leader>zl :BLines<CR>
+nmap <leader>zL :Lines<CR>
+nmap <leader>zt :BTags<CR>
+nmap <leader>zT :Tags<CR>
+nmap <leader>z<leader> :Maps<CR>
+nmap <leader>z` :Marks<CR>
+nmap <leader>zw :Windows<CR>
+nmap <leader>zm :History<CR>
+nmap <leader>z: :History:<CR>
+nmap <leader>z/ :History/<CR>
+nmap <leader>zs :Snippets<CR>
+nmap <leader>zo :BCommits<CR>
+nmap <leader>zO :Commits<CR>
+nmap <leader>ze :Commands<CR>
+nmap <leader>zh :HelpTags<CR>
+nmap <leader>zf :Filetypes<CR>
+
+
+" -- LeaderF --
+let g:Lf_WindowHeight = 0.3
+let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_WorkingDirectoryMode = 'ac'
+let g:Lf_ReverseOrder = 1
+let g:Lf_DefaultMode = 'NameOnly'
+let g:Lf_ShortcutF = '<leader>ff'
+let g:Lf_ShortcutB = '<leader>fb'
+
+" nmap <leader>ff :LeaderfFile<CR>
+" nmap <leader>fb :LeaderfBuffer<CR>
+nmap <leader>fB :LeaderfBufferAll<CR>
+nmap <leader>fm :LeaderfMru<CR>
+nmap <leader>fM :LeaderfMruCwd<CR>
+nmap <leader>ft :LeaderfBufTag<CR>
+nmap <leader>fT :LeaderfBufTagAll<CR>
+nmap <leader>fu :LeaderfFunction<CR>
+nmap <leader>fU :LeaderfFunctionAll<CR>
+nmap <leader>fl :LeaderfLine<CR>
+nmap <leader>fL :LeaderfLineAll<CR>
+nmap <leader>f: :LeaderfHistoryCmd<CR>
+nmap <leader>f/ :LeaderfHistorySearch<CR>
+nmap <leader>fs :LeaderfSelf<CR>
+nmap <leader>fh :LeaderfHelp<CR>
+nmap <leader>fc :LeaderfColorscheme<CR>
+nmap <leader>fr :LeaderfRgInteractive<CR>
+nmap <leader>fR :LeaderfRgRecall<CR>
 
 " -- Ack --
 if executable('ag')
@@ -263,7 +316,7 @@ let g:cpp_class_decl_highlight = 1
 
 
 "-- FSwitch --
-nnoremap <leader>s :FSHere<CR>
+nnoremap <leader>h :FSHere<CR>
 
 autocmd BufEnter *.h let b:fswitchdst  = 'cpp,cc,c'
 autocmd BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
@@ -309,7 +362,7 @@ nnoremap <leader>i :BF<CR>
 
 nnoremap <leader>n :bn<CR>
 nnoremap <leader>p :bp<CR>
-nnoremap <leader>q :BW<CR>
+nnoremap <leader>qq :BW<CR>
 
 "-- Gundo --
 if has('python3')
