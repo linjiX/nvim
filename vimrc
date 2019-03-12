@@ -177,18 +177,18 @@ nmap [g <Plug>GitGutterPrevHunk
 nmap ]g <Plug>GitGutterNextHunk
 
 "-- CrtlP --
-let g:ctrlp_max_height = 13
-let g:ctrlp_extensions = ['funky']
-let g:ctrlp_funky_syntax_highlight = 1
-" let g:ctrlp_root_markers = ['.root']
-let g:ctrlp_by_filename = 1
-let g:ctrlp_working_path_mode = 'wra'
-" let g:ctrlp_show_hidden = 1
-if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore-dir=".git" --ignore="*\.swp" -g ""'
-    let g:ctrlp_use_caching = 0
-endif
+" let g:ctrlp_max_height = 13
+" let g:ctrlp_extensions = ['funky']
+" let g:ctrlp_funky_syntax_highlight = 1
+" " let g:ctrlp_root_markers = ['.root']
+" let g:ctrlp_by_filename = 1
+" let g:ctrlp_working_path_mode = 'wra'
+" " let g:ctrlp_show_hidden = 1
+" if executable('ag')
+    " set grepprg=ag\ --nogroup\ --nocolor
+    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore-dir=".git" --ignore="*\.swp" -g ""'
+    " let g:ctrlp_use_caching = 0
+" endif
 
 " -- CrtlSF --
 let g:ctrlsf_ackprg = 'ag'
@@ -248,7 +248,7 @@ let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_WorkingDirectoryMode = 'ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
-let g:Lf_ShortcutF = '<leader>ff'
+let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
 
 " nmap <leader>ff :LeaderfFile<CR>
@@ -437,8 +437,3 @@ let g:VM_maps = {}
 let g:VM_maps["Select l"] = '<C-Right>'
 let g:VM_maps["Select h"] = '<C-Left>'
 
-"-- Promptline --
-"let g:promptline_preset = {
-      "\'a'    : [ '\h' ],
-      "\'b'    : [ '\u' ],
-      "\'c'    : [ '\w' ] }
