@@ -117,6 +117,8 @@ aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap <leader>L :set nu!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<CR>:SignatureToggleSigns<CR>
+
 "-- gutentags setting --
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 "let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
@@ -162,6 +164,18 @@ nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
 
+"-- GitGutter --
+nmap <leader>gF :GitGutterFold<CR>
+nmap <leader>gP <Plug>GitGutterPreviewHunk
+nmap <leader>gS <Plug>GitGutterStageHunk
+nmap <leader>gu <Plug>GitGutterUndoHunk
+omap ig <Plug>GitGutterTextObjectInnerPending
+omap ag <Plug>GitGutterTextObjectOuterPending
+xmap ig <Plug>GitGutterTextObjectInnerVisual
+xmap ag <Plug>GitGutterTextObjectOuterVisual
+nmap [g <Plug>GitGutterPrevHunk
+nmap ]g <Plug>GitGutterNextHunk
+
 "-- CrtlP --
 let g:ctrlp_max_height = 13
 let g:ctrlp_extensions = ['funky']
@@ -197,6 +211,12 @@ nnoremap <leader>so :CtrlSFToggle<CR>
 
 " -- FZF --
 let g:fzf_layout = { 'down': '~30%' }
+" Insert mode completion
+imap <c-x><c-w> <plug>(fzf-complete-word)
+imap <c-x><c-x> <plug>(fzf-complete-path)
+imap <c-x><c-z> <plug>(fzf-complete-file-ag)
+imap <c-x><c-j> <plug>(fzf-complete-line)
+
 nmap <leader>zz :Files<CR>
 nmap <leader>zg :GFiles<CR>
 nmap <leader>zG :GFiles?<CR>
@@ -360,8 +380,8 @@ omap aM <Plug>(textobj-comment-big-a)
 nnoremap <leader>o :BB<CR>
 nnoremap <leader>i :BF<CR>
 
-nnoremap <leader>n :bn<CR>
-nnoremap <leader>p :bp<CR>
+nnoremap + :bn<CR>
+nnoremap _ :bp<CR>
 nnoremap <leader>qq :BW<CR>
 
 "-- Gundo --
@@ -376,6 +396,10 @@ let g:gundo_close_on_revert = 1
 "-- clever-f.vim --
 map ; <Plug>(clever-f-repeat-forward)
 map , <Plug>(clever-f-repeat-back)
+
+"-- vim-expand-region --
+map <leader>= <Plug>(expand_region_expand)
+map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
 let g:rainbow_active = 0
@@ -402,6 +426,16 @@ let g:rainbow_conf = {
     \       'css': 0,
     \   }
     \}
+
+"-- quickmenu --
+noremap <silent><leader>M :call quickmenu#toggle(0)<cr>
+let g:quickmenu_options = "HL"
+" let g:quickmenu_padding_left = 20
+
+"-- vim-visual-multi --
+let g:VM_maps = {}
+let g:VM_maps["Select l"] = '<C-Right>'
+let g:VM_maps["Select h"] = '<C-Left>'
 
 "-- Promptline --
 "let g:promptline_preset = {
