@@ -30,7 +30,7 @@ set incsearch
 
 set autoindent
 set smartindent
-set cindent
+autocmd FileType c,cpp set cindent
 
 set foldmethod=syntax
 set foldlevel=100
@@ -63,8 +63,6 @@ nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 nnoremap <leader>l :nohlsearch<CR>
-
-set pastetoggle=<F12>
 
 packadd! matchit
 
@@ -117,13 +115,11 @@ aug END
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>L :set nu!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<CR>:SignatureToggleSigns<CR>
-
 "-- gutentags setting --
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
-"let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
-let g:gutentags_project_root = ['.git, .root']
-let g:gutentags_exclude_filetypes = ['bzl']
+" let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+let g:gutentags_project_root = ['.root']
+let g:gutentags_exclude_filetypes = ['bzl', 'vim', 'markdown', 'yaml', 'xml', 'lua', 'sh', 'dockerfile']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
@@ -134,8 +130,10 @@ let g:gutentags_file_list_command = {
         \ },
     \ }
 
+" let g:gutentags_trace = 1
 let g:gutentags_plus_nomap = 1
 
+nnoremap <silent> <leader>g<Space> :GscopeFind 
 nnoremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 nnoremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 nnoremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
@@ -198,7 +196,7 @@ let g:ctrlsf_default_root = 'project'
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
 
-nmap <leader>s <Plug>CtrlSFPrompt
+nmap <leader>s<Space> <Plug>CtrlSFPrompt
 vmap <leader>sC <Plug>CtrlSFVwordPath
 vmap <leader>sc <Plug>CtrlSFVwordExec
 nmap <leader>sC <Plug>CtrlSFCwordPath
@@ -238,7 +236,7 @@ nmap <leader>zs :Snippets<CR>
 nmap <leader>zo :BCommits<CR>
 nmap <leader>zO :Commits<CR>
 nmap <leader>ze :Commands<CR>
-nmap <leader>zh :HelpTags<CR>
+nmap <leader>zh :Helptags<CR>
 nmap <leader>zf :Filetypes<CR>
 
 
@@ -248,11 +246,9 @@ let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_WorkingDirectoryMode = 'ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
+
 let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
-
-" nmap <leader>ff :LeaderfFile<CR>
-" nmap <leader>fb :LeaderfBuffer<CR>
 nmap <leader>fB :LeaderfBufferAll<CR>
 nmap <leader>fm :LeaderfMru<CR>
 nmap <leader>fM :LeaderfMruCwd<CR>
@@ -427,13 +423,48 @@ let g:rainbow_conf = {
     \   }
     \}
 
-"-- quickmenu --
-noremap <silent><leader>M :call quickmenu#toggle(0)<cr>
-let g:quickmenu_options = "HL"
-" let g:quickmenu_padding_left = 20
-
 "-- vim-visual-multi --
-let g:VM_maps = {}
-let g:VM_maps["Select l"] = '<C-Right>'
-let g:VM_maps["Select h"] = '<C-Left>'
+" let g:VM_maps = {}
+" let g:VM_maps["Select l"] = '<C-Right>'
+" let g:VM_maps["Select h"] = '<C-Left>'
+
+"-- limelight --
+nmap <F7> :Limelight!!<CR>
+let g:limelight_conceal_ctermfg = '10'
+
+"-- quickmenu --
+noremap <silent><F12> :call quickmenu#toggle(0)<CR>
+let g:quickmenu_options = "HL"
+let g:quickmenu_padding_right = 25
+
+call g:quickmenu#append("Startify", "Startify", "")
+
+call g:quickmenu#append("# Mouse", "")
+call g:quickmenu#append("Enable Mouse <F2>", "set mouse=a", "")
+call g:quickmenu#append("Disable Mouse <F3>", "set mouse=", "")
+
+call g:quickmenu#append("# Other Toggle", "")
+call g:quickmenu#append("Turn CopyMode %{&number? 'on':'off'} <F4>", "call CopyModeToggle()", "")
+call g:quickmenu#append("Turn Spell %{&spell? 'off':'on'} <F5>", "set spell!", "")
+call g:quickmenu#append("Turn Paste %{&paste? 'off':'on'} <F6>", "set paste!", "")
+call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
+
+call g:quickmenu#append("# Common", "")
+call g:quickmenu#append("NerdTree <F8>", "NERDTreeToggle", "")
+call g:quickmenu#append("Tagbar <F9>", "TagbarToggle", "")
+
+nmap <F2> :set mouse=a<CR>
+nmap <F3> :set mouse=<CR>
+nmap <F4> :call CopyModeToggle()<CR>
+set pastetoggle=<F5>
+nmap <F6> :set spell!<CR>
+nmap <F8> :NERDTreeToggle<CR>
+nmap <F9> :TagbarToggle<CR>
+
+function CopyModeToggle()
+    set nu!
+    exec "IndentLinesToggle"
+    exec "GitGutterSignsToggle"
+    exec "SignatureToggleSigns"
+endfunction
 

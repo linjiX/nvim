@@ -1,47 +1,67 @@
 call plug#begin('~/.vim/plug')
 
 Plug 'yianwillis/vimcdoc'
+
+"-- Menu --
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'majutsushi/tagbar'
+Plug 'pseewald/nerdtree-tagbar-combined'
+Plug 'skywind3000/quickmenu.vim'
+" Plug 'liuchengxu/vim-which-key'
+Plug 'sjl/gundo.vim'
+
+"-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chxuan/change-colorscheme'
-Plug 'scrooloose/nerdtree'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'scrooloose/nerdcommenter'
+
+"-- Edit --
 " Plug 'jiangmiao/auto-pairs'
-Plug 'majutsushi/tagbar'
-Plug 'pseewald/nerdtree-tagbar-combined'
+" Plug 'raimondi/delimitmate'
+" Plug 'mg979/vim-visual-multi'
+" Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+
+"-- Formatter --
+Plug 'chiel92/vim-autoformat'
+Plug 'godlygeek/tabular'
+
+"-- Display --
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Yggdroot/indentLine'
+Plug 'luochen1990/rainbow'
+Plug 'junegunn/limelight.vim'
+
+"-- Coding --
 Plug 'Valloric/YouCompleteMe'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'Yggdroot/indentLine'
 Plug 'derekwyatt/vim-fswitch'
+Plug 'scrooloose/nerdcommenter'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
+" Plug 'jsfaint/gen_tags.vim'
+
+"-- Compile --
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+
+"-- Git --
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim'
-Plug 'google/vim-maktaba'
-Plug 'bazelbuild/vim-bazel'
-Plug 'tpope/vim-abolish'
-Plug 'luochen1990/rainbow'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-sensible'
 " Plug 'mhinz/vim-signify'
-" Plug 'terryma/vim-multiple-cursors'
-Plug 'mg979/vim-visual-multi'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.vim'
-"Plug 'suan/vim-instant-markdown'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
-Plug 'easymotion/vim-easymotion'
-Plug 'kshenoy/vim-signature'
+
+"-- Searcher --
 " Plug 'vim-scripts/ctrlp.vim'
 " Plug 'tacahiroy/ctrlp-funky'
 Plug 'dyng/ctrlsf.vim'
@@ -49,12 +69,16 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'mileszs/ack.vim'
-"Plug 'yuttie/comfortable-motion.vim'
+Plug 'nelstrom/vim-visual-star-search'
+
+"-- Cursor Move --
+Plug 'easymotion/vim-easymotion'
+Plug 'rhysd/clever-f.vim'
 Plug 'terryma/vim-smooth-scroll'
-Plug 'chiel92/vim-autoformat'
-Plug 'airblade/vim-rooter'
-Plug 'mhinz/vim-startify'
-Plug 'terryma/vim-expand-region'
+"Plug 'yuttie/comfortable-motion.vim'
+Plug 'kshenoy/vim-signature'
+
+"-- Text Object --
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-indent'
@@ -65,14 +89,21 @@ Plug 'coderifous/textobj-word-column.vim'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'lucapette/vim-textobj-underscore'
 Plug 'mattn/vim-textobj-url'
+
+"-- Markdown --
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+"Plug 'suan/vim-instant-markdown'
+
+"-- Others --
+Plug 'terryma/vim-expand-region'
+Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-sensible'
+Plug 'airblade/vim-rooter'
 Plug 'qpkorr/vim-bufkill'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'sjl/gundo.vim'
-" Plug 'raimondi/delimitmate'
-Plug 'rhysd/clever-f.vim'
-Plug 'ryanoasis/vim-devicons'
-" Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'liuchengxu/vim-which-key'
-Plug 'skywind3000/quickmenu.vim'
+
+
+
 
 call plug#end()
