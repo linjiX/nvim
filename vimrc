@@ -54,7 +54,7 @@ set path=.,/usr/include,/usr/local/include,~/Document/lib
 
 set completeopt-=preview
 
-let mapleader="\<space>"
+let mapleader="\<Space>"
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -273,7 +273,24 @@ endif
 let g:ackhighlight = 1
 let g:ack_use_cword_for_empty_search = 1
 cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+nnoremap <leader>* :Ack! -w <C-r><C-w> %<CR>
+nnoremap <leader>g* :Ack! <C-r><C-w> %<CR>
+nnoremap <leader># :Ack! -w <C-r><C-w><CR>
+nnoremap <leader>g# :Ack! <C-r><C-w><CR>
+
+function! VWordCmd(precmd, postcmd)
+  let temp = @s
+  norm! gv"sy
+  let vword = substitute(@s, '\n', '\\n', 'g')
+  let @s = temp
+  let cmd = a:precmd .' "'. vword .': '. a:postcmd
+  return cmd
+endfunction
+
+vnoremap <leader>* :<C-u>execute VWordCmd('Ack! -w', '%')<CR>
+vnoremap <leader>g* :<C-u>execute VWordCmd('Ack!', '%')<CR>
+vnoremap <leader># :<C-u>execute VWordCmd('Ack! -w', '')<CR>
+vnoremap <leader>g# :<C-u>execute VWordCmd('Ack!', '')<CR>
 
 " -- Airline --
 let g:airline_powerline_fonts = 1
@@ -376,9 +393,16 @@ omap aM <Plug>(textobj-comment-big-a)
 nnoremap <leader>o :BB<CR>
 nnoremap <leader>i :BF<CR>
 
-nnoremap + :bn<CR>
-nnoremap _ :bp<CR>
-nnoremap <leader>qq :BW<CR>
+function! BufferOpen(command_str)
+  if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
+    exe "normal! \<C-w>\l"
+  endif
+  exe 'normal! ' . a:command_str . "\<CR>"
+endfunction
+
+nnoremap <silent> + :call BufferOpen(':bn')<CR>
+nnoremap <silent> _ :call BufferOpen(':bp')<CR>
+nnoremap <silent><leader>qq :call BufferOpen(':BW')<CR>
 
 "-- Gundo --
 if has('python3')
@@ -427,6 +451,25 @@ let g:rainbow_conf = {
 " let g:VM_maps = {}
 " let g:VM_maps["Select l"] = '<C-Right>'
 " let g:VM_maps["Select h"] = '<C-Left>'
+
+"-- vim-which-key --
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> ] :WhichKey ']'<CR>
+nnoremap <silent> [ :WhichKey '['<CR>
+let g:which_key_map = {}
+let g:which_key_map.b = {'name':"+prefix BufKill"}
+let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
+let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}
+let g:which_key_map.q = {
+        \ 'name': "+prefix Close buffer",
+        \ 'q': "Close buffer"
+        \ }
+let g:which_key_map.s = {'name':"+prefix CtrlSF"}
+let g:which_key_map.f = {'name':"+prefix LeaderF"}
+let g:which_key_map.z = {'name':"+prefix fzf"}
+
+call which_key#register('<Space>', "g:which_key_map")
 
 "-- limelight --
 nmap <F7> :Limelight!!<CR>

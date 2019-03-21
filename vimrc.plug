@@ -10,7 +10,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'skywind3000/quickmenu.vim'
-" Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vim-which-key'
 Plug 'sjl/gundo.vim'
 
 "-- Colorscheme --
