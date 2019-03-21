@@ -389,20 +389,26 @@ omap im <Plug>(textobj-comment-a)
 xmap aM <Plug>(textobj-comment-big-a)
 omap aM <Plug>(textobj-comment-big-a)
 
-"-- bufkill --
-nnoremap <leader>o :BB<CR>
-nnoremap <leader>i :BF<CR>
+"-- BufKill --
+let g:BufKillCreateMappings = 0
 
-function! BufferOpen(command_str)
+function! BufferDo(command_str)
   if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
     exe "normal! \<C-w>\l"
   endif
   exe 'normal! ' . a:command_str . "\<CR>"
 endfunction
 
-nnoremap <silent> + :call BufferOpen(':bn')<CR>
-nnoremap <silent> _ :call BufferOpen(':bp')<CR>
-nnoremap <silent><leader>qq :call BufferOpen(':BW')<CR>
+nnoremap <silent> <leader>o :call BufferDo(':BB')<CR>
+nnoremap <silent> <leader>i :call BufferDo(':BF')<CR>
+nnoremap <silent> <leader>` :call BufferDo(':BA')<CR>
+nnoremap <silent> <leader>u :call BufferDo(':BUNDO')<CR>
+
+nnoremap <silent> + :call BufferDo(':bn')<CR>
+nnoremap <silent> _ :call BufferDo(':bp')<CR>
+nnoremap <silent> <leader>qq :call BufferDo(':BW')<CR>
+nnoremap <silent> <leader>qd :call BufferDo(':BD')<CR>
+nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
 
 "-- Gundo --
 if has('python3')
@@ -457,13 +463,20 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> ] :WhichKey ']'<CR>
 nnoremap <silent> [ :WhichKey '['<CR>
-let g:which_key_map = {}
-let g:which_key_map.b = {'name':"+prefix BufKill"}
+" let g:which_key_map = {'i' :"123"}
+let g:which_key_map = {
+        \ '`' :"BufKillAlt",
+        \ 'i' :"BufKillForward",
+        \ 'o' :"BufKillBack",
+        \ 'u' :"BufKillUndo",
+        \}
 let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
 let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}
 let g:which_key_map.q = {
-        \ 'name': "+prefix Close buffer",
-        \ 'q': "Close buffer"
+        \ 'name': "+prefix BufKillBw",
+        \ 'q': "BufKillBw",
+        \ 'd': "BufKillBd",
+        \ 'u': "BufKillBun",
         \ }
 let g:which_key_map.s = {'name':"+prefix CtrlSF"}
 let g:which_key_map.f = {'name':"+prefix LeaderF"}
