@@ -79,22 +79,22 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Change cursor shape in different modes
 if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-  au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[5 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[3 q"' | redraw! |
-    \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+    au InsertEnter,InsertChange *
+                \ if v:insertmode == 'i' |
+                \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+                \ elseif v:insertmode == 'r' |
+                \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+                \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
 "Locate cursor to the last position
 if has("autocmd")
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+    autocmd BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \   exe "normal g`\"" |
+                \ endif
 endif
 
 
@@ -124,16 +124,16 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
 let g:gutentags_file_list_command = {
-    \ 'markers': {
-        \ '.git': 'git ls-files',
-        \ '.root': 'find -type f',
-        \ },
-    \ }
+                \ 'markers': {
+                    \ '.git': 'git ls-files',
+                    \ '.root': 'find -type f',
+                    \ },
+                \ }
 
 " let g:gutentags_trace = 1
 let g:gutentags_plus_nomap = 1
 
-nnoremap <silent> <leader>g<Space> :GscopeFind 
+nnoremap <silent> <leader>g<Space> :GscopeFind.
 nnoremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 nnoremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 nnoremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
@@ -239,7 +239,6 @@ nmap <leader>ze :Commands<CR>
 nmap <leader>zh :Helptags<CR>
 nmap <leader>zf :Filetypes<CR>
 
-
 " -- LeaderF --
 let g:Lf_WindowHeight = 0.3
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
@@ -279,12 +278,12 @@ nnoremap <leader># :Ack! -w <C-r><C-w><CR>
 nnoremap <leader>g# :Ack! <C-r><C-w><CR>
 
 function! VWordCmd(precmd, postcmd)
-  let temp = @s
-  norm! gv"sy
-  let vword = substitute(@s, '\n', '\\n', 'g')
-  let @s = temp
-  let cmd = a:precmd .' "'. vword .': '. a:postcmd
-  return cmd
+    let temp = @s
+    norm! gv"sy
+    let vword = substitute(@s, '\n', '\\n', 'g')
+    let @s = temp
+    let cmd = a:precmd .' "'. vword .': '. a:postcmd
+    return cmd
 endfunction
 
 vnoremap <leader>* :<C-u>execute VWordCmd('Ack! -w', '%')<CR>
@@ -336,7 +335,6 @@ nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>d :YcmDiags<CR>
 nnoremap <leader>x :YcmCompleter FixIt<CR>
 
-
 " -- UltiSnips --
 let g:UltiSnipsExpandTrigger = '<C-l>'
 
@@ -362,10 +360,11 @@ nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 5, 2)<CR>
 nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
 nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
 
-
 "-- vim-autoformat --
 let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=file'"
 let g:formatters_cpp = ['my_custom_cpp']
+let g:formatdef_my_custom_bzl = "'buildifier'"
+let g:formatters_bzl = ['my_custom_bzl']
 let g:autoformat_verbosemode = 1
 
 "-- vim-rooter --
@@ -374,11 +373,11 @@ let g:rooter_manual_only = 1
 "-- startify --
 nmap <leader>S :Startify<CR>
 let g:startify_bookmarks = [
-    \ {'v': '~/.vim/vimrc'},
-    \ {'p': '~/.vim/vimrc.plug'},
-    \ {'y': '~/.vim/ycm_extra_conf.py'},
-    \ {'b': '~/.bashrc'},
-    \ ]
+            \ {'v': '~/.vim/vimrc'},
+            \ {'p': '~/.vim/vimrc.plug'},
+            \ {'y': '~/.vim/ycm_extra_conf.py'},
+            \ {'b': '~/.bashrc'},
+            \ ]
 
 "-- textobj --
 let g:textobj_comment_no_default_key_mappings = 1
@@ -393,10 +392,10 @@ omap aM <Plug>(textobj-comment-big-a)
 let g:BufKillCreateMappings = 0
 
 function! BufferDo(command_str)
-  if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
-    exe "normal! \<C-w>\l"
-  endif
-  exe 'normal! ' . a:command_str . "\<CR>"
+    if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
+        exe "normal! \<C-w>\l"
+    endif
+    exe 'normal! ' . a:command_str . "\<CR>"
 endfunction
 
 nnoremap <silent> <leader>o :call BufferDo(':BB')<CR>
@@ -431,27 +430,31 @@ map <leader>- <Plug>(expand_region_shrink)
 let g:rainbow_active = 0
 nmap <leader>r :RainbowToggle<CR>
 let g:rainbow_conf = {
-    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-    \   'ctermfgs': ['darkyellow', 'darkcyan', 'darkmagenta', 'darkgreen', 'darkred'],
-    \   'operators': '_,_',
-    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-    \   'separately': {
-    \       '*': {},
-    \       'tex': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-    \       },
-    \       'lisp': {
-    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-    \       },
-    \       'vim': {
-    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-    \       },
-    \       'html': {
-    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-    \       },
-    \       'css': 0,
-    \   }
-    \}
+            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+            \   'ctermfgs': ['darkyellow', 'darkcyan', 'darkmagenta', 'darkgreen', 'darkred'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
+            \}
+
+"-- vim-easy-aline --
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
@@ -465,19 +468,19 @@ nnoremap <silent> ] :WhichKey ']'<CR>
 nnoremap <silent> [ :WhichKey '['<CR>
 " let g:which_key_map = {'i' :"123"}
 let g:which_key_map = {
-        \ '`' :"BufKillAlt",
-        \ 'i' :"BufKillForward",
-        \ 'o' :"BufKillBack",
-        \ 'u' :"BufKillUndo",
-        \}
+            \ '`' :"BufKillAlt",
+            \ 'i' :"BufKillForward",
+            \ 'o' :"BufKillBack",
+            \ 'u' :"BufKillUndo",
+            \}
 let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
 let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}
 let g:which_key_map.q = {
-        \ 'name': "+prefix BufKillBw",
-        \ 'q': "BufKillBw",
-        \ 'd': "BufKillBd",
-        \ 'u': "BufKillBun",
-        \ }
+            \ 'name': "+prefix BufKillBw",
+            \ 'q': "BufKillBw",
+            \ 'd': "BufKillBd",
+            \ 'u': "BufKillBun",
+            \ }
 let g:which_key_map.s = {'name':"+prefix CtrlSF"}
 let g:which_key_map.f = {'name':"+prefix LeaderF"}
 let g:which_key_map.z = {'name':"+prefix fzf"}
