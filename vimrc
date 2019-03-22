@@ -42,7 +42,7 @@ set history=30
 set wildmenu
 set hidden
 
-set cc=100
+set colorcolumn=100
 
 set updatetime=100
 
@@ -104,8 +104,10 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>:lclose<CR>
 
-cnoreabbrev H vertical botright help
-cnoreabbrev T vertical botright terminal
+" cnoreabbrev H vertical botright help
+" cnoreabbrev T vertical botright terminal
+nnoremap <leader>T :vertical botright terminal<CR>
+
 
 "Close VIM when only quickfix window visable
 aug QFClose
@@ -113,6 +115,8 @@ aug QFClose
     au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
 
+"open help window vertical split
+autocmd FileType help wincmd L
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- gutentags setting --
@@ -163,8 +167,8 @@ nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
 let g:NERDSpaceDelims = 1
 
 "-- GitGutter --
-nmap <leader>gF :GitGutterFold<CR>
-nmap <leader>gP <Plug>GitGutterPreviewHunk
+nnoremap <leader>gF :GitGutterFold<CR>
+nmap <leader>gp <Plug>GitGutterPreviewHunk
 nmap <leader>gS <Plug>GitGutterStageHunk
 nmap <leader>gu <Plug>GitGutterUndoHunk
 omap ig <Plug>GitGutterTextObjectInnerPending
@@ -215,29 +219,29 @@ imap <c-x><c-x> <plug>(fzf-complete-path)
 imap <c-x><c-z> <plug>(fzf-complete-file-ag)
 imap <c-x><c-j> <plug>(fzf-complete-line)
 
-nmap <leader>zz :Files<CR>
-nmap <leader>zg :GFiles<CR>
-nmap <leader>zG :GFiles?<CR>
-nmap <leader>zb :Buffers<CR>
-nmap <leader>zc :Colors<CR>
-nmap <leader>za :Ag<CR>
-nmap <leader>zr :Rg<CR>
-nmap <leader>zl :BLines<CR>
-nmap <leader>zL :Lines<CR>
-nmap <leader>zt :BTags<CR>
-nmap <leader>zT :Tags<CR>
-nmap <leader>z<leader> :Maps<CR>
-nmap <leader>z` :Marks<CR>
-nmap <leader>zw :Windows<CR>
-nmap <leader>zm :History<CR>
-nmap <leader>z: :History:<CR>
-nmap <leader>z/ :History/<CR>
-nmap <leader>zs :Snippets<CR>
-nmap <leader>zo :BCommits<CR>
-nmap <leader>zO :Commits<CR>
-nmap <leader>ze :Commands<CR>
-nmap <leader>zh :Helptags<CR>
-nmap <leader>zf :Filetypes<CR>
+nnoremap <leader>zz :Files<CR>
+nnoremap <leader>zg :GFiles<CR>
+nnoremap <leader>zG :GFiles?<CR>
+nnoremap <leader>zb :Buffers<CR>
+nnoremap <leader>zc :Colors<CR>
+nnoremap <leader>za :Ag<CR>
+nnoremap <leader>zr :Rg<CR>
+nnoremap <leader>zl :BLines<CR>
+nnoremap <leader>zL :Lines<CR>
+nnoremap <leader>zt :BTags<CR>
+nnoremap <leader>zT :Tags<CR>
+nnoremap <leader>z<leader> :Maps<CR>
+nnoremap <leader>z` :Marks<CR>
+nnoremap <leader>zw :Windows<CR>
+nnoremap <leader>zm :History<CR>
+nnoremap <leader>z: :History:<CR>
+nnoremap <leader>z/ :History/<CR>
+nnoremap <leader>zs :Snippets<CR>
+nnoremap <leader>zo :BCommits<CR>
+nnoremap <leader>zO :Commits<CR>
+nnoremap <leader>ze :Commands<CR>
+nnoremap <leader>zh :Helptags<CR>
+nnoremap <leader>zf :Filetypes<CR>
 
 " -- LeaderF --
 let g:Lf_WindowHeight = 0.3
@@ -248,22 +252,23 @@ let g:Lf_DefaultMode = 'NameOnly'
 
 let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
-nmap <leader>fB :LeaderfBufferAll<CR>
-nmap <leader>fm :LeaderfMru<CR>
-nmap <leader>fM :LeaderfMruCwd<CR>
-nmap <leader>ft :LeaderfBufTag<CR>
-nmap <leader>fT :LeaderfBufTagAll<CR>
-nmap <leader>fu :LeaderfFunction<CR>
-nmap <leader>fU :LeaderfFunctionAll<CR>
-nmap <leader>fl :LeaderfLine<CR>
-nmap <leader>fL :LeaderfLineAll<CR>
-nmap <leader>f: :LeaderfHistoryCmd<CR>
-nmap <leader>f/ :LeaderfHistorySearch<CR>
-nmap <leader>fs :LeaderfSelf<CR>
-nmap <leader>fh :LeaderfHelp<CR>
-nmap <leader>fc :LeaderfColorscheme<CR>
-nmap <leader>fr :LeaderfRgInteractive<CR>
-nmap <leader>fR :LeaderfRgRecall<CR>
+nnoremap <leader>ff :LeaderfFile<CR>
+nnoremap <leader>fB :LeaderfBufferAll<CR>
+nnoremap <leader>fm :LeaderfMru<CR>
+nnoremap <leader>fM :LeaderfMruCwd<CR>
+nnoremap <leader>ft :LeaderfBufTag<CR>
+nnoremap <leader>fT :LeaderfBufTagAll<CR>
+nnoremap <leader>fu :LeaderfFunction<CR>
+nnoremap <leader>fU :LeaderfFunctionAll<CR>
+nnoremap <leader>fl :LeaderfLine<CR>
+nnoremap <leader>fL :LeaderfLineAll<CR>
+nnoremap <leader>f: :LeaderfHistoryCmd<CR>
+nnoremap <leader>f/ :LeaderfHistorySearch<CR>
+nnoremap <leader>fs :LeaderfSelf<CR>
+nnoremap <leader>fh :LeaderfHelp<CR>
+nnoremap <leader>fc :LeaderfColorscheme<CR>
+nnoremap <leader>fr :LeaderfRgInteractive<CR>
+nnoremap <leader>fR :LeaderfRgRecall<CR>
 
 " -- Ack --
 if executable('ag')
@@ -371,7 +376,7 @@ let g:autoformat_verbosemode = 1
 let g:rooter_manual_only = 1
 
 "-- startify --
-nmap <leader>S :Startify<CR>
+nnoremap <leader>S :Startify<CR>
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
             \ {'p': '~/.vim/vimrc.plug'},
@@ -428,7 +433,7 @@ map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
 let g:rainbow_active = 0
-nmap <leader>r :RainbowToggle<CR>
+nnoremap <leader>r :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
             \   'ctermfgs': ['darkyellow', 'darkcyan', 'darkmagenta', 'darkgreen', 'darkred'],
@@ -462,11 +467,12 @@ nmap ga <Plug>(EasyAlign)
 " let g:VM_maps["Select h"] = '<C-Left>'
 
 "-- vim-which-key --
+nnoremap <F8> :WhichKey ''<CR>
+vnoremap <F8> :WhichKeyVisual ''<CR>
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
 nnoremap <silent> ] :WhichKey ']'<CR>
 nnoremap <silent> [ :WhichKey '['<CR>
-" let g:which_key_map = {'i' :"123"}
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
             \ 'i' :"BufKillForward",
@@ -488,11 +494,11 @@ let g:which_key_map.z = {'name':"+prefix fzf"}
 call which_key#register('<Space>', "g:which_key_map")
 
 "-- limelight --
-nmap <F7> :Limelight!!<CR>
+nnoremap <F7> :Limelight!!<CR>
 let g:limelight_conceal_ctermfg = '10'
 
 "-- quickmenu --
-noremap <silent><F12> :call quickmenu#toggle(0)<CR>
+nnoremap <silent><F12> :call quickmenu#toggle(0)<CR>
 let g:quickmenu_options = "HL"
 let g:quickmenu_padding_right = 25
 
@@ -509,16 +515,16 @@ call g:quickmenu#append("Turn Paste %{&paste? 'off':'on'} <F6>", "set paste!", "
 call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
 
 call g:quickmenu#append("# Common", "")
-call g:quickmenu#append("NerdTree <F8>", "NERDTreeToggle", "")
-call g:quickmenu#append("Tagbar <F9>", "TagbarToggle", "")
+call g:quickmenu#append("WhichKey <F8>", "WhichKey ''", "")
+" call g:quickmenu#append("Tagbar <F9>", "TagbarToggle", "")
 
-nmap <F2> :set mouse=a<CR>
-nmap <F3> :set mouse=<CR>
-nmap <F4> :call CopyModeToggle()<CR>
+nnoremap <F2> :set mouse=a<CR>
+nnoremap <F3> :set mouse=<CR>
+nnoremap <F4> :call CopyModeToggle()<CR>
 set pastetoggle=<F5>
-nmap <F6> :set spell!<CR>
-nmap <F8> :NERDTreeToggle<CR>
-nmap <F9> :TagbarToggle<CR>
+nnoremap <F6> :set spell!<CR>
+" nnoremap <F8> :NERDTreeToggle<CR>
+" nnoremap <F9> :TagbarToggle<CR>
 
 function CopyModeToggle()
     set nu!
@@ -526,4 +532,3 @@ function CopyModeToggle()
     exec "GitGutterSignsToggle"
     exec "SignatureToggleSigns"
 endfunction
-
