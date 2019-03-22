@@ -43,14 +43,17 @@ Plug 'vim-airline/vim-airline-themes'
 
 "-- Coding --
 " Plug 'jsfaint/gen_tags.vim'
+" Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 Plug 'derekwyatt/vim-fswitch'
 Plug 'honza/vim-snippets'
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdcommenter'
+Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/gutentags_plus'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
 
 "-- Compile --
 Plug 'bazelbuild/vim-bazel'
@@ -93,10 +96,10 @@ Plug 'mattn/vim-textobj-url'
 Plug 'sgur/vim-textobj-parameter'
 
 "-- Markdown --
+" Plug 'plasticboy/vim-markdown'
 "Plug 'suan/vim-instant-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'plasticboy/vim-markdown'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
