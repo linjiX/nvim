@@ -413,6 +413,7 @@ nnoremap <silent> _ :call BufferDo(':bp')<CR>
 nnoremap <silent> <leader>qq :call BufferDo(':BW')<CR>
 nnoremap <silent> <leader>qd :call BufferDo(':BD')<CR>
 nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
+nnoremap <silent> <leader>qc :cclose<CR>:lclose<CR>
 
 "-- Gundo --
 if has('python3')
@@ -423,9 +424,11 @@ let g:gundo_right = 1
 let g:gundo_width = 60
 let g:gundo_close_on_revert = 1
 
-"-- clever-f.vim --
-map ; <Plug>(clever-f-repeat-forward)
-map , <Plug>(clever-f-repeat-back)
+"-- vim-sneak --
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 "-- vim-expand-region --
 map <leader>= <Plug>(expand_region_expand)
@@ -469,10 +472,10 @@ nmap ga <Plug>(EasyAlign)
 "-- vim-which-key --
 nnoremap <F8> :WhichKey ''<CR>
 vnoremap <F8> :WhichKeyVisual ''<CR>
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> ] :WhichKey ']'<CR>
-nnoremap <silent> [ :WhichKey '['<CR>
+nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> ] :<C-u>WhichKey ']'<CR>
+nnoremap <silent> [ :<C-u>WhichKey '['<CR>
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
             \ 'i' :"BufKillForward",
@@ -516,15 +519,12 @@ call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
 
 call g:quickmenu#append("# Common", "")
 call g:quickmenu#append("WhichKey <F8>", "WhichKey ''", "")
-" call g:quickmenu#append("Tagbar <F9>", "TagbarToggle", "")
 
 nnoremap <F2> :set mouse=a<CR>
 nnoremap <F3> :set mouse=<CR>
 nnoremap <F4> :call CopyModeToggle()<CR>
 set pastetoggle=<F5>
 nnoremap <F6> :set spell!<CR>
-" nnoremap <F8> :NERDTreeToggle<CR>
-" nnoremap <F9> :TagbarToggle<CR>
 
 function CopyModeToggle()
     set nu!

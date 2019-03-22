@@ -24,7 +24,6 @@ Plug 'tomasr/molokai'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
-" Plug 'humiaozuzu/fcitx-status'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -60,6 +59,7 @@ Plug 'google/vim-maktaba'
 "-- Git --
 " Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
+Plug 'cohama/agit.vim'
 Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-fugitive'
 
@@ -76,8 +76,8 @@ Plug 'nelstrom/vim-visual-star-search'
 "-- Cursor Move --
 "Plug 'yuttie/comfortable-motion.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'justinmk/vim-sneak'
 Plug 'kshenoy/vim-signature'
-Plug 'rhysd/clever-f.vim'
 Plug 'terryma/vim-smooth-scroll'
 
 "-- Text Object --
