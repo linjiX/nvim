@@ -63,7 +63,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-nnoremap <leader>l :nohlsearch<CR>
+" nnoremap <leader>l :nohlsearch<CR>
 
 packadd! matchit
 
@@ -469,6 +469,14 @@ nmap ga <Plug>(EasyAlign)
 nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
 
+"-- vim-interestinwords --
+nnoremap <silent> * :call InterestingWords('n')<CR>
+nnoremap <silent> <leader>l :call UncolorAllWords()<CR> :nohlsearch<CR>
+let g:interestingWordsTermColors = ['214', '045', '141', '047', '014', '207']
+
+"-- xterm-color-table --
+let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
+
 "-- vim-visual-multi --
 " let g:VM_maps = {}
 " let g:VM_maps["Select l"] = '<C-Right>'
@@ -520,9 +528,9 @@ call g:quickmenu#append("# Other Toggle", "")
 call g:quickmenu#append("Turn CopyMode %{&number? 'on':'off'} <F4>", "call CopyModeToggle()", "")
 call g:quickmenu#append("Turn Spell %{&spell? 'off':'on'} <F5>", "set spell!", "")
 call g:quickmenu#append("Turn Paste %{&paste? 'off':'on'} <F6>", "set paste!", "")
-call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
 
-call g:quickmenu#append("# Common", "")
+call g:quickmenu#append("# Interesting", "")
+call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
 call g:quickmenu#append("WhichKey <F8>", "WhichKey ''", "")
 
 nnoremap <F2> :set mouse=a<CR>

@@ -35,7 +35,9 @@ Plug 'junegunn/vim-easy-align'
 
 "-- Display --
 Plug 'Yggdroot/indentLine'
+Plug 'guns/xterm-color-table.vim'
 Plug 'junegunn/limelight.vim'
+Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ryanoasis/vim-devicons'
