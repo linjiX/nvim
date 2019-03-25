@@ -23,7 +23,8 @@ set softtabstop=4
 set shiftwidth=4
 
 set list
-set listchars=tab:>-,trail:.
+" set listchars=tab:>-,trail:.
+set listchars=tab:>-
 
 set hlsearch
 set incsearch
@@ -137,7 +138,7 @@ let g:gutentags_file_list_command = {
 " let g:gutentags_trace = 1
 let g:gutentags_plus_nomap = 1
 
-nnoremap <silent> <leader>g<Space> :GscopeFind.
+nnoremap <leader>g<Space> :GscopeFind 
 nnoremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
 nnoremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
 nnoremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
@@ -463,6 +464,10 @@ let g:rainbow_conf = {
 "-- vim-easy-aline --
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+"-- vim-better-whitespace --
+nnoremap ]w :NextTrailingWhitespace<CR>
+nnoremap [w :PrevTrailingWhitespace<CR>
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
