@@ -470,9 +470,9 @@ nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
 
 "-- vim-interestinwords --
-nnoremap <silent> * :call InterestingWords('n')<CR>
+" nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
 nnoremap <silent> <leader>l :call UncolorAllWords()<CR> :nohlsearch<CR>
-let g:interestingWordsTermColors = ['214', '045', '141', '047', '014', '207']
+let g:interestingWordsTermColors = ['045', '141', '047', '014', '207', '221']
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
