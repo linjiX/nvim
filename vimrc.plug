@@ -40,6 +40,7 @@ Plug 'junegunn/limelight.vim'
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
+" Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -78,6 +79,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-visual-star-search'
+" Plug 'osyo-manga/vim-anzu'
+" Plug 'henrik/vim-indexed-search'
+" Plug 'google/vim-searchindex'
+Plug 'romainl/vim-cool'
 
 "-- Cursor Move --
 "Plug 'yuttie/comfortable-motion.vim'
@@ -100,7 +105,7 @@ Plug 'sgur/vim-textobj-parameter'
 
 "-- Markdown --
 " Plug 'plasticboy/vim-markdown'
-"Plug 'suan/vim-instant-markdown'
+" Plug 'suan/vim-instant-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iamcco/mathjax-support-for-mkdp'
 

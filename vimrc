@@ -103,6 +103,7 @@ endif
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
+autocmd FileType qf set bufhidden=delete
 autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>:lclose<CR>
 
 " cnoreabbrev H vertical botright help
@@ -117,7 +118,10 @@ aug QFClose
 aug END
 
 "open help window vertical split
-autocmd FileType help wincmd L
+augroup vimrc_help
+    autocmd!
+    autocmd BufEnter * if &buftype == 'help' | wincmd L | endif
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- gutentags setting --
@@ -411,6 +415,8 @@ nnoremap <silent> <leader>u :call BufferDo(':BUNDO')<CR>
 
 nnoremap <silent> + :call BufferDo(':bn')<CR>
 nnoremap <silent> _ :call BufferDo(':bp')<CR>
+vnoremap <silent> + :<C-u>call BufferDo(':bn')<CR>
+vnoremap <silent> _ :<C-u>call BufferDo(':bp')<CR>
 nnoremap <silent> <leader>qq :call BufferDo(':BW')<CR>
 nnoremap <silent> <leader>qd :call BufferDo(':BD')<CR>
 nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
@@ -468,14 +474,33 @@ nmap ga <Plug>(EasyAlign)
 "-- vim-better-whitespace --
 nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
+let g:better_whitespace_ctermcolor='23'
 
 "-- vim-interestinwords --
-" nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
+nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
+" nmap <leader>k <Plug>InterestingWords
+vmap <leader>k <Plug>InterestingWords
+" nmap <leader>K <Plug>InterestingWordsClear
+nmap n <Plug>InterestingWordsForeward
+nmap N <Plug>InterestingWordsBackward
+
+nnoremap <silent> <leader>L :set hlsearch<CR>
 nnoremap <silent> <leader>l :call UncolorAllWords()<CR> :nohlsearch<CR>
-let g:interestingWordsTermColors = ['045', '141', '047', '014', '207', '221']
+let g:interestingWordsTermColors = ['039', '141', '047', '014', '207', '221']
+
+"-- vim-cool --
+let g:loaded_cool = 0
+let g:CoolTotalMatches = 1
+
+"-- vim-devicons --
+let g:webdevicons_enable_nerdtree = 0
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
+
+"-- vim-highlight-cursor-words --
+" let g:HiCursorWords_delay = 100
+" let g:HiCursorWords_style='term=underline cterm=underline gui=underline'
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
