@@ -40,8 +40,8 @@ BASE_FLAGS = [
 
         '-I/home/linji/workspace/ros_sensor_collector/src/pylon_camera/include',
         '-I/home/linji/workspace/ros_sensor_collector/devel/include',
+        '-I/home/linji/workspace/ros_sensor_collector/src/pointgrey_camera_driver/pointgrey_camera_driver/include/',
 
-        #  '-I/home/linji/workspace/ros_sensor_collector/src/pointgrey_camera_driver/pointgrey_camera_driver/include/',
         #  '-I/home/linji/workspace/ros_sensor_collector/src/velodyne/velodyne_driver/include/',
         #  '-I/home/linji/workspace/ros_sensor_collector/src/velodyne/velodyne_pointcloud/include/',
         #  '-I/home/linji/workspace/ros_sensor_collector/src/time_sync/include',

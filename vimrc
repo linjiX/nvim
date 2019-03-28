@@ -10,8 +10,14 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+"-- colorscheme --
 set background=dark
+autocmd ColorScheme * hi Sneak cterm=bold,underline ctermfg=red
+autocmd ColorScheme * hi link YcmErrorSection Error
+autocmd ColorScheme * hi link YcmWarningSection Todo
+autocmd ColorScheme * hi link ExtraWhitespace LineNR
 colorscheme solarized
+
 set cursorline
 set cursorcolumn
 set number
@@ -446,7 +452,7 @@ let g:rainbow_active = 0
 nnoremap <leader>r :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-            \   'ctermfgs': ['darkyellow', 'darkcyan', 'darkmagenta', 'darkgreen', 'darkred'],
+            \   'ctermfgs': ['166', '034', '164', '178', '104', '045'],
             \   'operators': '_,_',
             \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
             \   'separately': {
@@ -474,7 +480,7 @@ nmap ga <Plug>(EasyAlign)
 "-- vim-better-whitespace --
 nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
-let g:better_whitespace_ctermcolor='23'
+" let g:better_whitespace_ctermcolor='23'
 
 "-- vim-interestinwords --
 nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
@@ -499,8 +505,12 @@ let g:webdevicons_enable_nerdtree = 0
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
 
 "-- vim-highlight-cursor-words --
-" let g:HiCursorWords_delay = 100
-" let g:HiCursorWords_style='term=underline cterm=underline gui=underline'
+let g:HiCursorWords_delay = 0
+let g:HiCursorWords_linkStyle='CursorLine'
+
+"-- vim-peekaboo --
+let g:peekaboo_window = "vertical botright 50new"
+let g:peekaboo_delay = 1000
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
