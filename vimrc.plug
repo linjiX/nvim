@@ -15,6 +15,7 @@ Plug 'skywind3000/quickmenu.vim'
 
 "-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'
+" Plug 'rafi/awesome-vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'chxuan/change-colorscheme'
 Plug 'tomasr/molokai'
@@ -24,10 +25,12 @@ Plug 'tomasr/molokai'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
+Plug 'Shougo/vinarise.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+
 
 "-- Formatter --
 Plug 'chiel92/vim-autoformat'
@@ -38,6 +41,7 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'itchyny/vim-cursorword'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim'
+Plug 'itchyny/vim-parenmatch'
 Plug 'junegunn/limelight.vim'
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
@@ -87,11 +91,17 @@ Plug 'nelstrom/vim-visual-star-search'
 Plug 'romainl/vim-cool'
 
 "-- Cursor Move --
+" Plug 'rhysd/accelerated-jk'
 "Plug 'yuttie/comfortable-motion.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'kshenoy/vim-signature'
+Plug 't9md/vim-choosewin'
 Plug 'terryma/vim-smooth-scroll'
+
+"-- Visual --
+Plug 'terryma/vim-expand-region'
+Plug 'kana/vim-niceblock'
 
 "-- Text Object --
 Plug 'coderifous/textobj-word-column.vim'
@@ -110,12 +120,12 @@ Plug 'sgur/vim-textobj-parameter'
 " Plug 'suan/vim-instant-markdown'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'mzlogin/vim-markdown-toc'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter'
 Plug 'qpkorr/vim-bufkill'
-Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-unimpaired'
 
 call plug#end()

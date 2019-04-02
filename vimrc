@@ -15,7 +15,8 @@ set background=dark
 autocmd ColorScheme * hi Sneak cterm=bold,underline ctermfg=red
 autocmd ColorScheme * hi link YcmErrorSection Error
 autocmd ColorScheme * hi link YcmWarningSection Todo
-autocmd ColorScheme * hi link ExtraWhitespace LineNR
+" autocmd ColorScheme * hi link ExtraWhitespace LineNR
+autocmd ColorScheme * hi link ExtraWhitespace Visual
 colorscheme solarized
 
 set cursorline
@@ -149,15 +150,15 @@ let g:gutentags_file_list_command = {
 let g:gutentags_plus_nomap = 1
 
 nnoremap <leader>g<Space> :GscopeFind 
-nnoremap <silent> <leader>gs :GscopeFind s <C-R><C-W><cr>
-nnoremap <silent> <leader>gg :GscopeFind g <C-R><C-W><cr>
-nnoremap <silent> <leader>gc :GscopeFind c <C-R><C-W><cr>
-nnoremap <silent> <leader>gt :GscopeFind t <C-R><C-W><cr>
-nnoremap <silent> <leader>ge :GscopeFind e <C-R><C-W><cr>
-nnoremap <silent> <leader>gf :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-nnoremap <silent> <leader>gi :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-nnoremap <silent> <leader>gd :GscopeFind d <C-R><C-W><cr>
-nnoremap <silent> <leader>ga :GscopeFind a <C-R><C-W><cr>
+nnoremap <silent> <leader>gs :GscopeFind s <C-r><C-w><CR>
+nnoremap <silent> <leader>gg :GscopeFind g <C-r><C-w><CR>
+nnoremap <silent> <leader>gc :GscopeFind c <C-r><C-w><CR>
+nnoremap <silent> <leader>gt :GscopeFind t <C-r><C-w><CR>
+nnoremap <silent> <leader>ge :GscopeFind e <C-r><C-w><CR>
+nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
+nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
 
 "-- NERDTree & Tagbar --
 let g:NERDTreeWinSize = 30
@@ -448,7 +449,7 @@ map <leader>= <Plug>(expand_region_expand)
 map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
-let g:rainbow_active = 0
+let g:rainbow_active = 1
 nnoremap <leader>r :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -512,6 +513,13 @@ let g:HiCursorWords_linkStyle='CursorLine'
 let g:peekaboo_window = "vertical botright 50new"
 let g:peekaboo_delay = 1000
 
+"-- vim-choosewin --
+nmap <leader>W <Plug>(choosewin)
+" let g:choosewin_overlay_enable = 1
+
+"--  vim-parenmatch --
+let g:loaded_matchparen = 1
+
 "-- vim-visual-multi --
 " let g:VM_maps = {}
 " let g:VM_maps["Select l"] = '<C-Right>'
@@ -522,8 +530,6 @@ nnoremap <F8> :WhichKey ''<CR>
 vnoremap <F8> :WhichKeyVisual ''<CR>
 nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
-nnoremap <silent> ] :<C-u>WhichKey ']'<CR>
-nnoremap <silent> [ :<C-u>WhichKey '['<CR>
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
             \ 'i' :"BufKillForward",
