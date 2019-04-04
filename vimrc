@@ -78,6 +78,7 @@ autocmd BufNewFile,BufRead *.launch set filetype=xml
 autocmd BufNewFile,BufRead *.urdf set filetype=xml
 autocmd BufNewFile,BufRead *.BUILD set filetype=bzl
 autocmd BufNewFile,BufRead WORKSPACE set filetype=bzl
+autocmd BufNewFile,BufRead .arc* set filetype=json
 
 "Enable the configuration once the vimrc is written
 "autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -135,7 +136,7 @@ augroup END
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = ['bzl', 'vim', 'markdown', 'yaml', 'xml', 'lua', 'sh', 'dockerfile']
+let g:gutentags_exclude_filetypes = ['bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh', 'dockerfile']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
@@ -517,8 +518,11 @@ let g:peekaboo_delay = 1000
 nmap <leader>W <Plug>(choosewin)
 " let g:choosewin_overlay_enable = 1
 
-"--  vim-parenmatch --
+"-- vim-parenmatch --
 let g:loaded_matchparen = 1
+
+"-- cpp_cppcheck.vim --
+let g:cpp_cppcheck_options = "--language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember"
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}

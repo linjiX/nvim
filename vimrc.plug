@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plug')
 
+"-- Help --
 Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
@@ -25,12 +26,12 @@ Plug 'tomasr/molokai'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
+Plug 'AndrewRadev/linediff.vim'
 Plug 'Shougo/vinarise.vim'
 Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-
 
 "-- Formatter --
 Plug 'chiel92/vim-autoformat'
@@ -64,6 +65,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/gutentags_plus'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'vim-scripts/cpp_cppcheck.vim'
 
 "-- Compile --
 Plug 'bazelbuild/vim-bazel'
