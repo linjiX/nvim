@@ -58,6 +58,8 @@ set updatetime=100
 set autoread
 set scrolloff=1
 
+set diffopt+=vertical
+
 set path=.,/usr/include,/usr/local/include,~/Document/lib
 
 set completeopt-=preview
@@ -132,6 +134,12 @@ augroup vimrc_help
 augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"-- vim-plug --
+nnoremap <leader>pp :PlugInstall<CR>
+nnoremap <leader>pc :PlugClean<CR>
+nnoremap <leader>pu :PlugUpdate<CR>
+nnoremap <leader>pg :PlugUpgrade<CR>
+
 "-- gutentags setting --
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
@@ -179,6 +187,9 @@ nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
 
+"-- fugitve --
+cnoreabbrev Gstatus vertical botright Gstatus
+
 "-- GitGutter --
 nnoremap <leader>gF :GitGutterFold<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
@@ -188,8 +199,8 @@ omap ig <Plug>GitGutterTextObjectInnerPending
 omap ag <Plug>GitGutterTextObjectOuterPending
 xmap ig <Plug>GitGutterTextObjectInnerVisual
 xmap ag <Plug>GitGutterTextObjectOuterVisual
-nmap [g <Plug>GitGutterPrevHunk
-nmap ]g <Plug>GitGutterNextHunk
+nmap [c <Plug>GitGutterPrevHunk
+nmap ]c <Plug>GitGutterNextHunk
 
 "-- CrtlP --
 " let g:ctrlp_max_height = 13
@@ -385,6 +396,8 @@ let g:formatdef_my_custom_bzl = "'buildifier'"
 let g:formatters_bzl = ['my_custom_bzl']
 let g:autoformat_verbosemode = 1
 
+nnoremap <leader>a :Autoformat<CR>
+
 "-- vim-rooter --
 let g:rooter_manual_only = 1
 
@@ -493,7 +506,7 @@ nmap n <Plug>InterestingWordsForeward
 nmap N <Plug>InterestingWordsBackward
 
 nnoremap <silent> <leader>L :set hlsearch<CR>
-nnoremap <silent> <leader>l :call UncolorAllWords()<CR> :nohlsearch<CR>
+nnoremap <silent> <BS> :call UncolorAllWords()<CR> :nohlsearch<CR>
 let g:interestingWordsTermColors = ['039', '141', '047', '014', '207', '221']
 
 "-- vim-cool --
@@ -501,7 +514,7 @@ let g:loaded_cool = 0
 let g:CoolTotalMatches = 1
 
 "-- vim-devicons --
-let g:webdevicons_enable_nerdtree = 0
+let g:webdevicons_enable_nerdtree = 1
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
@@ -520,6 +533,15 @@ nmap <leader>W <Plug>(choosewin)
 
 "-- vim-parenmatch --
 let g:loaded_matchparen = 1
+
+"-- conflict-marker.vim --
+let g:conflict_marker_enable_mappings = 0
+nmap ]C <Plug>(conflict-marker-next-hunk)
+nmap [C <Plug>(conflict-marker-prev-hunk)
+nmap ct <Plug>(conflict-marker-themselves)
+nmap co <Plug>(conflict-marker-ourselves)
+nmap cn <Plug>(conflict-marker-none)
+nmap cb <Plug>(conflict-marker-both)
 
 "-- cpp_cppcheck.vim --
 let g:cpp_cppcheck_options = "--language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember"

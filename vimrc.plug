@@ -76,6 +76,7 @@ Plug 'google/vim-maktaba'
 Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
 Plug 'junegunn/gv.vim'
+Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 
 "-- Searcher --
@@ -107,6 +108,7 @@ Plug 'kana/vim-niceblock'
 
 "-- Text Object --
 Plug 'coderifous/textobj-word-column.vim'
+Plug 'gaving/vim-textobj-argument'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
