@@ -7,10 +7,6 @@ My customized vim configuration
     sudo apt-get update
     sudo apt-get install vim
 
-## Get Vim plugin management: vim-plug
-
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 ## Install dependencies
 
     sudo apt-get update
@@ -33,6 +29,9 @@ please remove or rename it to trigger this configuration.
     cd ~
     git clone https://github.com/linjiX/.vim.git
 
+## Get Vim plugin management: vim-plug
+
+    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ## Install all Vim plugins
 May take a long time ...
