@@ -130,6 +130,7 @@ Plug 'mzlogin/vim-markdown-toc'
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter'
 Plug 'qpkorr/vim-bufkill'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 
 call plug#end()

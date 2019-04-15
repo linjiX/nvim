@@ -54,7 +54,6 @@ set colorcolumn=100
 
 set updatetime=100
 
-"set autowrite
 set autoread
 set scrolloff=1
 
@@ -144,7 +143,7 @@ nnoremap <leader>pg :PlugUpgrade<CR>
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = ['bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh', 'dockerfile']
+let g:gutentags_exclude_filetypes = ['', 'conf', 'text', 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh', 'dockerfile']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
@@ -201,20 +200,6 @@ xmap ig <Plug>GitGutterTextObjectInnerVisual
 xmap ag <Plug>GitGutterTextObjectOuterVisual
 nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
-
-"-- CrtlP --
-" let g:ctrlp_max_height = 13
-" let g:ctrlp_extensions = ['funky']
-" let g:ctrlp_funky_syntax_highlight = 1
-" " let g:ctrlp_root_markers = ['.root']
-" let g:ctrlp_by_filename = 1
-" let g:ctrlp_working_path_mode = 'wra'
-" " let g:ctrlp_show_hidden = 1
-" if executable('ag')
-    " set grepprg=ag\ --nogroup\ --nocolor
-    " let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden --ignore-dir=".git" --ignore="*\.swp" -g ""'
-    " let g:ctrlp_use_caching = 0
-" endif
 
 " -- CrtlSF --
 let g:ctrlsf_ackprg = 'ag'
@@ -506,15 +491,15 @@ nmap n <Plug>InterestingWordsForeward
 nmap N <Plug>InterestingWordsBackward
 
 nnoremap <silent> <leader>L :set hlsearch<CR>
-nnoremap <silent> <BS> :call UncolorAllWords()<CR> :nohlsearch<CR>
-let g:interestingWordsTermColors = ['039', '141', '047', '014', '207', '221']
+nnoremap <silent> <BS> :call UncolorAllWords()<CR>:nohlsearch<CR>
+let g:interestingWordsTermColors = ['039', '141', '041', '014', '207', '220']
 
 "-- vim-cool --
 let g:loaded_cool = 0
 let g:CoolTotalMatches = 1
 
 "-- vim-devicons --
-let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_nerdtree = 0
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
@@ -533,6 +518,10 @@ nmap <leader>W <Plug>(choosewin)
 
 "-- vim-parenmatch --
 let g:loaded_matchparen = 1
+
+"-- change-colorscheme --
+nnoremap ]r :NextColorScheme<CR>
+nnoremap [r :PreviousColorScheme<CR>
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
