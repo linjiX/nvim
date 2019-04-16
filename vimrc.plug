@@ -32,6 +32,7 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'vim-scripts/YankRing.vim'
 
 "-- Formatter --
 Plug 'chiel92/vim-autoformat'
@@ -65,7 +66,6 @@ Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/gutentags_plus'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
-Plug 'vim-scripts/cpp_cppcheck.vim'
 
 "-- Compile --
 Plug 'bazelbuild/vim-bazel'
@@ -125,6 +125,9 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'mzlogin/vim-markdown-toc'
+
+"-- QuickFix --
+Plug 'ronakg/quickr-preview.vim'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'

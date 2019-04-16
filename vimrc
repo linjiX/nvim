@@ -113,7 +113,10 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 autocmd FileType qf set bufhidden=delete
-autocmd FileType qf nnoremap <buffer> <CR> <CR>:cclose<CR>:lclose<CR>
+autocmd FileType qf nnoremap <buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
+
+nnoremap <silent> <leader>go :copen<CR>
+autocmd FileType qf nnoremap <buffer> <leader>go :pclose<CR>:cclose<CR>:lclose<CR>
 
 " cnoreabbrev H vertical botright help
 " cnoreabbrev T vertical botright terminal
@@ -134,10 +137,10 @@ augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
-nnoremap <leader>pp :PlugInstall<CR>
-nnoremap <leader>pc :PlugClean<CR>
-nnoremap <leader>pu :PlugUpdate<CR>
-nnoremap <leader>pg :PlugUpgrade<CR>
+nnoremap <leader>PP :PlugInstall<CR>
+nnoremap <leader>PC :PlugClean<CR>
+nnoremap <leader>PU :PlugUpdate<CR>
+nnoremap <leader>PG :PlugUpgrade<CR>
 
 "-- gutentags setting --
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -523,6 +526,19 @@ let g:loaded_matchparen = 1
 nnoremap ]r :NextColorScheme<CR>
 nnoremap [r :PreviousColorScheme<CR>
 
+"-- quickr-preview --
+let g:quickr_preview_keymaps = 0
+autocmd FileType qf nmap <silent><buffer> p <Plug>(quickr_preview)
+let g:quickr_preview_position = 'right'
+
+"-- YankRing --
+nnoremap <silent> <leader>p :YRShow<CR>
+nnoremap <silent> <leader>yc :YRClear<CR>
+let g:yankring_replace_n_pkey = ''
+let g:yankring_replace_n_nkey = ''
+let g:yankring_max_history = 20
+let g:yankring_history_dir = "$HOME/.cache/tags"
+
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
 nmap ]C <Plug>(conflict-marker-next-hunk)
@@ -533,7 +549,7 @@ nmap cn <Plug>(conflict-marker-none)
 nmap cb <Plug>(conflict-marker-both)
 
 "-- cpp_cppcheck.vim --
-let g:cpp_cppcheck_options = "--language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember"
+" let g:cpp_cppcheck_options = "--language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember"
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
