@@ -70,7 +70,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 " nnoremap <leader>l :nohlsearch<CR>
 
 packadd! matchit
@@ -137,16 +137,16 @@ augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
-nnoremap <leader>PP :PlugInstall<CR>
-nnoremap <leader>PC :PlugClean<CR>
-nnoremap <leader>PU :PlugUpdate<CR>
-nnoremap <leader>PG :PlugUpgrade<CR>
+nnoremap <leader>vv :PlugInstall<CR>
+nnoremap <leader>vc :PlugClean<CR>
+nnoremap <leader>vu :PlugUpdate<CR>
+nnoremap <leader>vg :PlugUpgrade<CR>
 
 "-- gutentags setting --
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = ['', 'conf', 'text', 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh', 'dockerfile']
+let g:gutentags_exclude_filetypes = ['', 'conf', 'diff', 'Dockerfile', 'text', 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh']
 let g:gutentags_cache_dir = expand('~/.cache/tags')
 let g:gutentags_auto_add_gtags_cscope = 1
 let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
@@ -168,6 +168,7 @@ nnoremap <silent> <leader>gt :GscopeFind t <C-r><C-w><CR>
 nnoremap <silent> <leader>ge :GscopeFind e <C-r><C-w><CR>
 nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>")<CR><CR>
 nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>gI :GscopeFind i <C-r>=fnameescape(expand('%:t'))<CR><CR>
 nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
 nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
 
@@ -226,10 +227,10 @@ nnoremap <leader>so :CtrlSFToggle<CR>
 " -- FZF --
 let g:fzf_layout = { 'down': '~30%' }
 " Insert mode completion
-imap <c-x><c-w> <plug>(fzf-complete-word)
-imap <c-x><c-x> <plug>(fzf-complete-path)
-imap <c-x><c-z> <plug>(fzf-complete-file-ag)
-imap <c-x><c-j> <plug>(fzf-complete-line)
+imap <C-x><C-w> <plug>(fzf-complete-word)
+imap <C-x><C-x> <plug>(fzf-complete-path)
+imap <C-x><C-z> <plug>(fzf-complete-file-ag)
+imap <C-x><C-j> <plug>(fzf-complete-line)
 
 nnoremap <leader>zz :Files<CR>
 nnoremap <leader>zg :GFiles<CR>
@@ -366,10 +367,10 @@ let g:cpp_class_decl_highlight = 1
 "-- FSwitch --
 nnoremap <leader>h :FSHere<CR>
 
-autocmd BufEnter *.h let b:fswitchdst  = 'cpp,cc,c'
-autocmd BufEnter *.h let b:fswitchlocs = 'reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
-autocmd BufEnter *.cc let b:fswitchdst  = 'h'
-autocmd BufEnter *.cc let b:fswitchlocs = 'reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
+autocmd BufEnter *.h let b:fswitchdst  = 'cc,cpp,c'
+autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
+autocmd BufEnter *.c* let b:fswitchdst  = 'h'
+autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
 
 "-- vim-smooth-scroll --
 nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
@@ -426,10 +427,10 @@ nnoremap <silent> + :call BufferDo(':bn')<CR>
 nnoremap <silent> _ :call BufferDo(':bp')<CR>
 vnoremap <silent> + :<C-u>call BufferDo(':bn')<CR>
 vnoremap <silent> _ :<C-u>call BufferDo(':bp')<CR>
-nnoremap <silent> <leader>qq :call BufferDo(':BW')<CR>
-nnoremap <silent> <leader>qd :call BufferDo(':BD')<CR>
-nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
-nnoremap <silent> <leader>qc :cclose<CR>:lclose<CR>
+nnoremap <silent> <leader>q :call BufferDo(':BW')<CR>
+nnoremap <silent> <leader>Q :call BufferDo(':BD')<CR>
+" nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
+" nnoremap <silent> <leader>qc :cclose<CR>:lclose<CR>
 
 "-- Gundo --
 if has('python3')
@@ -532,8 +533,10 @@ autocmd FileType qf nmap <silent><buffer> p <Plug>(quickr_preview)
 let g:quickr_preview_position = 'right'
 
 "-- YankRing --
-nnoremap <silent> <leader>p :YRShow<CR>
+nnoremap <silent> <leader>P :YRShow<CR>
+nnoremap <silent> <leader>p :YRGetElem 1<CR>
 nnoremap <silent> <leader>yc :YRClear<CR>
+autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
 let g:yankring_max_history = 20
