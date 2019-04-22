@@ -66,10 +66,11 @@ Plug 'sheerun/vim-polyglot'
 Plug 'skywind3000/gutentags_plus'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
+Plug 'w0rp/ale'
 
 "-- Compile --
-Plug 'bazelbuild/vim-bazel'
-Plug 'google/vim-maktaba'
+" Plug 'bazelbuild/vim-bazel'
+" Plug 'google/vim-maktaba'
 
 "-- Git --
 " Plug 'mhinz/vim-signify'

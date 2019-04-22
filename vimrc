@@ -15,6 +15,8 @@ set background=dark
 autocmd ColorScheme * hi Sneak cterm=bold,underline ctermfg=red
 autocmd ColorScheme * hi link YcmErrorSection Error
 autocmd ColorScheme * hi link YcmWarningSection Todo
+autocmd ColorScheme * hi link ALEError Error
+autocmd ColorScheme * hi link ALEWarning Todo
 " autocmd ColorScheme * hi link ExtraWhitespace LineNR
 autocmd ColorScheme * hi link ExtraWhitespace Visual
 colorscheme solarized
@@ -89,14 +91,14 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Change cursor shape in different modes
 if has("autocmd")
-    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
-    au InsertEnter,InsertChange *
+    autocmd VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+    autocmd InsertEnter,InsertChange *
                 \ if v:insertmode == 'i' |
                 \   silent execute '!echo -ne "\e[5 q"' | redraw! |
                 \ elseif v:insertmode == 'r' |
                 \   silent execute '!echo -ne "\e[3 q"' | redraw! |
                 \ endif
-    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    autocmd VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
 
 "Locate cursor to the last position
@@ -114,9 +116,32 @@ autocmd QuickFixCmdPost    l* nested lwindow
 
 autocmd FileType qf set bufhidden=delete
 autocmd FileType qf nnoremap <buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
+autocmd FileType qf nnoremap <silent><buffer> q :pclose<CR>:cclose<CR>:lclose<CR>
 
-nnoremap <silent> <leader>go :copen<CR>
-autocmd FileType qf nnoremap <buffer> <leader>go :pclose<CR>:cclose<CR>:lclose<CR>
+" QuickFix window toggle
+nmap <silent> <leader>co :call QFixToggle(1, 1)<CR>
+nmap <silent> <leader>lo :call QFixToggle(1, 0)<CR>
+command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+
+function! QFixToggle(forced, is_quickfix)
+    if exists("g:qfix_win") && a:forced != 0
+        pclose
+        cclose
+        lclose
+    else
+        if a:is_quickfix == 1
+            copen
+        else
+            lopen
+        endif
+    endif
+endfunction
+
+augroup QFixToggle
+    autocmd!
+    autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
+    autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
+augroup END
 
 " cnoreabbrev H vertical botright help
 " cnoreabbrev T vertical botright terminal
@@ -124,10 +149,10 @@ nnoremap <leader>T :vertical botright terminal<CR>
 
 
 "Close VIM when only quickfix window visable
-aug QFClose
-    au!
-    au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
-aug END
+augroup QFClose
+    autocmd!
+    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+augroup END
 
 "open help window vertical split
 augroup vimrc_help
@@ -184,8 +209,8 @@ let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 let g:tagbar_left = 1
 
-nmap <leader>F :NERDTreeFind<CR>
-nmap <leader>w :ToggleNERDTreeAndTagbar<CR>
+nnoremap <leader>F :NERDTreeFind<CR>
+nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
@@ -207,7 +232,7 @@ nmap ]c <Plug>GitGutterNextHunk
 
 " -- CrtlSF --
 let g:ctrlsf_ackprg = 'ag'
-let g:ctrlsf_position = "right"
+let g:ctrlsf_position = 'right'
 let g:ctrlsf_default_root = 'project'
 " let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
@@ -346,12 +371,37 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 "let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_goto_buffer_command = 'new-tab'
 
 nnoremap <leader>j :YcmCompleter GoTo<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
 nnoremap <leader>d :YcmDiags<CR>
 nnoremap <leader>x :YcmCompleter FixIt<CR>
+
+" -- ALE --
+let g:ale_disable_lsp = 1
+let g:ale_linters = {'cpp': ['CppCheck']}
+let g:ale_linters_explicit = 1
+" let g:ale_fixers = {'cpp': ['clang-format']}
+let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
+let g:ale_lint_on_save = 0
+
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '✗'
+let g:ale_warn_about_trailing_blank_lines = 0
+let g:ale_warn_about_trailing_whitespace = 0
+
+" let g:ale_cpp_clangformat_executable = 'clang-format-6.0'
+" let g:ale_cpp_clangformat_options = '-style=file'
+
+call ale#linter#Define('cpp', {
+\   'name': 'CppCheck',
+\   'output_stream': 'both',
+\   'executable': 'cppcheck',
+\   'command': '%e -q --language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember %t',
+\   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
+\})
+
+nnoremap <leader>A :ALELint<CR>
 
 " -- UltiSnips --
 let g:UltiSnipsExpandTrigger = '<C-l>'
@@ -362,7 +412,6 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 "let g:cpp_experimental_simple_template_highlight = 1
 "let g:cpp_concepts_highlight = 1
-
 
 "-- FSwitch --
 nnoremap <leader>h :FSHere<CR>
@@ -392,11 +441,16 @@ let g:rooter_manual_only = 1
 
 "-- startify --
 nnoremap <leader>S :Startify<CR>
+let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
             \ {'p': '~/.vim/vimrc.plug'},
             \ {'y': '~/.vim/ycm_extra_conf.py'},
             \ {'b': '~/.bashrc'},
+            \ ]
+let g:startify_skiplist = [
+            \ $HOME .'/.vim',
+            \ $HOME .'/.bashrc',
             \ ]
 
 "-- textobj --
