@@ -36,7 +36,7 @@ please remove or rename it to trigger this configuration.
 ## Install all Vim plugins
 May take a long time ...
 
-    vim ~/.vim/vimrc.plug -c PlugInstall -c :qa
+    vim ~/.vim/vimrc.plug -c PlugInstall -c qa
 
 
 ## Install YouCompleteMe (optional)
@@ -57,6 +57,13 @@ Install and enable it in your terminal.
 ---
 #### Select a colorscheme for yourself, Then enjoy your Vim!
 
+---
+
+## How to update
+
+    cd ~/.vim
+    git pull
+    vim ~/.vim/vimrc.plug -c PlugUpdate -c qa
 
 
 

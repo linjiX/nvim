@@ -119,29 +119,34 @@ autocmd FileType qf nnoremap <buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
 autocmd FileType qf nnoremap <silent><buffer> q :pclose<CR>:cclose<CR>:lclose<CR>
 
 " QuickFix window toggle
-nmap <silent> <leader>co :call QFixToggle(1, 1)<CR>
-nmap <silent> <leader>lo :call QFixToggle(1, 0)<CR>
-command! -bang -nargs=? QFix call QFixToggle(<bang>0)
+nnoremap <silent> <leader>co :call QListToggle()<CR>
+nnoremap <silent> <leader>lo :call LListToggle()<CR>
 
-function! QFixToggle(forced, is_quickfix)
-    if exists("g:qfix_win") && a:forced != 0
-        pclose
-        cclose
-        lclose
-    else
-        if a:is_quickfix == 1
-            copen
-        else
-            lopen
-        endif
+function! LListToggle() abort
+    let buffer_count_before = s:BufferCount()
+    pclose
+    lclose
+    cclose
+
+    if s:BufferCount() == buffer_count_before
+        lopen
     endif
 endfunction
 
-augroup QFixToggle
-    autocmd!
-    autocmd BufWinEnter quickfix let g:qfix_win = bufnr("$")
-    autocmd BufWinLeave * if exists("g:qfix_win") && expand("<abuf>") == g:qfix_win | unlet! g:qfix_win | endif
-augroup END
+function! QListToggle() abort
+    let buffer_count_before = s:BufferCount()
+    pclose
+    lclose
+    cclose
+
+    if s:BufferCount() == buffer_count_before
+        copen
+    endif
+endfunction
+
+function! s:BufferCount() abort
+    return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
+endfunction
 
 " cnoreabbrev H vertical botright help
 " cnoreabbrev T vertical botright terminal
@@ -160,6 +165,10 @@ augroup vimrc_help
     autocmd BufEnter * if &buftype == 'help' | wincmd L | endif
 augroup END
 
+let s:vim_tags = expand('~/.cache/tags')
+if !isdirectory(s:vim_tags)
+    silent! call mkdir(s:vim_tags, 'p')
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
 nnoremap <leader>vv :PlugInstall<CR>
@@ -171,16 +180,24 @@ nnoremap <leader>vg :PlugUpgrade<CR>
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = ['', 'conf', 'diff', 'Dockerfile', 'text', 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh']
-let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_exclude_filetypes = [
+            \ '', 'gitrebase', 'conf', 'diff', 'Dockerfile', 'text',
+            \ 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh'
+            \ ]
+let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_auto_add_gtags_cscope = 1
-let g:gutentags_ctags_extra_args = ['--c++-kinds=+plxcdefgmnstuv', '--c-kinds=+plxcdefgmnstuv', '--fields=+iaS', '--extra=+q']
+let g:gutentags_ctags_extra_args = [
+            \ '--c++-kinds=+plxcdefgmnstuv',
+            \ '--c-kinds=+plxcdefgmnstuv',
+            \ '--fields=+iaS',
+            \ '--extra=+q'
+            \ ]
 let g:gutentags_file_list_command = {
-                \ 'markers': {
-                    \ '.git': 'git ls-files',
-                    \ '.root': 'find -type f',
-                    \ },
-                \ }
+            \ 'markers': {
+                \ '.git': 'git ls-files',
+                \ '.root': 'find -type f',
+                \ },
+            \ }
 
 " let g:gutentags_trace = 1
 let g:gutentags_plus_nomap = 1
@@ -215,7 +232,7 @@ nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
 
-"-- fugitve --
+"-- fugitive --
 cnoreabbrev Gstatus vertical botright Gstatus
 
 "-- GitGutter --
@@ -381,7 +398,6 @@ nnoremap <leader>x :YcmCompleter FixIt<CR>
 let g:ale_disable_lsp = 1
 let g:ale_linters = {'cpp': ['CppCheck']}
 let g:ale_linters_explicit = 1
-" let g:ale_fixers = {'cpp': ['clang-format']}
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
 let g:ale_lint_on_save = 0
 
@@ -389,9 +405,6 @@ let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
 let g:ale_warn_about_trailing_blank_lines = 0
 let g:ale_warn_about_trailing_whitespace = 0
-
-" let g:ale_cpp_clangformat_executable = 'clang-format-6.0'
-" let g:ale_cpp_clangformat_options = '-style=file'
 
 call ale#linter#Define('cpp', {
 \   'name': 'CppCheck',
@@ -432,7 +445,7 @@ let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:la
 let g:formatters_cpp = ['my_custom_cpp']
 let g:formatdef_my_custom_bzl = "'buildifier'"
 let g:formatters_bzl = ['my_custom_bzl']
-let g:autoformat_verbosemode = 1
+let g:autoformat_verbosemode = 0
 
 nnoremap <leader>a :Autoformat<CR>
 
@@ -594,7 +607,7 @@ autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
 let g:yankring_max_history = 20
-let g:yankring_history_dir = "$HOME/.cache/tags"
+let g:yankring_history_dir = s:vim_tags
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
@@ -604,9 +617,6 @@ nmap ct <Plug>(conflict-marker-themselves)
 nmap co <Plug>(conflict-marker-ourselves)
 nmap cn <Plug>(conflict-marker-none)
 nmap cb <Plug>(conflict-marker-both)
-
-"-- cpp_cppcheck.vim --
-" let g:cpp_cppcheck_options = "--language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember"
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
