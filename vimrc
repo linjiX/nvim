@@ -61,7 +61,8 @@ set scrolloff=1
 
 set diffopt+=vertical
 
-set path=.,/usr/include,/usr/local/include,~/Document/lib
+" set path=.,/usr/include,/usr/local/include,~/Document/lib
+set path=.,/usr/include,/usr/local/include
 
 set completeopt-=preview
 
@@ -109,6 +110,8 @@ if has("autocmd")
                 \ endif
 endif
 
+"-- clipboard --"
+" set clipboard^=unnamed,unnamedplus
 
 "--QuickFix--"
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -117,6 +120,7 @@ autocmd QuickFixCmdPost    l* nested lwindow
 autocmd FileType qf set bufhidden=delete
 autocmd FileType qf nnoremap <buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
 autocmd FileType qf nnoremap <silent><buffer> q :pclose<CR>:cclose<CR>:lclose<CR>
+autocmd FileType qf nnoremap <silent><buffer> <leader>q :pclose<CR>:cclose<CR>:lclose<CR>
 
 " QuickFix window toggle
 nnoremap <silent> <leader>co :call QListToggle()<CR>
@@ -148,8 +152,9 @@ function! s:BufferCount() abort
     return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
 endfunction
 
-" cnoreabbrev H vertical botright help
-" cnoreabbrev T vertical botright terminal
+autocmd FileType help nnoremap <buffer> <leader>q :helpclose<CR>
+autocmd FileType help nnoremap <buffer> q :helpclose<CR>
+
 nnoremap <leader>T :vertical botright terminal<CR>
 
 
@@ -228,6 +233,7 @@ let g:tagbar_left = 1
 
 nnoremap <leader>F :NERDTreeFind<CR>
 nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
+autocmd FileType nerdtree nnoremap <silent><buffer> <leader>q :NERDTreeClose<CR>
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
@@ -266,6 +272,8 @@ nmap <leader>sP <Plug>CtrlSFPwordPath
 nmap <leader>sp <Plug>CtrlSFPwordExec
 nnoremap <leader>so :CtrlSFToggle<CR>
 
+autocmd FileType ctrlsf nnoremap <buffer> <leader>q :CtrlSFToggle<CR>
+
 " -- FZF --
 let g:fzf_layout = { 'down': '~30%' }
 " Insert mode completion
@@ -301,7 +309,7 @@ nnoremap <leader>zf :Filetypes<CR>
 " -- LeaderF --
 let g:Lf_WindowHeight = 0.3
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }
-let g:Lf_WorkingDirectoryMode = 'ac'
+let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 
@@ -363,6 +371,12 @@ let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.dirty='*'
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -399,7 +413,15 @@ let g:ale_disable_lsp = 1
 let g:ale_linters = {'cpp': ['CppCheck']}
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
-let g:ale_lint_on_save = 0
+let g:ale_set_quickfix = 1
+" let g:ale_set_loclist = 0
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 0
+autocmd BufRead * ALELint
+" autocmd FileType cpp ALELint
+" autocmd User ALELintPre let g:ale_set_quickfix = 0
+" autocmd User ALEJobStarted let g:ale_set_quickfix = 1
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
@@ -414,7 +436,7 @@ call ale#linter#Define('cpp', {
 \   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
 \})
 
-nnoremap <leader>A :ALELint<CR>
+nnoremap <silent> <leader>D :ALELint<CR>:cwindow<CR>
 
 " -- UltiSnips --
 let g:UltiSnipsExpandTrigger = '<C-l>'
@@ -494,10 +516,8 @@ nnoremap <silent> + :call BufferDo(':bn')<CR>
 nnoremap <silent> _ :call BufferDo(':bp')<CR>
 vnoremap <silent> + :<C-u>call BufferDo(':bn')<CR>
 vnoremap <silent> _ :<C-u>call BufferDo(':bp')<CR>
-nnoremap <silent> <leader>q :call BufferDo(':BW')<CR>
-nnoremap <silent> <leader>Q :call BufferDo(':BD')<CR>
-" nnoremap <silent> <leader>qu :call BufferDo(':BUN')<CR>
-" nnoremap <silent> <leader>qc :cclose<CR>:lclose<CR>
+nnoremap <silent> <leader>q :BW<CR>
+nnoremap <silent> <leader>Q :BD<CR>
 
 "-- Gundo --
 if has('python3')
@@ -563,7 +583,8 @@ nmap N <Plug>InterestingWordsBackward
 
 nnoremap <silent> <leader>L :set hlsearch<CR>
 nnoremap <silent> <BS> :call UncolorAllWords()<CR>:nohlsearch<CR>
-let g:interestingWordsTermColors = ['039', '141', '041', '014', '207', '220']
+" let g:interestingWordsTermColors = ['039', '141', '041', '014', '207', '220']
+let g:interestingWordsTermColors = ['002', '004', '005', '006', '013', '009']
 
 "-- vim-cool --
 let g:loaded_cool = 0
@@ -574,6 +595,9 @@ let g:webdevicons_enable_nerdtree = 0
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
+autocmd BufEnter __XtermColorTable__ set bufhidden=delete
+autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
+autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
 
 "-- vim-highlight-cursor-words --
 let g:HiCursorWords_delay = 0
@@ -633,15 +657,11 @@ let g:which_key_map = {
             \ 'i' :"BufKillForward",
             \ 'o' :"BufKillBack",
             \ 'u' :"BufKillUndo",
+            \ 'q' :"BufKillBw",
+            \ 'Q' :"BufKillBd",
             \}
 let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
 let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}
-let g:which_key_map.q = {
-            \ 'name': "+prefix BufKillBw",
-            \ 'q': "BufKillBw",
-            \ 'd': "BufKillBd",
-            \ 'u': "BufKillBun",
-            \ }
 let g:which_key_map.s = {'name':"+prefix CtrlSF"}
 let g:which_key_map.f = {'name':"+prefix LeaderF"}
 let g:which_key_map.z = {'name':"+prefix fzf"}
@@ -654,6 +674,7 @@ let g:limelight_conceal_ctermfg = '10'
 
 "-- quickmenu --
 nnoremap <silent><F12> :call quickmenu#toggle(0)<CR>
+autocmd FileType quickmenu nnoremap <buffer> <leader>q :call quickmenu#toggle(0)<CR>
 let g:quickmenu_options = "HL"
 let g:quickmenu_padding_right = 25
 
