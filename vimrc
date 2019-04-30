@@ -254,9 +254,11 @@ nmap [c <Plug>GitGutterPrevHunk
 nmap ]c <Plug>GitGutterNextHunk
 
 " -- CrtlSF --
-let g:ctrlsf_ackprg = 'ag'
+if executable('ag')
+    let g:ctrlsf_ackprg = 'ag'
+endif
 let g:ctrlsf_position = 'right'
-let g:ctrlsf_default_root = 'project'
+let g:ctrlsf_default_root = 'project+fw'
 " let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
@@ -333,31 +335,41 @@ nnoremap <leader>fc :LeaderfColorscheme<CR>
 nnoremap <leader>fr :LeaderfRgInteractive<CR>
 nnoremap <leader>fR :LeaderfRgRecall<CR>
 
-" -- Ack --
+"-- AsyncRun --
+let g:asyncrun_rootmarks = ['.git']
+
 if executable('ag')
-    let g:ackprg = 'ag --vimgrep --smart-case'
+    set grepprg=ag\ --vimgrep
+    let g:asyncagprg = 'ag --vimgrep -Q'
+else
+    let g:asyncagprg = 'grep -H -n'
 endif
-let g:ackhighlight = 1
-let g:ack_use_cword_for_empty_search = 1
-cnoreabbrev Ack Ack!
-nnoremap <leader>* :Ack! -w <C-r><C-w> %<CR>
-nnoremap <leader>g* :Ack! <C-r><C-w> %<CR>
-nnoremap <leader># :Ack! -w <C-r><C-w><CR>
-nnoremap <leader>g# :Ack! <C-r><C-w><CR>
+
+function! AsyncAg(cmd, args)
+    let l:args = empty(a:args) ? expand("<cword>") .' %' : escape(a:args, '#%')
+    execute a:cmd .' '. g:asyncagprg .' '. l:args
+endfunction
+command! -bang -nargs=* -complete=file AsyncAg call AsyncAg('AsyncRun<bang>', <q-args>)
+
+nnoremap <leader>* :AsyncAg! -w <C-r><C-w> %<CR>
+nnoremap <leader>g* :AsyncAg! <C-r><C-w> %<CR>
+nnoremap <leader># :AsyncAg! -w <C-r><C-w> <root><CR>
+nnoremap <leader>g# :AsyncAg! <C-r><C-w> <root><CR>
+
+vnoremap <leader>* :<C-u>execute VWordCmd('AsyncAg! -w', '%')<CR>
+vnoremap <leader>g* :<C-u>execute VWordCmd('AsyncAg!', '%')<CR>
+vnoremap <leader># :<C-u>execute VWordCmd('AsyncAg! -w', '<root>')<CR>
+vnoremap <leader>g# :<C-u>execute VWordCmd('AsyncAg!', '<root>')<CR>
 
 function! VWordCmd(precmd, postcmd)
     let temp = @s
     norm! gv"sy
-    let vword = substitute(@s, '\n', '\\n', 'g')
+    let vword = escape(@s, '#%')
+    " let vword = @s
     let @s = temp
-    let cmd = a:precmd .' "'. vword .': '. a:postcmd
+    let cmd = a:precmd ." '". vword ."' ". a:postcmd
     return cmd
 endfunction
-
-vnoremap <leader>* :<C-u>execute VWordCmd('Ack! -w', '%')<CR>
-vnoremap <leader>g* :<C-u>execute VWordCmd('Ack!', '%')<CR>
-vnoremap <leader># :<C-u>execute VWordCmd('Ack! -w', '')<CR>
-vnoremap <leader>g# :<C-u>execute VWordCmd('Ack!', '')<CR>
 
 " -- Airline --
 let g:airline_powerline_fonts = 1
@@ -413,15 +425,12 @@ let g:ale_disable_lsp = 1
 let g:ale_linters = {'cpp': ['CppCheck']}
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
-let g:ale_set_quickfix = 1
-" let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_set_loclist = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
 autocmd BufRead * ALELint
-" autocmd FileType cpp ALELint
-" autocmd User ALELintPre let g:ale_set_quickfix = 0
-" autocmd User ALEJobStarted let g:ale_set_quickfix = 1
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
@@ -436,7 +445,9 @@ call ale#linter#Define('cpp', {
 \   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
 \})
 
-nnoremap <silent> <leader>D :ALELint<CR>:cwindow<CR>
+" nnoremap <silent> <leader>D :let g:ale_set_quickfix=1<CR>:ALELint<CR>:call setqflist([])<CR>:copen<CR>
+autocmd FileType cpp nnoremap <silent><buffer> <leader>D :let g:ale_set_quickfix=1<CR>:ALELint<CR>:copen<CR>
+autocmd WinLeave * if &buftype == 'quickfix' | let g:ale_set_quickfix=0 | endif
 
 " -- UltiSnips --
 let g:UltiSnipsExpandTrigger = '<C-l>'
@@ -654,11 +665,12 @@ nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
+            \ 'D' :"ALELint",
             \ 'i' :"BufKillForward",
             \ 'o' :"BufKillBack",
-            \ 'u' :"BufKillUndo",
             \ 'q' :"BufKillBw",
             \ 'Q' :"BufKillBd",
+            \ 'u' :"BufKillUndo",
             \}
 let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
 let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}

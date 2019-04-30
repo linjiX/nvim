@@ -83,11 +83,11 @@ Plug 'tpope/vim-fugitive'
 "-- Searcher --
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'vim-scripts/ctrlp.vim'
+" Plug 'mileszs/ack.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'dyng/ctrlsf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 Plug 'nelstrom/vim-visual-star-search'
 " Plug 'osyo-manga/vim-anzu'
 " Plug 'henrik/vim-indexed-search'
@@ -134,6 +134,7 @@ Plug 'ronakg/quickr-preview.vim'
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter'
 Plug 'qpkorr/vim-bufkill'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 
