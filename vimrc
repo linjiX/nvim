@@ -21,6 +21,11 @@ autocmd ColorScheme * hi link ALEWarning Todo
 autocmd ColorScheme * hi link ExtraWhitespace Visual
 colorscheme solarized
 
+" for molokai colorscheme
+" colorscheme molokai
+" highlight! link CursorLine CursorColumn
+" highlight Visual ctermbg=238
+
 set cursorline
 set cursorcolumn
 set number
@@ -66,6 +71,8 @@ set path=.,/usr/include,/usr/local/include
 
 set completeopt-=preview
 
+" set splitbelow
+
 let mapleader="\<Space>"
 
 nnoremap <C-h> <C-w>h
@@ -92,21 +99,27 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 "Change cursor shape in different modes
 if has("autocmd")
-    autocmd VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
+    autocmd VimEnter,InsertLeave *
+                \ silent execute '!echo -ne "\e[1 q"' |
+                \ redraw!
     autocmd InsertEnter,InsertChange *
                 \ if v:insertmode == 'i' |
-                \   silent execute '!echo -ne "\e[5 q"' | redraw! |
+                \     silent execute '!echo -ne "\e[5 q"' |
+                \     redraw! |
                 \ elseif v:insertmode == 'r' |
-                \   silent execute '!echo -ne "\e[3 q"' | redraw! |
+                \     silent execute '!echo -ne "\e[3 q"' |
+                \     redraw! |
                 \ endif
-    autocmd VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    autocmd VimLeave *
+                \ silent execute '!echo -ne "\e[ q"' |
+                \ redraw!
 endif
 
 "Locate cursor to the last position
 if has("autocmd")
     autocmd BufReadPost *
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
+                \     exe "normal g`\"" |
                 \ endif
 endif
 
@@ -126,7 +139,7 @@ autocmd FileType qf nnoremap <silent><buffer> <leader>q :pclose<CR>:cclose<CR>:l
 nnoremap <silent> <leader>co :call QListToggle()<CR>
 nnoremap <silent> <leader>lo :call LListToggle()<CR>
 
-function! LListToggle() abort
+function LListToggle() abort
     let buffer_count_before = s:BufferCount()
     pclose
     lclose
@@ -137,7 +150,7 @@ function! LListToggle() abort
     endif
 endfunction
 
-function! QListToggle() abort
+function QListToggle() abort
     let buffer_count_before = s:BufferCount()
     pclose
     lclose
@@ -148,7 +161,7 @@ function! QListToggle() abort
     endif
 endfunction
 
-function! s:BufferCount() abort
+function s:BufferCount() abort
     return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
 endfunction
 
@@ -161,13 +174,19 @@ nnoremap <leader>T :vertical botright terminal<CR>
 "Close VIM when only quickfix window visable
 augroup QFClose
     autocmd!
-    autocmd WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+    autocmd WinEnter *
+                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" |
+                \     q |
+                \ endif
 augroup END
 
 "open help window vertical split
 augroup vimrc_help
     autocmd!
-    autocmd BufEnter * if &buftype == 'help' | wincmd L | endif
+    autocmd BufEnter *
+                \ if &buftype == 'help' |
+                \     wincmd L |
+                \ endif
 augroup END
 
 let s:vim_tags = expand('~/.cache/tags')
@@ -199,9 +218,9 @@ let g:gutentags_ctags_extra_args = [
             \ ]
 let g:gutentags_file_list_command = {
             \ 'markers': {
-                \ '.git': 'git ls-files',
-                \ '.root': 'find -type f',
-                \ },
+            \     '.git': 'git ls-files',
+            \     '.root': 'find -type f',
+            \     },
             \ }
 
 " let g:gutentags_trace = 1
@@ -345,11 +364,11 @@ else
     let g:asyncagprg = 'grep -H -n'
 endif
 
-function! AsyncAg(cmd, args)
+function AsyncAg(cmd, args)
     let l:args = empty(a:args) ? expand("<cword>") .' %' : escape(a:args, '#%')
     execute a:cmd .' '. g:asyncagprg .' '. l:args
 endfunction
-command! -bang -nargs=* -complete=file AsyncAg call AsyncAg('AsyncRun<bang>', <q-args>)
+command -bang -nargs=* -complete=file AsyncAg call AsyncAg('AsyncRun<bang>', <q-args>)
 
 nnoremap <leader>* :AsyncAg! -w <C-r><C-w> %<CR>
 nnoremap <leader>g* :AsyncAg! <C-r><C-w> %<CR>
@@ -361,7 +380,7 @@ vnoremap <leader>g* :<C-u>execute VWordCmd('AsyncAg!', '%')<CR>
 vnoremap <leader># :<C-u>execute VWordCmd('AsyncAg! -w', '<root>')<CR>
 vnoremap <leader>g# :<C-u>execute VWordCmd('AsyncAg!', '<root>')<CR>
 
-function! VWordCmd(precmd, postcmd)
+function VWordCmd(precmd, postcmd)
     let temp = @s
     norm! gv"sy
     let vword = escape(@s, '#%')
@@ -411,9 +430,10 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
-"let g:ycm_add_preview_to_completeopt = 1
+" let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_use_clangd = 0
 
 nnoremap <leader>j :YcmCompleter GoTo<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
@@ -430,7 +450,6 @@ let g:ale_set_loclist = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
-autocmd BufRead * ALELint
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
@@ -445,9 +464,27 @@ call ale#linter#Define('cpp', {
 \   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
 \})
 
-" nnoremap <silent> <leader>D :let g:ale_set_quickfix=1<CR>:ALELint<CR>:call setqflist([])<CR>:copen<CR>
-autocmd FileType cpp nnoremap <silent><buffer> <leader>D :let g:ale_set_quickfix=1<CR>:ALELint<CR>:copen<CR>
-autocmd WinLeave * if &buftype == 'quickfix' | let g:ale_set_quickfix=0 | endif
+function ALEDiags()
+    let g:ale_set_quickfix = 1
+    ALELint
+    copen
+    autocmd ale WinLeave *
+                \ if &buftype == 'quickfix' |
+                \     let g:ale_set_quickfix = 0 |
+                \     autocmd! ale WinLeave |
+                \ endif
+endfunction
+
+augroup ale
+    autocmd!
+    autocmd BufRead * ALELint
+    autocmd FileType cpp nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
+augroup END
+
+nmap [k <Plug>(ale_previous)
+nmap ]k <Plug>(ale_next)
+nmap [K <Plug>(ale_first)
+nmap ]K <Plug>(ale_last)
 
 " -- UltiSnips --
 let g:UltiSnipsExpandTrigger = '<C-l>'
@@ -481,6 +518,7 @@ let g:formatters_bzl = ['my_custom_bzl']
 let g:autoformat_verbosemode = 0
 
 nnoremap <leader>a :Autoformat<CR>
+xnoremap <leader>a :Autoformat<CR>
 
 "-- vim-rooter --
 let g:rooter_manual_only = 1
@@ -511,7 +549,7 @@ omap aM <Plug>(textobj-comment-big-a)
 "-- BufKill --
 let g:BufKillCreateMappings = 0
 
-function! BufferDo(command_str)
+function BufferDo(command_str)
     if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
         exe "normal! \<C-w>\l"
     endif
@@ -611,7 +649,7 @@ autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
 autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
 
 "-- vim-highlight-cursor-words --
-let g:HiCursorWords_delay = 0
+let g:HiCursorWords_delay = 10
 let g:HiCursorWords_linkStyle='CursorLine'
 
 "-- vim-peekaboo --

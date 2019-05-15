@@ -55,7 +55,7 @@ Here is a recommended font:
 Install and enable it in your terminal.
 
 ---
-#### Select a colorscheme for yourself, Then enjoy your Vim!
+#### Select a colorscheme for yourself, then enjoy your Vim!
 
 ---
 
