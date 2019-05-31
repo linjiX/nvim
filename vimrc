@@ -239,12 +239,13 @@ nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
 nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
 
 "-- NERDTree & Tagbar --
-let g:NERDTreeWinSize = 30
+let s:width = 30
+let g:NERDTreeWinSize = s:width
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['bazel-', '\~$']
 let g:NERDTreeMapJumpNextSibling = '<Nop>'
 let g:NERDTreeMapJumpPrevSibling = '<Nop>'
-let g:tagbar_width = 30
+let g:tagbar_width = s:width
 let g:tagbar_indent = 0
 let g:tagbar_compact = 1
 let g:tagbar_sort = 0
@@ -281,6 +282,10 @@ let g:ctrlsf_default_root = 'project+fw'
 " let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
+let g:ctrlsf_auto_focus = {
+            \ "at" : "done",
+            \ "duration_less_than": 1000
+            \ }
 
 nmap <leader>s<Space> <Plug>CtrlSFPrompt
 vmap <leader>sC <Plug>CtrlSFVwordPath
@@ -511,6 +516,10 @@ nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
 nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
 
 "-- vim-autoformat --
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
 let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=file'"
 let g:formatters_cpp = ['my_custom_cpp']
 let g:formatdef_my_custom_bzl = "'buildifier'"
@@ -620,24 +629,41 @@ nmap ga <Plug>(EasyAlign)
 "-- vim-better-whitespace --
 nnoremap ]w :NextTrailingWhitespace<CR>
 nnoremap [w :PrevTrailingWhitespace<CR>
-" let g:better_whitespace_ctermcolor='23'
 
 "-- vim-interestinwords --
 nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
-" nmap <leader>k <Plug>InterestingWords
 vmap <leader>k <Plug>InterestingWords
-" nmap <leader>K <Plug>InterestingWordsClear
-nmap n <Plug>InterestingWordsForeward
-nmap N <Plug>InterestingWordsBackward
 
-nnoremap <silent> <leader>L :set hlsearch<CR>
 nnoremap <silent> <BS> :call UncolorAllWords()<CR>:nohlsearch<CR>
-" let g:interestingWordsTermColors = ['039', '141', '041', '014', '207', '220']
 let g:interestingWordsTermColors = ['002', '004', '005', '006', '013', '009']
 
-"-- vim-cool --
-let g:loaded_cool = 0
-let g:CoolTotalMatches = 1
+"-- vim-searchindex --
+function IsSearch() abort
+    let win_view = winsaveview()
+    let origin_pos = getpos(".")
+    call search(@/, "c")
+    if origin_pos == getpos(".")
+        let is_search = 1
+    else
+        let is_search = 0
+    endif
+    call winrestview(win_view)
+    return is_search
+endfunction
+
+function s:UserPrintMatches() abort
+    if IsSearch() == 1
+        SearchIndex
+    endif
+endfunction
+command -bar UserSearchIndex call <SID>UserPrintMatches()
+
+nnoremap <silent> n :silent call WordNavigation(1)<CR>:UserSearchIndex<CR>
+            \:if IsSearch() == 1<CR> set hlsearch<CR> endif<CR>
+nnoremap <silent> N :silent call WordNavigation(0)<CR>:UserSearchIndex<CR>
+            \:if IsSearch() == 1<CR> set hlsearch<CR> endif<CR>
+nmap <silent> * *:UserSearchIndex<CR>
+nmap <silent> # #:UserSearchIndex<CR>
 
 "-- vim-devicons --
 let g:webdevicons_enable_nerdtree = 0
@@ -703,7 +729,6 @@ nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
-            \ 'D' :"ALELint",
             \ 'i' :"BufKillForward",
             \ 'o' :"BufKillBack",
             \ 'q' :"BufKillBw",

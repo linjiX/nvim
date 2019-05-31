@@ -86,13 +86,13 @@ Plug 'tpope/vim-fugitive'
 " Plug 'mileszs/ack.vim'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'dyng/ctrlsf.vim'
+Plug 'google/vim-searchindex'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nelstrom/vim-visual-star-search'
 " Plug 'osyo-manga/vim-anzu'
 " Plug 'henrik/vim-indexed-search'
-" Plug 'google/vim-searchindex'
-Plug 'romainl/vim-cool'
+" Plug 'romainl/vim-cool'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'
