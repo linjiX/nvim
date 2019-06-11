@@ -13,12 +13,22 @@ syntax on
 "-- colorscheme --
 set background=dark
 autocmd ColorScheme * hi Sneak cterm=bold,underline ctermfg=red
-autocmd ColorScheme * hi link YcmErrorSection Error
-autocmd ColorScheme * hi link YcmWarningSection Todo
-autocmd ColorScheme * hi link ALEError Error
-autocmd ColorScheme * hi link ALEWarning Todo
+
+autocmd ColorScheme * hi UserError cterm=bold,underline ctermfg=9
+autocmd ColorScheme * hi UserWarning cterm=bold,underline ctermfg=13
+autocmd ColorScheme * hi UserErrorSign cterm=bold ctermfg=9
+autocmd ColorScheme * hi UserWarningSign cterm=bold ctermfg=13
+
+autocmd ColorScheme * hi link YcmErrorSection UserError
+autocmd ColorScheme * hi link YcmErrorSign UserErrorSign
+autocmd ColorScheme * hi link YcmWarningSection UserWarning
+autocmd ColorScheme * hi link YcmWarningSign UserWarningSign
+
+autocmd ColorScheme * hi link ALEError UserErrorSign
+autocmd ColorScheme * hi link ALEWarning UserWarningSign
 " autocmd ColorScheme * hi link ExtraWhitespace LineNR
 autocmd ColorScheme * hi link ExtraWhitespace Visual
+let g:solarized_termtrans=1
 colorscheme solarized
 
 " for molokai colorscheme
@@ -124,7 +134,7 @@ if has("autocmd")
 endif
 
 "-- clipboard --"
-" set clipboard^=unnamed,unnamedplus
+set clipboard^=unnamedplus
 
 "--QuickFix--"
 autocmd QuickFixCmdPost [^l]* nested cwindow
@@ -262,6 +272,7 @@ let g:NERDSpaceDelims = 1
 cnoreabbrev Gstatus vertical botright Gstatus
 
 "-- GitGutter --
+nnoremap <leader>gr :GitGutter<CR>
 nnoremap <leader>gF :GitGutterFold<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
 nmap <leader>gS <Plug>GitGutterStageHunk
@@ -598,7 +609,7 @@ map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
 let g:rainbow_active = 1
-nnoremap <leader>r :RainbowToggle<CR>
+nnoremap <leader>R :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
             \   'ctermfgs': ['166', '034', '164', '178', '104', '045'],
@@ -716,6 +727,10 @@ nmap ct <Plug>(conflict-marker-themselves)
 nmap co <Plug>(conflict-marker-ourselves)
 nmap cn <Plug>(conflict-marker-none)
 nmap cb <Plug>(conflict-marker-both)
+
+"-- swapit --
+autocmd BufRead * SwapList TRUE/FALSE TRUE FALSE
+autocmd BufRead * SwapList YES/NO YES NO
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}

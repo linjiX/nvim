@@ -1,2 +1,4 @@
 plug/
 autoload/
+
+*.swp
