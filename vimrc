@@ -141,44 +141,44 @@ autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
 autocmd FileType qf set bufhidden=delete
-autocmd FileType qf nnoremap <buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
-autocmd FileType qf nnoremap <silent><buffer> q :pclose<CR>:cclose<CR>:lclose<CR>
-autocmd FileType qf nnoremap <silent><buffer> <leader>q :pclose<CR>:cclose<CR>:lclose<CR>
+autocmd FileType qf nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
+autocmd FileType qf nnoremap <silent><buffer> q :call PLCclose()<CR>
+autocmd FileType qf nnoremap <silent><buffer> <leader>q :call PLCclose()<CR>
 
 " QuickFix window toggle
 nnoremap <silent> <leader>co :call QListToggle()<CR>
 nnoremap <silent> <leader>lo :call LListToggle()<CR>
 
-function LListToggle() abort
-    let buffer_count_before = s:BufferCount()
+function PLCclose() abort
     pclose
     lclose
     cclose
+endfunction
 
-    if s:BufferCount() == buffer_count_before
+function LListToggle() abort
+    let window_count_before = winnr('$')
+    call PLCclose()
+    if winnr('$') == window_count_before
         lopen
     endif
 endfunction
 
 function QListToggle() abort
-    let buffer_count_before = s:BufferCount()
-    pclose
-    lclose
-    cclose
-
-    if s:BufferCount() == buffer_count_before
+    let window_count_before = winnr('$')
+    call PLCclose()
+    if winnr('$') == window_count_before
         copen
     endif
 endfunction
 
-function s:BufferCount() abort
-    return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
-endfunction
+" function s:BufferCount() abort
+    " return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
+" endfunction
 
-autocmd FileType help nnoremap <buffer> <leader>q :helpclose<CR>
-autocmd FileType help nnoremap <buffer> q :helpclose<CR>
+" autocmd FileType list nnoremap <buffer> <leader>q <ESC>
+" autocmd FileType list nnoremap <buffer> q <ESC>
 
-nnoremap <leader>T :vertical botright terminal<CR>
+nnoremap <C-t> :vertical botright terminal<CR>
 
 
 "Close VIM when only quickfix window visable
@@ -196,6 +196,8 @@ augroup vimrc_help
     autocmd BufEnter *
                 \ if &buftype == 'help' |
                 \     wincmd L |
+                \     nnoremap <buffer> <leader>q :helpclose<CR> |
+                \     nnoremap <buffer> q :helpclose<CR> |
                 \ endif
 augroup END
 
@@ -211,7 +213,8 @@ nnoremap <leader>vu :PlugUpdate<CR>
 nnoremap <leader>vg :PlugUpgrade<CR>
 
 "-- gutentags setting --
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
+" let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_modules = ['gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
 let g:gutentags_exclude_filetypes = [
@@ -220,12 +223,12 @@ let g:gutentags_exclude_filetypes = [
             \ ]
 let g:gutentags_cache_dir = s:vim_tags
 let g:gutentags_auto_add_gtags_cscope = 1
-let g:gutentags_ctags_extra_args = [
-            \ '--c++-kinds=+plxcdefgmnstuv',
-            \ '--c-kinds=+plxcdefgmnstuv',
-            \ '--fields=+iaS',
-            \ '--extra=+q'
-            \ ]
+" let g:gutentags_ctags_extra_args = [
+            " \ '--c++-kinds=+plxcdefgmnstuv',
+            " \ '--c-kinds=+plxcdefgmnstuv',
+            " \ '--fields=+iaS',
+            " \ '--extra=+q'
+            " \ ]
 let g:gutentags_file_list_command = {
             \ 'markers': {
             \     '.git': 'git ls-files',
@@ -319,29 +322,29 @@ imap <C-x><C-x> <plug>(fzf-complete-path)
 imap <C-x><C-z> <plug>(fzf-complete-file-ag)
 imap <C-x><C-j> <plug>(fzf-complete-line)
 
-nnoremap <leader>zz :Files<CR>
-nnoremap <leader>zg :GFiles<CR>
-nnoremap <leader>zG :GFiles?<CR>
-nnoremap <leader>zb :Buffers<CR>
-nnoremap <leader>zc :Colors<CR>
-nnoremap <leader>za :Ag<CR>
-nnoremap <leader>zr :Rg<CR>
-nnoremap <leader>zl :BLines<CR>
-nnoremap <leader>zL :Lines<CR>
-nnoremap <leader>zt :BTags<CR>
-nnoremap <leader>zT :Tags<CR>
-nnoremap <leader>z<leader> :Maps<CR>
-nnoremap <leader>z` :Marks<CR>
-nnoremap <leader>zw :Windows<CR>
-nnoremap <leader>zm :History<CR>
-nnoremap <leader>z: :History:<CR>
-nnoremap <leader>z/ :History/<CR>
-nnoremap <leader>zs :Snippets<CR>
-nnoremap <leader>zo :BCommits<CR>
-nnoremap <leader>zO :Commits<CR>
-nnoremap <leader>ze :Commands<CR>
-nnoremap <leader>zh :Helptags<CR>
-nnoremap <leader>zf :Filetypes<CR>
+nnoremap <silent> <leader>zz :Files<CR>
+nnoremap <silent> <leader>zg :GFiles<CR>
+nnoremap <silent> <leader>zG :GFiles?<CR>
+nnoremap <silent> <leader>zb :Buffers<CR>
+nnoremap <silent> <leader>zc :Colors<CR>
+nnoremap <silent> <leader>za :Ag<CR>
+nnoremap <silent> <leader>zr :Rg<CR>
+nnoremap <silent> <leader>zl :BLines<CR>
+nnoremap <silent> <leader>zL :Lines<CR>
+nnoremap <silent> <leader>zt :BTags<CR>
+" nnoremap <silent> <leader>zT :Tags<CR>
+nnoremap <silent> <leader>z<leader> :Maps<CR>
+nnoremap <silent> <leader>z` :Marks<CR>
+nnoremap <silent> <leader>zw :Windows<CR>
+nnoremap <silent> <leader>zm :History<CR>
+nnoremap <silent> <leader>z: :History:<CR>
+nnoremap <silent> <leader>z/ :History/<CR>
+nnoremap <silent> <leader>zs :Snippets<CR>
+nnoremap <silent> <leader>zo :BCommits<CR>
+nnoremap <silent> <leader>zO :Commits<CR>
+nnoremap <silent> <leader>ze :Commands<CR>
+nnoremap <silent> <leader>zh :Helptags<CR>
+nnoremap <silent> <leader>zf :Filetypes<CR>
 
 " -- LeaderF --
 let g:Lf_WindowHeight = 0.3
@@ -352,23 +355,23 @@ let g:Lf_DefaultMode = 'NameOnly'
 
 let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
-nnoremap <leader>ff :LeaderfFile<CR>
-nnoremap <leader>fB :LeaderfBufferAll<CR>
-nnoremap <leader>fm :LeaderfMru<CR>
-nnoremap <leader>fM :LeaderfMruCwd<CR>
-nnoremap <leader>ft :LeaderfBufTag<CR>
-nnoremap <leader>fT :LeaderfBufTagAll<CR>
-nnoremap <leader>fu :LeaderfFunction<CR>
-nnoremap <leader>fU :LeaderfFunctionAll<CR>
-nnoremap <leader>fl :LeaderfLine<CR>
-nnoremap <leader>fL :LeaderfLineAll<CR>
-nnoremap <leader>f: :LeaderfHistoryCmd<CR>
-nnoremap <leader>f/ :LeaderfHistorySearch<CR>
-nnoremap <leader>fs :LeaderfSelf<CR>
-nnoremap <leader>fh :LeaderfHelp<CR>
-nnoremap <leader>fc :LeaderfColorscheme<CR>
-nnoremap <leader>fr :LeaderfRgInteractive<CR>
-nnoremap <leader>fR :LeaderfRgRecall<CR>
+nnoremap <silent> <leader>ff :Leaderf file<CR>
+nnoremap <silent> <leader>fB :Leaderf buffer --all<CR>
+nnoremap <silent> <leader>fm :Leaderf mru --cwd<CR>
+nnoremap <silent> <leader>fM :Leaderf mru<CR>
+nnoremap <silent> <leader>ft :Leaderf bufTag<CR>
+nnoremap <silent> <leader>fT :Leaderf bufTag --all<CR>
+nnoremap <silent> <leader>fu :Leaderf function<CR>
+nnoremap <silent> <leader>fU :Leaderf function --all<CR>
+nnoremap <silent> <leader>fl :Leaderf line<CR>
+nnoremap <silent> <leader>fL :Leaderf line --all<CR>
+nnoremap <silent> <leader>f: :Leaderf cmdHistory<CR>
+nnoremap <silent> <leader>f/ :Leaderf searchHistory<CR>
+nnoremap <silent> <leader>fs :Leaderf self<CR>
+nnoremap <silent> <leader>fh :Leaderf help<CR>
+nnoremap <silent> <leader>fc :Leaderf colorscheme<CR>
+nnoremap <silent> <leader>fr :Leaderf rg<CR>
+nnoremap <silent> <leader>fR :Leaderf rg --recall<CR>
 
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
@@ -449,12 +452,15 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 " let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_use_clangd = 0
 
-nnoremap <leader>j :YcmCompleter GoTo<CR>
-nnoremap <leader>t :YcmCompleter GetType<CR>
-nnoremap <leader>d :YcmDiags<CR>
-nnoremap <leader>x :YcmCompleter FixIt<CR>
+let g:ycm_use_clangd = 0
+" let g:ycm_clangd_binary_path = exepath('clangd-8')
+" let g:ycm_clangd_uses_ycmd_caching = 0
+
+nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
+nnoremap <silent> <leader>t :YcmCompleter GetType<CR>
+nnoremap <silent> <leader>d :YcmDiags<CR>
+nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
 
 " -- ALE --
 let g:ale_disable_lsp = 1
@@ -503,7 +509,9 @@ nmap [K <Plug>(ale_first)
 nmap ]K <Plug>(ale_last)
 
 " -- UltiSnips --
-let g:UltiSnipsExpandTrigger = '<C-l>'
+let g:UltiSnipsExpandTrigger = '<C-k>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1
@@ -521,10 +529,10 @@ autocmd BufEnter *.c* let b:fswitchdst  = 'h'
 autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
 
 "-- vim-smooth-scroll --
-nnoremap <silent> <c-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
-nnoremap <silent> <c-d> :call smooth_scroll#down(&scroll, 5, 2)<CR>
-nnoremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
-nnoremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
+nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
+nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 2)<CR>
+nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
+nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
 
 "-- vim-autoformat --
 let g:autoformat_autoindent = 0
@@ -566,6 +574,8 @@ omap im <Plug>(textobj-comment-a)
 xmap aM <Plug>(textobj-comment-big-a)
 omap aM <Plug>(textobj-comment-big-a)
 
+let g:vim_textobj_parameter_mapping = 'a'
+
 "-- BufKill --
 let g:BufKillCreateMappings = 0
 
@@ -573,7 +583,7 @@ function BufferDo(command_str)
     if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
         exe "normal! \<C-w>\l"
     endif
-    exe 'normal! ' . a:command_str . "\<CR>"
+    exe 'silent normal! ' . a:command_str . "\<CR>"
 endfunction
 
 nnoremap <silent> <leader>o :call BufferDo(':BB')<CR>
@@ -686,7 +696,7 @@ autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
 autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
 
 "-- vim-highlight-cursor-words --
-let g:HiCursorWords_delay = 10
+let g:HiCursorWords_delay = 50
 let g:HiCursorWords_linkStyle='CursorLine'
 
 "-- vim-peekaboo --

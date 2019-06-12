@@ -19,7 +19,6 @@ My customized vim configuration
             python3-dev \
             silversearcher-ag \
             build-essential \
-            exuberant-ctags \
             libclang-dev
 
 ## Get my Vim configuration
