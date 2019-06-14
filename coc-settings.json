@@ -1,0 +1,39 @@
+{
+    "languageserver": {
+        "ccls": {
+            "command": "ccls",
+            "filetypes": ["c", "cpp", "objc", "objcpp"],
+            "args": ["-v=-1"],
+            "rootPatterns": [".ccls", "compile_commands.json", ".git/"],
+            "initializationOptions": {
+                "cache": {
+                    "directory": "/tmp/ccls"
+                }
+            }
+        }
+    },
+
+    "suggest.minTriggerInputLength": 1,
+    "suggest.lowPrioritySourceLimit": 8,
+    "suggest.highPrioritySourceLimit": 12,
+
+    "diagnostic.checkCurrentLine": true,
+    "diagnostic.messageTarget": "echo",
+    "diagnostic.locationlist": false,
+    "diagnostic.signOffset": 10000,
+    "diagnostic.errorSign": "E",
+    "diagnostic.warningSign": "W",
+    "diagnostic.infoSign": "I",
+    "diagnostic.hintSign": "H",
+
+    "signature.target": "echo",
+
+    "coc.preferences.hoverTarget": "echo",
+    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+
+    "snippets.extends": {
+        "cpp": ["c"],
+    },
+
+    "coc.source.word.filetypes": ["markdown", "text", ""],
+}

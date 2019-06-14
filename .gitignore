@@ -2,3 +2,6 @@ plug/
 autoload/
 
 *.swp
+
+setup/ccls/
+setup/CMake-*/

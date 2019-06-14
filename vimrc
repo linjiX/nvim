@@ -19,10 +19,12 @@ autocmd ColorScheme * hi UserWarning cterm=bold,underline ctermfg=13
 autocmd ColorScheme * hi UserErrorSign cterm=bold ctermfg=9
 autocmd ColorScheme * hi UserWarningSign cterm=bold ctermfg=13
 
-autocmd ColorScheme * hi link YcmErrorSection UserError
-autocmd ColorScheme * hi link YcmErrorSign UserErrorSign
-autocmd ColorScheme * hi link YcmWarningSection UserWarning
-autocmd ColorScheme * hi link YcmWarningSign UserWarningSign
+autocmd ColorScheme * hi link CocErrorSign UserErrorSign
+autocmd ColorScheme * hi link CocWarningSign UserWarningSign
+autocmd ColorScheme * hi link CocErrorHighlight UserError
+autocmd ColorScheme * hi link CocWarningHighlight UserWarning
+
+autocmd ColorScheme * hi link CocHighlightText CursorLine
 
 autocmd ColorScheme * hi link ALEError UserErrorSign
 autocmd ColorScheme * hi link ALEWarning UserWarningSign
@@ -69,7 +71,7 @@ set hidden
 
 set colorcolumn=100
 
-set updatetime=100
+set updatetime=10
 
 set autoread
 set scrolloff=1
@@ -171,15 +173,7 @@ function QListToggle() abort
     endif
 endfunction
 
-" function s:BufferCount() abort
-    " return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
-" endfunction
-
-" autocmd FileType list nnoremap <buffer> <leader>q <ESC>
-" autocmd FileType list nnoremap <buffer> q <ESC>
-
 nnoremap <C-t> :vertical botright terminal<CR>
-
 
 "Close VIM when only quickfix window visable
 augroup QFClose
@@ -353,6 +347,17 @@ let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 
+" let g:Lf_RememberLastSearch = 1
+
+" let g:Lf_GtagsAutoGenerate = 1
+" let g:Lf_GtagsSource = 2
+" let g:Lf_GtagsfilesCmd = {
+            " \ '.git': 'git ls-files',
+            " \ 'default': 'find -type f',
+            " \}
+" let g:Lf_GtagsSkipUnreadable = 1
+" let g:Lf_GtagsSkipSymlink = 'a'
+
 let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
 nnoremap <silent> <leader>ff :Leaderf file<CR>
@@ -437,30 +442,91 @@ nmap <leader>7 <Plug>AirlineSelectTab7
 nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
-" -- YouCompleteMe --
-"let g:ycm_global_ycm_extra_conf = '~/.vim/plug/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-let g:ycm_key_invoke_completion = '<C-j>'
-let g:ycm_max_num_candidates = 10
-let g:ycm_max_num_identifier_candidates = 6
-let g:ycm_error_symbol = 'E'
-let g:ycm_warning_symbol = 'W'
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
+" -- COC --
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
-let g:ycm_use_clangd = 0
-" let g:ycm_clangd_binary_path = exepath('clangd-8')
-" let g:ycm_clangd_uses_ycmd_caching = 0
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" imap <BS> <BS><TAB>
+inoremap <silent><expr> <C-k> coc#refresh()
+imap <expr> <C-j> pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)" : "<Plug>(coc-snippets-expand)"
 
-nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>t :YcmCompleter GetType<CR>
-nnoremap <silent> <leader>d :YcmDiags<CR>
-nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+    if (index(['vim','help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+let g:coc_snippet_next = "<C-l>"
+let g:coc_snippet_prev = "<C-h>"
+
+nmap <silent> <leader>j <Plug>(coc-definition)
+nmap <silent> <leader>J <Plug>(coc-declaration)
+nmap <silent> <leader>x <Plug>(coc-fix-current)
+nmap <silent> <leader>I <Plug>(coc-implementation)
+nmap <silent> <leader>R <Plug>(coc-references)
+nmap <silent> <leader>T <Plug>(coc-type-definition)
+
+" nmap <silent> <leader>ld <Plug>(coc-diagnostic-info)
+nmap <silent> <leader>lr <Plug>(coc-rename)
+nmap <silent> <leader>la <Plug>(coc-codeaction)
+nmap <silent> <leader>ll <Plug>(coc-codelens-action)
+
+" nmap <silent> <leader>lf <Plug>(coc-format)
+" nmap <silent> <leader>lf <Plug>(coc-format-selected)
+" xmap <silent> <leader>lf <Plug>(coc-format-selected)
+
+nmap <silent> <leader>lR <Plug>CocRefresh
+
+nmap <silent> ]j <Plug>(coc-diagnostic-next)
+nmap <silent> [j <Plug>(coc-diagnostic-prev)
+
+nnoremap <silent> <leader>t :call CocAction('doHover')<CR>
+nnoremap <silent> <leader>d :CocList --normal diagnostics<CR>
+nnoremap <silent> <leader>le :CocList extensions<CR>
+nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
+
+" ccls
+nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
+nnoremap <silent> <leader><DOWN> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<CR>
+nnoremap <silent> <leader><LEFT> :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<CR>
+nnoremap <silent> <leader><RIGHT> :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<CR>
+
+nnoremap <silent> <leader>lb :call CocLocations('ccls','$ccls/inheritance')<CR>
+nnoremap <silent> <leader>lB :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<CR>
+nnoremap <silent> <leader>ld :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true})<CR>
+nnoremap <silent> <leader>lD :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true,'levels':3})<CR>
+
+nnoremap <silent> <leader>lc :call CocLocations('ccls','$ccls/call')<CR>
+nnoremap <silent> <leader>lC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<CR>
+
+nnoremap <silent> <leader>lm :call CocLocations('ccls','$ccls/member')<CR>
+nnoremap <silent> <leader>lf :call CocLocations('ccls','$ccls/member',{'kind':3})<CR>
+nnoremap <silent> <leader>lt :call CocLocations('ccls','$ccls/member',{'kind':2})<CR>
+
+nnoremap <silent> <leader>lv :call CocLocations('ccls','$ccls/vars',{'kind':1})<CR>
+nnoremap <silent> <leader>lV :call CocLocations('ccls','$ccls/vars')<CR>
+
+" autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" autocmd FileType list
+            " \ if &buftype == 'nofile' |
+            " \     normal p |
+            " \ endif
+
 
 " -- ALE --
 let g:ale_disable_lsp = 1
@@ -472,6 +538,8 @@ let g:ale_set_loclist = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_sign_offset = 1000
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
@@ -507,11 +575,6 @@ nmap [k <Plug>(ale_previous)
 nmap ]k <Plug>(ale_next)
 nmap [K <Plug>(ale_first)
 nmap ]K <Plug>(ale_last)
-
-" -- UltiSnips --
-let g:UltiSnipsExpandTrigger = '<C-k>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1
@@ -557,7 +620,7 @@ let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
             \ {'p': '~/.vim/vimrc.plug'},
-            \ {'y': '~/.vim/ycm_extra_conf.py'},
+            \ {'c': '~/.vim/coc-settings.json'},
             \ {'b': '~/.bashrc'},
             \ ]
 let g:startify_skiplist = [
@@ -619,7 +682,7 @@ map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
 let g:rainbow_active = 1
-nnoremap <leader>R :RainbowToggle<CR>
+nnoremap <leader>r :RainbowToggle<CR>
 nnoremap <F2> :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
@@ -695,10 +758,6 @@ let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
 autocmd BufEnter __XtermColorTable__ set bufhidden=delete
 autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
 autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
-
-"-- vim-highlight-cursor-words --
-let g:HiCursorWords_delay = 50
-let g:HiCursorWords_linkStyle='CursorLine'
 
 "-- vim-peekaboo --
 let g:peekaboo_window = "vertical botright 50new"

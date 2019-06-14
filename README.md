@@ -14,17 +14,19 @@ My customized vim configuration
             vim-scripts \
             vim-doc \
             vim-gtk \
-            cmake \
             global \
             python3-dev \
             silversearcher-ag \
-            build-essential \
             exuberant-ctags \
             libclang-dev
 
+Install Nodejs and yarn (for COC)
+
+    curl -sL install-node.now.sh/lts | sudo bash
+    curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+
 ## Get my Vim configuration
-If you have your own .vimrc file in home directory,
-please remove or rename it to trigger this configuration.
+If you have your own .vimrc file in home directory, please remove or rename it to trigger this configuration.
 
     cd ~
     git clone -depth=1 https://github.com/linjiX/.vim.git
@@ -38,18 +40,24 @@ May take a long time ...
 
     vim ~/.vim/vimrc.plug -c PlugInstall -c qa
 
-## Install YouCompleteMe (optional)
-refer to <https://github.com/Valloric/YouCompleteMe>
+## Install COC extensions
+refer to <https://github.com/neoclide/coc.nvim>
 
-    cd ~/.vim/plug/YouCompleteMe
-    python3 install.py --clang-completer
+    vim ~/.vim/vimrc.plug -c CocInstall coc-json coc-snippets coc-word coc-pairs -c qa
+
+## Install Language Server
+refer to <https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features>
+
+For C family language, Language Server "ccls" is the best choice for now
+
+refer to <https://github.com/MaskRay/ccls/wiki/Build>
+
+For Ubuntu 16.04, refer to [INSTALL_CCLS.md](setup/INSTALL_CCLS.md)
 
 ## Fonts
-Vim may meet some display issues in your machine.
-The reason is your terminal font doesn't support powerline character.
+Vim may meet some display issues in your machine. The reason is your terminal font doesn't support powerline character.
 
-Here is a recommended font:
-<https://github.com/crvdgc/Consolas-with-Yahei>
+Here is a recommended font: <https://github.com/crvdgc/Consolas-with-Yahei>
 
 Install and enable it in your terminal.
 
@@ -64,6 +72,7 @@ Install and enable it in your terminal.
     git pull
     vim ~/.vim/vimrc.plug
     :PlugUpdate
+    :CocUpdate
     :qa
 
 
