@@ -28,7 +28,7 @@ autocmd ColorScheme * hi link ALEError UserErrorSign
 autocmd ColorScheme * hi link ALEWarning UserWarningSign
 " autocmd ColorScheme * hi link ExtraWhitespace LineNR
 autocmd ColorScheme * hi link ExtraWhitespace Visual
-let g:solarized_termtrans=1
+let g:solarized_termtrans = 1
 colorscheme solarized
 
 " for molokai colorscheme
@@ -218,7 +218,7 @@ let g:gutentags_modules = ['gtags_cscope']
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 let g:gutentags_project_root = ['.root']
 let g:gutentags_exclude_filetypes = [
-            \ '', 'gitrebase', 'conf', 'diff', 'Dockerfile', 'text',
+            \ '', 'gitrebase', 'conf', 'diff', 'Dockerfile', 'text', 'proto',
             \ 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh'
             \ ]
 let g:gutentags_cache_dir = s:vim_tags
@@ -245,8 +245,8 @@ nnoremap <silent> <leader>gg :GscopeFind g <C-r><C-w><CR>
 nnoremap <silent> <leader>gc :GscopeFind c <C-r><C-w><CR>
 nnoremap <silent> <leader>gt :GscopeFind t <C-r><C-w><CR>
 nnoremap <silent> <leader>ge :GscopeFind e <C-r><C-w><CR>
-nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>")<CR><CR>
-nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>")<CR><CR>
+nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>:t")<CR><CR>
+nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>:t")<CR><CR>
 nnoremap <silent> <leader>gI :GscopeFind i <C-r>=fnameescape(expand('%:t'))<CR><CR>
 nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
 nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
@@ -620,6 +620,7 @@ map <leader>- <Plug>(expand_region_shrink)
 "-- rainbow --
 let g:rainbow_active = 1
 nnoremap <leader>R :RainbowToggle<CR>
+nnoremap <F2> :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
             \   'ctermfgs': ['166', '034', '164', '178', '104', '045'],
@@ -748,8 +749,8 @@ autocmd BufRead * SwapList YES/NO YES NO
 " let g:VM_maps["Select h"] = '<C-Left>'
 
 "-- vim-which-key --
-nnoremap <F8> :WhichKey ''<CR>
-vnoremap <F8> :WhichKeyVisual ''<CR>
+nnoremap <F4> :WhichKey ''<CR>
+vnoremap <F4> :WhichKeyVisual ''<CR>
 nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
 let g:which_key_map = {
@@ -769,7 +770,7 @@ let g:which_key_map.z = {'name':"+prefix fzf"}
 call which_key#register('<Space>', "g:which_key_map")
 
 "-- limelight --
-nnoremap <F7> :Limelight!!<CR>
+nnoremap <F3> :Limelight!!<CR>
 let g:limelight_conceal_ctermfg = '10'
 
 "-- quickmenu --
@@ -780,28 +781,39 @@ let g:quickmenu_padding_right = 25
 
 call g:quickmenu#append("Startify", "Startify", "")
 
-call g:quickmenu#append("# Mouse", "")
-call g:quickmenu#append("Enable Mouse <F2>", "set mouse=a", "")
-call g:quickmenu#append("Disable Mouse <F3>", "set mouse=", "")
-
-call g:quickmenu#append("# Other Toggle", "")
-call g:quickmenu#append("Turn CopyMode %{&number? 'on':'off'} <F4>", "call CopyModeToggle()", "")
-call g:quickmenu#append("Turn Spell %{&spell? 'off':'on'} <F5>", "set spell!", "")
-call g:quickmenu#append("Turn Paste %{&paste? 'off':'on'} <F6>", "set paste!", "")
-
 call g:quickmenu#append("# Interesting", "")
-call g:quickmenu#append("Limelight Toggle <F7>", "Limelight", "")
-call g:quickmenu#append("WhichKey <F8>", "WhichKey ''", "")
+call g:quickmenu#append("Rainbow Toggle <F2>", "RainbowToggle", "")
+call g:quickmenu#append("Limelight Toggle <F3>", "Limelight!!", "")
+call g:quickmenu#append("WhichKey <F4>", "WhichKey ''", "")
 
-nnoremap <F2> :set mouse=a<CR>
-nnoremap <F3> :set mouse=<CR>
-nnoremap <F4> :call CopyModeToggle()<CR>
-set pastetoggle=<F5>
-nnoremap <F6> :set spell!<CR>
+call g:quickmenu#append("# System Toggle", "")
+call g:quickmenu#append("Turn Mouse %{&mouse == '' ? 'on':'off'} <F5>", "call MouseToggle()", "")
+call g:quickmenu#append("Turn Sidebar %{&number? 'on':'off'} <F6>", "call SidebarToggle()", "")
+call g:quickmenu#append("Turn Spell %{&spell? 'off':'on'} <F7>", "set spell!", "")
+call g:quickmenu#append("Turn Paste %{&paste? 'off':'on'} <F8>", "set paste!", "")
 
-function CopyModeToggle()
-    set nu!
-    exec "IndentLinesToggle"
-    exec "GitGutterSignsToggle"
-    exec "SignatureToggleSigns"
+nnoremap <silent> <F5> :call MouseToggle()<CR>
+nnoremap <silent> <F6> :call SidebarToggle()<CR>
+nnoremap <F7> :set spell!<CR>
+set pastetoggle=<F8>
+
+function MouseToggle()
+    if &mouse == ''
+        set mouse=a
+        echo "Mouse On"
+    else
+        set mouse=
+        echo "Mouse Off"
+    endif
+endfunction
+
+function SidebarToggle()
+    set number!
+    if &number
+        set signcolumn=auto
+        echo "Sidebar On"
+    else
+        set signcolumn=no
+        echo "Sidebar Off"
+    endif
 endfunction

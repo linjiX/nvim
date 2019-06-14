@@ -19,6 +19,7 @@ My customized vim configuration
             python3-dev \
             silversearcher-ag \
             build-essential \
+            exuberant-ctags \
             libclang-dev
 
 ## Get my Vim configuration
@@ -26,7 +27,7 @@ If you have your own .vimrc file in home directory,
 please remove or rename it to trigger this configuration.
 
     cd ~
-    git clone https://github.com/linjiX/.vim.git
+    git clone -depth=1 https://github.com/linjiX/.vim.git
 
 ## Get Vim plugin management: vim-plug
 
@@ -36,7 +37,6 @@ please remove or rename it to trigger this configuration.
 May take a long time ...
 
     vim ~/.vim/vimrc.plug -c PlugInstall -c qa
-
 
 ## Install YouCompleteMe (optional)
 refer to <https://github.com/Valloric/YouCompleteMe>
@@ -62,7 +62,9 @@ Install and enable it in your terminal.
 
     cd ~/.vim
     git pull
-    vim ~/.vim/vimrc.plug -c PlugUpdate -c qa
+    vim ~/.vim/vimrc.plug
+    :PlugUpdate
+    :qa
 
 
 
