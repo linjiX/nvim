@@ -28,8 +28,9 @@ autocmd ColorScheme * hi link CocHighlightText CursorLine
 
 autocmd ColorScheme * hi link ALEError UserErrorSign
 autocmd ColorScheme * hi link ALEWarning UserWarningSign
-" autocmd ColorScheme * hi link ExtraWhitespace LineNR
+
 autocmd ColorScheme * hi link ExtraWhitespace Visual
+
 let g:solarized_termtrans = 1
 colorscheme solarized
 
@@ -195,9 +196,9 @@ augroup vimrc_help
                 \ endif
 augroup END
 
-let s:vim_tags = expand('~/.cache/tags')
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
+let s:vim_cache = expand('~/.LfCache')
+if !isdirectory(s:vim_cache)
+    silent! call mkdir(s:vim_cache, 'p')
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
@@ -205,45 +206,6 @@ nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
 nnoremap <leader>vu :PlugUpdate<CR>
 nnoremap <leader>vg :PlugUpgrade<CR>
-
-"-- gutentags setting --
-" let g:gutentags_modules = ['ctags', 'gtags_cscope']
-let g:gutentags_modules = ['gtags_cscope']
-" let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
-let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = [
-            \ '', 'gitrebase', 'conf', 'diff', 'Dockerfile', 'text', 'proto',
-            \ 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh'
-            \ ]
-let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_auto_add_gtags_cscope = 1
-" let g:gutentags_ctags_extra_args = [
-            " \ '--c++-kinds=+plxcdefgmnstuv',
-            " \ '--c-kinds=+plxcdefgmnstuv',
-            " \ '--fields=+iaS',
-            " \ '--extra=+q'
-            " \ ]
-let g:gutentags_file_list_command = {
-            \ 'markers': {
-            \     '.git': 'git ls-files',
-            \     '.root': 'find -type f',
-            \     },
-            \ }
-
-" let g:gutentags_trace = 1
-let g:gutentags_plus_nomap = 1
-
-nnoremap <leader>g<Space> :GscopeFind 
-nnoremap <silent> <leader>gs :GscopeFind s <C-r><C-w><CR>
-nnoremap <silent> <leader>gg :GscopeFind g <C-r><C-w><CR>
-nnoremap <silent> <leader>gc :GscopeFind c <C-r><C-w><CR>
-nnoremap <silent> <leader>gt :GscopeFind t <C-r><C-w><CR>
-nnoremap <silent> <leader>ge :GscopeFind e <C-r><C-w><CR>
-nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>:t")<CR><CR>
-nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>:t")<CR><CR>
-nnoremap <silent> <leader>gI :GscopeFind i <C-r>=fnameescape(expand('%:t'))<CR><CR>
-nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
-nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
 
 "-- NERDTree & Tagbar --
 let s:width = 30
@@ -269,8 +231,8 @@ let g:NERDSpaceDelims = 1
 cnoreabbrev Gstatus vertical botright Gstatus
 
 "-- GitGutter --
-nnoremap <leader>gr :GitGutter<CR>
-nnoremap <leader>gF :GitGutterFold<CR>
+nnoremap <leader>gR :GitGutter<CR>
+nnoremap <leader>gf :GitGutterFold<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
 nmap <leader>gS <Plug>GitGutterStageHunk
 nmap <leader>gu <Plug>GitGutterUndoHunk
@@ -346,17 +308,22 @@ let g:Lf_StlSeparator = { 'left': '', 'right': '' }
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
-
 " let g:Lf_RememberLastSearch = 1
 
-" let g:Lf_GtagsAutoGenerate = 1
-" let g:Lf_GtagsSource = 2
-" let g:Lf_GtagsfilesCmd = {
-            " \ '.git': 'git ls-files',
-            " \ 'default': 'find -type f',
-            " \}
-" let g:Lf_GtagsSkipUnreadable = 1
-" let g:Lf_GtagsSkipSymlink = 'a'
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_GtagsSource = 2
+if executable('ag')
+    let g:Lf_GtagsfilesCmd = {
+                \ '.git': 'ag -l --cpp',
+                \}
+else
+    let g:Lf_GtagsfilesCmd = {
+                \ '.git': 'find -regex ".*\.\(h\|cc\|cpp\)$',
+                \}
+endif
+let g:Lf_GtagsSkipUnreadable = 1
+let g:Lf_GtagsSkipSymlink = 'a'
+let g:Lf_Gtagslabel = "native-pygments"
 
 let g:Lf_ShortcutF = '<C-p>'
 let g:Lf_ShortcutB = '<leader>fb'
@@ -377,6 +344,25 @@ nnoremap <silent> <leader>fh :Leaderf help<CR>
 nnoremap <silent> <leader>fc :Leaderf colorscheme<CR>
 nnoremap <silent> <leader>fr :Leaderf rg<CR>
 nnoremap <silent> <leader>fR :Leaderf rg --recall<CR>
+nnoremap <silent> <leader>fg :Leaderf gtags<CR>
+" nnoremap <silent> <leader>fG :Leaderf gtags --update<CR>
+
+nnoremap <silent> <leader>gg :Leaderf! gtags -d <C-r><C-w><CR>
+nnoremap <silent> <leader>gr :Leaderf! gtags -r <C-r><C-w><CR>
+nnoremap <silent> <leader>gs :Leaderf! gtags -s <C-r><C-w><CR>
+nnoremap <silent> <leader>gt :Leaderf! gtags -g <C-r><C-w><CR>
+nnoremap <silent> <leader>gi :Leaderf! gtags -g <C-r>=expand("<cfile>:t")<CR><CR>
+nnoremap <silent> <leader>gI :Leaderf! gtags -g <C-r>=fnameescape(expand('%:t'))<CR><CR>
+
+function s:GtagsToggle(flag)
+    if a:flag == 1
+        Leaderf gtags --update
+    else
+        Leaderf gtags --remove
+    endif
+endfunction
+command Gtags call <SID>GtagsToggle(1)
+command GtagsDisable call <SID>GtagsToggle(0)
 
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
@@ -787,7 +773,7 @@ autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
 let g:yankring_max_history = 20
-let g:yankring_history_dir = s:vim_tags
+let g:yankring_history_dir = s:vim_cache
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0

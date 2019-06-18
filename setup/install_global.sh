@@ -3,17 +3,17 @@
 set -e
 set -v
 
-VERSION="3.14.0"
-TARFILE=v$VERSION.tar.gz
-DIR=CMake-$VERSION
+VERSION="6.6.3"
+TARFILE=global-$VERSION.tar.gz
+DIR=global-$VERSION
 
-wget https://github.com/Kitware/CMake/archive/$TARFILE
+wget http://tamacom.com/global/$TARFILE
 
 tar -xvf $TARFILE > /dev/null
 rm $TARFILE
 pushd $DIR > /dev/null
 ./configure
-make
+make -j
 sudo make install
 
 popd > /dev/null

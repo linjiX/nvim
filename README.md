@@ -14,7 +14,6 @@ My customized vim configuration
             vim-scripts \
             vim-doc \
             vim-gtk \
-            global \
             python3-dev \
             silversearcher-ag \
             exuberant-ctags \
@@ -24,6 +23,7 @@ Install Nodejs and yarn (for COC)
 
     curl -sL install-node.now.sh/lts | sudo bash
     curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
+    source ~/.bashrc
 
 ## Get my Vim configuration
 If you have your own .vimrc file in home directory, please remove or rename it to trigger this configuration.
@@ -53,6 +53,11 @@ For C family language, Language Server "ccls" is the best choice for now
 refer to <https://github.com/MaskRay/ccls/wiki/Build>
 
 For Ubuntu 16.04, refer to [INSTALL_CCLS.md](setup/INSTALL_CCLS.md)
+
+## Install latest GNU global (optional)
+
+    cd setup
+    ./install_global.sh
 
 ## Fonts
 Vim may meet some display issues in your machine. The reason is your terminal font doesn't support powerline character.

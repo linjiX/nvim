@@ -63,10 +63,10 @@ Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'derekwyatt/vim-fswitch'
 Plug 'honza/vim-snippets'
-Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ludovicchabant/vim-gutentags'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-Plug 'skywind3000/gutentags_plus'
+" Plug 'skywind3000/gutentags_plus'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'

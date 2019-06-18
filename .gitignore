@@ -5,3 +5,4 @@ autoload/
 
 setup/ccls/
 setup/CMake-*/
+setup/global-*/
