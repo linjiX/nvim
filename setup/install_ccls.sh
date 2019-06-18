@@ -13,7 +13,7 @@ cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
     -DLLVM_INCLUDE_DIR=/usr/lib/llvm-7/include \
     -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-7/
 
-cmake --build Release
+cmake --build Release -j
 sudo cmake --build Release --target install
 
 popd > /dev/null

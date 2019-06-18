@@ -5,7 +5,7 @@ My customized vim configuration
 
     sudo add-apt-repository ppa:jonathonf/vim
     sudo apt-get update
-    sudo apt-get install vim
+    sudo apt-get install -y vim
 
 ## Install dependencies
 
@@ -43,7 +43,7 @@ May take a long time ...
 ## Install COC extensions
 refer to <https://github.com/neoclide/coc.nvim>
 
-    vim ~/.vim/vimrc.plug -c CocInstall coc-json coc-snippets coc-word coc-pairs -c qa
+    vim ~/.vim/vimrc.plug -c CocInstall coc-json coc-snippets coc-word -c qa
 
 ## Install Language Server
 refer to <https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features>
@@ -77,7 +77,7 @@ Install and enable it in your terminal.
     git pull
     vim ~/.vim/vimrc.plug
     :PlugUpdate
-    :CocUpdate
+    :CocUpdateSync
     :qa
 
 

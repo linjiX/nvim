@@ -23,7 +23,7 @@
     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 
     sudo apt-get update
-    sudo apt-get install llvm-7-dev
+    sudo apt-get install -y llvm-7 libclang-7-dev clang-7
 
 ## Install g++-7
 refer to <https://gist.github.com/jlblancoc/99521194aba975286c80f93e47966dc5>

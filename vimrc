@@ -607,6 +607,7 @@ let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
             \ {'p': '~/.vim/vimrc.plug'},
             \ {'c': '~/.vim/coc-settings.json'},
+            \ {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
             \ {'b': '~/.bashrc'},
             \ ]
 let g:startify_skiplist = [
