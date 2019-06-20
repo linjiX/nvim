@@ -28,12 +28,17 @@
 
     "signature.target": "echo",
 
+    "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help", ""],
+
     "coc.preferences.hoverTarget": "echo",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+    "coc.preferences.rootPatterns": [".git"],
+
+    "coc.source.file.ignoreHidden": false,
 
     "snippets.extends": {
         "cpp": ["c"],
     },
 
-    "coc.source.word.filetypes": ["markdown", "text", ""],
+    "coc.source.word.filetypes": ["markdown", "text", "log", ""],
 }

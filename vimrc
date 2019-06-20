@@ -429,24 +429,27 @@ nmap <leader>8 <Plug>AirlineSelectTab8
 nmap <leader>9 <Plug>AirlineSelectTab9
 
 " -- COC --
-function! s:check_back_space() abort
+function! s:CheckBackSpace() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
+            \ pumvisible() ? "\<C-n>"
+            \              : <SID>CheckBackSpace() ? "\<TAB>"
+            \                                        : coc#refresh()
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " imap <BS> <BS><TAB>
 inoremap <silent><expr> <C-k> coc#refresh()
-imap <expr> <C-j> pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)" : "<Plug>(coc-snippets-expand)"
+imap <expr> <C-j>
+            \ pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)"
+            \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
+            \                                 : coc#refresh()
 
 " Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 
-function! s:show_documentation()
+function! s:ShowDocumentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
     else
