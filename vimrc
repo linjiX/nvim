@@ -214,8 +214,17 @@ augroup myHelp
     autocmd BufEnter *
                 \ if &buftype == 'help' |
                 \     wincmd L |
-                \     nnoremap <buffer> <leader>q :helpclose<CR> |
-                \     nnoremap <buffer> q :helpclose<CR> |
+                \     nnoremap <silent><buffer> <leader>q :helpclose<CR> |
+                \     nnoremap <silent><buffer> q :helpclose<CR> |
+                \ endif
+augroup END
+
+augroup myLeaderQ
+    autocmd!
+    autocmd BufEnter *
+                \ if &buftype == 'nofile' |
+                \     nnoremap <silent><buffer> <leader>q :q<CR> |
+                \     nnoremap <silent><buffer> q :q<CR> |
                 \ endif
 augroup END
 
@@ -245,10 +254,6 @@ let g:tagbar_left = 1
 
 nnoremap <leader>F :NERDTreeFind<CR>
 nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
-augroup myNerdTree
-    autocmd!
-    autocmd FileType nerdtree nnoremap <silent><buffer> <leader>q :NERDTreeClose<CR>
-augroup END
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
@@ -296,7 +301,7 @@ nnoremap <leader>so :CtrlSFToggle<CR>
 
 augroup myCtrlSF
     autocmd!
-    autocmd FileType ctrlsf nnoremap <buffer> <leader>q :CtrlSFToggle<CR>
+    autocmd FileType ctrlsf nnoremap <silent><buffer> <leader>q :CtrlSFClose<CR>
 augroup END
 
 " -- FZF --
@@ -782,8 +787,6 @@ let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
 augroup myXtermColorTable
     autocmd!
     autocmd BufEnter __XtermColorTable__ set bufhidden=delete
-    autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
-    autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
 augroup END
 
 "-- vim-peekaboo --
@@ -872,7 +875,7 @@ let g:limelight_conceal_ctermfg = '10'
 nnoremap <silent><F12> :call quickmenu#toggle(0)<CR>
 augroup myQuickMenu
     autocmd!
-    autocmd FileType quickmenu nnoremap <buffer> <leader>q :call quickmenu#toggle(0)<CR>
+    autocmd FileType quickmenu nnoremap <silent><buffer> <leader>q :call quickmenu#toggle(0)<CR>
 augroup END
 let g:quickmenu_options = "HL"
 let g:quickmenu_padding_right = 25
