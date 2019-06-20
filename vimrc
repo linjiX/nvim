@@ -123,7 +123,8 @@ augroup myCommonConfig
     autocmd!
     autocmd FileType c,cpp set cindent
     " Disable automatic comment insertion
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd BufRead * nmap Y y$
 augroup END
 
 " Enable the configuration once the vimrc is written
@@ -559,9 +560,9 @@ nnoremap <leader>h :FSHere<CR>
 
 augroup myFSwitch
     autocmd!
-    autocmd BufEnter *.h let b:fswitchdst  = 'cc,cpp,c'
+    autocmd BufEnter *.h let b:fswitchdst = 'cc,cpp,c'
     autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
-    autocmd BufEnter *.c* let b:fswitchdst  = 'h'
+    autocmd BufEnter *.c* let b:fswitchdst = 'h'
     autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
 augroup END
 
@@ -786,9 +787,56 @@ nmap cb <Plug>(conflict-marker-both)
 "-- swapit --
 augroup mySwapit
     autocmd!
-    autocmd BufRead * SwapList TRUE/FALSE TRUE FALSE
-    autocmd BufRead * SwapList YES/NO YES NO
+    autocmd BufRead * call <SID>AutoCmdSwapList()
+    autocmd FileType gitrebase call <SID>AutoCmdGitrebaseSwapList()
 augroup END
+
+function s:AutoCmdGitrebaseSwapList() abort
+    ClearSwapList
+    SwapList GitRebase pick squash reword edit fixup exec drop
+endfunction
+function s:AutoCmdSwapList() abort
+    vnoremap <C-a> <C-a>
+    vnoremap <C-x> <C-x>
+    SwapList TRUE/FALSE TRUE FALSE
+    SwapList YES/NO YES NO
+endfunction
+
+nmap <Plug>SwapItFallbackIncrement :call FallbackIncrement()<CR>
+nmap <Plug>SwapItFallbackDecrement :call FallbackDecrement()<CR>
+
+function FallbackIncrement()
+    nnoremap <Plug>SwapItFallbackIncrement <C-a>
+    call <SID>LocateNumber()
+    execute "normal \<Plug>SwapIncrement"
+    nnoremap <Plug>SwapItFallbackIncrement :call FallbackIncrement()<CR>
+endfunction
+
+function FallbackDecrement()
+    nnoremap <Plug>SwapItFallbackDecrement <C-x>
+    call <SID>LocateNumber()
+    execute "normal \<Plug>SwapDecrement"
+    nnoremap <Plug>SwapItFallbackDecrement :call FallbackDecrement()<CR>
+endfunction
+
+let g:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'
+let g:oct_number_pattern = '\d*\zs\d'
+let g:hex_number_pattern = '0(x|X)\x*\zs\x'
+let g:bin_number_pattern = '0(b|B)[01]*\zs[01]'
+let g:full_pattern = join([g:true_false_pattern, g:hex_number_pattern, g:bin_number_pattern, g:oct_number_pattern], '|')
+
+function s:LocateNumber() abort
+    let l:pos = getpos(".")
+    let l:flag = search(g:true_false_pattern, "cb", line("."))
+    if l:flag != 0
+        if l:pos[2] < col(".")  + strlen(expand("<cword>"))
+            call setpos(".", l:pos)
+            return
+        endif
+        call setpos(".", l:pos)
+    endif
+    call search(g:full_pattern, "c", line("."))
+endfunction
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
