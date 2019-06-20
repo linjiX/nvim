@@ -1,3 +1,14 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    https://github.com/linjiX/.vim                           "
+"     _  _          _  _ __  __    __        _                "
+"    | |(_) _ __   (_)(_)\ \/ /   / /__   __(_) _ __ ___      "
+"    | || || '_ \  | || | \  /   / / \ \ / /| || '_ ` _ \     "
+"    | || || | | | | || | /  \  / /_  \ V / | || | | | | |    "
+"    |_||_||_| |_|_/ ||_|/_/\_\/_/(_)  \_/  |_||_| |_| |_|    "
+"                |__/                                         "
+"                                                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set nocompatible
 set nobackup
 
@@ -12,24 +23,31 @@ syntax on
 
 "-- colorscheme --
 set background=dark
-autocmd ColorScheme * hi Sneak cterm=bold,underline ctermfg=red
 
-autocmd ColorScheme * hi UserError cterm=bold,underline ctermfg=9
-autocmd ColorScheme * hi UserWarning cterm=bold,underline ctermfg=13
-autocmd ColorScheme * hi UserErrorSign cterm=bold ctermfg=9
-autocmd ColorScheme * hi UserWarningSign cterm=bold ctermfg=13
+augroup myColorScheme
+    autocmd!
+    autocmd ColorScheme * call <SID>AutoCmdColorScheme()
+augroup END
+function s:AutoCmdColorScheme() abort
+    highlight Sneak cterm=bold,underline ctermfg=red
 
-autocmd ColorScheme * hi link CocErrorSign UserErrorSign
-autocmd ColorScheme * hi link CocWarningSign UserWarningSign
-autocmd ColorScheme * hi link CocErrorHighlight UserError
-autocmd ColorScheme * hi link CocWarningHighlight UserWarning
+    highlight UserError cterm=bold,underline ctermfg=9
+    highlight UserWarning cterm=bold,underline ctermfg=13
+    highlight UserErrorSign cterm=bold ctermfg=9
+    highlight UserWarningSign cterm=bold ctermfg=13
 
-autocmd ColorScheme * hi link CocHighlightText CursorLine
+    highlight link CocErrorSign UserErrorSign
+    highlight link CocWarningSign UserWarningSign
+    highlight link CocErrorHighlight UserError
+    highlight link CocWarningHighlight UserWarning
 
-autocmd ColorScheme * hi link ALEError UserErrorSign
-autocmd ColorScheme * hi link ALEWarning UserWarningSign
+    highlight link CocHighlightText CursorLine
 
-autocmd ColorScheme * hi link ExtraWhitespace Visual
+    highlight link ALEError UserErrorSign
+    highlight link ALEWarning UserWarningSign
+
+    highlight link ExtraWhighlighttespace Visual
+endfunction
 
 let g:solarized_termtrans = 1
 colorscheme solarized
@@ -50,7 +68,6 @@ set softtabstop=4
 set shiftwidth=4
 
 set list
-" set listchars=tab:>-,trail:.
 set listchars=tab:>-
 
 set hlsearch
@@ -58,7 +75,6 @@ set incsearch
 
 set autoindent
 set smartindent
-autocmd FileType c,cpp set cindent
 
 set foldmethod=syntax
 set foldlevel=100
@@ -79,7 +95,6 @@ set scrolloff=1
 
 set diffopt+=vertical
 
-" set path=.,/usr/include,/usr/local/include,~/Document/lib
 set path=.,/usr/include,/usr/local/include
 
 set completeopt-=preview
@@ -94,24 +109,31 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-" nnoremap <leader>l :nohlsearch<CR>
 
 packadd! matchit
 
-autocmd BufNewFile,BufRead *.launch set filetype=xml
-autocmd BufNewFile,BufRead *.urdf set filetype=xml
-autocmd BufNewFile,BufRead *.BUILD set filetype=bzl
-autocmd BufNewFile,BufRead WORKSPACE set filetype=bzl
-autocmd BufNewFile,BufRead .arc* set filetype=json
+augroup myFileType
+    autocmd!
+    autocmd BufNewFile,BufRead *.launch set filetype=xml
+    autocmd BufNewFile,BufRead *.urdf set filetype=xml
+    autocmd BufNewFile,BufRead *.BUILD set filetype=bzl
+    autocmd BufNewFile,BufRead WORKSPACE set filetype=bzl
+    autocmd BufNewFile,BufRead .arc* set filetype=json
+augroup END
 
-"Enable the configuration once the vimrc is written
-"autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup myCommonConfig
+    autocmd!
+    autocmd FileType c,cpp set cindent
+    " Disable automatic comment insertion
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+augroup END
 
-"Disable automatic comment insertion
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Enable the configuration once the vimrc is written
+" autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
-"Change cursor shape in different modes
-if has("autocmd")
+augroup myCursor
+    autocmd!
+    " Change cursor shape in different modes
     autocmd VimEnter,InsertLeave *
                 \ silent execute '!echo -ne "\e[1 q"' |
                 \ redraw!
@@ -126,27 +148,37 @@ if has("autocmd")
     autocmd VimLeave *
                 \ silent execute '!echo -ne "\e[ q"' |
                 \ redraw!
-endif
 
-"Locate cursor to the last position
-if has("autocmd")
+    " Locate cursor to the last position
     autocmd BufReadPost *
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
                 \     exe "normal g`\"" |
                 \ endif
-endif
+augroup END
 
 "-- clipboard --"
 set clipboard^=unnamedplus
 
 "--QuickFix--"
-autocmd QuickFixCmdPost [^l]* nested cwindow
-autocmd QuickFixCmdPost    l* nested lwindow
+augroup myQuickFix
+    autocmd!
+    autocmd FileType qf call <SID>AutoCmdQuickFix()
+    autocmd QuickFixCmdPost [^l]* nested cwindow
+    autocmd QuickFixCmdPost    l* nested lwindow
 
-autocmd FileType qf set bufhidden=delete
-autocmd FileType qf nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
-autocmd FileType qf nnoremap <silent><buffer> q :call PLCclose()<CR>
-autocmd FileType qf nnoremap <silent><buffer> <leader>q :call PLCclose()<CR>
+    " Close VIM when only quickfix window visable
+    autocmd WinEnter *
+                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" |
+                \     q |
+                \ endif
+augroup END
+
+function s:AutoCmdQuickFix() abort
+    set bufhidden=delete
+    nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
+    nnoremap <silent><buffer> q :call PLCclose()<CR>
+    nnoremap <silent><buffer> <leader>q :call PLCclose()<CR>
+endfunction
 
 " QuickFix window toggle
 nnoremap <silent> <leader>co :call QListToggle()<CR>
@@ -176,18 +208,9 @@ endfunction
 
 nnoremap <C-t> :vertical botright terminal<CR>
 
-"Close VIM when only quickfix window visable
-augroup QFClose
+augroup myHelp
     autocmd!
-    autocmd WinEnter *
-                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" |
-                \     q |
-                \ endif
-augroup END
-
-"open help window vertical split
-augroup vimrc_help
-    autocmd!
+    " open help window vertical split
     autocmd BufEnter *
                 \ if &buftype == 'help' |
                 \     wincmd L |
@@ -222,7 +245,10 @@ let g:tagbar_left = 1
 
 nnoremap <leader>F :NERDTreeFind<CR>
 nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
-autocmd FileType nerdtree nnoremap <silent><buffer> <leader>q :NERDTreeClose<CR>
+augroup myNerdTree
+    autocmd!
+    autocmd FileType nerdtree nnoremap <silent><buffer> <leader>q :NERDTreeClose<CR>
+augroup END
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
@@ -268,7 +294,10 @@ nmap <leader>sP <Plug>CtrlSFPwordPath
 nmap <leader>sp <Plug>CtrlSFPwordExec
 nnoremap <leader>so :CtrlSFToggle<CR>
 
-autocmd FileType ctrlsf nnoremap <buffer> <leader>q :CtrlSFToggle<CR>
+augroup myCtrlSF
+    autocmd!
+    autocmd FileType ctrlsf nnoremap <buffer> <leader>q :CtrlSFToggle<CR>
+augroup END
 
 " -- FZF --
 let g:fzf_layout = { 'down': '~30%' }
@@ -507,15 +536,17 @@ nnoremap <silent> <leader>lt :call CocLocations('ccls','$ccls/member',{'kind':2}
 nnoremap <silent> <leader>lv :call CocLocations('ccls','$ccls/vars',{'kind':1})<CR>
 nnoremap <silent> <leader>lV :call CocLocations('ccls','$ccls/vars')<CR>
 
-" autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+augroup myCoc
+    autocmd!
+    " Highlight symbol under cursor on CursorHold
+    autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" autocmd FileType list
-            " \ if &buftype == 'nofile' |
-            " \     normal p |
-            " \ endif
-
+    " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+    " autocmd FileType list
+                " \ if &buftype == 'nofile' |
+                " \     normal p |
+                " \ endif
+augroup END
 
 " -- ALE --
 let g:ale_disable_lsp = 1
@@ -554,7 +585,7 @@ function ALEDiags()
                 \ endif
 endfunction
 
-augroup ale
+augroup myALE
     autocmd!
     autocmd BufRead * ALELint
     autocmd FileType cpp nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
@@ -575,10 +606,13 @@ let g:cpp_class_decl_highlight = 1
 "-- FSwitch --
 nnoremap <leader>h :FSHere<CR>
 
-autocmd BufEnter *.h let b:fswitchdst  = 'cc,cpp,c'
-autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
-autocmd BufEnter *.c* let b:fswitchdst  = 'h'
-autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
+augroup myFSwitch
+    autocmd!
+    autocmd BufEnter *.h let b:fswitchdst  = 'cc,cpp,c'
+    autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
+    autocmd BufEnter *.c* let b:fswitchdst  = 'h'
+    autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
+augroup END
 
 "-- vim-smooth-scroll --
 nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
@@ -745,9 +779,12 @@ let g:webdevicons_enable_nerdtree = 0
 
 "-- xterm-color-table --
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
-autocmd BufEnter __XtermColorTable__ set bufhidden=delete
-autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
-autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
+augroup myXtermColorTable
+    autocmd!
+    autocmd BufEnter __XtermColorTable__ set bufhidden=delete
+    autocmd BufEnter __XtermColorTable__ nnoremap <buffer> <leader>q :q<CR>
+    autocmd BufEnter __XtermColorTable__ nnoremap <buffer> q :q<CR>
+augroup END
 
 "-- vim-peekaboo --
 let g:peekaboo_window = "vertical botright 50new"
@@ -766,18 +803,24 @@ nnoremap [r :PreviousColorScheme<CR>
 
 "-- quickr-preview --
 let g:quickr_preview_keymaps = 0
-autocmd FileType qf nmap <silent><buffer> p <Plug>(quickr_preview)
 let g:quickr_preview_position = 'right'
+augroup myQuickFixPreview
+    autocmd!
+    autocmd FileType qf nmap <silent><buffer> p <Plug>(quickr_preview)
+augroup END
 
 "-- YankRing --
 nnoremap <silent> <leader>P :YRShow<CR>
 nnoremap <silent> <leader>p :YRGetElem 1<CR>
 nnoremap <silent> <leader>yc :YRClear<CR>
-autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
 let g:yankring_replace_n_pkey = ''
 let g:yankring_replace_n_nkey = ''
 let g:yankring_max_history = 20
 let g:yankring_history_dir = s:vim_cache
+augroup myYankRing
+    autocmd!
+    autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
+augroup END
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
@@ -789,8 +832,11 @@ nmap cn <Plug>(conflict-marker-none)
 nmap cb <Plug>(conflict-marker-both)
 
 "-- swapit --
-autocmd BufRead * SwapList TRUE/FALSE TRUE FALSE
-autocmd BufRead * SwapList YES/NO YES NO
+augroup mySwapit
+    autocmd!
+    autocmd BufRead * SwapList TRUE/FALSE TRUE FALSE
+    autocmd BufRead * SwapList YES/NO YES NO
+augroup END
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
@@ -824,7 +870,10 @@ let g:limelight_conceal_ctermfg = '10'
 
 "-- quickmenu --
 nnoremap <silent><F12> :call quickmenu#toggle(0)<CR>
-autocmd FileType quickmenu nnoremap <buffer> <leader>q :call quickmenu#toggle(0)<CR>
+augroup myQuickMenu
+    autocmd!
+    autocmd FileType quickmenu nnoremap <buffer> <leader>q :call quickmenu#toggle(0)<CR>
+augroup END
 let g:quickmenu_options = "HL"
 let g:quickmenu_padding_right = 25
 
