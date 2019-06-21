@@ -46,7 +46,7 @@ function s:AutoCmdColorScheme() abort
     highlight link ALEError UserErrorSign
     highlight link ALEWarning UserWarningSign
 
-    highlight link ExtraWhighlighttespace Visual
+    highlight link ExtraWhitespace Visual
 endfunction
 
 let g:solarized_termtrans = 1
