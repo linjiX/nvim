@@ -8,6 +8,11 @@
             "initializationOptions": {
                 "cache": {
                     "directory": "/tmp/ccls"
+                },
+                "diagnostic": {
+                    "onOpen" : 1,
+                    "onChange" : 1,
+                    "onSave" : 1,
                 }
             }
         }

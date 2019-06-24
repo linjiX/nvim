@@ -469,17 +469,44 @@ function! s:CheckBackSpace() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <TAB>
+" inoremap <silent><expr> <TAB>
+            " \ pumvisible() ? "\<C-n>"
+            " \              : <SID>CheckBackSpace() ? "\<TAB>"
+            " \                                        : coc#refresh()
+" inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" " imap <BS> <BS><TAB>
+" inoremap <silent><expr> <C-k> coc#refresh()
+" imap <expr> <C-j>
+            " \ pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)"
+            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
+            " \                                 : coc#refresh()
+
+inoremap <silent><expr> <C-j>
             \ pumvisible() ? "\<C-n>"
-            \              : <SID>CheckBackSpace() ? "\<TAB>"
-            \                                        : coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" imap <BS> <BS><TAB>
-inoremap <silent><expr> <C-k> coc#refresh()
-imap <expr> <C-j>
-            \ pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)"
+            \              : coc#refresh()
+inoremap <silent><expr> <C-k>
+            \ pumvisible() ? "\<C-p>"
+            \              : "\<C-k>"
+imap <silent><expr> <TAB>
+            \ pumvisible() ? coc#expandable() ? "\<C-e><Plug>(coc-snippets-expand)"
+            \                                 : coc#_select_confirm()
             \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
-            \                                 : coc#refresh()
+            \                                 : <SID>CheckBackSpace() ? "\<TAB>"
+            \                                                         : coc#refresh()
+inoremap <silent><expr> <S-TAB> coc#refresh()
+
+" imap <silent><expr> <TAB>
+            " \ pumvisible() ? coc#_select_confirm()
+            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
+            " \                                 : <SID>CheckBackSpace() ? "\<TAB>"
+            " \                                                         : coc#refresh()
+
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+            " \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" imap <silent><expr> <CR>
+            " \ pumvisible() ? coc#_select_confirm()
+            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
+            " \                                 : "\<CR>"
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
