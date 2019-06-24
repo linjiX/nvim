@@ -938,6 +938,7 @@ endfunction
 
 function SidebarToggle()
     set number!
+    IndentLinesToggle
     if &number
         set signcolumn=auto
         echo "Sidebar On"
