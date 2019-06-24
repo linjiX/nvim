@@ -258,6 +258,22 @@ nnoremap <leader>w :ToggleNERDTreeAndTagbar<CR>
 
 "-- NERDCommenter --
 let g:NERDSpaceDelims = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDUsePlaceHolders = 0
+let g:NERDCommenterMappings = 0
+
+map <leader>c<Space> <Plug>NERDCommenterComment
+map <leader>cc <Plug>NERDCommenterToggle
+map <leader>cm <Plug>NERDCommenterMinimal
+map <leader>ci <Plug>NERDCommenterInvert
+map <leader>cs <Plug>NERDCommenterSexy
+map <leader>cy <Plug>NERDCommenterYank
+map <leader>c$ <Plug>NERDCommenterToEOL
+map <leader>cA <Plug>NERDCommenterAppend
+map <leader>ca <Plug>NERDCommenterAltDelims
+map <leader>cl <Plug>NERDCommenterAlignLeft
+map <leader>cr <Plug>NERDCommenterAlignBoth
+map <leader>cu <Plug>NERDCommenterUncomment
 
 "-- fugitive --
 cnoreabbrev Gstatus vertical botright Gstatus
@@ -624,10 +640,10 @@ augroup myALE
     autocmd FileType cpp nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
 augroup END
 
-nmap [k <Plug>(ale_previous)
-nmap ]k <Plug>(ale_next)
-nmap [K <Plug>(ale_first)
-nmap ]K <Plug>(ale_last)
+nmap [w <Plug>(ale_previous)
+nmap ]w <Plug>(ale_next)
+nmap [W <Plug>(ale_first)
+nmap ]W <Plug>(ale_last)
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1
@@ -769,8 +785,8 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "-- vim-better-whitespace --
-nnoremap ]w :NextTrailingWhitespace<CR>
-nnoremap [w :PrevTrailingWhitespace<CR>
+nnoremap ]$ :NextTrailingWhitespace<CR>
+nnoremap [$ :PrevTrailingWhitespace<CR>
 
 "-- vim-interestinwords --
 nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
@@ -855,12 +871,13 @@ augroup END
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
-nmap ]C <Plug>(conflict-marker-next-hunk)
-nmap [C <Plug>(conflict-marker-prev-hunk)
-nmap ct <Plug>(conflict-marker-themselves)
-nmap co <Plug>(conflict-marker-ourselves)
-nmap cn <Plug>(conflict-marker-none)
-nmap cb <Plug>(conflict-marker-both)
+nmap ]k <Plug>(conflict-marker-next-hunk)
+nmap [k <Plug>(conflict-marker-prev-hunk)
+
+nmap <leader>cj <Plug>(conflict-marker-themselves)
+nmap <leader>ck <Plug>(conflict-marker-ourselves)
+nmap <leader>cn <Plug>(conflict-marker-none)
+nmap <leader>cb <Plug>(conflict-marker-both)
 
 "-- swapit --
 augroup mySwapit
