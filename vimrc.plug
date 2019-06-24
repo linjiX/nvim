@@ -42,6 +42,7 @@ Plug 'junegunn/vim-easy-align'
 
 "-- Display --
 " Plug 'itchyny/vim-cursorword'
+" Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim'
 Plug 'itchyny/vim-parenmatch'
@@ -49,7 +50,6 @@ Plug 'junegunn/limelight.vim'
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
-" Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -59,19 +59,20 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'derekwyatt/vim-fswitch'
-Plug 'honza/vim-snippets'
 " Plug 'ludovicchabant/vim-gutentags'
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+" Plug 'skywind3000/gutentags_plus'
+" Plug 'tpope/vim-commentary'
+Plug 'Shougo/echodoc.vim'
+Plug 'derekwyatt/vim-fswitch'
+Plug 'derekwyatt/vim-protodef'
+Plug 'honza/vim-snippets'
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-" Plug 'skywind3000/gutentags_plus'
-Plug 'tpope/vim-commentary'
+Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
-Plug 'derekwyatt/vim-protodef'
-Plug 'Shougo/echodoc.vim'
 
 "-- Compile --
 " Plug 'bazelbuild/vim-bazel'
@@ -89,15 +90,15 @@ Plug 'tpope/vim-fugitive'
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'vim-scripts/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
+" Plug 'henrik/vim-indexed-search'
+" Plug 'osyo-manga/vim-anzu'
+" Plug 'romainl/vim-cool'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'nelstrom/vim-visual-star-search'
-" Plug 'osyo-manga/vim-anzu'
-" Plug 'henrik/vim-indexed-search'
-" Plug 'romainl/vim-cool'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'

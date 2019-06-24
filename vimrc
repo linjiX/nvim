@@ -712,6 +712,17 @@ omap aM <Plug>(textobj-comment-big-a)
 
 let g:vim_textobj_parameter_mapping = 'a'
 
+augroup myTextobj
+    autocmd!
+    autocmd BufRead * call <SID>AutoCmdTextobj()
+augroup END
+function s:AutoCmdTextobj() abort
+    xmap af <Plug>(textobj-function-a)
+    omap af <Plug>(textobj-function-a)
+    xmap if <Plug>(textobj-function-i)
+    omap if <Plug>(textobj-function-i)
+endfunction
+
 "-- BufKill --
 let g:BufKillCreateMappings = 0
 
@@ -1021,6 +1032,7 @@ endfunction
 
 function SidebarToggle()
     set number!
+    IndentLinesToggle
     if &number
         set signcolumn=auto
         echo "Sidebar On"
