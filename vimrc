@@ -930,6 +930,11 @@ function s:ProtoDef(includeNS) abort
 endfunction
 command ProtoDef call <SID>ProtoDef(1)
 
+"-- echodoc.vim --
+set noshowmode
+set shortmess+=c
+let g:echodoc#enable_at_startup = 1
+
 "-- vim-visual-multi --
 " let g:VM_maps = {}
 " let g:VM_maps["Select l"] = '<C-Right>'

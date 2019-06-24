@@ -71,6 +71,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
 Plug 'derekwyatt/vim-protodef'
+Plug 'Shougo/echodoc.vim'
 
 "-- Compile --
 " Plug 'bazelbuild/vim-bazel'
