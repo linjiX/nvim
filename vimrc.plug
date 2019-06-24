@@ -68,6 +68,7 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
+Plug 'derekwyatt/vim-protodef'
 
 "-- Compile --
 " Plug 'bazelbuild/vim-bazel'

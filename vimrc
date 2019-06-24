@@ -838,6 +838,20 @@ function s:LocateNumber() abort
     call search(g:full_pattern, "c", line("."))
 endfunction
 
+"-- vim-protodef --
+let g:protodefprotogetter = '~/.vim/plug/vim-protodef/pullproto.pl'
+let disable_protodef_mapping = 1
+" let g:disable_protodef_sorting = 1
+function s:ProtoDef(includeNS) abort
+    if a:includeNS == 1
+        let l:protos = protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({})
+    else
+        let l:protos = protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({'includeNS' : 0})
+    endif
+    call append(line("."), split(l:protos, '\n'))
+endfunction
+command ProtoDef call <SID>ProtoDef(1)
+
 "-- vim-visual-multi --
 " let g:VM_maps = {}
 " let g:VM_maps["Select l"] = '<C-Right>'
