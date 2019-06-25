@@ -133,28 +133,22 @@ augroup END
 " Enable the configuration once the vimrc is written
 " autocmd BufWritePost $MYVIMRC source $MYVIMRC
 
-augroup myCursor
-    autocmd!
-    " Change cursor shape in different modes
-    autocmd VimEnter,InsertLeave *
-                \ silent execute '!echo -ne "\e[1 q"' |
-                \ redraw!
-    autocmd InsertEnter,InsertChange *
-                \ if v:insertmode == 'i' |
-                \     silent execute '!echo -ne "\e[5 q"' |
-                \     redraw! |
-                \ elseif v:insertmode == 'r' |
-                \     silent execute '!echo -ne "\e[3 q"' |
-                \     redraw! |
-                \ endif
-    autocmd VimLeave *
-                \ silent execute '!echo -ne "\e[ q"' |
-                \ redraw!
+" Change cursor shape in different modes
+let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
+let &t_SR .= "\e[3 q" "SR = REPLACE mode
+let &t_SI .= "\e[5 q" "SI = INSERT mode
 
+if has('nvim')
+    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+                \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+                \,sm:block-blinkwait175-blinkoff150-blinkon175
+endif
+
+augroup myCursor
     " Locate cursor to the last position
     autocmd BufReadPost *
                 \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \     exe "normal g`\"" |
+                \     execute "normal g`\"" |
                 \ endif
 augroup END
 
@@ -177,6 +171,7 @@ augroup END
 
 function s:AutoCmdQuickFix() abort
     set bufhidden=delete
+    silent! set nobuflisted
     nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
     nnoremap <silent><buffer> q :call PLCclose()<CR>
     nnoremap <silent><buffer> <leader>q :call PLCclose()<CR>
@@ -208,38 +203,66 @@ function QListToggle() abort
     endif
 endfunction
 
-" function s:BufferCount() abort
-    " return len(filter(range(1, bufnr('$')), 'bufwinnr(v:val) != -1'))
-" endfunction
+" terminal
+if has('nvim')
+    cnoreabbrev terminal botright vsplit term://bash
+    nnoremap <C-t> :botright vsplit term://bash<CR>
+    tmap <ESC> <C-\><C-n>:set number<CR>
+    tmap <C-h> <ESC><C-w>h
+    tmap <C-j> <ESC><C-w>j
+    tmap <C-k> <ESC><C-w>k
+    tmap <C-l> <ESC><C-w>l
+else
+    nnoremap <C-t> :vertical botright terminal<CR>
+    tnoremap <C-h> <C-w>h
+    tnoremap <C-j> <C-w>j
+    tnoremap <C-k> <C-w>k
+    tnoremap <C-l> <C-w>l
+    tnoremap <ESC> <C-w>N
+endif
 
-" autocmd FileType list nnoremap <buffer> <leader>q <ESC>
-" autocmd FileType list nnoremap <buffer> q <ESC>
-
-nnoremap <C-t> :vertical botright terminal<CR>
-
-augroup myHelp
+augroup myTerminal
     autocmd!
-    " open help window vertical split
-    autocmd BufEnter *
-                \ if &buftype == 'help' |
-                \     wincmd L |
-                \     nnoremap <silent><buffer> <leader>q :helpclose<CR> |
-                \     nnoremap <silent><buffer> q :helpclose<CR> |
-                \ endif
+    if has('nvim')
+        autocmd TermOpen * call <SID>AutoCmdTerminal()
+    else
+        autocmd TerminalOpen * call <SID>AutoCmdTerminal()
+    endif
 augroup END
 
-augroup myLeaderQ
+function s:AutoCmdTerminal() abort
+    set bufhidden=delete
+    set nobuflisted
+    " set nomodifiable
+    nnoremap <silent><buffer> <leader>q :q!<CR>
+    nnoremap <silent><buffer> q :q!<CR>
+    cnoreabbrev <buffer> q q!
+    if has('nvim')
+        nnoremap <silent><buffer> i :set nonumber<CR>i
+    endif
+endfunction
+
+augroup myBufType
     autocmd!
-    autocmd BufEnter *
-                \ if &buftype == 'nofile' |
-                \     if expand("%:t") == "__Gundo__" |
-                \         nnoremap <silent><buffer> <leader>q :GundoHide<CR> |
-                \     else |
-                \         nnoremap <silent><buffer> <leader>q :q<CR> |
-                \         nnoremap <silent><buffer> q :q<CR> |
-                \     endif |
-                \ endif
+    autocmd BufEnter * call <SID>AutoCmdBufType()
 augroup END
+function s:AutoCmdBufType() abort
+    if &buftype == 'nofile'
+        if expand("%:t") == "__Gundo__"
+            nnoremap <silent><buffer> <leader>q :GundoHide<CR>
+        else
+            nnoremap <silent><buffer> <leader>q :q<CR>
+            nnoremap <silent><buffer> q :q<CR>
+        endif
+    elseif &buftype == 'help'
+        " open help window vertical split
+        wincmd L
+        nnoremap <silent><buffer> <leader>q :helpclose<CR>
+        nnoremap <silent><buffer> q :helpclose<CR>
+    elseif &buftype == 'terminal' && has('nvim')
+        normal i
+    endif
+endfunction
 
 let s:vim_tags = expand('~/.cache/tags')
 if !isdirectory(s:vim_tags)
@@ -624,6 +647,8 @@ let g:startify_bookmarks = [
 let g:startify_skiplist = [
             \ $HOME .'/.vim',
             \ $HOME .'/.bashrc',
+            \ "/usr/share/nvim",
+            \ "/usr/share/vim",
             \ ]
 
 "-- textobj --
@@ -755,8 +780,13 @@ let g:webdevicons_enable_nerdtree = 0
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
 augroup myXtermColorTable
     autocmd!
-    autocmd BufEnter __XtermColorTable__ set bufhidden=delete
+    autocmd BufEnter __XtermColorTable__ call <SID>AutoCmdXtermColorTable()
 augroup END
+function s:AutoCmdXtermColorTable() abort
+    set bufhidden=delete
+    set nobuflisted
+    set nonumber
+endfunction
 
 "-- vim-highlight-cursor-words --
 let g:HiCursorWords_delay = 50
