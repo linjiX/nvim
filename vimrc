@@ -27,6 +27,7 @@ set background=dark
 augroup myColorScheme
     autocmd!
     autocmd ColorScheme * call <SID>AutoCmdColorScheme()
+    autocmd ColorScheme molokai call <SID>AutoCmdMolokai()
 augroup END
 function s:AutoCmdColorScheme() abort
     highlight Sneak cterm=bold,underline ctermfg=red
@@ -46,14 +47,14 @@ function s:AutoCmdColorScheme() abort
 
     highlight link ExtraWhitespace Visual
 endfunction
+function s:AutoCmdMolokai() abort
+    highlight Visual ctermbg=238
+    highlight! link CursorLine CursorColumn
+endfunction
 
 let g:solarized_termtrans = 1
 colorscheme solarized
-
-" for molokai colorscheme
 " colorscheme molokai
-" highlight! link CursorLine CursorColumn
-" highlight Visual ctermbg=238
 
 set cursorline
 set cursorcolumn
@@ -108,7 +109,9 @@ nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
-packadd! matchit
+if !has('nvim')
+    packadd! matchit
+endif
 
 augroup myFileType
     autocmd!
@@ -229,8 +232,12 @@ augroup myLeaderQ
     autocmd!
     autocmd BufEnter *
                 \ if &buftype == 'nofile' |
-                \     nnoremap <silent><buffer> <leader>q :q<CR> |
-                \     nnoremap <silent><buffer> q :q<CR> |
+                \     if expand("%:t") == "__Gundo__" |
+                \         nnoremap <silent><buffer> <leader>q :GundoHide<CR> |
+                \     else |
+                \         nnoremap <silent><buffer> <leader>q :q<CR> |
+                \         nnoremap <silent><buffer> q :q<CR> |
+                \     endif |
                 \ endif
 augroup END
 
@@ -790,6 +797,9 @@ augroup myYankRing
     autocmd!
     autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
 augroup END
+if has('nvim')
+    let g:yankring_clipboard_monitor = 0
+endif
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
@@ -879,6 +889,7 @@ nnoremap <F4> :WhichKey ''<CR>
 vnoremap <F4> :WhichKeyVisual ''<CR>
 nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
+let g:which_key_use_floating_win = 0
 let g:which_key_map = {
             \ '`' :"BufKillAlt",
             \ 'i' :"BufKillForward",

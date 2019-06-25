@@ -2,3 +2,8 @@ plug/
 autoload/
 
 *.swp
+
+setup/ccls/
+setup/CMake-*/
+setup/global-*/
+setup/cppcheck-*/
