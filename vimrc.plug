@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plug')
 
 "-- Help --
-Plug 'yianwillis/vimcdoc'
+" Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
 " Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -11,7 +11,7 @@ Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'scrooloose/nerdtree'
-Plug 'sjl/gundo.vim'
+Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 Plug 'skywind3000/quickmenu.vim'
 
 "-- Colorscheme --
@@ -27,7 +27,7 @@ Plug 'tomasr/molokai'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
 Plug 'AndrewRadev/linediff.vim'
-Plug 'Shougo/vinarise.vim'
+Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'mjbrownie/swapit'
 Plug 'tpope/vim-abolish'
@@ -35,8 +35,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/YankRing.vim'
 
-"-- Formatter --
-Plug 'chiel92/vim-autoformat'
+" -- Formatter --
+Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
 Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 
@@ -44,9 +44,9 @@ Plug 'junegunn/vim-easy-align'
 " Plug 'itchyny/vim-cursorword'
 " Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
-Plug 'guns/xterm-color-table.vim'
+Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
 Plug 'itchyny/vim-parenmatch'
-Plug 'junegunn/limelight.vim'
+Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
@@ -64,8 +64,8 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
-Plug 'derekwyatt/vim-fswitch'
-Plug 'derekwyatt/vim-protodef'
+Plug 'derekwyatt/vim-fswitch', {'for': ['cpp', 'c']}
+Plug 'derekwyatt/vim-protodef', {'for': ['cpp', 'c']}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'scrooloose/nerdcommenter'
@@ -81,8 +81,8 @@ Plug 'w0rp/ale'
 "-- Git --
 " Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
-Plug 'cohama/agit.vim'
-Plug 'junegunn/gv.vim'
+Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
+Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
 
@@ -93,10 +93,10 @@ Plug 'tpope/vim-fugitive'
 " Plug 'henrik/vim-indexed-search'
 " Plug 'osyo-manga/vim-anzu'
 " Plug 'romainl/vim-cool'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 Plug 'nelstrom/vim-visual-star-search'
 
@@ -138,7 +138,7 @@ Plug 'ronakg/quickr-preview.vim'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
-Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-rooter', {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-eunuch'
