@@ -124,10 +124,10 @@ augroup END
 
 augroup myCommonConfig
     autocmd!
+    autocmd BufRead * nmap Y y$
     autocmd FileType c,cpp set cindent
     " Disable automatic comment insertion
-    autocmd BufRead * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-    autocmd BufRead * nmap Y y$
+    autocmd FileType * setlocal formatoptions-=cro
 augroup END
 
 " Enable the configuration once the vimrc is written
@@ -206,14 +206,14 @@ endfunction
 " terminal
 if has('nvim')
     cnoreabbrev terminal botright vsplit term://bash
-    nnoremap <C-t> :botright vsplit term://bash<CR>
-    tmap <ESC> <C-\><C-n>:set number<CR>
+    nnoremap <silent> <C-t> :botright vsplit term://bash<CR>
+    tmap <silent> <ESC> <C-\><C-n>:set number<CR>
     tmap <C-h> <ESC><C-w>h
     tmap <C-j> <ESC><C-w>j
     tmap <C-k> <ESC><C-w>k
     tmap <C-l> <ESC><C-w>l
 else
-    nnoremap <C-t> :vertical botright terminal<CR>
+    nnoremap <silent> <C-t> :vertical botright terminal<CR>
     tnoremap <C-h> <C-w>h
     tnoremap <C-j> <C-w>j
     tnoremap <C-k> <C-w>k
@@ -396,7 +396,7 @@ augroup myCtrlSF
 augroup END
 
 " -- FZF --
-let g:fzf_layout = { 'down': '~30%' }
+let g:fzf_layout = {'down': '~30%'}
 " Insert mode completion
 imap <C-x><C-w> <plug>(fzf-complete-word)
 imap <C-x><C-x> <plug>(fzf-complete-path)
@@ -429,7 +429,7 @@ nnoremap <silent> <leader>zf :Filetypes<CR>
 
 " -- LeaderF --
 let g:Lf_WindowHeight = 0.3
-let g:Lf_StlSeparator = { 'left': '', 'right': '' }
+let g:Lf_StlSeparator = {'left': '', 'right': ''}
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'

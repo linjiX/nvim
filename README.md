@@ -38,12 +38,6 @@ May take a long time ...
 
     vim ~/.vim/vimrc.plug -c PlugInstall -c qa
 
-## Install YouCompleteMe (optional)
-refer to <https://github.com/Valloric/YouCompleteMe>
-
-    cd ~/.vim/plug/YouCompleteMe
-    python3 install.py --clang-completer
-
 ## Fonts
 Vim may meet some display issues in your machine.
 The reason is your terminal font doesn't support powerline character.
