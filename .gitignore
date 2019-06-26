@@ -4,6 +4,7 @@ autoload/
 *.swp
 
 setup/ccls/
+setup/ctags/
 setup/CMake-*/
 setup/global-*/
 setup/cppcheck-*/

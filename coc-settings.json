@@ -9,6 +9,9 @@
                 "cache": {
                     "directory": "/tmp/ccls"
                 },
+                "clang": {
+                    "extraArgs": ["-Wno-unused-variable"],
+                },
                 "diagnostic": {
                     "onOpen" : 1,
                     "onChange" : 1,
@@ -32,11 +35,12 @@
     "diagnostic.infoSign": "I",
     "diagnostic.hintSign": "H",
 
-    "signature.target": "echo",
+    "signature.enable": true,
+    "signature.target": "float",
 
     "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help", ""],
 
-    "coc.preferences.hoverTarget": "echo",
+    "coc.preferences.hoverTarget": "float",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".git"],
 

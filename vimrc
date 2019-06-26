@@ -229,7 +229,7 @@ else
     tnoremap <C-j> <C-w>j
     tnoremap <C-k> <C-w>k
     tnoremap <C-l> <C-w>l
-    tnoremap <ESC> <C-w>N
+    tnoremap <ESC> <C-\><C-n>
 endif
 
 augroup myTerminal
@@ -410,13 +410,9 @@ let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_GtagsAutoGenerate = 0
 let g:Lf_GtagsSource = 2
 if executable('ag')
-    let g:Lf_GtagsfilesCmd = {
-                \ '.git': 'ag -l --cpp',
-                \}
+    let g:Lf_GtagsfilesCmd = {'.git': 'ag -l --cpp'}
 else
-    let g:Lf_GtagsfilesCmd = {
-                \ '.git': 'find -regex ".*\.\(h\|cc\|cpp\)$',
-                \}
+    let g:Lf_GtagsfilesCmd = {'.git': 'find -regex ".*\.\(h\|cc\|cpp\)$'}
 endif
 let g:Lf_GtagsSkipUnreadable = 1
 let g:Lf_GtagsSkipSymlink = 'a'
@@ -531,18 +527,6 @@ function! s:CheckBackSpace() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" inoremap <silent><expr> <TAB>
-            " \ pumvisible() ? "\<C-n>"
-            " \              : <SID>CheckBackSpace() ? "\<TAB>"
-            " \                                        : coc#refresh()
-" inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" " imap <BS> <BS><TAB>
-" inoremap <silent><expr> <C-k> coc#refresh()
-" imap <expr> <C-j>
-            " \ pumvisible() ? "\<C-y><Plug>(coc-snippets-expand)"
-            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
-            " \                                 : coc#refresh()
-
 inoremap <silent><expr> <C-j>
             \ pumvisible() ? "\<C-n>"
             \              : coc#refresh()
@@ -556,19 +540,7 @@ imap <silent><expr> <TAB>
             \                                 : <SID>CheckBackSpace() ? "\<TAB>"
             \                                                         : coc#refresh()
 inoremap <silent><expr> <S-TAB> coc#refresh()
-
-" imap <silent><expr> <TAB>
-            " \ pumvisible() ? coc#_select_confirm()
-            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
-            " \                                 : <SID>CheckBackSpace() ? "\<TAB>"
-            " \                                                         : coc#refresh()
-
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-            " \ : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" imap <silent><expr> <CR>
-            " \ pumvisible() ? coc#_select_confirm()
-            " \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
-            " \                                 : "\<CR>"
+imap <silent><expr> <BS> join(["<BS>", coc#refresh()], "")
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
@@ -636,7 +608,6 @@ augroup myCoc
     " Highlight symbol under cursor on CursorHold
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
-    " autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
     " autocmd FileType list
                 " \ if &buftype == 'nofile' |
                 " \     normal p |
@@ -760,6 +731,7 @@ omap aM <Plug>(textobj-comment-big-a)
 
 let g:vim_textobj_parameter_mapping = 'a'
 
+" COC mapping the 'af' and 'if' for LS function textobj, but it doesn't work now
 augroup myTextobj
     autocmd!
     autocmd BufRead * call <SID>AutoCmdTextobj()
@@ -1018,7 +990,7 @@ command ProtoDef call <SID>ProtoDef(1)
 set noshowmode
 set shortmess+=c
 let g:echodoc#enable_at_startup = 1
-let g:echodoc#type = 'floating'
+" let g:echodoc#type = 'floating'
 
 "-- vim-visual-multi --
 " let g:VM_maps = {}
