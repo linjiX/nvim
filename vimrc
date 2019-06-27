@@ -128,6 +128,11 @@ augroup myCommonConfig
     autocmd FileType c,cpp set cindent
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro
+    " Close VIM when only no listed buffer window visable
+    autocmd WinEnter *
+                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buflisted") == 0 |
+                \     q |
+                \ endif
 augroup END
 
 " Enable the configuration once the vimrc is written
@@ -161,12 +166,6 @@ augroup myQuickFix
     autocmd FileType qf call <SID>AutoCmdQuickFix()
     autocmd QuickFixCmdPost [^l]* nested cwindow
     autocmd QuickFixCmdPost    l* nested lwindow
-
-    " Close VIM when only quickfix window visable
-    autocmd WinEnter *
-                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix" |
-                \     q |
-                \ endif
 augroup END
 
 function s:AutoCmdQuickFix() abort
@@ -262,6 +261,9 @@ function s:AutoCmdBufType() abort
     elseif &buftype == 'terminal' && has('nvim')
         normal i
     endif
+    if &previewwindow == 1
+        set nobuflisted
+    endif
 endfunction
 
 let s:vim_tags = expand('~/.cache/tags')
@@ -270,6 +272,7 @@ if !isdirectory(s:vim_tags)
 endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
+let g:plug_window = 'botright vertical new'
 nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
 nnoremap <leader>vu :PlugUpdate<CR>
@@ -356,14 +359,12 @@ cnoreabbrev Gstatus vertical botright Gstatus
 nnoremap <leader>gr :GitGutter<CR>
 nnoremap <leader>gF :GitGutterFold<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
-nmap <leader>gS <Plug>GitGutterStageHunk
+nmap <leader>ga <Plug>GitGutterStageHunk
 nmap <leader>gu <Plug>GitGutterUndoHunk
 omap ig <Plug>GitGutterTextObjectInnerPending
 omap ag <Plug>GitGutterTextObjectOuterPending
 xmap ig <Plug>GitGutterTextObjectInnerVisual
 xmap ag <Plug>GitGutterTextObjectOuterVisual
-nmap [c <Plug>GitGutterPrevHunk
-nmap ]c <Plug>GitGutterNextHunk
 
 " -- CrtlSF --
 if executable('ag')
@@ -403,26 +404,26 @@ imap <C-x><C-x> <plug>(fzf-complete-path)
 imap <C-x><C-z> <plug>(fzf-complete-file-ag)
 imap <C-x><C-j> <plug>(fzf-complete-line)
 
-nnoremap <silent> <leader>zz :Files<CR>
-nnoremap <silent> <leader>zg :GFiles<CR>
-nnoremap <silent> <leader>zG :GFiles?<CR>
-nnoremap <silent> <leader>zb :Buffers<CR>
+nnoremap <silent> <leader>zz :call BufferDo('Files')<CR>
+nnoremap <silent> <leader>zb :call BufferDo('Buffers')<CR>
+nnoremap <silent> <leader>zg :call BufferDo('GFiles')<CR>
+nnoremap <silent> <leader>zG :call BufferDo('GFiles?')<CR>
+nnoremap <silent> <leader>zo :call BufferDo('BCommits')<CR>
+nnoremap <silent> <leader>zO :call BufferDo('Commits')<CR>
+nnoremap <silent> <leader>za :call BufferDo('Ag')<CR>
+nnoremap <silent> <leader>zr :call BufferDo('Rg')<CR>
+nnoremap <silent> <leader>zt :call BufferDo('BTags')<CR>
+" nnoremap <silent> <leader>zT :call BufferDo('Tags')<CR>
+nnoremap <silent> <leader>z` :call BufferDo('Marks')<CR>
+nnoremap <silent> <leader>zm :call BufferDo('History')<CR>
 nnoremap <silent> <leader>zc :Colors<CR>
-nnoremap <silent> <leader>za :Ag<CR>
-nnoremap <silent> <leader>zr :Rg<CR>
 nnoremap <silent> <leader>zl :BLines<CR>
 nnoremap <silent> <leader>zL :Lines<CR>
-nnoremap <silent> <leader>zt :BTags<CR>
-" nnoremap <silent> <leader>zT :Tags<CR>
 nnoremap <silent> <leader>z<leader> :Maps<CR>
-nnoremap <silent> <leader>z` :Marks<CR>
 nnoremap <silent> <leader>zw :Windows<CR>
-nnoremap <silent> <leader>zm :History<CR>
 nnoremap <silent> <leader>z: :History:<CR>
 nnoremap <silent> <leader>z/ :History/<CR>
 nnoremap <silent> <leader>zs :Snippets<CR>
-nnoremap <silent> <leader>zo :BCommits<CR>
-nnoremap <silent> <leader>zO :Commits<CR>
 nnoremap <silent> <leader>ze :Commands<CR>
 nnoremap <silent> <leader>zh :Helptags<CR>
 nnoremap <silent> <leader>zf :Filetypes<CR>
@@ -434,16 +435,18 @@ let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 
-let g:Lf_ShortcutF = '<C-p>'
-let g:Lf_ShortcutB = '<leader>fb'
-nnoremap <silent> <leader>ff :Leaderf file<CR>
-nnoremap <silent> <leader>fB :Leaderf buffer --all<CR>
-nnoremap <silent> <leader>fm :Leaderf mru --cwd<CR>
-nnoremap <silent> <leader>fM :Leaderf mru<CR>
-nnoremap <silent> <leader>ft :Leaderf bufTag<CR>
-nnoremap <silent> <leader>fT :Leaderf bufTag --all<CR>
-nnoremap <silent> <leader>fu :Leaderf function<CR>
-nnoremap <silent> <leader>fU :Leaderf function --all<CR>
+let g:Lf_ShortcutF = ''
+let g:Lf_ShortcutB = ''
+nnoremap <silent> <C-p> :call BufferDo('Leaderf file')<CR>
+nnoremap <silent> <leader>ff :call BufferDo('Leaderf file')<CR>
+nnoremap <silent> <leader>fb :call BufferDo('Leaderf buffer')<CR>
+nnoremap <silent> <leader>fB :call BufferDo('Leaderf buffer --all')<CR>
+nnoremap <silent> <leader>fm :call BufferDo('Leaderf mru --cwd')<CR>
+nnoremap <silent> <leader>fM :call BufferDo('Leaderf mru')<CR>
+nnoremap <silent> <leader>ft :call BufferDo('Leaderf bufTag')<CR>
+nnoremap <silent> <leader>fT :call BufferDo('Leaderf bufTag --all')<CR>
+nnoremap <silent> <leader>fu :call BufferDo('Leaderf function')<CR>
+nnoremap <silent> <leader>fU :call BufferDo('Leaderf function --all')<CR>
 nnoremap <silent> <leader>fl :Leaderf line<CR>
 nnoremap <silent> <leader>fL :Leaderf line --all<CR>
 nnoremap <silent> <leader>f: :Leaderf cmdHistory<CR>
@@ -666,21 +669,28 @@ let g:vim_textobj_parameter_mapping = 'a'
 let g:BufKillCreateMappings = 0
 
 function BufferDo(command_str)
-    if ((expand('%') =~# 'NERD_tree' || expand('%') =~# 'Tagbar') && winnr('$') > 1)
-        exe "normal! \<C-w>\l"
+    if (&buflisted == 0 && winnr('$') > 1)
+        " exe "normal! \<C-w>\l"
+
+        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
+        " echohl WarningMsg
+        " echo 'Do not change buffer in '. l:window_type .' window'
+        " echohl None
+        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
+        execute l:win[0] .'wincmd w'
     endif
-    exe 'silent normal! ' . a:command_str . "\<CR>"
+    execute a:command_str
 endfunction
 
-nnoremap <silent> <leader>o :call BufferDo(':BB')<CR>
-nnoremap <silent> <leader>i :call BufferDo(':BF')<CR>
-nnoremap <silent> <leader>` :call BufferDo(':BA')<CR>
-nnoremap <silent> <leader>u :call BufferDo(':BUNDO')<CR>
+nnoremap <silent> <leader>o :call BufferDo('BB')<CR>
+nnoremap <silent> <leader>i :call BufferDo('BF')<CR>
+nnoremap <silent> <leader>` :call BufferDo('BA')<CR>
+nnoremap <silent> <leader>u :call BufferDo('BUNDO')<CR>
 
-nnoremap <silent> + :call BufferDo(':bn')<CR>
-nnoremap <silent> _ :call BufferDo(':bp')<CR>
-vnoremap <silent> + :<C-u>call BufferDo(':bn')<CR>
-vnoremap <silent> _ :<C-u>call BufferDo(':bp')<CR>
+nnoremap <silent> + :call BufferDo('bn')<CR>
+nnoremap <silent> _ :call BufferDo('bp')<CR>
+vnoremap <silent> + :<C-u>call BufferDo('bn')<CR>
+vnoremap <silent> _ :<C-u>call BufferDo('bp')<CR>
 nnoremap <silent> <leader>q :BW<CR>
 nnoremap <silent> <leader>Q :BD<CR>
 
