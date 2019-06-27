@@ -229,7 +229,7 @@ else
     tnoremap <C-j> <C-w>j
     tnoremap <C-k> <C-w>k
     tnoremap <C-l> <C-w>l
-    tnoremap <ESC> <C-\><C-n>
+    " tnoremap <ESC> <C-\><C-n>
 endif
 
 augroup myTerminal
@@ -771,8 +771,17 @@ if has('python3')
 endif
 nnoremap <leader>G :GundoToggle<CR>
 let g:gundo_right = 1
-let g:gundo_width = 60
+let g:gundo_width = 70
+let g:gundo_preview_height = 15
 let g:gundo_close_on_revert = 1
+" let g:gundo_auto_preview = 0
+
+"-- Undotree --
+nnoremap <leader>U :UndotreeToggle<CR>
+let g:undotree_WindowLayout = 3
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_SplitWidth = 70
+let g:undotree_DiffpanelHeight = 15
 
 "-- vim-sneak --
 map f <Plug>Sneak_f

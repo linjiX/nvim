@@ -13,6 +13,7 @@ Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 Plug 'skywind3000/quickmenu.vim'
+Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 
 "-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'
@@ -129,8 +130,7 @@ Plug 'sgur/vim-textobj-parameter'
 "-- Markdown --
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
-Plug 'iamcco/markdown-preview.vim'
-Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()}}
 Plug 'mzlogin/vim-markdown-toc'
 
 "-- QuickFix --
