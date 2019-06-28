@@ -68,7 +68,8 @@ Plug 'Shougo/echodoc.vim'
 Plug 'derekwyatt/vim-fswitch', {'for': ['cpp', 'c']}
 Plug 'derekwyatt/vim-protodef', {'for': ['cpp', 'c']}
 Plug 'honza/vim-snippets'
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+" Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'

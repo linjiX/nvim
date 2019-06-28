@@ -11,6 +11,7 @@
                 },
                 "clang": {
                     "extraArgs": ["-Wno-unused-variable"],
+                    "excludeArgs": ["-Werror"],
                 },
                 "diagnostic": {
                     "onOpen" : 1,
@@ -29,7 +30,7 @@
     "diagnostic.checkCurrentLine": true,
     "diagnostic.messageTarget": "echo",
     "diagnostic.locationlist": false,
-    "diagnostic.signOffset": 10000,
+    "diagnostic.signOffset": 100000,
     "diagnostic.errorSign": "E",
     "diagnostic.warningSign": "W",
     "diagnostic.infoSign": "I",

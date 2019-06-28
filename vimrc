@@ -51,7 +51,7 @@ function s:AutoCmdColorScheme() abort
     highlight link ExtraWhitespace Visual
 endfunction
 function s:AutoCmdSolarzed() abort
-    highlight UserFloating ctermbg=234
+    highlight UserFloating ctermbg=232
     highlight link CocFloating UserFloating
     highlight link EchoDocFloat UserFloating
 endfunction
