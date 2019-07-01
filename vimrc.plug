@@ -1,7 +1,7 @@
 call plug#begin('~/.vim/plug')
 
 "-- Help --
-" Plug 'yianwillis/vimcdoc'
+Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
 " Plug 'Xuyuanp/nerdtree-git-plugin'

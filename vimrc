@@ -241,7 +241,7 @@ augroup myTerminal
 augroup END
 
 function s:AutoCmdTerminal() abort
-    set bufhidden=delete
+    set bufhidden=wipe
     set nobuflisted
     " set nomodifiable
     nnoremap <silent><buffer> <leader>q :q!<CR>
@@ -266,6 +266,7 @@ function s:AutoCmdBufType() abort
         endif
     elseif &buftype == 'help'
         " open help window vertical split
+        set bufhidden=delete
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
@@ -326,6 +327,10 @@ map <leader>cu <Plug>NERDCommenterUncomment
 
 "-- fugitive --
 cnoreabbrev Gstatus vertical botright Gstatus
+augroup myFugitive
+    autocmd FileType fugitive set nobuflisted
+augroup END
+
 
 "-- GitGutter --
 nnoremap <leader>gR :GitGutter<CR>
@@ -618,7 +623,10 @@ augroup END
 
 " -- ALE --
 let g:ale_disable_lsp = 1
-let g:ale_linters = {'cpp': ['CppCheck']}
+let g:ale_linters = {
+            \ 'cpp': ['CppCheck'],
+            \ 'bzl': ['Buildifier'],
+            \ }
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
 let g:ale_set_quickfix = 0
@@ -638,25 +646,53 @@ call ale#linter#Define('cpp', {
 \   'name': 'CppCheck',
 \   'output_stream': 'both',
 \   'executable': 'cppcheck',
-\   'command': '%e -q --language=c++ --enable=all --platform=unix64 --suppress=unusedFunction --suppress=unusedStructMember %t',
+\   'command': '%e -q --language=c++ --enable=all --platform=unix64 --suppress=unusedFunction '.
+\              '--suppress=unusedStructMember %t',
 \   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
 \})
+
+call ale#linter#Define('bzl', {
+\   'name': 'Buildifier',
+\   'output_stream': 'both',
+\   'executable': 'buildifier',
+\   'command': '%e --lint=warn %t',
+\   'callback': 'HandleBuildiferFormat',
+\})
+
+function HandleBuildiferFormat(buffer, lines) abort
+    " Look for lines like the following.
+    " bazel/repositories.bzl:5: load: Loaded symbol "http_archive" is unused. Please remove it.
+    let l:pattern = '\v^(.+):(\d+): (.+): (.+)$'
+    let l:output = []
+
+    for l:match in ale#util#GetMatches(a:lines, l:pattern)
+        if ale#path#IsBufferPath(a:buffer, l:match[1])
+            call add(l:output, {
+            \   'lnum': str2nr(l:match[2]),
+            \   'type': 'W',
+            \   'text': '('. l:match[3] .') '. l:match[4],
+            \})
+        endif
+    endfor
+
+    return l:output
+endfunction
 
 function ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
     copen
-    autocmd ale WinLeave *
+    autocmd myALE WinLeave *
                 \ if &buftype == 'quickfix' |
                 \     let g:ale_set_quickfix = 0 |
-                \     autocmd! ale WinLeave |
+                \     autocmd! myALE WinLeave |
                 \ endif
 endfunction
 
 augroup myALE
     autocmd!
     autocmd BufRead * ALELint
-    autocmd FileType cpp nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
+    autocmd FileType cpp,bzl nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
 augroup END
 
 nmap [w <Plug>(ale_previous)
