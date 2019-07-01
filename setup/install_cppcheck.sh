@@ -3,7 +3,7 @@
 set -e
 set -v
 
-VERSION="1.87"
+VERSION="1.88"
 TARFILE=$VERSION.tar.gz
 DIR=cppcheck-$VERSION
 sudo apt-get update
