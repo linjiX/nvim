@@ -35,18 +35,25 @@ function s:AutoCmdColorScheme() abort
 
     highlight UserError cterm=bold,underline ctermfg=9
     highlight UserWarning cterm=bold,underline ctermfg=13
+    highlight UserInfo cterm=bold,underline ctermfg=12
     highlight UserErrorSign cterm=bold ctermfg=9
     highlight UserWarningSign cterm=bold ctermfg=13
+    highlight UserInfoSign cterm=bold ctermfg=12
 
     highlight link CocErrorSign UserErrorSign
     highlight link CocWarningSign UserWarningSign
+    highlight link CocInfoSign UserInfoSign
+    highlight link CocHintSign UserInfoSign
     highlight link CocErrorHighlight UserError
     highlight link CocWarningHighlight UserWarning
+    highlight link CocInfoHighlight UserInfo
+    highlight link CocHintHighlight UserInfo
 
     highlight link CocHighlightText CursorLine
 
-    highlight link ALEError UserErrorSign
-    highlight link ALEWarning UserWarningSign
+    highlight link ALEErrorSign UserErrorSign
+    highlight link ALEWarningSign UserWarningSign
+    highlight link ALEInfoSign UserInfoSign
 
     highlight link ExtraWhitespace Visual
 endfunction
@@ -628,17 +635,20 @@ let g:ale_linters = {
             \ 'bzl': ['Buildifier'],
             \ }
 let g:ale_linters_explicit = 1
-let g:ale_echo_msg_format = '[%linter%][%severity%] %s'
+let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_sign_offset = 1000
 
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '✗'
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_info_str = 'I'
 let g:ale_warn_about_trailing_blank_lines = 0
 let g:ale_warn_about_trailing_whitespace = 0
 
@@ -646,33 +656,84 @@ call ale#linter#Define('cpp', {
 \   'name': 'CppCheck',
 \   'output_stream': 'both',
 \   'executable': 'cppcheck',
-\   'command': '%e -q --language=c++ --enable=all --platform=unix64 --suppress=unusedFunction '.
-\              '--suppress=unusedStructMember %t',
-\   'callback': 'ale#handlers#cppcheck#HandleCppCheckFormat',
+\   'command': "%e -q --language=c++ --enable=all --platform=unix64 --suppress=unusedFunction ".
+\              "--suppress=unusedStructMember ".
+\              "--template='{file}:{line}:{column} {severity}:{id}:{message}' ".
+\              "--template-location='{file}:{line}:{column} {info}' %t",
+\   'callback': 'HandleCppCheckFormat',
 \})
 
-call ale#linter#Define('bzl', {
-\   'name': 'Buildifier',
-\   'output_stream': 'both',
-\   'executable': 'buildifier',
-\   'command': '%e --lint=warn %t',
-\   'callback': 'HandleBuildiferFormat',
-\})
-
-function HandleBuildiferFormat(buffer, lines) abort
-    " Look for lines like the following.
-    " bazel/repositories.bzl:5: load: Loaded symbol "http_archive" is unused. Please remove it.
-    let l:pattern = '\v^(.+):(\d+): (.+): (.+)$'
+function HandleCppCheckFormat(buffer, lines) abort
+    let l:pattern = '\v^(.+):(\d+):(\d+) (.+):(.+):(.+)$'
+    let l:pattern_location = '\v^(.+):(\d+):(\d+) (.+)$'
     let l:output = []
 
     for l:match in ale#util#GetMatches(a:lines, l:pattern)
         if ale#path#IsBufferPath(a:buffer, l:match[1])
             call add(l:output, {
-            \   'lnum': str2nr(l:match[2]),
-            \   'type': 'W',
-            \   'text': '('. l:match[3] .') '. l:match[4],
-            \})
+                        \   'lnum': str2nr(l:match[2]),
+                        \   'col': str2nr(l:match[3]),
+                        \   'type': l:match[4] is# 'error' ? 'E' : 'W',
+                        \   'code': l:match[5],
+                        \   'text': l:match[6],
+                        \})
         endif
+    endfor
+
+    for l:match in ale#util#GetMatches(a:lines, l:pattern_location)
+        if ale#path#IsBufferPath(a:buffer, l:match[1])
+            let l:lnum = str2nr(l:match[2])
+            let l:flag = 1
+            for l:item in l:output
+                if l:lnum == l:item['lnum'] && l:item['type'] != 'I'
+                    let l:flag = 0
+                    break
+                endif
+            endfor
+            if l:flag == 1
+                call add(l:output, {
+                            \   'lnum': l:lnum,
+                            \   'col': str2nr(l:match[3]),
+                            \   'type': 'I',
+                            \   'code': '~',
+                            \   'text': l:match[4],
+                            \})
+            endif
+        endif
+    endfor
+
+    return l:output
+endfunction
+
+call ale#linter#Define('bzl', {
+\   'name': 'Buildifier',
+\   'output_stream': 'both',
+\   'executable': 'buildifier',
+\   'command': '%e --lint=warn --format=json --mode=check %t',
+\   'callback': 'HandleBuildiferFormat',
+\})
+
+function HandleBuildiferFormat(buffer, lines) abort
+    let l:json = json_decode(a:lines[0])
+    let l:output = []
+
+    for l:file in l:json["files"]
+        for l:warning in l:file["warnings"]
+            if ale#path#IsBufferPath(a:buffer, l:file["filename"])
+                call add(l:output, {
+                            \   'lnum': l:warning["start"]["line"],
+                            \   'end_lnum': l:warning["end"]["line"],
+                            \   'col': l:warning["start"]["column"],
+                            \   'end_col': l:warning["end"]["column"],
+                            \   'type': 'W',
+                            \   'code': l:warning["category"],
+                            \   'text': l:warning["message"],
+                            \   'detail': 'code: '. l:warning["category"]
+                            \             ."\ntext: ". l:warning["message"]
+                            \             ."\nurl: ". l:warning["url"],
+                            \})
+            endif
+        endfor
     endfor
 
     return l:output
