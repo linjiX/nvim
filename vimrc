@@ -381,7 +381,9 @@ xmap ig <Plug>GitGutterTextObjectInnerVisual
 xmap ag <Plug>GitGutterTextObjectOuterVisual
 
 " -- CrtlSF --
-if executable('ag')
+if executable('rg')
+    let g:ctrlsf_ackprg = 'rg'
+elseif executable('ag')
     let g:ctrlsf_ackprg = 'ag'
 endif
 let g:ctrlsf_position = 'right'
@@ -415,8 +417,12 @@ let g:fzf_layout = {'down': '~30%'}
 " Insert mode completion
 imap <C-x><C-w> <plug>(fzf-complete-word)
 imap <C-x><C-x> <plug>(fzf-complete-path)
-imap <C-x><C-z> <plug>(fzf-complete-file-ag)
 imap <C-x><C-j> <plug>(fzf-complete-line)
+if executable('ag')
+    imap <C-x><C-z> <plug>(fzf-complete-file-ag)
+else
+    imap <C-x><C-z> <plug>(fzf-complete-file)
+endif
 
 nnoremap <silent> <leader>zz :call BufferDo('Files')<CR>
 nnoremap <silent> <leader>zb :call BufferDo('Buffers')<CR>
@@ -474,7 +480,10 @@ nnoremap <silent> <leader>fR :Leaderf rg --recall<CR>
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
 
-if executable('ag')
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+    let g:asyncagprg = 'rg --vimgrep -F'
+elseif executable('ag')
     set grepprg=ag\ --vimgrep
     let g:asyncagprg = 'ag --vimgrep -Q'
 else
