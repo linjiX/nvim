@@ -357,7 +357,9 @@ xmap ig <Plug>GitGutterTextObjectInnerVisual
 xmap ag <Plug>GitGutterTextObjectOuterVisual
 
 " -- CrtlSF --
-if executable('ag')
+if executable('rg')
+    let g:ctrlsf_ackprg = 'rg'
+elseif executable('ag')
     let g:ctrlsf_ackprg = 'ag'
 endif
 let g:ctrlsf_position = 'right'
@@ -391,8 +393,12 @@ let g:fzf_layout = {'down': '~30%'}
 " Insert mode completion
 imap <C-x><C-w> <plug>(fzf-complete-word)
 imap <C-x><C-x> <plug>(fzf-complete-path)
-imap <C-x><C-z> <plug>(fzf-complete-file-ag)
 imap <C-x><C-j> <plug>(fzf-complete-line)
+if executable('ag')
+    imap <C-x><C-z> <plug>(fzf-complete-file-ag)
+else
+    imap <C-x><C-z> <plug>(fzf-complete-file)
+endif
 
 nnoremap <silent> <leader>zz :call BufferDo('Files')<CR>
 nnoremap <silent> <leader>zb :call BufferDo('Buffers')<CR>
@@ -426,13 +432,9 @@ let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 " let g:Lf_RememberLastSearch = 1
 
-let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_GtagsAutoGenerate = 1
 let g:Lf_GtagsSource = 2
-if executable('ag')
-    let g:Lf_GtagsfilesCmd = {'.git': 'ag -l --cpp'}
-else
-    let g:Lf_GtagsfilesCmd = {'.git': 'find -regex ".*\.\(h\|cc\|cpp\)$'}
-endif
+let g:Lf_GtagsfilesCmd = {'.git': 'git ls-files -c -o --exclude-standard'}
 let g:Lf_GtagsSkipUnreadable = 1
 let g:Lf_GtagsSkipSymlink = 'a'
 let g:Lf_Gtagslabel = "native-pygments"
@@ -480,7 +482,10 @@ command GtagsDisable call <SID>GtagsToggle(0)
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
 
-if executable('ag')
+if executable('rg')
+    set grepprg=rg\ --vimgrep
+    let g:asyncagprg = 'rg --vimgrep -F'
+elseif executable('ag')
     set grepprg=ag\ --vimgrep
     let g:asyncagprg = 'ag --vimgrep -Q'
 else
