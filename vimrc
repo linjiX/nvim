@@ -137,7 +137,9 @@ augroup myCommonConfig
     autocmd FileType * setlocal formatoptions-=cro
     " Close VIM when only no listed buffer window visable
     autocmd WinEnter *
-                \ if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buflisted") == 0 |
+                \ if winnr('$') == 1 &&
+                \    getbufvar(winbufnr(winnr()), "&buflisted") == 0 &&
+                \    getbufvar(winbufnr(winnr()), "&filetype") != 'startify'|
                 \     q |
                 \ endif
 augroup END
@@ -718,9 +720,9 @@ endfunction
 augroup myALE
     autocmd!
     autocmd BufRead * ALELint
-    autocmd FileType cpp,bzl nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
 augroup END
 
+nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
 nnoremap <leader>e :ALEDetail<CR>
 nmap [w <Plug>(ale_previous)
 nmap ]w <Plug>(ale_next)
@@ -812,7 +814,9 @@ function BufferDo(command_str)
         " echo 'Do not change buffer in '. l:window_type .' window'
         " echohl None
         let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
-        execute l:win[0] .'wincmd w'
+        if len(l:win) >= 1
+            execute l:win[0] .'wincmd w'
+        endif
     endif
     execute a:command_str
 endfunction
@@ -1013,21 +1017,23 @@ function s:AutoCmdSwapList() abort
     SwapList YES/NO YES NO
 endfunction
 
-nmap <Plug>SwapItFallbackIncrement :call FallbackIncrement()<CR>
-nmap <Plug>SwapItFallbackDecrement :call FallbackDecrement()<CR>
+nmap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement(v:count)<CR>
+nmap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement(v:count)<CR>
 
-function FallbackIncrement()
+function FallbackIncrement(count)
     nnoremap <Plug>SwapItFallbackIncrement <C-a>
     call <SID>LocateNumber()
-    execute "normal \<Plug>SwapIncrement"
-    nnoremap <Plug>SwapItFallbackIncrement :call FallbackIncrement()<CR>
+    let l:count = a:count != 0 ? a:count : 1
+    execute "normal ". l:count ."\<Plug>SwapIncrement"
+    nnoremap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement(v:count)<CR>
 endfunction
 
-function FallbackDecrement()
+function FallbackDecrement(count)
     nnoremap <Plug>SwapItFallbackDecrement <C-x>
     call <SID>LocateNumber()
-    execute "normal \<Plug>SwapDecrement"
-    nnoremap <Plug>SwapItFallbackDecrement :call FallbackDecrement()<CR>
+    let l:count = a:count != 0 ? a:count : 1
+    execute "normal ". l:count ."\<Plug>SwapDecrement"
+    nnoremap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement(v:count)<CR>
 endfunction
 
 let g:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'
