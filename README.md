@@ -51,15 +51,12 @@ refer to <https://github.com/MaskRay/ccls/wiki/Build>
 
 For Ubuntu 16.04, refer to [INSTALL_CCLS.md](setup/INSTALL_CCLS.md)
 
-## Install latest GNU global (optional)
-
-    cd setup
-    ./install_global.sh
-
-## Install latest universal-ctags (optional)
+## Install other useful tools
 
     cd setup
     ./install_ctags.sh
+    ./install_global.sh
+    ./install_ripgrep.sh
 
 ## Fonts
 Vim may meet some display issues in your machine. The reason is your terminal font doesn't support powerline character.
@@ -81,6 +78,4 @@ Install and enable it in your terminal.
     :PlugUpdate
     :CocUpdateSync
     :qa
-
-
 

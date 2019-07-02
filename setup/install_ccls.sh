@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# https://github.com/MaskRay/ccls
 # Read setup/INSTALL_CCLS.md before executing this script!
 
 set -e

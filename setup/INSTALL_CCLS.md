@@ -9,9 +9,7 @@
     sudo apt-get update
     sudo apt-get install -y \
             zlib1g-dev \
-            libncurses-dev \
-            clang \
-            libclang-dev
+            libncurses-dev
 
 ## Install Cmake (3.8 or higher)
 
@@ -30,8 +28,8 @@ refer to <https://gist.github.com/jlblancoc/99521194aba975286c80f93e47966dc5>
 
     sudo apt-get install -y software-properties-common
     sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-    sudo apt update
-    sudo apt install -y g++-7
+    sudo apt-apt update
+    sudo apt-apt install -y g++-7
     sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 60 \
                              --slave /usr/bin/g++ g++ /usr/bin/g++-7
 

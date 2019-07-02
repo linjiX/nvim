@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# http://cppcheck.sourceforge.net/
+
 set -e
 set -v
 

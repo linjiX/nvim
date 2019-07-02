@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/bazelbuild/buildtools/tree/master/buildifier
+
 set -e
 set -v
 

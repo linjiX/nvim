@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://www.gnu.org/software/global/
+
 set -e
 set -v
 

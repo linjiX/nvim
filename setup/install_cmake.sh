@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# https://github.com/Kitware/CMake
+
 set -e
 set -v
 
