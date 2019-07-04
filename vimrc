@@ -242,6 +242,7 @@ else
     tnoremap <C-k> <C-w>k
     tnoremap <C-l> <C-w>l
     " tnoremap <ESC> <C-\><C-n>
+    tnoremap <C-w>n <Nop>
 endif
 
 augroup myTerminal
