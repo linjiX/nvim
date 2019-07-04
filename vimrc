@@ -432,7 +432,11 @@ let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 " let g:Lf_RememberLastSearch = 1
 
-let g:Lf_GtagsAutoGenerate = 1
+if executable('gtags')
+    let g:Lf_GtagsAutoGenerate = 1
+else
+    let g:Lf_GtagsAutoGenerate = 0
+endif
 let g:Lf_GtagsSource = 2
 let g:Lf_GtagsfilesCmd = {'.git': 'git ls-files -c -o --exclude-standard'}
 let g:Lf_GtagsSkipUnreadable = 1
@@ -469,15 +473,15 @@ nnoremap <silent> <leader>gt :Leaderf! gtags -g <C-r><C-w><CR>
 nnoremap <silent> <leader>gi :Leaderf! gtags -g <C-r>=expand("<cfile>:t")<CR><CR>
 nnoremap <silent> <leader>gI :Leaderf! gtags -g <C-r>=fnameescape(expand("%:t"))<CR><CR>
 
-function s:GtagsToggle(flag)
-    if a:flag == 1
-        Leaderf gtags --update
-    else
-        Leaderf gtags --remove
-    endif
-endfunction
-command Gtags call <SID>GtagsToggle(1)
-command GtagsDisable call <SID>GtagsToggle(0)
+" function s:GtagsToggle(flag)
+"     if a:flag == 1
+"         Leaderf gtags --update
+"     else
+"         Leaderf gtags --remove
+"     endif
+" endfunction
+" command Gtags call <SID>GtagsToggle(1)
+" command GtagsDisable call <SID>GtagsToggle(0)
 
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
