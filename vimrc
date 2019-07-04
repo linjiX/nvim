@@ -570,7 +570,7 @@ imap <silent><expr> <TAB>
             \                                 : <SID>CheckBackSpace() ? "\<TAB>"
             \                                                         : coc#refresh()
 inoremap <silent><expr> <S-TAB> coc#refresh()
-imap <silent><expr> <BS> join(["<BS>", coc#refresh()], "")
+" imap <silent><expr> <BS> join(["<BS>", coc#refresh()], "")
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
@@ -633,15 +633,14 @@ nnoremap <silent> <leader>lt :call CocLocations('ccls','$ccls/member',{'kind':2}
 nnoremap <silent> <leader>lv :call CocLocations('ccls','$ccls/vars',{'kind':1})<CR>
 nnoremap <silent> <leader>lV :call CocLocations('ccls','$ccls/vars')<CR>
 
+let g:coc_enable_locationlist = 0
+
 augroup myCoc
     autocmd!
     " Highlight symbol under cursor on CursorHold
     autocmd CursorHold * silent call CocActionAsync('highlight')
-
-    " autocmd FileType list
-                " \ if &buftype == 'nofile' |
-                " \     normal p |
-                " \ endif
+    " Disable locationlist auto preview
+    autocmd User CocLocationsChange CocList --normal location
 augroup END
 
 " -- ALE --
