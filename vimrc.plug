@@ -106,12 +106,14 @@ Plug 'tpope/vim-fugitive'
 " Plug 'henrik/vim-indexed-search'
 " Plug 'osyo-manga/vim-anzu'
 " Plug 'romainl/vim-cool'
+" Plug 'haya14busa/vim-asterisk'
+" Plug 'nelstrom/vim-visual-star-search'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
 Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
-Plug 'nelstrom/vim-visual-star-search'
+Plug 'linjiX/vim-star'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'
