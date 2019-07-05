@@ -292,6 +292,22 @@ function s:AutoCmdBufType() abort
     endif
 endfunction
 
+function BufferDo(command_str)
+    if (&buflisted == 0 && winnr('$') > 1)
+        " exe "normal! \<C-w>\l"
+
+        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
+        " echohl WarningMsg
+        " echo 'Do not change buffer in '. l:window_type .' window'
+        " echohl None
+        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
+        if len(l:win) >= 1
+            execute l:win[0] .'wincmd w'
+        endif
+    endif
+    execute a:command_str
+endfunction
+
 let s:vim_cache = expand('~/.LfCache')
 if !isdirectory(s:vim_cache)
     silent! call mkdir(s:vim_cache, 'p')
@@ -303,6 +319,8 @@ nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
 nnoremap <leader>vu :PlugUpdate<CR>
 nnoremap <leader>vg :PlugUpgrade<CR>
+nnoremap <leader>vd :PlugDiff<CR>
+nnoremap <leader>vs :PlugStatus<CR>
 
 "-- NERDTree & Tagbar --
 let s:width = 30
@@ -854,7 +872,7 @@ xnoremap <leader>a :Autoformat<CR>
 let g:rooter_manual_only = 1
 
 "-- startify --
-nnoremap <leader>S :Startify<CR>
+nnoremap <leader>S :call BufferDo('Startify')<CR>
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
@@ -895,22 +913,6 @@ endfunction
 
 "-- BufKill --
 let g:BufKillCreateMappings = 0
-
-function BufferDo(command_str)
-    if (&buflisted == 0 && winnr('$') > 1)
-        " exe "normal! \<C-w>\l"
-
-        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
-        " echohl WarningMsg
-        " echo 'Do not change buffer in '. l:window_type .' window'
-        " echohl None
-        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
-        if len(l:win) >= 1
-            execute l:win[0] .'wincmd w'
-        endif
-    endif
-    execute a:command_str
-endfunction
 
 nnoremap <silent> <leader>o :call BufferDo('BB')<CR>
 nnoremap <silent> <leader>i :call BufferDo('BF')<CR>
