@@ -277,6 +277,22 @@ function s:AutoCmdBufType() abort
     endif
 endfunction
 
+function BufferDo(command_str)
+    if (&buflisted == 0 && winnr('$') > 1)
+        " exe "normal! \<C-w>\l"
+
+        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
+        " echohl WarningMsg
+        " echo 'Do not change buffer in '. l:window_type .' window'
+        " echohl None
+        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
+        if len(l:win) >= 1
+            execute l:win[0] .'wincmd w'
+        endif
+    endif
+    execute a:command_str
+endfunction
+
 let s:vim_tags = expand('~/.cache/tags')
 if !isdirectory(s:vim_tags)
     silent! call mkdir(s:vim_tags, 'p')
@@ -288,6 +304,8 @@ nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
 nnoremap <leader>vu :PlugUpdate<CR>
 nnoremap <leader>vg :PlugUpgrade<CR>
+nnoremap <leader>vd :PlugDiff<CR>
+nnoremap <leader>vs :PlugStatus<CR>
 
 "-- gutentags setting --
 " let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -786,7 +804,7 @@ xnoremap <leader>a :Autoformat<CR>
 let g:rooter_manual_only = 1
 
 "-- startify --
-nnoremap <leader>S :Startify<CR>
+nnoremap <leader>S :call BufferDo('Startify')<CR>
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
@@ -814,22 +832,6 @@ let g:vim_textobj_parameter_mapping = 'a'
 
 "-- BufKill --
 let g:BufKillCreateMappings = 0
-
-function BufferDo(command_str)
-    if (&buflisted == 0 && winnr('$') > 1)
-        " exe "normal! \<C-w>\l"
-
-        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
-        " echohl WarningMsg
-        " echo 'Do not change buffer in '. l:window_type .' window'
-        " echohl None
-        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
-        if len(l:win) >= 1
-            execute l:win[0] .'wincmd w'
-        endif
-    endif
-    execute a:command_str
-endfunction
 
 nnoremap <silent> <leader>o :call BufferDo('BB')<CR>
 nnoremap <silent> <leader>i :call BufferDo('BF')<CR>
