@@ -501,39 +501,30 @@ let g:asyncrun_rootmarks = ['.git']
 
 if executable('rg')
     set grepprg=rg\ --vimgrep
-    let g:asyncagprg = 'rg --vimgrep -F'
+    let g:asyncagprg = 'rg --vimgrep -F -U'
 elseif executable('ag')
+" if executable('ag')
     set grepprg=ag\ --vimgrep
     let g:asyncagprg = 'ag --vimgrep -Q'
 else
     let g:asyncagprg = 'grep -H -n'
 endif
 
-function AsyncAg(cmd, args)
+function s:AsyncGrep(cmd, args)
     let l:args = empty(a:args) ? expand("<cword>") .' %' : escape(a:args, '#%')
     execute a:cmd .' '. g:asyncagprg .' '. l:args
 endfunction
-command -bang -nargs=* -complete=file AsyncAg call AsyncAg('AsyncRun<bang>', <q-args>)
+command -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)
 
-nnoremap <leader>* :AsyncAg! -w <C-r><C-w> %<CR>
-nnoremap <leader>g* :AsyncAg! <C-r><C-w> %<CR>
-nnoremap <leader># :AsyncAg! -w <C-r><C-w> <root><CR>
-nnoremap <leader>g# :AsyncAg! <C-r><C-w> <root><CR>
+nnoremap <leader>* :AsyncGrep! -w <C-r><C-w> %<CR>
+nnoremap <leader>g* :AsyncGrep! <C-r><C-w> %<CR>
+nnoremap <leader># :AsyncGrep! -w <C-r><C-w> <root><CR>
+nnoremap <leader>g# :AsyncGrep! <C-r><C-w> <root><CR>
 
-vnoremap <leader>* :<C-u>execute VWordCmd('AsyncAg! -w', '%')<CR>
-vnoremap <leader>g* :<C-u>execute VWordCmd('AsyncAg!', '%')<CR>
-vnoremap <leader># :<C-u>execute VWordCmd('AsyncAg! -w', '<root>')<CR>
-vnoremap <leader>g# :<C-u>execute VWordCmd('AsyncAg!', '<root>')<CR>
-
-function VWordCmd(precmd, postcmd)
-    let temp = @s
-    norm! gv"sy
-    let vword = escape(@s, '#%')
-    " let vword = @s
-    let @s = temp
-    let cmd = a:precmd ." '". vword ."' ". a:postcmd
-    return cmd
-endfunction
+vnoremap <leader>* :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> %<CR>
+vnoremap <leader>g* :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> %<CR>
+vnoremap <leader># :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> <root><CR>
+vnoremap <leader>g# :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> <root><CR>
 
 " -- Airline --
 let g:airline_powerline_fonts = 1
@@ -917,16 +908,15 @@ let g:interestingWordsTermColors = ['002', '004', '005', '006', '013', '009']
 
 "-- vim-searchindex --
 function IsSearch() abort
-    let win_view = winsaveview()
-    let origin_pos = getpos(".")
-    call search(@/, "c")
-    if origin_pos == getpos(".")
-        let is_search = 1
+    let l:origin_pos = getpos('.')
+    call search(@/, 'c')
+    if l:origin_pos == getpos('.')
+        let l:is_search = 1
     else
-        let is_search = 0
+        let l:is_search = 0
     endif
-    call winrestview(win_view)
-    return is_search
+    call setpos('.', l:origin_pos)
+    return l:is_search
 endfunction
 
 function s:UserPrintMatches() abort
@@ -937,11 +927,18 @@ endfunction
 command -bar UserSearchIndex call <SID>UserPrintMatches()
 
 nnoremap <silent> n :silent call WordNavigation(1)<CR>:UserSearchIndex<CR>
-            \:if IsSearch() == 1<CR> set hlsearch<CR> endif<CR>
+            \:if IsSearch() == 1<CR>let v:hlsearch = 1<CR>endif<CR>
 nnoremap <silent> N :silent call WordNavigation(0)<CR>:UserSearchIndex<CR>
-            \:if IsSearch() == 1<CR> set hlsearch<CR> endif<CR>
-nmap <silent> * *:UserSearchIndex<CR>
-nmap <silent> # #:UserSearchIndex<CR>
+            \:if IsSearch() == 1<CR>let v:hlsearch = 1<CR>endif<CR>
+
+let g:star_echo_search_pattern = 0
+
+vmap <silent> * <Plug>(star-*):SearchIndex<CR>
+vmap <silent> # <Plug>(star-#):SearchIndex<CR>
+nmap <silent> * <Plug>(star-*):SearchIndex<CR>
+nmap <silent> # <Plug>(star-#):SearchIndex<CR>
+nmap <silent> g* <Plug>(star-g*):SearchIndex<CR>
+nmap <silent> g# <Plug>(star-g#):SearchIndex<CR>
 
 "-- vim-devicons --
 let g:webdevicons_enable_nerdtree = 0
@@ -1055,16 +1052,14 @@ let g:bin_number_pattern = '0(b|B)[01]*\zs[01]'
 let g:full_pattern = join([g:true_false_pattern, g:hex_number_pattern, g:bin_number_pattern, g:oct_number_pattern], '|')
 
 function s:LocateNumber() abort
-    let l:pos = getpos(".")
-    let l:flag = search(g:true_false_pattern, "cb", line("."))
-    if l:flag != 0
-        if l:pos[2] < col(".")  + strlen(expand("<cword>"))
-            call setpos(".", l:pos)
-            return
-        endif
-        call setpos(".", l:pos)
+    let l:pos = getpos('.')
+    let l:flag = search(g:true_false_pattern, 'cb', line('.'))
+    let l:col = col('.')
+    call setpos('.', l:pos)
+    if l:flag != 0 && l:pos[2] < l:col + strlen(expand('<cword>'))
+        return
     endif
-    call search(g:full_pattern, "c", line("."))
+    call search(g:full_pattern, 'c', line('.'))
 endfunction
 
 "-- vim-protodef --
