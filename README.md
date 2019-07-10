@@ -15,8 +15,7 @@ My customized vim configuration
             vim-doc \
             vim-gtk \
             python3-dev \
-            silversearcher-ag \
-            libclang-dev
+            silversearcher-ag
 
 Install Nodejs and yarn (for COC)
 
