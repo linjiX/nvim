@@ -796,7 +796,7 @@ let g:formatters_bzl = ['my_custom_bzl']
 let g:autoformat_verbosemode = 0
 
 nnoremap <leader>a :Autoformat<CR>
-xnoremap <leader>a :Autoformat<CR>
+vnoremap <leader>a :Autoformat<CR>
 
 "-- vim-rooter --
 let g:rooter_manual_only = 1
@@ -899,7 +899,7 @@ let g:rainbow_conf = {
             \}
 
 "-- vim-easy-aline --
-xmap ga <Plug>(EasyAlign)
+vmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "-- vim-better-whitespace --
