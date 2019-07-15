@@ -280,7 +280,7 @@ function s:AutoCmdBufType() abort
         endif
     elseif &buftype == 'help'
         " open help window vertical split
-        set bufhidden=delete
+        " set bufhidden=delete
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
@@ -294,12 +294,6 @@ endfunction
 
 function BufferDo(command_str)
     if (&buflisted == 0 && winnr('$') > 1)
-        " exe "normal! \<C-w>\l"
-
-        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
-        " echohl WarningMsg
-        " echo 'Do not change buffer in '. l:window_type .' window'
-        " echohl None
         let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
         if len(l:win) >= 1
             execute l:win[0] .'wincmd w'
@@ -491,16 +485,6 @@ nnoremap <silent> <leader>gs :Leaderf! gtags -s <C-r><C-w><CR>
 nnoremap <silent> <leader>gt :Leaderf! gtags -g <C-r><C-w><CR>
 nnoremap <silent> <leader>gi :Leaderf! gtags -g <C-r>=expand("<cfile>:t")<CR><CR>
 nnoremap <silent> <leader>gI :Leaderf! gtags -g <C-r>=fnameescape(expand("%:t"))<CR><CR>
-
-" function s:GtagsToggle(flag)
-"     if a:flag == 1
-"         Leaderf gtags --update
-"     else
-"         Leaderf gtags --remove
-"     endif
-" endfunction
-" command Gtags call <SID>GtagsToggle(1)
-" command GtagsDisable call <SID>GtagsToggle(0)
 
 "-- AsyncRun --
 let g:asyncrun_rootmarks = ['.git']
