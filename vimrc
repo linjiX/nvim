@@ -265,7 +265,7 @@ function s:AutoCmdBufType() abort
         endif
     elseif &buftype == 'help'
         " open help window vertical split
-        set bufhidden=delete
+        " set bufhidden=delete
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
@@ -279,12 +279,6 @@ endfunction
 
 function BufferDo(command_str)
     if (&buflisted == 0 && winnr('$') > 1)
-        " exe "normal! \<C-w>\l"
-
-        " let l:window_type = &filetype != '' ? &filetype : expand('%:t')
-        " echohl WarningMsg
-        " echo 'Do not change buffer in '. l:window_type .' window'
-        " echohl None
         let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
         if len(l:win) >= 1
             execute l:win[0] .'wincmd w'
