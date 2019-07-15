@@ -512,19 +512,32 @@ endif
 
 function s:AsyncGrep(cmd, args)
     let l:args = empty(a:args) ? expand("<cword>") .' %' : escape(a:args, '#%')
-    execute a:cmd .' '. g:asyncagprg .' '. l:args
+    execute join([a:cmd, g:asyncagprg, l:args], ' ')
 endfunction
 command -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)
 
-nnoremap <leader>* :AsyncGrep! -w <C-r><C-w> %<CR>
-nnoremap <leader>g* :AsyncGrep! <C-r><C-w> %<CR>
-nnoremap <leader># :AsyncGrep! -w <C-r><C-w> <root><CR>
-nnoremap <leader>g# :AsyncGrep! <C-r><C-w> <root><CR>
+function AsyncStar(is_visual, is_global, is_g) abort
+    let l:pattern = '"'. escape(a:is_visual ? star#Vword() : star#Cword(), '$\`"#%') .'"'
+    call setpos('.', s:pos)
+    let l:whole = a:is_g ? '' : '-w'
+    let l:file = a:is_global ? '<root>' : '%'
+    execute join(['AsyncGrep!', l:whole, l:pattern, l:file], ' ')
+endfunction
 
-vnoremap <leader>* :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> %<CR>
-vnoremap <leader>g* :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> %<CR>
-vnoremap <leader># :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> <root><CR>
-vnoremap <leader>g# :<C-u>AsyncGrep! <C-r>=star#VwordForGrep()<CR> <root><CR>
+function s:AsyncStarCommand(is_visual, is_global, is_g) abort
+    let s:pos = getpos('.')
+    return ':call AsyncStar('. a:is_visual .', '. a:is_global .', '. a:is_g .")\<CR>"
+endfunction
+
+nnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(0, 0, 0)
+nnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(0, 0, 1)
+nnoremap <expr><silent> <leader># <SID>AsyncStarCommand(0, 1, 0)
+nnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(0, 1, 1)
+
+vnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(1, 0, 1)
+vnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(1, 0, 1)
+vnoremap <expr><silent> <leader># <SID>AsyncStarCommand(1, 1, 1)
+vnoremap <expr><silent> <leader>g# <SID>AsyncStarCommand(1, 1, 1)
 
 " -- Airline --
 let g:airline_powerline_fonts = 1
@@ -933,6 +946,7 @@ nnoremap <silent> N :silent call WordNavigation(0)<CR>:UserSearchIndex<CR>
 
 let g:star_echo_search_pattern = 0
 
+"-- vim-star --
 vmap <silent> * <Plug>(star-*):SearchIndex<CR>
 vmap <silent> # <Plug>(star-#):SearchIndex<CR>
 nmap <silent> * <Plug>(star-*):SearchIndex<CR>
