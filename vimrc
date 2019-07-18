@@ -23,6 +23,7 @@ syntax on
 
 "-- colorscheme --
 set background=dark
+set t_Co=256
 
 augroup myColorScheme
     autocmd!
@@ -176,7 +177,7 @@ endif
 augroup myCursor
     " Locate cursor to the last position
     autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype !~# 'commit' |
                 \     execute "normal g`\"" |
                 \ endif
 augroup END
@@ -316,6 +317,9 @@ nnoremap <leader>vg :PlugUpgrade<CR>
 nnoremap <leader>vd :PlugDiff<CR>
 nnoremap <leader>vs :PlugStatus<CR>
 
+"-- largefile --
+let g:LargeFile = 10
+
 "-- NERDTree & Tagbar --
 let s:width = 30
 let g:NERDTreeWinSize = s:width
@@ -337,6 +341,8 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDUsePlaceHolders = 0
 let g:NERDCommenterMappings = 0
+
+let g:NERDCustomDelimiters = { 'python': { 'left': '#', 'leftAlt': '', 'rightAlt': '' }}
 
 map <leader>c<Space> <Plug>NERDCommenterComment
 map <leader>cc <Plug>NERDCommenterToggle
@@ -859,6 +865,9 @@ vnoremap <leader>a :Autoformat<CR>
 "-- vim-rooter --
 let g:rooter_manual_only = 1
 
+"-- markdown-preview --
+nnoremap <leader>m :MarkdownPreview<CR>
+
 "-- startify --
 nnoremap <leader>S :call BufferDo('Startify')<CR>
 let g:startify_change_to_vcs_root = 1
@@ -969,13 +978,13 @@ let g:rainbow_conf = {
             \   }
             \}
 
-"-- vim-easy-aline --
+"-- vim-easy-align --
 vmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 "-- vim-better-whitespace --
-nnoremap ]$ :NextTrailingWhitespace<CR>
-nnoremap [$ :PrevTrailingWhitespace<CR>
+nnoremap <silent> ]$ :NextTrailingWhitespace<CR>
+nnoremap <silent> [$ :PrevTrailingWhitespace<CR>
 
 "-- vim-interestinwords --
 nnoremap <silent> <leader>k :call InterestingWords('n')<CR>
@@ -1101,23 +1110,21 @@ function s:AutoCmdSwapList() abort
     SwapList YES/NO YES NO
 endfunction
 
-nmap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement(v:count)<CR>
-nmap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement(v:count)<CR>
+nmap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement()<CR>
+nmap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement()<CR>
 
-function FallbackIncrement(count)
+function FallbackIncrement()
     nnoremap <Plug>SwapItFallbackIncrement <C-a>
     call <SID>LocateNumber()
-    let l:count = a:count != 0 ? a:count : 1
-    execute "normal ". l:count ."\<Plug>SwapIncrement"
-    nnoremap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement(v:count)<CR>
+    execute "normal ". v:count1 ."\<Plug>SwapIncrement"
+    nnoremap <Plug>SwapItFallbackIncrement :<C-u>call FallbackIncrement()<CR>
 endfunction
 
-function FallbackDecrement(count)
+function FallbackDecrement()
     nnoremap <Plug>SwapItFallbackDecrement <C-x>
     call <SID>LocateNumber()
-    let l:count = a:count != 0 ? a:count : 1
-    execute "normal ". l:count ."\<Plug>SwapDecrement"
-    nnoremap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement(v:count)<CR>
+    execute "normal ". v:count1 ."\<Plug>SwapDecrement"
+    nnoremap <Plug>SwapItFallbackDecrement :<C-u>call FallbackDecrement()<CR>
 endfunction
 
 let g:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'

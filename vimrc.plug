@@ -157,5 +157,6 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/LargeFile'
 
 call plug#end()
