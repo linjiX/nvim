@@ -1,5 +1,6 @@
 # .vim
 My customized vim configuration
+![](preview.png)
 
 ## Install Vim 8.1
 
