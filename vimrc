@@ -610,9 +610,11 @@ nmap <silent> <leader>lr <Plug>(coc-rename)
 nmap <silent> <leader>la <Plug>(coc-codeaction)
 nmap <silent> <leader>ll <Plug>(coc-codelens-action)
 
-" nmap <silent> <leader>lf <Plug>(coc-format)
-" nmap <silent> <leader>lf <Plug>(coc-format-selected)
-" xmap <silent> <leader>lf <Plug>(coc-format-selected)
+nmap <silent> <leader>lf <Plug>(coc-format)
+vmap <silent> <leader>lf <Plug>(coc-format-selected)
+nmap <silent> g== <Plug>(coc-format)
+vmap <silent> g= <Plug>(coc-format-selected)
+nmap <silent> g= <Plug>(coc-format-selected)
 
 nmap <silent> <leader>lR <Plug>CocRefresh
 
@@ -639,7 +641,7 @@ nnoremap <silent> <leader>lc :call CocLocations('ccls','$ccls/call')<CR>
 nnoremap <silent> <leader>lC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<CR>
 
 nnoremap <silent> <leader>lm :call CocLocations('ccls','$ccls/member')<CR>
-nnoremap <silent> <leader>lf :call CocLocations('ccls','$ccls/member',{'kind':3})<CR>
+nnoremap <silent> <leader>lM :call CocLocations('ccls','$ccls/member',{'kind':3})<CR>
 nnoremap <silent> <leader>lt :call CocLocations('ccls','$ccls/member',{'kind':2})<CR>
 
 nnoremap <silent> <leader>lv :call CocLocations('ccls','$ccls/vars',{'kind':1})<CR>
