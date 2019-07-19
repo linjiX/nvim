@@ -174,8 +174,8 @@ set clipboard^=unnamedplus
 augroup myQuickFix
     autocmd!
     autocmd FileType qf call <SID>AutoCmdQuickFix()
-    autocmd QuickFixCmdPost [^l]* nested cwindow
-    autocmd QuickFixCmdPost    l* nested lwindow
+    autocmd QuickFixCmdPost [^l]* nested belowright cwindow
+    autocmd QuickFixCmdPost    l* nested belowright lwindow
 augroup END
 
 function s:AutoCmdQuickFix() abort
@@ -200,7 +200,7 @@ function LListToggle() abort
     let window_count_before = winnr('$')
     call PLCclose()
     if winnr('$') == window_count_before
-        lopen
+        belowright lopen
     endif
 endfunction
 
@@ -208,7 +208,7 @@ function QListToggle() abort
     let window_count_before = winnr('$')
     call PLCclose()
     if winnr('$') == window_count_before
-        copen
+        belowright copen
     endif
 endfunction
 
@@ -223,11 +223,11 @@ if has('nvim')
     tmap <C-l> <ESC><C-w>l
 else
     nnoremap <silent> <C-t> :vertical botright terminal<CR>
+    tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-w>h
     tnoremap <C-j> <C-w>j
     tnoremap <C-k> <C-w>k
     tnoremap <C-l> <C-w>l
-    " tnoremap <ESC> <C-\><C-n>
     tnoremap <C-w>n <Nop>
 endif
 
@@ -741,7 +741,7 @@ endfunction
 function ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
-    copen
+    belowright copen
     autocmd myALE WinLeave *
                 \ if &buftype == 'quickfix' |
                 \     let g:ale_set_quickfix = 0 |
