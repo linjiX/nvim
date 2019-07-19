@@ -146,8 +146,9 @@ Plug 'sgur/vim-textobj-parameter'
 "-- Markdown --
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
-Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()}}
-Plug 'mzlogin/vim-markdown-toc'
+Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()}, 'for': 'markdown'}
+Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 
 "-- QuickFix --
 Plug 'ronakg/quickr-preview.vim'
