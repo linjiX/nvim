@@ -54,10 +54,10 @@ Plug 'junegunn/vim-easy-align'
 
 "-- Display --
 " Plug 'itchyny/vim-cursorword'
+" Plug 'itchyny/vim-parenmatch'
 " Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
-Plug 'itchyny/vim-parenmatch'
 Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'

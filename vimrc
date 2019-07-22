@@ -33,6 +33,7 @@ augroup myColorScheme
 augroup END
 function s:AutoCmdColorScheme() abort
     highlight Sneak cterm=bold,underline ctermfg=red
+    highlight MatchParen NONE term=bold,underline cterm=bold,underline gui=bold,underline
 
     highlight UserError cterm=bold,underline ctermfg=9
     highlight UserWarning cterm=bold,underline ctermfg=13
@@ -356,6 +357,12 @@ map <leader>ca <Plug>NERDCommenterAltDelims
 map <leader>cl <Plug>NERDCommenterAlignLeft
 map <leader>cr <Plug>NERDCommenterAlignBoth
 map <leader>cu <Plug>NERDCommenterUncomment
+
+"-- tcomment --
+let g:tcomment_mapleader1 = ''
+let g:tcomment_mapleader2 = ''
+let g:tcomment_mapleader_uncomment_anyway = ''
+let g:tcomment_mapleader_comment_anyway = ''
 
 "-- fugitive --
 cnoreabbrev Gstatus vertical botright Gstatus
@@ -1065,9 +1072,6 @@ let g:peekaboo_delay = 1000
 "-- vim-choosewin --
 nmap <leader>W <Plug>(choosewin)
 " let g:choosewin_overlay_enable = 1
-
-"-- vim-parenmatch --
-let g:loaded_matchparen = 1
 
 "-- change-colorscheme --
 nnoremap ]r :NextColorScheme<CR>
