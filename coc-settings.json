@@ -51,5 +51,5 @@
         "cpp": ["c"],
     },
 
-    "coc.source.word.filetypes": ["markdown", "text", "log", ""],
+    "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", ""],
 }

@@ -251,6 +251,7 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call <SID>AutoCmdTerminal()
+        autocmd TermOpen * nnoremap <silent><buffer> i :set nonumber<CR>i
     else
         autocmd TerminalOpen * call <SID>AutoCmdTerminal()
     endif
@@ -263,9 +264,6 @@ function s:AutoCmdTerminal() abort
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!
-    if has('nvim')
-        nnoremap <silent><buffer> i :set nonumber<CR>i
-    endif
 endfunction
 
 augroup myBufType
@@ -294,14 +292,15 @@ function s:AutoCmdBufType() abort
     endif
 endfunction
 
-function BufferDo(command_str)
+function BufferCmd(cmd) abort
+    let l:wincmd = ''
     if (&buflisted == 0 && winnr('$') > 1)
         let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
         if len(l:win) >= 1
-            execute l:win[0] .'wincmd w'
+            let l:wincmd = ':'. l:win[0] ."wincmd w\<CR>"
         endif
     endif
-    execute a:command_str
+    return l:wincmd . a:cmd
 endfunction
 
 let s:vim_cache = expand('~/.LfCache')
@@ -426,18 +425,18 @@ else
     imap <C-x><C-z> <plug>(fzf-complete-file)
 endif
 
-nnoremap <silent> <leader>zz :call BufferDo('Files')<CR>
-nnoremap <silent> <leader>zb :call BufferDo('Buffers')<CR>
-nnoremap <silent> <leader>zg :call BufferDo('GFiles')<CR>
-nnoremap <silent> <leader>zG :call BufferDo('GFiles?')<CR>
-nnoremap <silent> <leader>zo :call BufferDo('BCommits')<CR>
-nnoremap <silent> <leader>zO :call BufferDo('Commits')<CR>
-nnoremap <silent> <leader>za :call BufferDo('Ag')<CR>
-nnoremap <silent> <leader>zr :call BufferDo('Rg')<CR>
-nnoremap <silent> <leader>zt :call BufferDo('BTags')<CR>
-" nnoremap <silent> <leader>zT :call BufferDo('Tags')<CR>
-nnoremap <silent> <leader>z` :call BufferDo('Marks')<CR>
-nnoremap <silent> <leader>zm :call BufferDo('History')<CR>
+nnoremap <expr><silent> <leader>zz BufferCmd(":Files\<CR>")
+nnoremap <expr><silent> <leader>zb BufferCmd(":Buffers\<CR>")
+nnoremap <expr><silent> <leader>zg BufferCmd(":GFiles\<CR>")
+nnoremap <expr><silent> <leader>zG BufferCmd(":GFiles\<CR>?")
+nnoremap <expr><silent> <leader>zo BufferCmd(":BCommits\<CR>")
+nnoremap <expr><silent> <leader>zO BufferCmd(":Commits\<CR>")
+nnoremap <expr><silent> <leader>za BufferCmd(":Ag\<CR>")
+nnoremap <expr><silent> <leader>zr BufferCmd(":Rg\<CR>")
+nnoremap <expr><silent> <leader>zt BufferCmd(":BTags\<CR>")
+" nnoremap <expr><silent> <leader>zT BufferCmd(":Tags\<CR>")
+nnoremap <expr><silent> <leader>z` BufferCmd(":Marks\<CR>")
+nnoremap <expr><silent> <leader>zm BufferCmd(":History\<CR>")
 nnoremap <silent> <leader>zc :Colors<CR>
 nnoremap <silent> <leader>zl :BLines<CR>
 nnoremap <silent> <leader>zL :Lines<CR>
@@ -471,17 +470,17 @@ let g:Lf_Gtagslabel = "native-pygments"
 
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
-nnoremap <silent> <C-p> :call BufferDo('Leaderf file')<CR>
-nnoremap <silent> <leader>ff :call BufferDo('Leaderf file')<CR>
-nnoremap <silent> <leader>fb :call BufferDo('Leaderf buffer')<CR>
-nnoremap <silent> <leader>fB :call BufferDo('Leaderf buffer --all')<CR>
-nnoremap <silent> <leader>fm :call BufferDo('Leaderf mru --cwd')<CR>
-nnoremap <silent> <leader>fM :call BufferDo('Leaderf mru')<CR>
-nnoremap <silent> <leader>ft :call BufferDo('Leaderf bufTag')<CR>
-nnoremap <silent> <leader>fT :call BufferDo('Leaderf bufTag --all')<CR>
-nnoremap <silent> <leader>fu :call BufferDo('Leaderf function')<CR>
-nnoremap <silent> <leader>fU :call BufferDo('Leaderf function --all')<CR>
-nnoremap <silent> <leader>fg :call BufferDo('Leaderf gtags')<CR>
+nnoremap <expr><silent> <C-p> BufferCmd(":Leaderf file\<CR>")
+nnoremap <expr><silent> <leader>ff BufferCmd(":Leaderf file\<CR>")
+nnoremap <expr><silent> <leader>fb BufferCmd(":Leaderf buffer\<CR>")
+nnoremap <expr><silent> <leader>fB BufferCmd(":Leaderf buffer --all\<CR>")
+nnoremap <expr><silent> <leader>fm BufferCmd(":Leaderf mru --cwd\<CR>")
+nnoremap <expr><silent> <leader>fM BufferCmd(":Leaderf mru\<CR>")
+nnoremap <expr><silent> <leader>ft BufferCmd(":Leaderf bufTag\<CR>")
+nnoremap <expr><silent> <leader>fT BufferCmd(":Leaderf bufTag --all\<CR>")
+nnoremap <expr><silent> <leader>fu BufferCmd(":Leaderf function\<CR>")
+nnoremap <expr><silent> <leader>fU BufferCmd(":Leaderf function --all\<CR>")
+nnoremap <expr><silent> <leader>fg BufferCmd(":Leaderf gtags\<CR>")
 nnoremap <silent> <leader>fl :Leaderf line<CR>
 nnoremap <silent> <leader>fL :Leaderf line --all<CR>
 nnoremap <silent> <leader>f: :Leaderf cmdHistory<CR>
@@ -529,7 +528,7 @@ endfunction
 
 function s:AsyncStarCommand(is_visual, is_global, is_g) abort
     let s:pos = getpos('.')
-    return ':call AsyncStar('. a:is_visual .', '. a:is_global .', '. a:is_g .")\<CR>"
+    return ":\<C-u>call AsyncStar(". a:is_visual .', '. a:is_global .', '. a:is_g .")\<CR>"
 endfunction
 
 nnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(0, 0, 0)
@@ -560,15 +559,15 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.dirty='*'
 
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <expr> <leader>1 BufferCmd('<Plug>AirlineSelectTab1')
+nmap <expr> <leader>2 BufferCmd('<Plug>AirlineSelectTab2')
+nmap <expr> <leader>3 BufferCmd('<Plug>AirlineSelectTab3')
+nmap <expr> <leader>4 BufferCmd('<Plug>AirlineSelectTab4')
+nmap <expr> <leader>5 BufferCmd('<Plug>AirlineSelectTab5')
+nmap <expr> <leader>6 BufferCmd('<Plug>AirlineSelectTab6')
+nmap <expr> <leader>7 BufferCmd('<Plug>AirlineSelectTab7')
+nmap <expr> <leader>8 BufferCmd('<Plug>AirlineSelectTab8')
+nmap <expr> <leader>9 BufferCmd('<Plug>AirlineSelectTab9')
 
 " -- COC --
 function! s:CheckBackSpace() abort
@@ -891,7 +890,7 @@ let g:table_mode_tableize_map = '<leader>mt'
 let g:table_mode_tableize_d_map = '<leader>mT'
 
 "-- startify --
-nnoremap <leader>S :call BufferDo('Startify')<CR>
+nnoremap <expr> <leader>S BufferCmd(":Startify\<CR>")
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
@@ -933,15 +932,15 @@ endfunction
 "-- BufKill --
 let g:BufKillCreateMappings = 0
 
-nnoremap <silent> <leader>o :call BufferDo('BB')<CR>
-nnoremap <silent> <leader>i :call BufferDo('BF')<CR>
-nnoremap <silent> <leader>` :call BufferDo('BA')<CR>
-nnoremap <silent> <leader>u :call BufferDo('BUNDO')<CR>
+nnoremap <expr><silent> <leader>o BufferCmd(":BB\<CR>")
+nnoremap <expr><silent> <leader>i BufferCmd(":BF\<CR>")
+nnoremap <expr><silent> <leader>` BufferCmd(":BA\<CR>")
+nnoremap <expr><silent> <leader>u BufferCmd(":BUNDO\<CR>")
 
-nnoremap <silent> + :call BufferDo('bn')<CR>
-nnoremap <silent> _ :call BufferDo('bp')<CR>
-vnoremap <silent> + :<C-u>call BufferDo('bn')<CR>
-vnoremap <silent> _ :<C-u>call BufferDo('bp')<CR>
+nnoremap <expr><silent> + BufferCmd(":bn\<CR>")
+nnoremap <expr><silent> _ BufferCmd(":bp\<CR>")
+vnoremap <expr><silent> + BufferCmd(":bn\<CR>")
+vnoremap <expr><silent> _ BufferCmd(":bp\<CR>")
 nnoremap <silent> <leader>q :BW<CR>
 nnoremap <silent> <leader>Q :BD<CR>
 
@@ -975,7 +974,7 @@ map <leader>- <Plug>(expand_region_shrink)
 
 "-- rainbow --
 let g:rainbow_active = 1
-nnoremap <leader>r :RainbowToggle<CR>
+" nnoremap <leader>r :RainbowToggle<CR>
 nnoremap <F2> :RainbowToggle<CR>
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
