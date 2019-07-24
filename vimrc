@@ -541,6 +541,34 @@ vnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(1, 0, 1)
 vnoremap <expr><silent> <leader># <SID>AsyncStarCommand(1, 1, 1)
 vnoremap <expr><silent> <leader>g# <SID>AsyncStarCommand(1, 1, 1)
 
+" -- unimpaired --
+nmap <expr> [a BufferCmd('<Plug>unimpairedAPrevious')
+nmap <expr> ]a BufferCmd('<Plug>unimpairedANext')
+nmap <expr> [A BufferCmd('<Plug>unimpairedAFirst')
+nmap <expr> ]A BufferCmd('<Plug>unimpairedALast')
+
+nmap <expr> [b BufferCmd('<Plug>unimpairedBPrevious')
+nmap <expr> ]b BufferCmd('<Plug>unimpairedBNext')
+nmap <expr> [B BufferCmd('<Plug>unimpairedBFirst')
+nmap <expr> ]B BufferCmd('<Plug>unimpairedBLast')
+
+nmap <expr> [f BufferCmd('<Plug>unimpairedDirectoryPrevious')
+nmap <expr> ]f BufferCmd('<Plug>unimpairedDirectoryNext')
+
+nmap <expr> [l BufferCmd('<Plug>unimpairedLPrevious')
+nmap <expr> ]l BufferCmd('<Plug>unimpairedLNext')
+nmap <expr> [L BufferCmd('<Plug>unimpairedLFirst')
+nmap <expr> ]L BufferCmC('<Plug>unimpairedLLast')
+nmap <expr> [<C-l> BufferCmd('<Plug>unimpairedLPFile')
+nmap <expr> ]<C-l> BufferCmd('<Plug>unimpairedLNFile')
+
+nmap <expr> [q BufferCmd('<Plug>unimpairedQPrevious')
+nmap <expr> ]q BufferCmd('<Plug>unimpairedQNext')
+nmap <expr> [Q BufferCmd('<Plug>unimpairedQFirst')
+nmap <expr> ]Q BufferCmd('<Plug>unimpairedQLast')
+nmap <expr> [<C-q> BufferCmd('<Plug>unimpairedQPFile')
+nmap <expr> ]<C-q> BufferCmd('<Plug>unimpairedQNFile')
+
 " -- Airline --
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
