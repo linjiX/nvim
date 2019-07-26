@@ -122,6 +122,8 @@ set path=.,/usr/include,/usr/local/include
 
 set completeopt-=preview
 
+set synmaxcol=300
+
 " set splitbelow
 
 let mapleader="\<Space>"
@@ -132,6 +134,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+cnoremap w!! w !sudo tee % > /dev/null
 
 if !has('nvim')
     packadd! matchit
@@ -933,6 +936,7 @@ let g:startify_bookmarks = [
             \ {'c': '~/.vim/coc-settings.json'},
             \ {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
             \ {'b': '~/.bashrc'},
+            \ {'t': '~/.tmux.conf'},
             \ ]
 let g:startify_skiplist = [
             \ $HOME .'/.vim',
