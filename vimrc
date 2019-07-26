@@ -107,6 +107,8 @@ set path=.,/usr/include,/usr/local/include
 
 set completeopt-=preview
 
+set synmaxcol=300
+
 " set splitbelow
 
 let mapleader="\<Space>"
@@ -117,6 +119,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+cnoremap w!! w !sudo tee % > /dev/null
 
 if !has('nvim')
     packadd! matchit
@@ -872,6 +875,7 @@ let g:startify_bookmarks = [
             \ {'p': '~/.vim/vimrc.plug'},
             \ {'y': '~/.vim/ycm_extra_conf.py'},
             \ {'b': '~/.bashrc'},
+            \ {'t': '~/.tmux.conf'},
             \ ]
 let g:startify_skiplist = [
             \ $HOME .'/.vim',
