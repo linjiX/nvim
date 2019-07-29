@@ -26,7 +26,7 @@ Install Nodejs and yarn (for COC)
 If you have your own .vimrc file in home directory, please remove or rename it to trigger this configuration.
 
     cd ~
-    git clone -depth=1 https://github.com/linjiX/.vim.git
+    git clone --depth=1 https://github.com/linjiX/.vim.git
 
 ## Get Vim plugin management: vim-plug
 

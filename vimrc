@@ -592,6 +592,9 @@ let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+let g:airline#extensions#tmuxline#enabled = 0
+" let g:airline#extensions#tmuxline#color_template = 'insert'
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -869,6 +872,19 @@ nmap [w <Plug>(ale_previous)
 nmap ]w <Plug>(ale_next)
 nmap [W <Plug>(ale_first)
 nmap ]W <Plug>(ale_last)
+
+" -- python-mode --
+let g:pymode_options_max_line_length = 99
+let g:pymode_preview_position = 'belowright'
+let g:pymode_python = 'python3'
+let g:pymode_lint_cwindow = 0
+
+let g:pymode_lint_todo_symbol = 'W'
+let g:pymode_lint_comment_symbol = 'C'
+let g:pymode_lint_visual_symbol = 'R'
+let g:pymode_lint_error_symbol = 'E'
+let g:pymode_lint_info_symbol = 'I'
+let g:pymode_lint_pyflakes_symbol = 'F'
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1
@@ -1303,3 +1319,15 @@ function SidebarToggle()
         echo "Sidebar Off"
     endif
 endfunction
+
+"-- tmuxline --
+ let g:tmuxline_preset = {
+      \'a'    : 'Tmux',
+      \'b'    : '#S',
+      \'c'    : '',
+      \'win'  : '#I.#W#F',
+      \'cwin' : '#I.#W#F',
+      \'x'    : ['#(whoami)@#H', '%F %a'],
+      \'z'    : '%R',
+      \'options' : {'status-justify' : 'left', 'status-position' : 'top'}
+\ }

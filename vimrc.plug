@@ -34,11 +34,11 @@ Plug 'chxuan/change-colorscheme'
 Plug 'tomasr/molokai'
 
 "-- Edit --
+" Plug 'AndrewRadev/linediff.vim'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
-Plug 'AndrewRadev/linediff.vim'
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'mjbrownie/swapit'
@@ -76,11 +76,12 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
-Plug 'derekwyatt/vim-fswitch', {'for': ['cpp', 'c']}
-Plug 'derekwyatt/vim-protodef', {'for': ['cpp', 'c']}
+Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
+Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
 " Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
@@ -145,11 +146,14 @@ Plug 'sgur/vim-textobj-parameter'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
-Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()}, 'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()}, 'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 
 "-- QuickFix --
 Plug 'ronakg/quickr-preview.vim'
+
+"-- tmux --
+Plug 'edkolev/tmuxline.vim'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
