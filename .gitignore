@@ -2,6 +2,7 @@ plug/
 autoload/
 
 *.swp
+init.vim
 
 setup/ccls/
 setup/CMake-*/
