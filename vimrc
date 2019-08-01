@@ -235,19 +235,20 @@ endfunction
 if has('nvim')
     cnoreabbrev terminal botright vsplit term://bash
     nnoremap <silent> <C-t> :botright vsplit term://bash<CR>
-    tmap <silent> <ESC> <C-\><C-n>:set number<CR>
-    tmap <C-h> <ESC><C-w>h
-    tmap <C-j> <ESC><C-w>j
-    tmap <C-k> <ESC><C-w>k
-    tmap <C-l> <ESC><C-w>l
+    tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
+    tnoremap <C-h> <C-\><C-n><C-w>h
+    tnoremap <C-j> <C-\><C-n><C-w>j
+    tnoremap <C-k> <C-\><C-n><C-w>k
+    tnoremap <C-l> <C-\><C-n><C-w>l
 else
+    set termwinkey=<C-v>
     nnoremap <silent> <C-t> :vertical botright terminal<CR>
     tnoremap <ESC><ESC> <C-\><C-n>
-    tnoremap <C-h> <C-w>h
-    tnoremap <C-j> <C-w>j
-    tnoremap <C-k> <C-w>k
-    tnoremap <C-l> <C-w>l
-    tnoremap <C-w>n <Nop>
+    tnoremap <C-h> <C-v>h
+    tnoremap <C-j> <C-v>j
+    tnoremap <C-k> <C-v>k
+    tnoremap <C-l> <C-v>l
+    tnoremap <C-v>n <Nop>
 endif
 
 augroup myTerminal
@@ -306,10 +307,10 @@ function BufferCmd(cmd) abort
     return l:wincmd . a:cmd
 endfunction
 
-let s:vim_cache = expand('~/.LfCache')
-if !isdirectory(s:vim_cache)
-    silent! call mkdir(s:vim_cache, 'p')
-endif
+" let s:vim_cache = expand('~/.LfCache')
+" if !isdirectory(s:vim_cache)
+"     silent! call mkdir(s:vim_cache, 'p')
+" endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "-- vim-plug --
 let g:plug_window = 'botright vertical new'
@@ -351,6 +352,7 @@ let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDUsePlaceHolders = 0
 let g:NERDCommenterMappings = 0
+let g:NERDCreateDefaultMappings = 0
 
 let g:NERDCustomDelimiters = { 'python': { 'left': '#', 'leftAlt': '', 'rightAlt': '' }}
 
@@ -709,6 +711,7 @@ let g:ale_disable_lsp = 1
 let g:ale_linters = {
             \ 'cpp': ['CppCheck'],
             \ 'bzl': ['Buildifier'],
+            \ 'python': ['flake8'],
             \ }
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
@@ -867,24 +870,116 @@ augroup myALE
 augroup END
 
 nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
-nnoremap <leader>e :ALEDetail<CR>
+nnoremap <leader>E :ALEDetail<CR>
 nmap [w <Plug>(ale_previous)
 nmap ]w <Plug>(ale_next)
 nmap [W <Plug>(ale_first)
 nmap ]W <Plug>(ale_last)
 
+" -- vim-slime --
+if has('nvim')
+    let g:slime_target = 'neovim'
+else
+    let g:slime_target = 'vimterminal'
+endif
+let g:slime_no_mappings = 1
+let g:slime_python_ipython = 1
+" let g:slime_paste_file = s:vim_cache .'/slime_paste'
+
+let g:slime_sleep_time_ms = 200
+let g:slime_command = {'python': ['ipython3', 'python3', 'ipython', 'python']}
+
+if has('nvim')
+    function s:SlimeOpenTerminalCmd(...) abort
+        let [l:cmd, l:sleep] = (a:0 == 0) ? ['bash', g:slime_sleep_time_ms]
+                    \                     : [a:1, g:slime_sleep_time_ms * 2]
+        execute 'botright vsplit term://'. l:cmd
+        stopinsert
+        execute 'sleep'. l:sleep .'m'
+        return [bufnr('%')]
+    endfunction
+
+    function s:SlimeConfig(terms) abort
+        let l:jobids = map(a:terms, 'getbufvar(v:val, "terminal_job_id")')
+        echo l:jobids
+        if !exists('b:slime_config') ||
+         \ !has_key(b:slime_config, 'jobid') ||
+         \ index(l:jobids, b:slime_config['jobid']) == -1
+            let b:slime_config = {'jobid': min(l:jobids)}
+        endif
+    endfunction
+else
+    function s:SlimeOpenTerminalCmd(...) abort
+        let [l:cmd, l:sleep] = (a:0 == 0) ? ['', g:slime_sleep_time_ms]
+                    \                     : [' ++close '. a:1, g:slime_sleep_time_ms * 2]
+        execute 'botright vertical terminal'. l:cmd
+        execute 'sleep'. l:sleep .'m'
+        return [bufnr('%')]
+    endfunction
+
+    function s:SlimeConfig(terms) abort
+        if !exists('b:slime_config') ||
+         \ !has_key(b:slime_config, 'bufnr') ||
+         \ index(a:terms, b:slime_config['bufnr']) == -1
+            let b:slime_config = {'bufnr': min(a:terms)}
+        endif
+    endfunction
+endif
+
+function s:SlimeOpenTerminal() abort
+    let l:winid = win_getid()
+    try
+        if has_key(g:slime_command, &filetype)
+            for l:cmd in g:slime_command[&filetype]
+                if executable(l:cmd)
+                    return s:SlimeOpenTerminalCmd(l:cmd)
+                endif
+            endfor
+        endif
+        return s:SlimeOpenTerminalCmd()
+    finally
+        call win_gotoid(l:winid)
+    endtry
+endfunction
+
+function s:SlimeAvailableTerminals() abort
+    let l:bufs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    let l:bufs = filter(l:bufs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
+    if !has('nvim')
+        let l:bufs = filter(l:terms, 'term_getstatus(v:val) =~# "running"')
+    endif
+    return l:bufs
+endfunction
+
+function s:SlimeSelectTerminal() abort
+    let l:bufs = s:SlimeAvailableTerminals()
+    if len(l:bufs) == 0
+        let l:bufs = s:SlimeOpenTerminal()
+    endif
+    call s:SlimeConfig(l:bufs)
+endfunction
+
+nmap <silent> <leader>ec <Plug>SlimeConfig
+nmap <silent> <leader>eo :call <SID>SlimeSelectTerminal()<CR>
+nmap <silent> <leader>ea ggVG:call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
+vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
+nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend
+nmap <silent> <leader>el :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeLineSend
+nmap <silent> <leader>em :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeMotionSend
+
 " -- python-mode --
 let g:pymode_options_max_line_length = 99
 let g:pymode_preview_position = 'belowright'
 let g:pymode_python = 'python3'
-let g:pymode_lint_cwindow = 0
 
-let g:pymode_lint_todo_symbol = 'W'
-let g:pymode_lint_comment_symbol = 'C'
-let g:pymode_lint_visual_symbol = 'R'
-let g:pymode_lint_error_symbol = 'E'
-let g:pymode_lint_info_symbol = 'I'
-let g:pymode_lint_pyflakes_symbol = 'F'
+let g:pymode_lint = 0
+" let g:pymode_lint_cwindow = 0
+" let g:pymode_lint_todo_symbol = 'W'
+" let g:pymode_lint_comment_symbol = 'C'
+" let g:pymode_lint_visual_symbol = 'R'
+" let g:pymode_lint_error_symbol = 'E'
+" let g:pymode_lint_info_symbol = 'I'
+" let g:pymode_lint_pyflakes_symbol = 'F'
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1
@@ -919,6 +1014,9 @@ let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:la
 let g:formatters_cpp = ['my_custom_cpp']
 let g:formatdef_my_custom_bzl = "'buildifier'"
 let g:formatters_bzl = ['my_custom_bzl']
+let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"
+let g:formatters_python = ['yapf']
+
 let g:autoformat_verbosemode = 0
 
 nnoremap <leader>a :Autoformat<CR>
@@ -1124,6 +1222,9 @@ let g:peekaboo_window = "vertical botright 50new"
 let g:peekaboo_delay = 1000
 
 "-- vim-choosewin --
+let g:choosewin_label = '123456789'
+let g:choosewin_tablabel = 'ABCDEFGHIJKLMNOPQRTUVWYZ'
+
 nmap <leader>W <Plug>(choosewin)
 " let g:choosewin_overlay_enable = 1
 
@@ -1140,20 +1241,20 @@ augroup myQuickFixPreview
 augroup END
 
 "-- YankRing --
-nnoremap <silent> <leader>P :YRShow<CR>
-nnoremap <silent> <leader>p :YRGetElem 1<CR>
-nnoremap <silent> <leader>yc :YRClear<CR>
-let g:yankring_replace_n_pkey = ''
-let g:yankring_replace_n_nkey = ''
-let g:yankring_max_history = 20
-let g:yankring_history_dir = s:vim_cache
-augroup myYankRing
-    autocmd!
-    autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
-augroup END
-if has('nvim')
-    let g:yankring_clipboard_monitor = 0
-endif
+" nnoremap <silent> <leader>P :YRShow<CR>
+" nnoremap <silent> <leader>p :YRGetElem 1<CR>
+" nnoremap <silent> <leader>yc :YRClear<CR>
+" let g:yankring_replace_n_pkey = ''
+" let g:yankring_replace_n_nkey = ''
+" let g:yankring_max_history = 20
+" let g:yankring_history_dir = s:vim_cache
+" augroup myYankRing
+"     autocmd!
+"     autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
+" augroup END
+" if has('nvim')
+"     let g:yankring_clipboard_monitor = 0
+" endif
 
 "-- conflict-marker.vim --
 let g:conflict_marker_enable_mappings = 0
