@@ -52,4 +52,7 @@
     },
 
     "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", ""],
+
+    "python.jediEnabled": true,
+    "python.linting.enabled": false,
 }

@@ -656,6 +656,7 @@ nmap <silent> <leader>T <Plug>(coc-type-definition)
 
 " nmap <silent> <leader>ld <Plug>(coc-diagnostic-info)
 nmap <silent> <leader>lr <Plug>(coc-rename)
+nmap <silent> <leader>lR <Plug>(coc-refactor)
 nmap <silent> <leader>la <Plug>(coc-codeaction)
 nmap <silent> <leader>ll <Plug>(coc-codelens-action)
 
@@ -665,7 +666,9 @@ nmap <silent> g== <Plug>(coc-format)
 vmap <silent> g= <Plug>(coc-format-selected)
 nmap <silent> g= <Plug>(coc-format-selected)
 
-nmap <silent> <leader>lR <Plug>CocRefresh
+" nmap <silent> <leader>lR <Plug>CocRefresh
+nmap <silent> <leader>lh <Plug>(coc-float-hide)
+nmap <silent> <leader>lj <Plug>(coc-float-jump)
 
 nmap <silent> ]j <Plug>(coc-diagnostic-next)
 nmap <silent> [j <Plug>(coc-diagnostic-prev)
@@ -674,6 +677,7 @@ nnoremap <silent> <leader>t :call CocAction('doHover')<CR>
 nnoremap <silent> <leader>d :CocList --normal diagnostics<CR>
 nnoremap <silent> <leader>le :CocList extensions<CR>
 nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
+nnoremap <silent> <leader>lx :CocCommand<CR>
 
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
