@@ -903,8 +903,8 @@ if has('nvim')
         return [bufnr('%')]
     endfunction
 
-    function s:SlimeConfig(terms) abort
-        let l:jobids = map(a:terms, 'getbufvar(v:val, "terminal_job_id")')
+    function s:SlimeConfig(bufs) abort
+        let l:jobids = map(a:bufs, 'getbufvar(v:val, "terminal_job_id")')
         echo l:jobids
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'jobid') ||
@@ -921,11 +921,11 @@ else
         return [bufnr('%')]
     endfunction
 
-    function s:SlimeConfig(terms) abort
+    function s:SlimeConfig(bufs) abort
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'bufnr') ||
-         \ index(a:terms, b:slime_config['bufnr']) == -1
-            let b:slime_config = {'bufnr': min(a:terms)}
+         \ index(a:bufs, b:slime_config['bufnr']) == -1
+            let b:slime_config = {'bufnr': min(a:bufs)}
         endif
     endfunction
 endif
@@ -950,7 +950,7 @@ function s:SlimeAvailableTerminals() abort
     let l:bufs = map(range(1, winnr('$')), 'winbufnr(v:val)')
     let l:bufs = filter(l:bufs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
     if !has('nvim')
-        let l:bufs = filter(l:terms, 'term_getstatus(v:val) =~# "running"')
+        let l:bufs = filter(l:bufs, 'term_getstatus(v:val) =~# "running"')
     endif
     return l:bufs
 endfunction
@@ -963,8 +963,15 @@ function s:SlimeSelectTerminal() abort
     call s:SlimeConfig(l:bufs)
 endfunction
 
+function s:SlimeSelectTerminalFast() abort
+    let l:temp = g:slime_sleep_time_ms
+    let g:slime_sleep_time_ms = 1
+    call s:SlimeSelectTerminal()
+    let g:slime_sleep_time_ms = l:temp
+endfunction
+
 nmap <silent> <leader>ec <Plug>SlimeConfig
-nmap <silent> <leader>eo :call <SID>SlimeSelectTerminal()<CR>
+nmap <silent> <leader>eo :call <SID>SlimeSelectTerminalFast()<CR>
 nmap <silent> <leader>ea ggVG:call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend
