@@ -39,13 +39,13 @@ Plug 'tomasr/molokai'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
+" Plug 'vim-scripts/YankRing.vim'
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'junegunn/vim-peekaboo'
 Plug 'mjbrownie/swapit'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'vim-scripts/YankRing.vim'
 
 " -- Formatter --
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
@@ -83,12 +83,17 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
 Plug 'w0rp/ale'
+
+"-- python --
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+Plug 'jpalardy/vim-slime', {'for': ['python', 'sh', 'markdown']}
+" Plug 'jalvesaq/vimcmdline'
+" Plug 'rhysd/reply.vim'
 
 "-- Compile --
 " Plug 'bazelbuild/vim-bazel'
