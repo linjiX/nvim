@@ -34,6 +34,7 @@ augroup END
 function s:AutoCmdColorScheme() abort
     highlight Sneak cterm=bold,underline ctermfg=red
     highlight MatchParen NONE term=bold,underline cterm=bold,underline gui=bold,underline
+    highlight link ctrlsfMatch StatusLineNC
 
     highlight UserError cterm=bold,underline ctermfg=9
     highlight UserWarning cterm=bold,underline ctermfg=13
@@ -717,14 +718,15 @@ let g:ale_linters = {
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],
             \ }
+let g:ale_python_flake8_options = '--max-line-length=99'
 let g:ale_linters_explicit = 1
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
-let g:ale_lint_on_text_changed = 'always'
-let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 let g:ale_sign_offset = 1000
 
 let g:ale_sign_error = '✗'
@@ -983,14 +985,10 @@ let g:pymode_options_max_line_length = 99
 let g:pymode_preview_position = 'belowright'
 let g:pymode_python = 'python3'
 
+let g:pymode_options = 0
+let g:pymode_trim_whitespaces = 0
+let g:pymode_doc = 0
 let g:pymode_lint = 0
-" let g:pymode_lint_cwindow = 0
-" let g:pymode_lint_todo_symbol = 'W'
-" let g:pymode_lint_comment_symbol = 'C'
-" let g:pymode_lint_visual_symbol = 'R'
-" let g:pymode_lint_error_symbol = 'E'
-" let g:pymode_lint_info_symbol = 'I'
-" let g:pymode_lint_pyflakes_symbol = 'F'
 
 " -- vim-cpp-enhanced-highlight --
 let g:cpp_class_scope_highlight = 1

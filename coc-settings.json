@@ -53,6 +53,7 @@
 
     "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", ""],
 
-    "python.jediEnabled": true,
+    "python.jediEnabled": false,
     "python.linting.enabled": false,
+    "python.pythonPath": "python3"
 }
