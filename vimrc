@@ -19,49 +19,7 @@ colorscheme solarized
 source ~/.vim/common/quickfix.vim
 source ~/.vim/common/terminal.vim
 
-let s:vim_tags = expand('~/.cache/tags')
-if !isdirectory(s:vim_tags)
-    silent! call mkdir(s:vim_tags, 'p')
-endif
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"-- gutentags setting --
-" let g:gutentags_modules = ['ctags', 'gtags_cscope']
-let g:gutentags_modules = ['gtags_cscope']
-" let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
-let g:gutentags_project_root = ['.root']
-let g:gutentags_exclude_filetypes = [
-            \ '', 'gitrebase', 'conf', 'diff', 'Dockerfile', 'text', 'proto',
-            \ 'tags', 'python', 'bzl', 'vim', 'markdown', 'yaml', 'xml', 'json', 'lua', 'sh'
-            \ ]
-let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_auto_add_gtags_cscope = 1
-" let g:gutentags_ctags_extra_args = [
-            " \ '--c++-kinds=+plxcdefgmnstuv',
-            " \ '--c-kinds=+plxcdefgmnstuv',
-            " \ '--fields=+iaS',
-            " \ '--extra=+q'
-            " \ ]
-let g:gutentags_file_list_command = {
-            \ 'markers': {
-            \     '.git': 'git ls-files',
-            \     '.root': 'find -type f',
-            \     },
-            \ }
-
-" let g:gutentags_trace = 1
-let g:gutentags_plus_nomap = 1
-
-nnoremap <leader>g<Space> :GscopeFind 
-nnoremap <silent> <leader>gs :GscopeFind s <C-r><C-w><CR>
-nnoremap <silent> <leader>gg :GscopeFind g <C-r><C-w><CR>
-nnoremap <silent> <leader>gc :GscopeFind c <C-r><C-w><CR>
-nnoremap <silent> <leader>gt :GscopeFind t <C-r><C-w><CR>
-nnoremap <silent> <leader>ge :GscopeFind e <C-r><C-w><CR>
-nnoremap <silent> <leader>gf :GscopeFind f <C-r>=expand("<cfile>:t")<CR><CR>
-nnoremap <silent> <leader>gi :GscopeFind i <C-r>=expand("<cfile>:t")<CR><CR>
-nnoremap <silent> <leader>gI :GscopeFind i <C-r>=fnameescape(expand('%:t'))<CR><CR>
-nnoremap <silent> <leader>gd :GscopeFind d <C-r><C-w><CR>
-nnoremap <silent> <leader>ga :GscopeFind a <C-r><C-w><CR>
+source ~/.vim/config/gutentags.vim
 
 "-- largefile --
 let g:LargeFile = 10
@@ -82,33 +40,7 @@ source ~/.vim/config/ctrlsf.vim
 source ~/.vim/config/fzf.vim
 
 " -- LeaderF --
-let g:Lf_WindowHeight = 0.3
-let g:Lf_StlSeparator = {'left': '', 'right': ''}
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_ReverseOrder = 1
-let g:Lf_DefaultMode = 'NameOnly'
-
-let g:Lf_ShortcutF = ''
-let g:Lf_ShortcutB = ''
-nnoremap <expr><silent> <C-p> BufferCmd(":Leaderf file\<CR>")
-nnoremap <expr><silent> <leader>ff BufferCmd(":Leaderf file\<CR>")
-nnoremap <expr><silent> <leader>fb BufferCmd(":Leaderf buffer\<CR>")
-nnoremap <expr><silent> <leader>fB BufferCmd(":Leaderf buffer --all\<CR>")
-nnoremap <expr><silent> <leader>fm BufferCmd(":Leaderf mru --cwd\<CR>")
-nnoremap <expr><silent> <leader>fM BufferCmd(":Leaderf mru\<CR>")
-nnoremap <expr><silent> <leader>ft BufferCmd(":Leaderf bufTag\<CR>")
-nnoremap <expr><silent> <leader>fT BufferCmd(":Leaderf bufTag --all\<CR>")
-nnoremap <expr><silent> <leader>fu BufferCmd(":Leaderf function\<CR>")
-nnoremap <expr><silent> <leader>fU BufferCmd(":Leaderf function --all\<CR>")
-nnoremap <silent> <leader>fl :Leaderf line<CR>
-nnoremap <silent> <leader>fL :Leaderf line --all<CR>
-nnoremap <silent> <leader>f: :Leaderf cmdHistory<CR>
-nnoremap <silent> <leader>f/ :Leaderf searchHistory<CR>
-nnoremap <silent> <leader>fs :Leaderf self<CR>
-nnoremap <silent> <leader>fh :Leaderf help<CR>
-nnoremap <silent> <leader>fc :Leaderf colorscheme<CR>
-nnoremap <silent> <leader>fr :Leaderf rg<CR>
-nnoremap <silent> <leader>fR :Leaderf rg --recall<CR>
+source ~/.vim/config/leaderf.vim
 
 "-- AsyncRun --
 source ~/.vim/config/asyncrun.vim
@@ -120,29 +52,7 @@ source ~/.vim/config/unimpaired.vim
 source ~/.vim/config/airline.vim
 
 " -- YouCompleteMe --
-"let g:ycm_global_ycm_extra_conf = '~/.vim/plug/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-let g:ycm_key_invoke_completion = '<C-j>'
-let g:ycm_max_num_candidates = 10
-let g:ycm_max_num_identifier_candidates = 6
-let g:ycm_error_symbol = 'E'
-let g:ycm_warning_symbol = 'W'
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_complete_in_comments = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-
-let g:ycm_use_clangd = 0
-" let g:ycm_clangd_binary_path = exepath('clangd-8')
-" let g:ycm_clangd_uses_ycmd_caching = 0
-
-nnoremap <silent> <leader>j :YcmCompleter GoTo<CR>
-nnoremap <silent> <leader>t :YcmCompleter GetType<CR>
-nnoremap <silent> <leader>d :YcmDiags<CR>
-nnoremap <silent> <leader>x :YcmCompleter FixIt<CR>
+source ~/.vim/config/youcompleteme.vim
 
 " -- ALE --
 source ~/.vim/config/ale.vim
@@ -180,15 +90,7 @@ source ~/.vim/config/markdown.vim
 source ~/.vim/config/startify.vim
 
 "-- textobj --
-let g:textobj_comment_no_default_key_mappings = 1
-xmap am <Plug>(textobj-comment-a)
-omap am <Plug>(textobj-comment-a)
-xmap im <Plug>(textobj-comment-i)
-omap im <Plug>(textobj-comment-a)
-xmap aM <Plug>(textobj-comment-big-a)
-omap aM <Plug>(textobj-comment-big-a)
-
-let g:vim_textobj_parameter_mapping = 'a'
+source ~/.vim/config/textobj.vim
 
 "-- BufKill --
 source ~/.vim/config/bufkill.vim
