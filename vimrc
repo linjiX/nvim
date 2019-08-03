@@ -22,7 +22,7 @@ source ~/.vim/common/terminal.vim
 source ~/.vim/config/gutentags.vim
 
 "-- largefile --
-let g:LargeFile = 10
+source ~/.vim/config/largefile.vim
 
 "-- NERDTree & Tagbar --
 source ~/.vim/config/nerdtree.vim
@@ -81,7 +81,7 @@ source ~/.vim/config/smooth-scroll.vim
 source ~/.vim/config/autoformat.vim
 
 "-- vim-rooter --
-let g:rooter_manual_only = 1
+source ~/.vim/config/rooter.vim
 
 "-- markdown-preview --
 source ~/.vim/config/markdown.vim
@@ -99,25 +99,19 @@ source ~/.vim/config/bufkill.vim
 source ~/.vim/config/undo.vim
 
 "-- vim-sneak --
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
+source ~/.vim/config/sneak.vim
 
 "-- vim-expand-region --
-map <leader>= <Plug>(expand_region_expand)
-map <leader>- <Plug>(expand_region_shrink)
+source ~/.vim/config/expand-region.vim
 
 "-- rainbow --
 source ~/.vim/config/rainbow.vim
 
 "-- vim-easy-align --
-vmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+source ~/.vim/config/easy-align.vim
 
 "-- vim-better-whitespace --
-nnoremap <silent> ]$ :NextTrailingWhitespace<CR>
-nnoremap <silent> [$ :PrevTrailingWhitespace<CR>
+source ~/.vim/config/better-whitespace.vim
 
 "-- vim-interestinwords --
 source ~/.vim/config/interestingwords.vim
@@ -125,7 +119,7 @@ source ~/.vim/config/interestingwords.vim
 source ~/.vim/config/star.vim
 
 "-- vim-devicons --
-let g:webdevicons_enable_nerdtree = 0
+source ~/.vim/config/devicons.vim
 
 "-- xterm-color-table --
 source ~/.vim/config/xterm-color-table.vim
@@ -135,43 +129,16 @@ let g:HiCursorWords_delay = 50
 let g:HiCursorWords_linkStyle='CursorLine'
 
 "-- vim-peekaboo --
-let g:peekaboo_window = "vertical botright 50new"
-let g:peekaboo_delay = 1000
+source ~/.vim/config/peekaboo.vim
 
 "-- vim-choosewin --
-let g:choosewin_label = '123456789'
-let g:choosewin_tablabel = 'ABCDEFGHIJKLMNOPQRTUVWYZ'
-
-nmap <leader>W <Plug>(choosewin)
-" let g:choosewin_overlay_enable = 1
+source ~/.vim/config/choosewin.vim
 
 "-- change-colorscheme --
-nnoremap ]r :NextColorScheme<CR>
-nnoremap [r :PreviousColorScheme<CR>
+source ~/.vim/config/change-colorscheme.vim
 
 "-- quickr-preview --
-let g:quickr_preview_keymaps = 0
-let g:quickr_preview_position = 'right'
-augroup myQuickFixPreview
-    autocmd!
-    autocmd FileType qf nmap <silent><buffer> p <Plug>(quickr_preview)
-augroup END
-
-"-- YankRing --
-" nnoremap <silent> <leader>P :YRShow<CR>
-" nnoremap <silent> <leader>p :YRGetElem 1<CR>
-" nnoremap <silent> <leader>yc :YRClear<CR>
-" let g:yankring_replace_n_pkey = ''
-" let g:yankring_replace_n_nkey = ''
-" let g:yankring_max_history = 20
-" let g:yankring_history_dir = s:vim_tags
-" augroup myYankRing
-"     autocmd!
-"     autocmd BufEnter \[YankRing\] cnoreabbrev <silent><buffer> q YRShow
-" augroup END
-" if has('nvim')
-"     let g:yankring_clipboard_monitor = 0
-" endif
+source ~/.vim/config/quickr-preview.vim
 
 "-- conflict-marker.vim --
 
@@ -181,17 +148,11 @@ source ~/.vim/config/swapit.vim
 "-- vim-protodef --
 source ~/.vim/config/protodef.vim
 
-"-- vim-visual-multi --
-" let g:VM_maps = {}
-" let g:VM_maps["Select l"] = '<C-Right>'
-" let g:VM_maps["Select h"] = '<C-Left>'
-
 "-- vim-which-key --
 source ~/.vim/config/which-key.vim
 
 "-- limelight --
-nnoremap <F3> :Limelight!!<CR>
-let g:limelight_conceal_ctermfg = '10'
+source ~/.vim/config/limelight.vim
 
 "-- quickmenu --
 source ~/.vim/config/quickmenu.vim
