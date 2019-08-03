@@ -121,6 +121,14 @@ nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 cnoremap w!! w !sudo tee % > /dev/null
+cnoremap <C-j> <Up>
+cnoremap <C-k> <Down>
+
+cnoremap <C-a> <Home>
+cnoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+" cnoremap <C-Left> <S-Left>
+" cnoremap <C-Right> <S-Right>
 
 if !has('nvim')
     packadd! matchit
@@ -575,7 +583,7 @@ nmap <expr> ]f BufferCmd('<Plug>unimpairedDirectoryNext')
 nmap <expr> [l BufferCmd('<Plug>unimpairedLPrevious')
 nmap <expr> ]l BufferCmd('<Plug>unimpairedLNext')
 nmap <expr> [L BufferCmd('<Plug>unimpairedLFirst')
-nmap <expr> ]L BufferCmC('<Plug>unimpairedLLast')
+nmap <expr> ]L BufferCmd('<Plug>unimpairedLLast')
 nmap <expr> [<C-l> BufferCmd('<Plug>unimpairedLPFile')
 nmap <expr> ]<C-l> BufferCmd('<Plug>unimpairedLNFile')
 
@@ -949,6 +957,11 @@ nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
 nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 2)<CR>
 nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
 nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
+
+" nnoremap <expr> <C-u> coc#util#has_float() ? coc#util#float_scroll(0)
+"             \                              : ":call smooth_scroll#up(&scroll, 5, 2)\<CR>"
+" nnoremap <expr> <C-d> coc#util#has_float() ? coc#util#float_scroll(1)
+"             \                              : ":call smooth_scroll#down(&scroll, 5, 4)\<CR>"
 
 "-- vim-autoformat --
 let g:autoformat_autoindent = 0
@@ -1353,7 +1366,7 @@ endfunction
 "-- tmuxline --
  let g:tmuxline_preset = {
       \'a'    : 'Tmux',
-      \'b'    : '#S',
+      \'b'    : 'Session: #S',
       \'c'    : '',
       \'win'  : '#I.#W#F',
       \'cwin' : '#I.#W#F',
