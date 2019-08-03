@@ -25,9 +25,7 @@ source ~/.vim/config/airline.vim
 source ~/.vim/config/ale.vim
 source ~/.vim/config/asyncrun.vim
 source ~/.vim/config/autoformat.vim
-source ~/.vim/config/better-whitespace.vim
 source ~/.vim/config/bufkill.vim
-source ~/.vim/config/change-colorscheme.vim
 source ~/.vim/config/choosewin.vim
 source ~/.vim/config/coc.vim
 source ~/.vim/config/comment.vim
