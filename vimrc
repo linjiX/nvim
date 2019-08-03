@@ -58,9 +58,7 @@ source ~/.vim/config/youcompleteme.vim
 source ~/.vim/config/ale.vim
 
 " -- UltiSnips --
-let g:UltiSnipsExpandTrigger = '<C-k>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+source ~/.vim/config/ultisnip.vim
 
 " -- vim-slime --
 source ~/.vim/config/slime.vim
@@ -125,8 +123,7 @@ source ~/.vim/config/devicons.vim
 source ~/.vim/config/xterm-color-table.vim
 
 "-- vim-highlight-cursor-words --
-let g:HiCursorWords_delay = 50
-let g:HiCursorWords_linkStyle='CursorLine'
+source ~/.vim/config/highlight-cursor-words.vim
 
 "-- vim-peekaboo --
 source ~/.vim/config/peekaboo.vim
