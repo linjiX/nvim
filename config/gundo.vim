@@ -9,21 +9,14 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Plug 'iamcco/markdown-preview.nvim'
-nnoremap <leader>mp :MarkdownPreview<CR>
+if has('python3')
+    let g:gundo_prefer_python3 = 1
+endif
 
+let g:gundo_right = 1
+let g:gundo_width = 70
+let g:gundo_preview_height = 15
+let g:gundo_close_on_revert = 1
+" let g:gundo_auto_preview = 0
 
-" Plug 'dhruvasagar/vim-table-mode'
-let g:table_mode_map_prefix = '<leader>m'
-let g:table_mode_toggle_map = 'm'
-let g:table_mode_realign_map = '<Leader>mr'
-let g:table_mode_delete_row_map = '<leader>md'
-let g:table_mode_delete_column_map = '<leader>mc'
-let g:table_mode_add_formula_map = '<leader>mf'
-let g:table_mode_eval_formula_map = '<leader>me'
-let g:table_mode_echo_cell_map = '<leader>m?'
-let g:table_mode_sort_map = '<leader>ms'
-let g:table_mode_tableize_map = '<leader>mt'
-let g:table_mode_tableize_d_map = '<leader>mT'
-
-
+nnoremap <leader>G :GundoToggle<CR>
