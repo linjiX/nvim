@@ -10,8 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:rainbow_active = 1
-" nnoremap <leader>r :RainbowToggle<CR>
-nnoremap <F2> :RainbowToggle<CR>
+
 let g:rainbow_conf = {
             \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
             \   'ctermfgs': ['166', '034', '164', '178', '104', '045'],
@@ -34,3 +33,7 @@ let g:rainbow_conf = {
             \       'css': 0,
             \   }
             \}
+
+nmap [oR :RainbowToggleOn<CR>
+nmap ]oR :RainbowToggleOff<CR>
+nmap yoR :RainbowToggle<CR>

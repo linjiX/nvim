@@ -9,6 +9,53 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function s:MouseToggle() abort
+    return &mouse ==# '' ? ":set mouse=a\<CR>"
+                \        : ":set mouse=\<CR>"
+endfunction
+
+function s:SigncolumnToggle() abort
+    return &signcolumn ==# 'no' ? ":setlocal signcolumn=auto\<CR>"
+                \               : ":setlocal signcolumn=no\<CR>"
+endfunction
+
+function s:SidebarOn() abort
+    set number
+    set signcolumn=auto
+    IndentLinesEnable
+endfunction
+
+function s:SidebarOff() abort
+    set nonumber
+    set signcolumn=no
+    IndentLinesDisable
+endfunction
+
+function s:SidebarToggle() abort
+    if &signcolumn ==# 'no'
+        call s:SidebarOn()
+    else
+        call s:SidebarOff()
+    endif
+endfunction
+
+nmap [om :set mouse=a<CR>
+nmap ]om :set mouse=<CR>
+nmap <expr> yom <SID>MouseToggle()
+
+nmap [oS :setlocal signcolumn=auto<CR>
+nmap ]oS :setlocal signcolumn=no<CR>
+nmap <expr> yoS <SID>SigncolumnToggle()
+
+" Plug 'Yggdroot/indentLine'
+nmap [oI :IndentLinesEnable<CR>
+nmap ]oI :IndentLinesDisable<CR>
+nmap yoI :IndentLinesToggle<CR>
+
+nmap [oa :call <SID>SidebarOn()<CR>
+nmap ]oa :call <SID>SidebarOff()<CR>
+nmap yoa :call <SID>SidebarToggle()<CR>
+
 nmap <expr> [a BufferCmd('<Plug>unimpairedAPrevious')
 nmap <expr> ]a BufferCmd('<Plug>unimpairedANext')
 nmap <expr> [A BufferCmd('<Plug>unimpairedAFirst')
@@ -35,3 +82,11 @@ nmap <expr> [Q BufferCmd('<Plug>unimpairedQFirst')
 nmap <expr> ]Q BufferCmd('<Plug>unimpairedQLast')
 nmap <expr> [<C-q> BufferCmd('<Plug>unimpairedQPFile')
 nmap <expr> ]<C-q> BufferCmd('<Plug>unimpairedQNFile')
+
+" Plug 'chxuan/change-colorscheme'
+nnoremap <silent> ]r :NextColorScheme<CR>
+nnoremap <silent> [r :PreviousColorScheme<CR>
+
+" Plug 'ntpeters/vim-better-whitespace'
+nnoremap <silent> ]$ :NextTrailingWhitespace<CR>
+nnoremap <silent> [$ :PrevTrailingWhitespace<CR>
