@@ -9,20 +9,13 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Plug 'sjl/gundo.vim'
-if has('python3')
-    let g:gundo_prefer_python3 = 1
-endif
-nnoremap <leader>G :GundoToggle<CR>
-let g:gundo_right = 1
-let g:gundo_width = 70
-let g:gundo_preview_height = 15
-let g:gundo_close_on_revert = 1
-" let g:gundo_auto_preview = 0
+nnoremap <leader>gR :GitGutter<CR>
+nnoremap <leader>gf :GitGutterFold<CR>
+nmap <leader>gp <Plug>GitGutterPreviewHunk
+nmap <leader>ga <Plug>GitGutterStageHunk
+nmap <leader>gu <Plug>GitGutterUndoHunk
 
-" Plug 'mbbill/undotree'
-nnoremap <leader>U :UndotreeToggle<CR>
-let g:undotree_WindowLayout = 3
-let g:undotree_SetFocusWhenToggle = 1
-let g:undotree_SplitWidth = 70
-let g:undotree_DiffpanelHeight = 15
+omap ig <Plug>GitGutterTextObjectInnerPending
+omap ag <Plug>GitGutterTextObjectOuterPending
+xmap ig <Plug>GitGutterTextObjectInnerVisual
+xmap ag <Plug>GitGutterTextObjectOuterVisual

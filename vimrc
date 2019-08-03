@@ -31,7 +31,9 @@ source ~/.vim/config/nerdtree.vim
 source ~/.vim/config/comment.vim
 
 "-- fugitive --
-source ~/.vim/config/git.vim
+source ~/.vim/config/fugitive.vim
+source ~/.vim/config/gitgutter.vim
+source ~/.vim/config/conflict-marker.vim
 
 " -- CrtlSF --
 source ~/.vim/config/ctrlsf.vim
@@ -82,7 +84,8 @@ source ~/.vim/config/autoformat.vim
 source ~/.vim/config/rooter.vim
 
 "-- markdown-preview --
-source ~/.vim/config/markdown.vim
+source ~/.vim/config/markdown-preview.vim
+source ~/.vim/config/table-mode.vim
 
 "-- startify --
 source ~/.vim/config/startify.vim
@@ -94,7 +97,8 @@ source ~/.vim/config/textobj.vim
 source ~/.vim/config/bufkill.vim
 
 "-- Gundo --
-source ~/.vim/config/undo.vim
+source ~/.vim/config/gundo.vim
+source ~/.vim/config/undotree.vim
 
 "-- vim-sneak --
 source ~/.vim/config/sneak.vim
@@ -136,8 +140,6 @@ source ~/.vim/config/change-colorscheme.vim
 
 "-- quickr-preview --
 source ~/.vim/config/quickr-preview.vim
-
-"-- conflict-marker.vim --
 
 "-- swapit --
 source ~/.vim/config/swapit.vim
