@@ -27,15 +27,15 @@ Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
 " Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
+Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
-Plug 'skywind3000/quickmenu.vim'
-Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 
 "-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'
@@ -67,10 +67,10 @@ Plug 'junegunn/vim-easy-align'
 Plug 'pboettch/vim-highlight-cursor-words'
 " Plug 'itchyny/vim-cursorword'
 " Plug 'itchyny/vim-parenmatch'
+" Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 " Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
-Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
 Plug 'lfv89/vim-interestingwords'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'

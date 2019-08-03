@@ -44,14 +44,12 @@ source ~/.vim/config/highlight-cursor-words.vim
 source ~/.vim/config/interestingwords.vim
 source ~/.vim/config/largefile.vim
 source ~/.vim/config/leaderf.vim
-source ~/.vim/config/limelight.vim
 source ~/.vim/config/markdown-preview.vim
 source ~/.vim/config/nerdtree.vim
 source ~/.vim/config/peekaboo.vim
 source ~/.vim/config/polyglot.vim
 source ~/.vim/config/protodef.vim
 source ~/.vim/config/python-mode.vim
-source ~/.vim/config/quickmenu.vim
 source ~/.vim/config/quickr-preview.vim
 source ~/.vim/config/rainbow.vim
 source ~/.vim/config/rooter.vim
