@@ -55,5 +55,5 @@
 
     "python.jediEnabled": false,
     "python.linting.enabled": false,
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
 }
