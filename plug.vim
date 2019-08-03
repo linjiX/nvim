@@ -9,6 +9,17 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:plug_window = 'botright vertical new'
+
+autocmd BufWritePost ~/.vim/plug.vim source ~/.vim/plug.vim
+
+nnoremap <leader>vv :PlugInstall<CR>
+nnoremap <leader>vc :PlugClean<CR>
+nnoremap <leader>vu :PlugUpdate<CR>
+nnoremap <leader>vg :PlugUpgrade<CR>
+nnoremap <leader>vd :PlugDiff<CR>
+nnoremap <leader>vs :PlugStatus<CR>
+
 call plug#begin('~/.vim/plug')
 
 "-- Help --
@@ -89,7 +100,8 @@ Plug 'w0rp/ale'
 
 "-- python --
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'jpalardy/vim-slime', {'for': ['python', 'sh', 'markdown']}
+" Plug 'jpalardy/vim-slime', {'for': ['python', 'sh', 'markdown']}
+Plug 'jpalardy/vim-slime'
 " Plug 'jalvesaq/vimcmdline'
 " Plug 'rhysd/reply.vim'
 
