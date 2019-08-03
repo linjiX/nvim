@@ -129,7 +129,7 @@ source ~/.vim/config/choosewin.vim
 source ~/.vim/config/change-colorscheme.vim
 
 "-- quickr-preview --
-source ~/.vim/config/quickr-preview.vim 
+source ~/.vim/config/quickr-preview.vim
 
 "-- conflict-marker.vim --
 
@@ -140,10 +140,7 @@ source ~/.vim/config/swapit.vim
 source ~/.vim/config/protodef.vim
 
 "-- echodoc.vim --
-set noshowmode
-set shortmess+=c
-let g:echodoc#enable_at_startup = 1
-" let g:echodoc#type = 'floating'
+source ~/.vim/config/echodoc.vim
 
 "-- vim-which-key --
 source ~/.vim/config/which-key.vim
