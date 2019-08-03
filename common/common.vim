@@ -60,6 +60,10 @@ set completeopt-=preview
 
 set synmaxcol=300
 
+" for echodoc
+set noshowmode
+set shortmess+=c
+
 " set splitbelow
 
 let mapleader="\<Space>"
@@ -71,8 +75,8 @@ nnoremap <C-l> <C-w>l
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 cnoremap w!! w !sudo tee % > /dev/null
-cnoremap <C-j> <Up>
-cnoremap <C-k> <Down>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
 
 cnoremap <C-a> <Home>
 cnoremap <C-f> <Right>

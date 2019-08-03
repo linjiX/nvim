@@ -12,7 +12,7 @@
 source ~/.vim/common/common.vim
 source ~/.vim/plug.vim
 source ~/.vim/common/colorscheme.vim
-let g:solarized_termtrans = 1
+
 colorscheme solarized
 " colorscheme molokai
 
@@ -26,7 +26,6 @@ source ~/.vim/config/asyncrun.vim
 source ~/.vim/config/autoformat.vim
 source ~/.vim/config/bufkill.vim
 source ~/.vim/config/choosewin.vim
-source ~/.vim/config/comment.vim
 source ~/.vim/config/conflict-marker.vim
 source ~/.vim/config/ctrlsf.vim
 source ~/.vim/config/devicons.vim
@@ -43,6 +42,7 @@ source ~/.vim/config/interestingwords.vim
 source ~/.vim/config/largefile.vim
 source ~/.vim/config/leaderf.vim
 source ~/.vim/config/markdown-preview.vim
+source ~/.vim/config/nerdcommenter.vim
 source ~/.vim/config/nerdtree.vim
 source ~/.vim/config/peekaboo.vim
 source ~/.vim/config/polyglot.vim
@@ -58,6 +58,7 @@ source ~/.vim/config/star.vim
 source ~/.vim/config/startify.vim
 source ~/.vim/config/swapit.vim
 source ~/.vim/config/table-mode.vim
+source ~/.vim/config/tcomment.vim
 source ~/.vim/config/textobj.vim
 source ~/.vim/config/ultisnip.vim
 source ~/.vim/config/undotree.vim

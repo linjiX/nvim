@@ -11,9 +11,26 @@
 augroup myFSwitch
     autocmd!
     autocmd BufEnter *.h let b:fswitchdst = 'cc,cpp,c'
-    autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
+    " autocmd BufEnter *.h let b:fswitchlocs = '.,reg:/include/src/,reg:/include.*/src/,../src,reg:/include/source/,reg:/include.*/source/,../source'
+    autocmd BufEnter *.h let b:fswitchlocs = join([
+                \ '.',
+                \ '../src',
+                \ '../source',
+                \ 'reg:/include/src/',
+                \ 'reg:/include.*/src/',
+                \ 'reg:/include/source/',
+                \ 'reg:/include.*/source/',
+                \ ], ',')
     autocmd BufEnter *.c* let b:fswitchdst = 'h'
-    autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
+    " autocmd BufEnter *.c* let b:fswitchlocs = '.,reg:/src/include/,reg:|src|include/**|,../include,reg:/source/include/,reg:|source|include/**|'
+    autocmd BufEnter *.c* let b:fswitchlocs = join([
+                \ '.',
+                \ '../include',
+                \ 'reg:/src/include/',
+                \ 'reg:|src|include/**|',
+                \ 'reg:/source/include/',
+                \ 'reg:|source|include/**|',
+                \ ], ',')
 augroup END
 
 nnoremap <leader>h :FSHere<CR>

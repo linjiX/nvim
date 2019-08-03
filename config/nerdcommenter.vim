@@ -9,13 +9,6 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Plug 'tomtom/tcomment_vim'
-let g:tcomment_mapleader1 = ''
-let g:tcomment_mapleader2 = ''
-let g:tcomment_mapleader_uncomment_anyway = ''
-let g:tcomment_mapleader_comment_anyway = ''
-
-" Plug 'scrooloose/nerdcommenter'
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDUsePlaceHolders = 0
@@ -35,4 +28,3 @@ map <leader>ca <Plug>NERDCommenterAltDelims
 map <leader>cl <Plug>NERDCommenterAlignLeft
 map <leader>cr <Plug>NERDCommenterAlignBoth
 map <leader>cu <Plug>NERDCommenterUncomment
-
