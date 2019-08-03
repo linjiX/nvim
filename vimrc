@@ -33,7 +33,6 @@ source ~/.vim/config/conflict-marker.vim
 source ~/.vim/config/ctrlsf.vim
 source ~/.vim/config/devicons.vim
 source ~/.vim/config/easy-align.vim
-source ~/.vim/config/echodoc.vim
 source ~/.vim/config/expand-region.vim
 source ~/.vim/config/fswitch.vim
 source ~/.vim/config/fugitive.vim
