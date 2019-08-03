@@ -12,6 +12,8 @@
 set background=dark
 set t_Co=256
 
+let g:solarized_termtrans = 1
+
 function s:AutoCmdColorScheme() abort
     highlight Sneak cterm=bold,underline ctermfg=red
     highlight MatchParen NONE term=bold,underline cterm=bold,underline gui=bold,underline

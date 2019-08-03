@@ -174,6 +174,7 @@ augroup END
 
 nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
 nnoremap <leader>E :ALEDetail<CR>
+
 nmap [w <Plug>(ale_previous)
 nmap ]w <Plug>(ale_next)
 nmap [W <Plug>(ale_first)

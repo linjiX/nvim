@@ -12,6 +12,7 @@
 let g:plug_window = 'botright vertical new'
 
 autocmd BufWritePost ~/.vim/plug.vim source ~/.vim/plug.vim
+autocmd BufWritePost ~/.vim/config/* source %
 
 nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
