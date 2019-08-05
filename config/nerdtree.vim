@@ -23,11 +23,12 @@ let g:tagbar_compact = 1
 let g:tagbar_sort = 0
 let g:tagbar_left = 1
 
-function s:AdaptWinSize() abort
+function s:WorkspaceToggle() abort
     let l:width = max([float2nr(&columns * s:ratio), s:minwidth])
     let g:NERDTreeWinSize = l:width
     let g:tagbar_width = l:width
+    ToggleNERDTreeAndTagbar
 endfunction
 
 nnoremap <leader>F :NERDTreeFind<CR>
-nnoremap <leader>w :call <SID>AdaptWinSize()<CR>:ToggleNERDTreeAndTagbar<CR>
+nnoremap <leader>w :call <SID>WorkspaceToggle()<CR>

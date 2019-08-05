@@ -8,6 +8,7 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:pymode_options_max_line_length = 99
 let g:pymode_preview_position = 'belowright'
 let g:pymode_python = 'python3'

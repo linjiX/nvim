@@ -13,7 +13,12 @@ let g:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'
 let g:oct_number_pattern = '\d*\zs\d'
 let g:hex_number_pattern = '0(x|X)\x*\zs\x'
 let g:bin_number_pattern = '0(b|B)[01]*\zs[01]'
-let g:full_pattern = join([g:true_false_pattern, g:hex_number_pattern, g:bin_number_pattern, g:oct_number_pattern], '|')
+let g:full_pattern = join([
+            \ g:true_false_pattern,
+            \ g:hex_number_pattern,
+            \ g:bin_number_pattern,
+            \ g:oct_number_pattern,
+            \ ], '|')
 
 function s:AutoCmdGitrebaseSwapList() abort
     ClearSwapList

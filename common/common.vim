@@ -46,6 +46,7 @@ set wildmenu
 set hidden
 
 set colorcolumn=100
+set textwidth=100
 
 set updatetime=10
 
@@ -59,6 +60,8 @@ set path=.,/usr/include,/usr/local/include
 set completeopt-=preview
 
 set synmaxcol=300
+
+set clipboard^=unnamedplus
 
 " for echodoc
 set noshowmode
@@ -130,9 +133,6 @@ augroup myCursor
                 \     execute "normal g`\"" |
                 \ endif
 augroup END
-
-"-- clipboard --"
-set clipboard^=unnamedplus
 
 function s:AutoCmdBufType() abort
     if &buftype == 'nofile'
