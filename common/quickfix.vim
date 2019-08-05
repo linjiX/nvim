@@ -9,26 +9,18 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function PLCclose() abort
+function s:PLCclose() abort
     pclose
     lclose
     cclose
 endfunction
 
 " QuickFix window toggle
-function LListToggle() abort
+function s:ListToggle(cmd) abort
     let window_count_before = winnr('$')
-    call PLCclose()
+    call s:PLCclose()
     if winnr('$') == window_count_before
-        belowright lopen
-    endif
-endfunction
-
-function QListToggle() abort
-    let window_count_before = winnr('$')
-    call PLCclose()
-    if winnr('$') == window_count_before
-        belowright copen
+        execute 'belowright '. a:cmd
     endif
 endfunction
 
@@ -36,8 +28,8 @@ function s:AutoCmdQuickFix() abort
     set bufhidden=delete
     silent! set nobuflisted
     nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
-    nnoremap <silent><buffer> q :call PLCclose()<CR>
-    nnoremap <silent><buffer> <leader>q :call PLCclose()<CR>
+    nnoremap <silent><buffer> q :call <SID>PLCclose()<CR>
+    nnoremap <silent><buffer> <leader>q :call <SID>PLCclose()<CR>
 endfunction
 
 augroup myQuickFix
@@ -47,5 +39,5 @@ augroup myQuickFix
     autocmd QuickFixCmdPost    l* nested belowright lwindow
 augroup END
 
-nnoremap <silent> <leader>co :call QListToggle()<CR>
-nnoremap <silent> <leader>lo :call LListToggle()<CR>
+nnoremap <silent> <leader>co :call <SID>ListToggle('copen')<CR>
+nnoremap <silent> <leader>lo :call <SID>ListToggle('lopen')<CR>

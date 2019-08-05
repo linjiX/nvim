@@ -19,10 +19,8 @@ omap im <Plug>(textobj-comment-a)
 xmap aM <Plug>(textobj-comment-big-a)
 omap aM <Plug>(textobj-comment-big-a)
 
-
 " Plug 'sgur/vim-textobj-parameter'
 let g:vim_textobj_parameter_mapping = 'a'
-
 
 " Plug 'kana/vim-textobj-function'
 " COC mapping the 'af' and 'if' for LS function textobj, but it doesn't work now
