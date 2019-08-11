@@ -19,12 +19,9 @@ function s:AutoCmdBufType() abort
         endif
     elseif &buftype == 'help'
         " open help window vertical split
-        " set bufhidden=delete
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
-    elseif &buftype == 'terminal' && has('nvim')
-        normal i
     endif
     if &previewwindow == 1
         set nobuflisted
@@ -50,12 +47,11 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.BUILD set filetype=bzl
     autocmd BufNewFile,BufRead WORKSPACE set filetype=bzl
     autocmd BufNewFile,BufRead .arc* set filetype=json
+    autocmd FileType c,cpp set cindent
 augroup END
 
 augroup myCommon
     autocmd!
-    " autocmd BufRead * nmap Y y$
-    autocmd FileType c,cpp set cindent
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro
     " Close VIM when only no listed buffer window visable
@@ -65,20 +61,6 @@ augroup myCommon
                 \    getbufvar(winbufnr(winnr()), "&filetype") != 'startify'|
                 \     q |
                 \ endif
-augroup END
-
-" Change cursor shape in different modes
-let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
-let &t_SR .= "\e[3 q" "SR = REPLACE mode
-let &t_SI .= "\e[5 q" "SI = INSERT mode
-
-if has('nvim')
-    set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
-                \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
-                \,sm:block-blinkwait175-blinkoff150-blinkon175
-endif
-
-augroup myCursor
     " Locate cursor to the last position
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype !~# 'commit' |
@@ -109,6 +91,7 @@ augroup myTerminal
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
         autocmd TermOpen * nnoremap <silent><buffer> i :set nonumber<CR>i
+        autocmd BufEnter * if &buftype == 'terminal' | normal i | endif
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
     endif
