@@ -9,9 +9,6 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set background=dark
-set t_Co=256
-
 let g:solarized_termtrans = 1
 
 function s:AutoCmdColorScheme() abort
