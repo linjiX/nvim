@@ -30,5 +30,5 @@ function s:WorkspaceToggle() abort
     ToggleNERDTreeAndTagbar
 endfunction
 
-nnoremap <leader>F :NERDTreeFind<CR>
-nnoremap <leader>w :call <SID>WorkspaceToggle()<CR>
+nnoremap <silent> <leader>F :NERDTreeFind<CR>
+nnoremap <silent> <leader>w :call <SID>WorkspaceToggle()<CR>

@@ -71,6 +71,7 @@ set shortmess+=c
 
 let mapleader="\<Space>"
 
+nnoremap Y y$
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -87,6 +88,9 @@ cnoremap <C-b> <Left>
 " cnoremap <C-Left> <S-Left>
 " cnoremap <C-Right> <S-Right>
 
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+
 if !has('nvim')
     packadd! matchit
 endif
@@ -102,7 +106,7 @@ augroup END
 
 augroup myCommonConfig
     autocmd!
-    autocmd BufRead * nmap Y y$
+    " autocmd BufRead * nmap Y y$
     autocmd FileType c,cpp set cindent
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro

@@ -9,6 +9,8 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:gitgutter_preview_win_location = 'belowright'
+
 nnoremap <leader>gR :GitGutter<CR>
 nnoremap <leader>gf :GitGutterFold<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
