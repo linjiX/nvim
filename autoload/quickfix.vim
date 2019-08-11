@@ -16,7 +16,7 @@ function s:PLCclose() abort
 endfunction
 
 " QuickFix window toggle
-function s:ListToggle(cmd) abort
+function quickfix#ListToggle(cmd) abort
     let window_count_before = winnr('$')
     call s:PLCclose()
     if winnr('$') == window_count_before
@@ -24,20 +24,10 @@ function s:ListToggle(cmd) abort
     endif
 endfunction
 
-function s:AutoCmdQuickFix() abort
+function quickfix#AutoCmdQuickFix() abort
     set bufhidden=delete
     silent! set nobuflisted
     nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
     nnoremap <silent><buffer> q :call <SID>PLCclose()<CR>
     nnoremap <silent><buffer> <leader>q :call <SID>PLCclose()<CR>
 endfunction
-
-augroup myQuickFix
-    autocmd!
-    autocmd FileType qf call <SID>AutoCmdQuickFix()
-    autocmd QuickFixCmdPost [^l]* nested belowright cwindow
-    autocmd QuickFixCmdPost    l* nested belowright lwindow
-augroup END
-
-nnoremap <silent> <leader>co :call <SID>ListToggle('copen')<CR>
-nnoremap <silent> <leader>lo :call <SID>ListToggle('lopen')<CR>
