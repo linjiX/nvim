@@ -13,7 +13,10 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-let g:formatdef_my_custom_cpp = "'clang-format-6.0 -lines='.a:firstline.':'.a:lastline.' --assume-filename=\"'.expand('%:p').'\" -style=file'"
+let g:formatdef_my_custom_cpp = "'clang-format-6.0 ".
+            \                   "-lines='.a:firstline.':'.a:lastline.' ".
+            \                   "--assume-filename=\"'.expand('%:p').'\" ".
+            \                   "-style=file'"
 let g:formatters_cpp = ['my_custom_cpp']
 let g:formatdef_my_custom_bzl = "'buildifier'"
 let g:formatters_bzl = ['my_custom_bzl']

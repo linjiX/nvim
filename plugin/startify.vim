@@ -14,8 +14,8 @@ let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
             \ {'p': '~/.vim/plug.vim'},
             \ {'y': '~/.vim/ycm_extra_conf.py'},
-            \ {'b': '~/.bashrc'},
-            \ {'t': '~/.tmux.conf'},
+            \ {'b': '~/.config/dotfiles/bashrc'},
+            \ {'t': '~/.config/dotfiles/tmux.conf'},
             \ ]
 let g:startify_skiplist = [
             \ $HOME .'/.vim',

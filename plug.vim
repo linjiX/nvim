@@ -12,7 +12,7 @@
 let g:plug_window = 'botright vertical new'
 
 autocmd BufWritePost ~/.vim/plug.vim source ~/.vim/plug.vim
-autocmd BufWritePost ~/.vim/config/* source %
+autocmd BufWritePost ~/.vim/plugin/* source %
 
 nnoremap <leader>vv :PlugInstall<CR>
 nnoremap <leader>vc :PlugClean<CR>
@@ -107,6 +107,7 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'jpalardy/vim-slime'
 " Plug 'jalvesaq/vimcmdline'
 " Plug 'rhysd/reply.vim'
+" Plug 'szymonmaszke/vimpyter'
 
 "-- Compile --
 " Plug 'bazelbuild/vim-bazel'

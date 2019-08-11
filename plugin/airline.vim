@@ -47,7 +47,7 @@ nmap <expr> <leader>9 BufferCmd('<Plug>AirlineSelectTab9')
       \'c'    : '',
       \'win'  : '#I.#W#F',
       \'cwin' : '#I.#W#F',
-      \'x'    : ['#(whoami)@#H', '%F %a'],
+      \'x'    : ['#(whoami)@#H', '%F %a', '#{cpu_fg_color}#{cpu_icon} #{cpu_percentage}'],
       \'z'    : '%R',
       \'options' : {'status-justify' : 'left', 'status-position' : 'top'}
 \ }
