@@ -18,10 +18,9 @@ syntax enable
 syntax on
 
 source ~/.vim/plug.vim
-source ~/.vim/common/common.vim
+source ~/.vim/common/autocmd.vim
 source ~/.vim/common/colorscheme.vim
-source ~/.vim/common/quickfix.vim
-source ~/.vim/common/terminal.vim
+source ~/.vim/common/map.vim
 
 set background=dark
 set t_Co=256
@@ -81,23 +80,3 @@ set noshowmode
 set shortmess+=c
 
 " set splitbelow
-
-nnoremap Y y$
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-cnoremap w!! w !sudo tee % > /dev/null
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
-
-cnoremap <C-a> <Home>
-cnoremap <C-f> <Right>
-cnoremap <C-b> <Left>
-" cnoremap <C-Left> <S-Left>
-" cnoremap <C-Right> <S-Right>
-
-inoremap <C-f> <Right>
-inoremap <C-b> <Left>

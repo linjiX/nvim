@@ -9,6 +9,10 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if !has('nvim')
+    packadd! matchit
+endif
+
 let g:plug_window = 'botright vertical new'
 
 nnoremap <leader>vv :PlugInstall<CR>

@@ -9,9 +9,32 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if !has('nvim')
-    packadd! matchit
-endif
+function s:AutoCmdBufType() abort
+    if &buftype == 'nofile'
+        if expand("%:t") == "__Gundo__"
+            nnoremap <silent><buffer> <leader>q :GundoHide<CR>
+        else
+            nnoremap <silent><buffer> <leader>q :q<CR>
+            nnoremap <silent><buffer> q :q<CR>
+        endif
+    elseif &buftype == 'help'
+        " open help window vertical split
+        " set bufhidden=delete
+        wincmd L
+        nnoremap <silent><buffer> <leader>q :helpclose<CR>
+        nnoremap <silent><buffer> q :helpclose<CR>
+    elseif &buftype == 'terminal' && has('nvim')
+        normal i
+    endif
+    if &previewwindow == 1
+        set nobuflisted
+    endif
+endfunction
+
+augroup myBufType
+    autocmd!
+    autocmd BufEnter * call <SID>AutoCmdBufType()
+augroup END
 
 augroup mySource
     autocmd!
@@ -29,7 +52,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead .arc* set filetype=json
 augroup END
 
-augroup myCommonConfig
+augroup myCommon
     autocmd!
     " autocmd BufRead * nmap Y y$
     autocmd FileType c,cpp set cindent
@@ -63,33 +86,6 @@ augroup myCursor
                 \ endif
 augroup END
 
-function s:AutoCmdBufType() abort
-    if &buftype == 'nofile'
-        if expand("%:t") == "__Gundo__"
-            nnoremap <silent><buffer> <leader>q :GundoHide<CR>
-        else
-            nnoremap <silent><buffer> <leader>q :q<CR>
-            nnoremap <silent><buffer> q :q<CR>
-        endif
-    elseif &buftype == 'help'
-        " open help window vertical split
-        " set bufhidden=delete
-        wincmd L
-        nnoremap <silent><buffer> <leader>q :helpclose<CR>
-        nnoremap <silent><buffer> q :helpclose<CR>
-    elseif &buftype == 'terminal' && has('nvim')
-        normal i
-    endif
-    if &previewwindow == 1
-        set nobuflisted
-    endif
-endfunction
-
-augroup myBufType
-    autocmd!
-    autocmd BufEnter * call <SID>AutoCmdBufType()
-augroup END
-
 function BufferCmd(cmd) abort
     let l:wincmd = ''
     if (&buflisted == 0 && winnr('$') > 1)
@@ -100,3 +96,20 @@ function BufferCmd(cmd) abort
     endif
     return l:wincmd . a:cmd
 endfunction
+
+augroup myQuickFix
+    autocmd!
+    autocmd FileType qf call quickfix#AutoCmdQuickFix()
+    autocmd QuickFixCmdPost [^l]* nested belowright cwindow
+    autocmd QuickFixCmdPost    l* nested belowright lwindow
+augroup END
+
+augroup myTerminal
+    autocmd!
+    if has('nvim')
+        autocmd TermOpen * call terminal#AutoCmdTerminal()
+        autocmd TermOpen * nnoremap <silent><buffer> i :set nonumber<CR>i
+    else
+        autocmd TerminalOpen * call terminal#AutoCmdTerminal()
+    endif
+augroup END
