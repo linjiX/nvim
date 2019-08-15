@@ -10,6 +10,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function s:AutoCmdBufType() abort
+    " if &previewwindow == 1
+    "     set nobuflisted
+    "     nnoremap <silent><buffer> <leader>q :pclose<CR>
+    "     nnoremap <silent><buffer> q :pclose<CR>
+    "     return
+    " endif
     if &buftype == 'nofile'
         if expand("%:t") == "__Gundo__"
             nnoremap <silent><buffer> <leader>q :GundoHide<CR>
@@ -22,9 +28,6 @@ function s:AutoCmdBufType() abort
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
-    endif
-    if &previewwindow == 1
-        set nobuflisted
     endif
 endfunction
 
@@ -52,32 +55,18 @@ augroup END
 
 augroup myCommon
     autocmd!
+    " autocmd WinEnter * autocmd BufWinEnter * clearjumps
+    " autocmd WinNew * echo expand('%'). '~~~~~~~~'
+    " autocmd WinNew * clearjumps
+    autocmd VimEnter * clearjumps
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro
-    " Close VIM when only no listed buffer window visable
-    autocmd WinEnter *
-                \ if winnr('$') == 1 &&
-                \    getbufvar(winbufnr(winnr()), "&buflisted") == 0 &&
-                \    getbufvar(winbufnr(winnr()), "&filetype") != 'startify'|
-                \     q |
-                \ endif
     " Locate cursor to the last position
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype !~# 'commit' |
                 \     execute "normal g`\"" |
                 \ endif
 augroup END
-
-function BufferCmd(cmd) abort
-    let l:wincmd = ''
-    if (&buflisted == 0 && winnr('$') > 1)
-        let l:win = filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
-        if len(l:win) >= 1
-            let l:wincmd = ':'. l:win[0] ."wincmd w\<CR>"
-        endif
-    endif
-    return l:wincmd . a:cmd
-endfunction
 
 augroup myQuickFix
     autocmd!

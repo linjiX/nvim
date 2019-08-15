@@ -30,15 +30,15 @@ if !exists('g:airline_symbols')
 endif
 let g:airline_symbols.dirty='*'
 
-nmap <expr> <leader>1 BufferCmd('<Plug>AirlineSelectTab1')
-nmap <expr> <leader>2 BufferCmd('<Plug>AirlineSelectTab2')
-nmap <expr> <leader>3 BufferCmd('<Plug>AirlineSelectTab3')
-nmap <expr> <leader>4 BufferCmd('<Plug>AirlineSelectTab4')
-nmap <expr> <leader>5 BufferCmd('<Plug>AirlineSelectTab5')
-nmap <expr> <leader>6 BufferCmd('<Plug>AirlineSelectTab6')
-nmap <expr> <leader>7 BufferCmd('<Plug>AirlineSelectTab7')
-nmap <expr> <leader>8 BufferCmd('<Plug>AirlineSelectTab8')
-nmap <expr> <leader>9 BufferCmd('<Plug>AirlineSelectTab9')
+nmap <expr> <leader>1 buffer#Open('<Plug>AirlineSelectTab1')
+nmap <expr> <leader>2 buffer#Open('<Plug>AirlineSelectTab2')
+nmap <expr> <leader>3 buffer#Open('<Plug>AirlineSelectTab3')
+nmap <expr> <leader>4 buffer#Open('<Plug>AirlineSelectTab4')
+nmap <expr> <leader>5 buffer#Open('<Plug>AirlineSelectTab5')
+nmap <expr> <leader>6 buffer#Open('<Plug>AirlineSelectTab6')
+nmap <expr> <leader>7 buffer#Open('<Plug>AirlineSelectTab7')
+nmap <expr> <leader>8 buffer#Open('<Plug>AirlineSelectTab8')
+nmap <expr> <leader>9 buffer#Open('<Plug>AirlineSelectTab9')
 
 " Plug 'edkolev/tmuxline.vim'
  let g:tmuxline_preset = {

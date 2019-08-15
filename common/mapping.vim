@@ -17,6 +17,8 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " command mapping
+cnoreabbrev <expr><silent> q buffer#Quit()
+
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 cnoremap w!! w !sudo tee % > /dev/null
 cnoremap <C-k> <Up>
