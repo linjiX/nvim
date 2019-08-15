@@ -17,10 +17,10 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+source ~/.vim/common/plug.vim
 source ~/.vim/common/autocmd.vim
 source ~/.vim/common/colorscheme.vim
 source ~/.vim/common/mapping.vim
-source ~/.vim/common/plug.vim
 
 set background=dark
 set t_Co=256
@@ -30,10 +30,12 @@ colorscheme solarized
 
 set number
 set nowrap
+set confirm
 set cursorline
 set cursorcolumn
 set colorcolumn=100
 set textwidth=100
+" set splitright
 " set splitbelow
 
 set list

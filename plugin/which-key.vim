@@ -19,6 +19,7 @@ let g:which_key_map = {
             \ 'u' :"BufKillUndo",
             \}
 let g:which_key_map.c = {'name':"+prefix NERDCommenter"}
+let g:which_key_map.e = {'name':"+prefix Slime"}
 let g:which_key_map.f = {'name':"+prefix LeaderF"}
 let g:which_key_map.g = {'name':"+prefix Gscope && GitGutter"}
 let g:which_key_map.l = {'name':"+prefix Coc"}

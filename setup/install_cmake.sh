@@ -5,7 +5,7 @@
 set -e
 set -v
 
-VERSION="3.14.0"
+VERSION="3.15.2"
 TARFILE=v$VERSION.tar.gz
 DIR=CMake-$VERSION
 

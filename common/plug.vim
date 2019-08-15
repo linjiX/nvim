@@ -151,6 +151,7 @@ Plug 'kana/vim-niceblock'
 
 "-- Text Object --
 " Plug 'gaving/vim-textobj-argument'
+" Plug 'rhysd/vim-textobj-anyblock'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'

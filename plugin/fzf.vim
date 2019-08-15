@@ -20,18 +20,18 @@ else
     imap <C-x><C-z> <plug>(fzf-complete-file)
 endif
 
-nnoremap <expr><silent> <leader>zz BufferCmd(":Files\<CR>")
-nnoremap <expr><silent> <leader>zb BufferCmd(":Buffers\<CR>")
-nnoremap <expr><silent> <leader>zg BufferCmd(":GFiles\<CR>")
-nnoremap <expr><silent> <leader>zG BufferCmd(":GFiles\<CR>?")
-nnoremap <expr><silent> <leader>zo BufferCmd(":BCommits\<CR>")
-nnoremap <expr><silent> <leader>zO BufferCmd(":Commits\<CR>")
-nnoremap <expr><silent> <leader>za BufferCmd(":Ag\<CR>")
-nnoremap <expr><silent> <leader>zr BufferCmd(":Rg\<CR>")
-nnoremap <expr><silent> <leader>zt BufferCmd(":BTags\<CR>")
-" nnoremap <expr><silent> <leader>zT BufferCmd(":Tags\<CR>")
-nnoremap <expr><silent> <leader>z` BufferCmd(":Marks\<CR>")
-nnoremap <expr><silent> <leader>zm BufferCmd(":History\<CR>")
+nnoremap <expr><silent> <leader>zz buffer#Open(":Files\<CR>")
+nnoremap <expr><silent> <leader>zb buffer#Open(":Buffers\<CR>")
+nnoremap <expr><silent> <leader>zg buffer#Open(":GFiles\<CR>")
+nnoremap <expr><silent> <leader>zG buffer#Open(":GFiles\<CR>?")
+nnoremap <expr><silent> <leader>zo buffer#Open(":BCommits\<CR>")
+nnoremap <expr><silent> <leader>zO buffer#Open(":Commits\<CR>")
+nnoremap <expr><silent> <leader>za buffer#Open(":Ag\<CR>")
+nnoremap <expr><silent> <leader>zr buffer#Open(":Rg\<CR>")
+nnoremap <expr><silent> <leader>zt buffer#Open(":BTags\<CR>")
+" nnoremap <expr><silent> <leader>zT buffer#Open(":Tags\<CR>")
+nnoremap <expr><silent> <leader>z` buffer#Open(":Marks\<CR>")
+nnoremap <expr><silent> <leader>zm buffer#Open(":History\<CR>")
 nnoremap <silent> <leader>zc :Colors<CR>
 nnoremap <silent> <leader>zl :BLines<CR>
 nnoremap <silent> <leader>zL :Lines<CR>

@@ -9,20 +9,25 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:startify_change_to_vcs_root = 1
-let g:startify_bookmarks = [
-            \ {'v': '~/.vim/vimrc'},
-            \ {'p': '~/.vim/common/plug.vim'},
-            \ {'c': '~/.vim/coc-settings.json'},
-            \ {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
-            \ {'b': '~/.config/dotfiles/bashrc'},
-            \ {'t': '~/.config/dotfiles/tmux.conf'},
-            \ ]
-let g:startify_skiplist = [
-            \ $HOME .'/.vim',
-            \ $HOME .'/.bashrc',
-            \ "/usr/share/nvim",
-            \ "/usr/share/vim",
-            \ ]
+function s:GetListedBufWin() abort
+    return filter(range(1, winnr('$')), 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
+endfunction
 
-nnoremap <expr> <leader>S buffer#Open(":Startify\<CR>")
+function buffer#Open(cmd) abort
+    let l:wincmd = ''
+    if (&buflisted == 0 && winnr('$') > 1)
+        let l:win = s:GetListedBufWin()
+        if len(l:win) >= 1
+            let l:wincmd = ':'. l:win[0] ."wincmd w\<CR>"
+        endif
+    endif
+    return l:wincmd . a:cmd
+endfunction
+
+function buffer#Quit() abort
+    let l:listedbuf_num = len(s:GetListedBufWin())
+    if l:listedbuf_num == 0 || (l:listedbuf_num == 1 && &buflisted == 1)
+        return 'qa'
+    endif
+    return 'q'
+endfunction

@@ -56,32 +56,32 @@ nmap [oa :call <SID>SidebarOn()<CR>
 nmap ]oa :call <SID>SidebarOff()<CR>
 nmap yoa :call <SID>SidebarToggle()<CR>
 
-nmap <expr> [a BufferCmd('<Plug>unimpairedAPrevious')
-nmap <expr> ]a BufferCmd('<Plug>unimpairedANext')
-nmap <expr> [A BufferCmd('<Plug>unimpairedAFirst')
-nmap <expr> ]A BufferCmd('<Plug>unimpairedALast')
+nmap <expr> [a buffer#Open('<Plug>unimpairedAPrevious')
+nmap <expr> ]a buffer#Open('<Plug>unimpairedANext')
+nmap <expr> [A buffer#Open('<Plug>unimpairedAFirst')
+nmap <expr> ]A buffer#Open('<Plug>unimpairedALast')
 
-nmap <expr> [b BufferCmd('<Plug>unimpairedBPrevious')
-nmap <expr> ]b BufferCmd('<Plug>unimpairedBNext')
-nmap <expr> [B BufferCmd('<Plug>unimpairedBFirst')
-nmap <expr> ]B BufferCmd('<Plug>unimpairedBLast')
+nmap <expr> [b buffer#Open('<Plug>unimpairedBPrevious')
+nmap <expr> ]b buffer#Open('<Plug>unimpairedBNext')
+nmap <expr> [B buffer#Open('<Plug>unimpairedBFirst')
+nmap <expr> ]B buffer#Open('<Plug>unimpairedBLast')
 
-nmap <expr> [f BufferCmd('<Plug>unimpairedDirectoryPrevious')
-nmap <expr> ]f BufferCmd('<Plug>unimpairedDirectoryNext')
+nmap <expr> [f buffer#Open('<Plug>unimpairedDirectoryPrevious')
+nmap <expr> ]f buffer#Open('<Plug>unimpairedDirectoryNext')
 
-nmap <expr> [l BufferCmd('<Plug>unimpairedLPrevious')
-nmap <expr> ]l BufferCmd('<Plug>unimpairedLNext')
-nmap <expr> [L BufferCmd('<Plug>unimpairedLFirst')
-nmap <expr> ]L BufferCmd('<Plug>unimpairedLLast')
-nmap <expr> [<C-l> BufferCmd('<Plug>unimpairedLPFile')
-nmap <expr> ]<C-l> BufferCmd('<Plug>unimpairedLNFile')
+nmap <expr> [l buffer#Open('<Plug>unimpairedLPrevious')
+nmap <expr> ]l buffer#Open('<Plug>unimpairedLNext')
+nmap <expr> [L buffer#Open('<Plug>unimpairedLFirst')
+nmap <expr> ]L buffer#Open('<Plug>unimpairedLLast')
+nmap <expr> [<C-l> buffer#Open('<Plug>unimpairedLPFile')
+nmap <expr> ]<C-l> buffer#Open('<Plug>unimpairedLNFile')
 
-nmap <expr> [q BufferCmd('<Plug>unimpairedQPrevious')
-nmap <expr> ]q BufferCmd('<Plug>unimpairedQNext')
-nmap <expr> [Q BufferCmd('<Plug>unimpairedQFirst')
-nmap <expr> ]Q BufferCmd('<Plug>unimpairedQLast')
-nmap <expr> [<C-q> BufferCmd('<Plug>unimpairedQPFile')
-nmap <expr> ]<C-q> BufferCmd('<Plug>unimpairedQNFile')
+nmap <expr> [q buffer#Open('<Plug>unimpairedQPrevious')
+nmap <expr> ]q buffer#Open('<Plug>unimpairedQNext')
+nmap <expr> [Q buffer#Open('<Plug>unimpairedQFirst')
+nmap <expr> ]Q buffer#Open('<Plug>unimpairedQLast')
+nmap <expr> [<C-q> buffer#Open('<Plug>unimpairedQPFile')
+nmap <expr> ]<C-q> buffer#Open('<Plug>unimpairedQNFile')
 
 " Plug 'chxuan/change-colorscheme'
 nnoremap <silent> ]r :NextColorScheme<CR>
