@@ -15,6 +15,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+nnoremap <silent> <leader>st :sort<CR>
+vnoremap <silent> <leader>st :sort<CR>
+
 nnoremap <silent> <C-w>m :tabnew %<CR>
 nnoremap <silent> <C-w><C-m> :tabnew %<CR>
 
@@ -24,16 +28,19 @@ cnoreabbrev <expr><silent> wq buffer#Quit(1)
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 cnoremap w!! w !sudo tee % > /dev/null
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
 
 cnoremap <C-a> <Home>
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-" cnoremap <C-Left> <S-Left>
-" cnoremap <C-Right> <S-Right>
+cnoremap <C-h> <S-Left>
+cnoremap <C-l> <S-Right>
 
 " insert mapping
+inoremap <C-x><C-a> <C-a>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
