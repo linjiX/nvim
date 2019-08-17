@@ -9,5 +9,5 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:peekaboo_window = "vertical botright 50new"
+let g:peekaboo_window = 'vertical botright 50new'
 let g:peekaboo_delay = 1000

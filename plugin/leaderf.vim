@@ -26,7 +26,7 @@ let g:Lf_GtagsSource = 2
 let g:Lf_GtagsfilesCmd = {'.git': 'git ls-files -c -o --exclude-standard'}
 let g:Lf_GtagsSkipUnreadable = 1
 let g:Lf_GtagsSkipSymlink = 'a'
-let g:Lf_Gtagslabel = "native-pygments"
+let g:Lf_Gtagslabel = 'native-pygments'
 
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''

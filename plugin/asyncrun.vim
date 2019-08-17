@@ -22,7 +22,7 @@ endif
 let g:asyncrun_rootmarks = ['.git']
 
 function s:AsyncGrep(cmd, args)
-    let l:args = empty(a:args) ? expand("<cword>") .' %' : escape(a:args, '#%')
+    let l:args = empty(a:args) ? expand('<cword>') .' %' : escape(a:args, '#%')
     execute join([a:cmd, g:asyncagprg, l:args], ' ')
 endfunction
 command -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)

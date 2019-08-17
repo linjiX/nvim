@@ -11,6 +11,7 @@
 
 let g:ale_disable_lsp = 1
 let g:ale_linters = {
+            \ 'vim': ['vint'],
             \ 'cpp': ['CppCheck'],
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],
@@ -38,11 +39,11 @@ call ale#linter#Define('cpp', {
             \   'name': 'CppCheck',
             \   'output_stream': 'both',
             \   'executable': 'cppcheck',
-            \   'command': "%e -q --language=c++ --enable=all --platform=unix64 ".
-            \              "--suppress=unusedFunction ".
-            \              "--suppress=unusedStructMember ".
-            \              "--template='{file}:{line}:{column} {severity}:{id}:{message}' ".
-            \              "--template-location='{file}:{line}:{column} {info}' %t",
+            \   'command': '%e -q --language=c++ --enable=all --platform=unix64 '.
+            \              '--suppress=unusedFunction '.
+            \              '--suppress=unusedStructMember '.
+            \              '--template="{file}:{line}:{column} {severity}:{id}:{message}" '.
+            \              '--template-location="{file}:{line}:{column} {info}" %t',
             \   'callback': 'HandleCppCheckFormat',
             \})
 
@@ -72,7 +73,7 @@ function HandleCppCheckFormat(buffer, lines) abort
             let l:lnum = str2nr(l:match[2])
             let l:flag = 1
             for l:item in l:output
-                if l:lnum == l:item['lnum'] && l:item['type'] != 'I'
+                if l:lnum == l:item['lnum'] && l:item['type'] !=# 'I'
                     let l:flag = 0
                     break
                 endif
@@ -129,25 +130,25 @@ function HandleBuildifierFormat(buffer, lines) abort
         return []
     endif
 
-    for l:file in l:json["files"]
-        for l:warning in l:file["warnings"]
-            if ale#path#IsBufferPath(a:buffer, l:file["filename"])
+    for l:file in l:json['files']
+        for l:warning in l:file['warnings']
+            if ale#path#IsBufferPath(a:buffer, l:file['filename'])
                 call add(l:output, {
-                            \   'lnum': l:warning["start"]["line"],
-                            \   'end_lnum': l:warning["end"]["line"],
-                            \   'col': l:warning["start"]["column"],
-                            \   'end_col': l:warning["end"]["column"],
+                            \   'lnum': l:warning['start']['line'],
+                            \   'end_lnum': l:warning['end']['line'],
+                            \   'col': l:warning['start']['column'],
+                            \   'end_col': l:warning['end']['column'],
                             \   'type': 'W',
-                            \   'code': l:warning["category"],
-                            \   'text': l:warning["message"],
-                            \   'detail': l:file["filename"]
-                            \             .':'. l:warning["start"]["line"]
-                            \             .':'. l:warning["start"]["column"]
-                            \             .' -> '. l:warning["end"]["line"]
-                            \             .':'. l:warning["end"]["column"]
-                            \             ."\ncode: ". l:warning["category"]
-                            \             ."\ntext: ". l:warning["message"]
-                            \             ."\nurl: ". l:warning["url"],
+                            \   'code': l:warning['category'],
+                            \   'text': l:warning['message'],
+                            \   'detail': l:file['filename']
+                            \             .':'. l:warning['start']['line']
+                            \             .':'. l:warning['start']['column']
+                            \             .' -> '. l:warning['end']['line']
+                            \             .':'. l:warning['end']['column']
+                            \             ."\ncode: ". l:warning['category']
+                            \             ."\ntext: ". l:warning['message']
+                            \             ."\nurl: ". l:warning['url'],
                             \})
             endif
         endfor

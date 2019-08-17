@@ -21,8 +21,8 @@ let g:startify_bookmarks = [
 let g:startify_skiplist = [
             \ $HOME .'/.vim',
             \ $HOME .'/.bashrc',
-            \ "/usr/share/nvim",
-            \ "/usr/share/vim",
+            \ '/usr/share/nvim',
+            \ '/usr/share/vim',
             \ ]
 
 nnoremap <expr> <leader>S buffer#Open(":Startify\<CR>")

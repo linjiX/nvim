@@ -35,14 +35,14 @@ endfunction
 function s:FallbackIncrement()
     nnoremap <Plug>SwapItFallbackIncrement <C-a>
     call <SID>LocateNumber()
-    execute "normal ". v:count1 ."\<Plug>SwapIncrement"
+    execute 'normal '. v:count1 ."\<Plug>SwapIncrement"
     nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
 endfunction
 
 function s:FallbackDecrement()
     nnoremap <Plug>SwapItFallbackDecrement <C-x>
     call <SID>LocateNumber()
-    execute "normal ". v:count1 ."\<Plug>SwapDecrement"
+    execute 'normal '. v:count1 ."\<Plug>SwapDecrement"
     nnoremap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
 endfunction
 

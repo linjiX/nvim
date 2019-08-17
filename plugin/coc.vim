@@ -16,8 +16,8 @@ let g:echodoc#enable_at_startup = 1
 " Plug 'neoclide/coc.nvim'
 let g:coc_enable_locationlist = 0
 
-let g:coc_snippet_next = "<C-l>"
-let g:coc_snippet_prev = "<C-h>"
+let g:coc_snippet_next = '<C-l>'
+let g:coc_snippet_prev = '<C-h>'
 
 function! s:CheckBackSpace() abort
     let col = col('.') - 1

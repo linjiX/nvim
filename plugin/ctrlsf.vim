@@ -21,8 +21,8 @@ let g:ctrlsf_default_root = 'project+fw'
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
 let g:ctrlsf_auto_focus = {
-            \ "at" : "done",
-            \ "duration_less_than": 1000
+            \ 'at' : 'done',
+            \ 'duration_less_than': 1000
             \ }
 
 augroup myCtrlSF

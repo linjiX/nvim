@@ -19,7 +19,7 @@ function s:ProtoDef(includeNS) abort
     else
         let l:protos = protodef#ReturnSkeletonsFromPrototypesForCurrentBuffer({'includeNS' : 0})
     endif
-    call append(line("."), split(l:protos, '\n'))
+    call append(line('.'), split(l:protos, '\n'))
 endfunction
 command ProtoDef call <SID>ProtoDef(1)
 
