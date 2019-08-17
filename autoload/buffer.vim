@@ -24,10 +24,11 @@ function buffer#Open(cmd) abort
     return l:wincmd . a:cmd
 endfunction
 
-function buffer#Quit() abort
+function buffer#Quit(is_write) abort
     let l:listedbuf_num = len(s:GetListedBufWin())
     if l:listedbuf_num == 0 || (l:listedbuf_num == 1 && &buflisted == 1)
-        return 'qa'
+        return a:is_write ? 'w | qa' : 'qa'
+    else
+        return a:is_write ? 'wq' : 'q'
     endif
-    return 'q'
 endfunction

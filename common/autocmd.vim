@@ -33,14 +33,15 @@ endfunction
 
 augroup myBufType
     autocmd!
-    autocmd BufEnter * call <SID>AutoCmdBufType()
+    autocmd BufEnter * call s:AutoCmdBufType()
 augroup END
 
 augroup mySource
     autocmd!
-    autocmd BufWritePost ~/.vim/plug.vim source %
+    " autocmd BufWritePost $MYVIMRC source %
     autocmd BufWritePost ~/.vim/common/*.vim source %
     autocmd BufWritePost ~/.vim/plugin/*.vim source %
+    autocmd BufWritePost ~/.vim/autoload/*.vim source %
 augroup END
 
 augroup myFileType

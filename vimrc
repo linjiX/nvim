@@ -9,7 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set nocompatible
+" set nocompatible
 set nobackup
 let mapleader="\<Space>"
 
