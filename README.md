@@ -28,19 +28,10 @@ If you have your own .vimrc file in home directory, please remove or rename it t
     cd ~
     git clone --depth=1 https://github.com/linjiX/.vim.git
 
-## Get Vim plugin management: vim-plug
-
-    curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-## Install all Vim plugins
+## Init Vim and install all plugins
 May take a long time ...
 
-    vim ~/.vim/vimrc.plug -c PlugInstall -c qa
-
-## Install COC extensions
-refer to <https://github.com/neoclide/coc.nvim>
-
-    vim ~/.vim/vimrc.plug -c CocInstall coc-json coc-snippets coc-word -c qa
+    vim --noplugin
 
 ## Install Language Server
 refer to <https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features>

@@ -25,8 +25,8 @@ source ~/.vim/common/mapping.vim
 set background=dark
 set t_Co=256
 
-colorscheme solarized
-" colorscheme molokai
+silent! colorscheme solarized
+" silent! colorscheme molokai
 
 set number
 set nowrap

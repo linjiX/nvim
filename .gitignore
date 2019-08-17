@@ -1,5 +1,6 @@
 plug/
 autoload/plug.vim
+autoload/plug.vim.old
 
 *.swp
 init.vim

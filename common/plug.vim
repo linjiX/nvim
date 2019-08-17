@@ -22,6 +22,10 @@ nnoremap <leader>vg :PlugUpgrade<CR>
 nnoremap <leader>vd :PlugDiff<CR>
 nnoremap <leader>vs :PlugStatus<CR>
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+    call setup#AutoInstallation()
+endif
+
 call plug#begin('~/.vim/plug')
 
 "-- Help --
@@ -174,7 +178,7 @@ Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'ronakg/quickr-preview.vim'
 
 "-- tmux --
-Plug 'edkolev/tmuxline.vim'
+Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
