@@ -9,12 +9,12 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <silent> <C-u> :call smooth_scroll#up(&scroll, 5, 2)<CR>
-nnoremap <silent> <C-d> :call smooth_scroll#down(&scroll, 5, 2)<CR>
-nnoremap <silent> <C-b> :call smooth_scroll#up(&scroll*2, 5, 4)<CR>
-nnoremap <silent> <C-f> :call smooth_scroll#down(&scroll*2, 5, 4)<CR>
+let g:ac_smooth_scroll_du_sleep_time_msec = 0
+let g:ac_smooth_scroll_fb_sleep_time_msec = 0
+let g:ac_smooth_scroll_min_limit_msec = 100
+let g:ac_smooth_scroll_max_limit_msec = 150
 
 " nnoremap <expr> <C-u> coc#util#has_float() ? coc#util#float_scroll(0)
-"             \                              : ":call smooth_scroll#up(&scroll, 5, 2)\<CR>"
+"             \                              : <C-u>
 " nnoremap <expr> <C-d> coc#util#has_float() ? coc#util#float_scroll(1)
-"             \                              : ":call smooth_scroll#down(&scroll, 5, 4)\<CR>"
+"             \                              : <C-d>

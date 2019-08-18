@@ -27,7 +27,8 @@ endfunction
 function buffer#Quit(is_write) abort
     let l:listedbuf_num = len(s:GetListedBufWin())
     if l:listedbuf_num == 0 || (l:listedbuf_num == 1 && &buflisted == 1)
-        return a:is_write ? 'w | qa' : 'qa'
+        return tabpagenr('$') > 1 ? a:is_write ? 'w | tabclose' : 'tabclose'
+                    \             : a:is_write ? 'w | qa' : 'qa'
     else
         return a:is_write ? 'wq' : 'q'
     endif

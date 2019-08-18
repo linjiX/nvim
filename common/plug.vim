@@ -142,12 +142,13 @@ Plug 'linjiX/vim-star'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'
+" Plug 'terryma/vim-smooth-scroll'
 " Plug 'yuttie/comfortable-motion.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'justinmk/vim-sneak'
 Plug 'kshenoy/vim-signature'
 Plug 't9md/vim-choosewin'
-Plug 'terryma/vim-smooth-scroll'
+Plug 'yonchu/accelerated-smooth-scroll'
 
 "-- Visual --
 Plug 'terryma/vim-expand-region'
