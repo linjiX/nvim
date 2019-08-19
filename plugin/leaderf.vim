@@ -14,6 +14,7 @@ let g:Lf_StlSeparator = {'left': '', 'right': ''}
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
+let g:Lf_ShowHidden = 1
 " let g:Lf_RememberLastSearch = 1
 
 if executable('gtags')

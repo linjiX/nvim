@@ -121,9 +121,9 @@ nnoremap <silent> ]r :NextColorScheme<CR>
 nnoremap <silent> [r :PreviousColorScheme<CR>
 
 " Plug 'ntpeters/vim-better-whitespace'
-nnoremap <silent> ]$ :NextTrailingWhitespace<CR>
-nnoremap <silent> [$ :PrevTrailingWhitespace<CR>
+nnoremap <silent> ]. :NextTrailingWhitespace<CR>
+nnoremap <silent> [. :PrevTrailingWhitespace<CR>
 
-nmap [oL :EnableWhitespace<CR>
-nmap ]oL :DisableWhitespace<CR>
-nmap yoL :ToggleWhitespace<CR>
+nmap [o. :EnableWhitespace<CR>
+nmap ]o. :DisableWhitespace<CR>
+nmap yo. :ToggleWhitespace<CR>
