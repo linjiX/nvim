@@ -19,6 +19,11 @@ function s:SigncolumnToggle() abort
                 \               : ":setlocal signcolumn=no\<CR>"
 endfunction
 
+function s:ConcealToggle() abort
+    return &conceallevel !=# 0 ? ":setlocal conceallevel=0\<CR>"
+                \              : ":setlocal conceallevel=2\<CR>"
+endfunction
+
 function s:SidebarOn() abort
     set number
     set signcolumn=auto
@@ -66,6 +71,10 @@ nmap <expr> yom <SID>MouseToggle()
 nmap [oS :setlocal signcolumn=auto<CR>
 nmap ]oS :setlocal signcolumn=no<CR>
 nmap <expr> yoS <SID>SigncolumnToggle()
+
+nmap [oC :setlocal conceallevel=2<CR>
+nmap ]oC :setlocal conceallevel=0<CR>
+nmap <expr> yoC <SID>ConcealToggle()
 
 " Plug 'Yggdroot/indentLine'
 nmap [oI :IndentLinesEnable<CR>

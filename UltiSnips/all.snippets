@@ -1,0 +1,38 @@
+###############################################################
+#    https://github.com/linjiX/.vim                           #
+#     _  _          _  _ __  __    __        _                #
+#    | |(_) _ __   (_)(_)\ \/ /   / /__   __(_) _ __ ___      #
+#    | || || '_ \  | || | \  /   / / \ \ / /| || '_ ` _ \     #
+#    | || || | | | | || | /  \  / /_  \ V / | || | | | | |    #
+#    |_||_||_| |_|_/ ||_|/_/\_\/_/(_)  \_/  |_||_| |_| |_|    #
+#                |__/                                         #
+#                                                             #
+###############################################################
+
+snippet ( "auto pairs ()" w
+(${1:${VISUAL}}) $0
+endsnippet
+
+snippet [ "auto pairs []" w
+[${1:${VISUAL}}] $0
+endsnippet
+
+snippet { "auto pairs {}" w
+{${1:${VISUAL}}} $0
+endsnippet
+
+snippet < "auto pairs <>" w
+<${1:${VISUAL}}> $0
+endsnippet
+
+snippet " "auto pairs double quotes" w
+"${1:${VISUAL}}" $0
+endsnippet
+
+snippet ' "auto pairs single quotes" w
+'${1:${VISUAL}}' $0
+endsnippet
+
+snippet ` "auto pairs ``" w
+\`${1:${VISUAL}}\` $0
+endsnippet
