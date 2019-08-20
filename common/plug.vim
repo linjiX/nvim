@@ -32,9 +32,9 @@ call plug#begin('~/.vim/plug')
 Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}

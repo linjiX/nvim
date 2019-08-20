@@ -8,6 +8,7 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+scriptencoding utf-8
 
 let g:ale_disable_lsp = 1
 let g:ale_linters = {
@@ -25,10 +26,11 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-let g:ale_sign_offset = 1000
+let g:ale_sign_offset = 10000
 
-let g:ale_sign_error = '✗'
-let g:ale_sign_warning = '✗'
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+let g:ale_sign_info = ''
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_info_str = 'I'
@@ -173,7 +175,7 @@ augroup myALE
     autocmd BufRead * ALELint
 augroup END
 
-nnoremap <silent><buffer> <leader>D :call ALEDiags()<CR>
+nnoremap <silent> <leader>D :call ALEDiags()<CR>
 nnoremap <leader>E :ALEDetail<CR>
 
 nmap [w <Plug>(ale_previous)

@@ -11,8 +11,9 @@
 
 let g:ac_smooth_scroll_du_sleep_time_msec = 0
 let g:ac_smooth_scroll_fb_sleep_time_msec = 0
-let g:ac_smooth_scroll_min_limit_msec = 100
+let g:ac_smooth_scroll_min_limit_msec = 120
 let g:ac_smooth_scroll_max_limit_msec = 150
+let g:ac_smooth_scroll_skip_redraw_line_size = 3
 
 " nnoremap <expr> <C-u> coc#util#has_float() ? coc#util#float_scroll(0)
 "             \                              : <C-u>

@@ -52,7 +52,7 @@ For Ubuntu 16.04, refer to [INSTALL_CCLS.md](setup/INSTALL_CCLS.md)
 ## Fonts
 Vim may meet some display issues in your machine. The reason is your terminal font doesn't support powerline character.
 
-Here is a recommended font: <https://github.com/crvdgc/Consolas-with-Yahei>
+Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>
 
 Install and enable it in your terminal.
 

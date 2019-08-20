@@ -19,9 +19,9 @@ function s:AutoCmdColorScheme() abort
     highlight UserError cterm=bold,underline ctermfg=9
     highlight UserWarning cterm=bold,underline ctermfg=13
     highlight UserInfo cterm=bold,underline ctermfg=12
-    highlight UserErrorSign cterm=bold ctermfg=9
-    highlight UserWarningSign cterm=bold ctermfg=13
-    highlight UserInfoSign cterm=bold ctermfg=12
+    highlight UserErrorSign cterm=bold ctermfg=9 ctermbg=0
+    highlight UserWarningSign cterm=bold ctermfg=13 ctermbg=0
+    highlight UserInfoSign cterm=bold ctermfg=12 ctermbg=0
 
     highlight link CocErrorSign UserErrorSign
     highlight link CocWarningSign UserWarningSign
