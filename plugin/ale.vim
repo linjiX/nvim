@@ -16,6 +16,7 @@ let g:ale_linters = {
             \ 'cpp': ['CppCheck'],
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],
+            \ 'json': ['Jsonlint'],
             \ }
 let g:ale_python_flake8_options = '--max-line-length=99'
 let g:ale_linters_explicit = 1
@@ -159,6 +160,37 @@ function HandleBuildifierFormat(buffer, lines) abort
     return l:output
 endfunction
 
+call ale#linter#Define('json', {
+            \   'name': 'Jsonlint',
+            \   'output_stream': 'both',
+            \   'executable': 'jsonlint',
+            \   'command': '%e %t',
+            \   'callback': 'HandleJsonlintFormat',
+            \})
+
+function HandleJsonlintFormat(buffer, lines) abort
+    let l:pattern = '\v^(.+):(\d+):(\d+): (.{-}): (.+)$'
+    let l:output = []
+
+    for l:match in ale#util#GetMatches(a:lines, l:pattern)
+        if ale#path#IsBufferPath(a:buffer, l:match[1])
+            call add(l:output, {
+                        \   'lnum': str2nr(l:match[2]),
+                        \   'col': str2nr(l:match[3]),
+                        \   'type': l:match[4] is# 'Error' ? 'E'
+                        \                                  : l:match[4] is# 'Warning' ? 'W'
+                        \                                                             : 'I',
+                        \   'text': l:match[5],
+                        \   'detail': l:match[1] .':'. l:match[2] .':'. l:match[3]
+                        \             ."\ntype: ". l:match[4]
+                        \             ."\ntext: ". l:match[5],
+                        \})
+        endif
+    endfor
+
+    return l:output
+endfunction
+
 function ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
@@ -170,9 +202,18 @@ function ALEDiags()
                 \ endif
 endfunction
 
+function s:AutoCmdALEFixSuggest() abort
+    set buftype=nofile
+    set nobuflisted
+    set bufhidden=wipe
+    nnoremap <silent><buffer> <leader>q :q<CR>
+    nnoremap <silent><buffer> q :q<CR>
+endfunction
+
 augroup myALE
     autocmd!
     autocmd BufRead * ALELint
+    autocmd FileType ale-fix-suggest call <SID>AutoCmdALEFixSuggest()
 augroup END
 
 nnoremap <silent> <leader>D :call ALEDiags()<CR>
