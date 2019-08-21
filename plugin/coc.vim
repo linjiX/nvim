@@ -35,7 +35,7 @@ endfunction
 augroup myCoc
     autocmd!
     " Highlight symbol under cursor on CursorHold
-    autocmd CursorHold * silent call CocActionAsync('highlight')
+    autocmd CursorHold * silent! call CocActionAsync('highlight')
     " Disable locationlist auto preview
     autocmd User CocLocationsChange CocList --normal location
 augroup END
@@ -86,7 +86,7 @@ nmap <silent> [j <Plug>(coc-diagnostic-prev)
 
 nnoremap <silent> <leader>t :call CocAction('doHover')<CR>
 nnoremap <silent> <leader>d :CocList --normal diagnostics<CR>
-nnoremap <silent> <leader>le :CocList extensions<CR>
+nnoremap <silent> <leader>le :CocList --normal extensions<CR>
 nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
 nnoremap <silent> <leader>lx :CocCommand<CR>
 

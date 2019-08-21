@@ -11,12 +11,12 @@
                 },
                 "clang": {
                     "extraArgs": ["-Wno-unused-variable"],
-                    "excludeArgs": ["-Werror"],
+                    "excludeArgs": ["-Werror"]
                 },
                 "diagnostic": {
                     "onOpen" : 1,
                     "onChange" : 1,
-                    "onSave" : 1,
+                    "onSave" : 1
                 }
             }
         }
@@ -48,12 +48,12 @@
     "coc.source.file.ignoreHidden": false,
 
     "snippets.extends": {
-        "cpp": ["c"],
+        "cpp": ["c"]
     },
 
     "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", ""],
 
     "python.jediEnabled": false,
     "python.linting.enabled": false,
-    "python.pythonPath": "python3",
+    "python.pythonPath": "python3"
 }
