@@ -14,9 +14,9 @@
                     "excludeArgs": ["-Werror"]
                 },
                 "diagnostic": {
-                    "onOpen" : 1,
-                    "onChange" : 1,
-                    "onSave" : 1
+                    "onOpen": 1,
+                    "onChange": 1,
+                    "onSave": 1
                 }
             }
         }
