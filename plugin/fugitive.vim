@@ -11,6 +11,7 @@
 
 augroup myFugitive
     autocmd FileType fugitive set nobuflisted
+    autocmd FileType fugitive nnoremap <silent><buffer> <leader>q :q<CR>
 augroup END
 
-cnoreabbrev Gstatus vertical botright Gstatus
+cnoreabbrev <silent> Gstatus vertical botright Gstatus

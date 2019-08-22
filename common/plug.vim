@@ -34,7 +34,7 @@ Plug 'yianwillis/vimcdoc'
 "-- Menu --
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
@@ -93,6 +93,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
+Plug 'dense-analysis/ale'
 Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
@@ -102,7 +103,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
-Plug 'w0rp/ale'
 
 "-- python --
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
@@ -179,7 +179,7 @@ Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 Plug 'ronakg/quickr-preview.vim'
 
 "-- tmux --
-Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
+" Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
 
 "-- Others --
 " Plug 'tpope/vim-sensible'

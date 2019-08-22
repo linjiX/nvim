@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:protodefprotogetter = '~/.vim/plug/vim-protodef/pullproto.pl'
-let disable_protodef_mapping = 1
+let g:disable_protodef_mapping = 1
 " let g:disable_protodef_sorting = 1
 
 function s:ProtoDef(includeNS) abort

@@ -28,6 +28,9 @@ function s:AutoCmdBufType() abort
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
+    elseif has('nvim') && &buftype ==# 'terminal'
+        normal! i
+        set nonumber
     endif
 endfunction
 
@@ -36,13 +39,15 @@ augroup myBufType
     autocmd BufEnter * call s:AutoCmdBufType()
 augroup END
 
-augroup mySource
-    autocmd!
-    " autocmd BufWritePost $MYVIMRC source %
-    autocmd BufWritePost ~/.vim/common/*.vim source %
-    autocmd BufWritePost ~/.vim/plugin/*.vim source %
-    autocmd BufWritePost ~/.vim/autoload/*.vim source %
-augroup END
+if !has('nvim')
+    augroup mySource
+        autocmd!
+        " autocmd BufWritePost $MYVIMRC source %
+        autocmd BufWritePost ~/.vim/common/*.vim source %
+        autocmd BufWritePost ~/.vim/plugin/*.vim source %
+        autocmd BufWritePost ~/.vim/autoload/*.vim source %
+    augroup END
+endif
 
 augroup myFileType
     autocmd!
@@ -81,7 +86,6 @@ augroup myTerminal
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
         autocmd TermOpen * nnoremap <silent><buffer> i :set nonumber<CR>i
-        autocmd BufEnter * if &buftype == 'terminal' | normal i | endif
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
     endif
