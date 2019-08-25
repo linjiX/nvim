@@ -13,7 +13,10 @@
 
 ## Install Cmake (3.8 or higher)
 
-    ./install_cmake.sh
+    sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+    sudo apt-get update
+    sudo apt-get install -y cmake
 
 ## Install LLVM-8
 
@@ -26,7 +29,6 @@
 ## Install g++-7
 refer to <https://gist.github.com/jlblancoc/99521194aba975286c80f93e47966dc5>
 
-    sudo apt-get install -y software-properties-common
     sudo add-apt-repository ppa:ubuntu-toolchain-r/test
     sudo apt-get update
     sudo apt-get install -y g++-7

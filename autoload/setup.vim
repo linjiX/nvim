@@ -10,6 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function s:AutoCmdPlugInstall() abort
+    let g:plug_window = 'buffer'
     PlugInstall --sync
     source $MYVIMRC
     CocInstall -sync coc-word coc-highlight coc-snippets
@@ -19,5 +20,8 @@ endfunction
 function setup#AutoInstallation() abort
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd mySetup VimEnter * call s:AutoCmdPlugInstall()
+    augroup mySetup
+        autocmd!
+        autocmd VimEnter * call s:AutoCmdPlugInstall()
+    augroup end
 endfunction
