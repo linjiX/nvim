@@ -17,12 +17,8 @@ function s:AutoCmdBufType() abort
     "     return
     " endif
     if &buftype ==# 'nofile'
-        if expand('%:t') ==# '__Gundo__'
-            nnoremap <silent><buffer> <leader>q :GundoHide<CR>
-        else
-            nnoremap <silent><buffer> <leader>q :q<CR>
-            nnoremap <silent><buffer> q :q<CR>
-        endif
+        nnoremap <silent><buffer> <leader>q :q<CR>
+        nnoremap <silent><buffer> q :q<CR>
     elseif &buftype ==# 'help'
         " open help window vertical split
         wincmd L

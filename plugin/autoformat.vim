@@ -20,8 +20,9 @@ let g:formatdef_my_custom_cpp = "'clang-format-6.0 ".
 let g:formatters_cpp = ['my_custom_cpp']
 let g:formatdef_buildifier = "'buildifier'"
 let g:formatters_bzl = ['buildifier']
-let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"
-let g:formatters_python = ['yapf']
+" let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"
+let g:formatdef_yapf_isort = "'yapf | isort -'"
+let g:formatters_python = ['yapf_isort']
 
 let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
             \              "--parser='.&filetype.' --stdin'"

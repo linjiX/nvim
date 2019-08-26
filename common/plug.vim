@@ -32,16 +32,16 @@ call plug#begin('~/.vim/plug')
 Plug 'yianwillis/vimcdoc'
 
 "-- Menu --
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 Plug 'pseewald/nerdtree-tagbar-combined'
 Plug 'scrooloose/nerdtree'
-Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 
 "-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'
