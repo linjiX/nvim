@@ -11,8 +11,9 @@
 
 let g:gitgutter_preview_win_location = 'belowright'
 
-nnoremap <leader>gR :GitGutter<CR>
-nnoremap <leader>gf :GitGutterFold<CR>
+nnoremap <silent> <leader>gR :GitGutter<CR>
+nnoremap <silent> <leader>gf :GitGutterFold<CR>
+nnoremap <silent> <leader>gq :GitGutterQuickFix<CR>:belowright copen<CR>
 nmap <leader>gp <Plug>GitGutterPreviewHunk
 nmap <leader>ga <Plug>GitGutterStageHunk
 nmap <leader>gu <Plug>GitGutterUndoHunk

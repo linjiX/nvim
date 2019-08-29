@@ -61,7 +61,13 @@ set smartindent
 set completeopt-=preview
 set diffopt+=vertical
 set path=.,/usr/include,/usr/local/include
-set clipboard^=unnamedplus
+if has('macunix')
+    set backspace=2
+    set clipboard^=unnamed
+else
+    set clipboard^=unnamedplus
+endif
+
 
 set foldmethod=syntax
 set foldlevel=100

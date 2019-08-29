@@ -9,9 +9,13 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function s:AutoCmdFugitive() abort
+    set nobuflisted
+    nnoremap <silent><buffer> <leader>q :q<CR>
+endfunction
+
 augroup myFugitive
-    autocmd FileType fugitive set nobuflisted
-    autocmd FileType fugitive nnoremap <silent><buffer> <leader>q :q<CR>
+    autocmd FileType fugitive call <SID>AutoCmdFugitive()
 augroup END
 
 cnoreabbrev <silent> Gstatus vertical botright Gstatus

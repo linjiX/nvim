@@ -8,6 +8,7 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+scriptencoding utf-8
 
 let g:Lf_WindowHeight = 0.3
 let g:Lf_StlSeparator = {'left': '', 'right': ''}

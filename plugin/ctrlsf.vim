@@ -25,9 +25,14 @@ let g:ctrlsf_auto_focus = {
             \ 'duration_less_than': 1000
             \ }
 
+function s:AutoCmdCtrlSF() abort
+    set colorcolumn=107
+    nnoremap <silent><buffer> <leader>q :CtrlSFClose<CR>
+endfunction
+
 augroup myCtrlSF
     autocmd!
-    autocmd FileType ctrlsf nnoremap <silent><buffer> <leader>q :CtrlSFClose<CR>
+    autocmd FileType ctrlsf call <SID>AutoCmdCtrlSF()
 augroup END
 
 nmap <leader>s<Space> <Plug>CtrlSFPrompt

@@ -18,7 +18,7 @@ nnoremap <expr><silent> <leader>u buffer#Open(":BUNDO\<CR>")
 
 nnoremap <expr><silent> + buffer#Open(":bn\<CR>")
 nnoremap <expr><silent> _ buffer#Open(":bp\<CR>")
-vnoremap <expr><silent> + buffer#Open(":bn\<CR>")
-vnoremap <expr><silent> _ buffer#Open(":bp\<CR>")
+vnoremap <expr><silent> + buffer#Open(":\<C-u>bn\<CR>")
+vnoremap <expr><silent> _ buffer#Open(":\<C-u>bp\<CR>")
 nnoremap <silent> <leader>q :BW<CR>
 nnoremap <silent> <leader>Q :BD<CR>

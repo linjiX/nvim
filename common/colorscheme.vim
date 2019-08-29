@@ -38,9 +38,9 @@ function s:AutoCmdColorScheme() abort
     highlight link ALEWarningSign UserWarningSign
     highlight link ALEInfoSign UserInfoSign
 
-    highlight link ALEError Normal
-    highlight link ALEWarning Normal
-    highlight link ALEInfo Normal
+    highlight ALEError NONE
+    highlight ALEWarning NONE
+    highlight ALEInfo NONE
 
     highlight link ExtraWhitespace Visual
 endfunction
