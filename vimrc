@@ -17,10 +17,14 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-source ~/.vim/common/plug.vim
-source ~/.vim/common/autocmd.vim
-source ~/.vim/common/colorscheme.vim
-source ~/.vim/common/mapping.vim
+" source all configurations
+let s:configs = ['~/.vim/plug.vim'] + split(glob('~/.vim/common/*.vim'))
+if !exists('g:auto_installation')
+    let s:configs += split(glob('~/.vim/config/*.vim'))
+endif
+for s:config in s:configs
+    execute 'source '. s:config
+endfor
 
 set background=dark
 set t_Co=256
@@ -88,3 +92,4 @@ if has('nvim')
                 \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 endif
+

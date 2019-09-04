@@ -18,6 +18,7 @@ function s:AutoCmdPlugInstall() abort
 endfunction
 
 function setup#AutoInstallation() abort
+    let g:auto_installation = 1
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     augroup mySetup

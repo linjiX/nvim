@@ -31,7 +31,7 @@ If you have your own .vimrc file in home directory, please remove or rename it t
 ## Init Vim and install all plugins
 May take a long time ...
 
-    vim --noplugin
+    vim
 
 ## Install Language Server
 refer to <https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features>
