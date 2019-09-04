@@ -55,5 +55,7 @@
 
     "python.jediEnabled": false,
     "python.linting.enabled": false,
-    "python.pythonPath": "python3"
+    "python.pythonPath": "python3",
+
+    "xml.java.home": "/usr/lib/jvm/java-8-openjdk-amd64"
 }

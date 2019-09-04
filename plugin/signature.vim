@@ -9,19 +9,4 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function s:AutoCmdFugitive() abort
-    set nobuflisted
-    nnoremap <silent><buffer> <leader>q :q<CR>
-endfunction
-
-function s:AutoCmdGV() abort
-    set colorcolumn=0
-endfunction
-
-augroup myGit
-    autocmd!
-    autocmd FileType fugitive call <SID>AutoCmdFugitive()
-    autocmd FileType GV call <SID>AutoCmdGV()
-augroup END
-
-cnoreabbrev <silent> Gstatus vertical botright Gstatus
+nnoremap <silent> m\ :SignatureListGlobalMarks<CR>
