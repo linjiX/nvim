@@ -39,6 +39,7 @@ if !has('nvim')
     augroup mySource
         autocmd!
         " autocmd BufWritePost $MYVIMRC source %
+        autocmd BufWritePost ~/.vim/plug.vim source %
         autocmd BufWritePost ~/.vim/common/*.vim source %
         autocmd BufWritePost ~/.vim/plugin/*.vim source %
         autocmd BufWritePost ~/.vim/autoload/*.vim source %
