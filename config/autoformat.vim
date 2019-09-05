@@ -29,6 +29,7 @@ let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
 let g:formatdef_json_tool = "'python3 -m json.tool'"
 " let g:formatters_json = ['json_tool']
 let g:formatters_json = ['prettier']
+let g:formatters_markdown = ['prettier']
 
 let g:autoformat_verbosemode = 0
 

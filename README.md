@@ -1,4 +1,5 @@
 # .vim
+
 My customized vim configuration
 ![](preview.png)
 
@@ -23,17 +24,20 @@ Install Nodejs and yarn (for COC)
     curl -sL install-node.now.sh/lts | sudo bash
 
 ## Get my Vim configuration
+
 If you have your own .vimrc file in home directory, please remove or rename it to trigger this configuration.
 
     cd ~
     git clone --depth=1 https://github.com/linjiX/.vim.git
 
 ## Init Vim and install all plugins
+
 May take a long time ...
 
     vim
 
 ## Install Language Server
+
 refer to <https://github.com/neoclide/coc.nvim/wiki/Language-servers#supported-features>
 
 For C family language, Language Server "ccls" is the best choice for now
@@ -50,6 +54,7 @@ For Ubuntu 16.04, refer to [INSTALL_CCLS.md](setup/INSTALL_CCLS.md)
     ./install_ripgrep.sh
 
 ## Fonts
+
 Vim may meet some display issues in your machine. The reason is your terminal font doesn't support powerline character.
 
 Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>
@@ -57,6 +62,7 @@ Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>
 Install and enable it in your terminal.
 
 ---
+
 #### Select a colorscheme for yourself, then enjoy your Vim!
 
 ---
@@ -69,4 +75,3 @@ Install and enable it in your terminal.
     :PlugUpdate
     :CocUpdateSync
     :qa
-

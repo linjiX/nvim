@@ -18,7 +18,7 @@ syntax enable
 syntax on
 
 " source all configurations
-let s:configs = ['~/.vim/plug.vim'] + split(glob('~/.vim/common/*.vim'))
+let s:configs = ['~/.vim/vimrc.plug'] + split(glob('~/.vim/common/*.vim'))
 if !exists('g:auto_installation')
     let s:configs += split(glob('~/.vim/config/*.vim'))
 endif

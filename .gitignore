@@ -4,6 +4,7 @@ autoload/plug.vim.old
 
 *.swp
 init.vim
+vimrc.bak
 
 setup/ccls/
 setup/ctags/

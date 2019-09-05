@@ -33,7 +33,7 @@ let g:Lf_Gtagslabel = 'native-pygments'
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 
-nnoremap <expr><silent> <C-p> buffer#Open(":Leaderf file\<CR>")
+" nnoremap <expr><silent> <C-p> buffer#Open(":Leaderf file\<CR>")
 nnoremap <expr><silent> <leader>ff buffer#Open(":Leaderf file\<CR>")
 nnoremap <expr><silent> <leader>fb buffer#Open(":Leaderf buffer\<CR>")
 nnoremap <expr><silent> <leader>fB buffer#Open(":Leaderf buffer --all\<CR>")

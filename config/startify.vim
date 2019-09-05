@@ -12,7 +12,7 @@
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
             \ {'v': '~/.vim/vimrc'},
-            \ {'p': '~/.vim/common/plug.vim'},
+            \ {'p': '~/.vim/vimrc.plug'},
             \ {'c': '~/.vim/coc-settings.json'},
             \ {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
             \ {'b': '~/.config/dotfiles/bashrc'},

@@ -47,7 +47,7 @@ inoremap <C-b> <Left>
 " terminal mapping
 if has('nvim')
     cnoreabbrev terminal botright vsplit term://bash
-    nnoremap <silent> <C-t> :botright vsplit term://bash<CR>
+    nnoremap <silent> <C-p> :botright vsplit term://bash<CR>
     tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
@@ -55,7 +55,7 @@ if has('nvim')
     tnoremap <C-l> <C-\><C-n><C-w>l
 else
     set termwinkey=<C-v>
-    nnoremap <silent> <C-t> :vertical botright terminal<CR>
+    nnoremap <silent> <C-p> :vertical botright terminal<CR>
     tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-v>h
     tnoremap <C-j> <C-v>j
