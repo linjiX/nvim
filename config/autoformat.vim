@@ -13,11 +13,12 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_remove_trailing_spaces = 0
 
-let g:formatdef_my_custom_cpp = "'clang-format-6.0 ".
-            \                   "-lines='.a:firstline.':'.a:lastline.' ".
-            \                   "--assume-filename=\"'.expand('%:p').'\" ".
-            \                   "-style=file'"
-let g:formatters_cpp = ['my_custom_cpp']
+let g:formatdef_clang_format = "'clang-format-9 ".
+            \                  "-lines='.a:firstline.':'.a:lastline.' ".
+            \                  "--assume-filename=\"'.expand('%:p').'\" ".
+            \                  "-style=file'"
+let g:formatters_cpp = ['clang_format']
+let g:formatters_proto = ['clang_format']
 let g:formatdef_buildifier = "'buildifier'"
 let g:formatters_bzl = ['buildifier']
 " let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"

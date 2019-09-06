@@ -11,7 +11,7 @@
 
 function s:AutoCmdBufType() abort
     " if &previewwindow == 1
-    "     set nobuflisted
+    "     setlocal nobuflisted
     "     nnoremap <silent><buffer> <leader>q :pclose<CR>
     "     nnoremap <silent><buffer> q :pclose<CR>
     "     return
@@ -26,7 +26,7 @@ function s:AutoCmdBufType() abort
         nnoremap <silent><buffer> q :helpclose<CR>
     elseif has('nvim') && &buftype ==# 'terminal'
         normal! i
-        set nonumber
+        setlocal nonumber
     endif
 endfunction
 
@@ -48,12 +48,13 @@ endif
 
 augroup myFileType
     autocmd!
-    autocmd BufNewFile,BufRead *.launch set filetype=xml
-    autocmd BufNewFile,BufRead *.urdf set filetype=xml
-    autocmd BufNewFile,BufRead *.BUILD set filetype=bzl
-    autocmd BufNewFile,BufRead WORKSPACE set filetype=bzl
-    autocmd BufNewFile,BufRead .arc* set filetype=json
-    autocmd FileType c,cpp set cindent
+    autocmd BufNewFile,BufRead *.launch setlocal filetype=xml
+    autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
+    autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
+    autocmd BufNewFile,BufRead WORKSPACE setlocal filetype=bzl
+    autocmd BufNewFile,BufRead .arc* setlocal filetype=json
+    autocmd FileType c,cpp setlocal cindent
+    autocmd FileType proto setlocal shiftwidth=4
 augroup END
 
 augroup myCommon
@@ -82,7 +83,7 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd TermOpen * nnoremap <silent><buffer> i :set nonumber<CR>i
+        autocmd TermOpen * nnoremap <silent><buffer> i :setlocal nonumber<CR>i
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
     endif

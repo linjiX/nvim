@@ -26,7 +26,7 @@ let g:ctrlsf_auto_focus = {
             \ }
 
 function s:AutoCmdCtrlSF() abort
-    set colorcolumn=107
+    setlocal colorcolumn=107
     nnoremap <silent><buffer> <leader>q :CtrlSFClose<CR>
 endfunction
 

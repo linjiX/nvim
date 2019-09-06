@@ -12,10 +12,10 @@
 let g:XtermColorTableDefaultOpen = 'vertical botright vsplit'
 
 function s:AutoCmdXtermColorTable() abort
-    set bufhidden=delete
-    set nobuflisted
-    set nonumber
-    set colorcolumn=0
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    setlocal nonumber
+    setlocal colorcolumn=0
 endfunction
 
 augroup myXtermColorTable

@@ -10,12 +10,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function s:AutoCmdFugitive() abort
-    set nobuflisted
+    setlocal nobuflisted
     nnoremap <silent><buffer> <leader>q :q<CR>
 endfunction
 
 function s:AutoCmdGV() abort
-    set colorcolumn=0
+    setlocal colorcolumn=0
 endfunction
 
 augroup myGit

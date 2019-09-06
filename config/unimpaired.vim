@@ -25,14 +25,14 @@ function s:ConcealToggle() abort
 endfunction
 
 function s:SidebarOn() abort
-    set number
-    set signcolumn=auto
+    setlocal number
+    setlocal signcolumn=auto
     IndentLinesEnable
 endfunction
 
 function s:SidebarOff() abort
-    set nonumber
-    set signcolumn=no
+    setlocal nonumber
+    setlocal signcolumn=no
     IndentLinesDisable
 endfunction
 

@@ -16,11 +16,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-nnoremap <silent> <leader>st :sort<CR>
-vnoremap <silent> <leader>st :sort<CR>
-
 nnoremap <silent> <C-w>m :tabnew %<CR>
 nnoremap <silent> <C-w><C-m> :tabnew %<CR>
+vnoremap <silent> <C-n> :sort<CR>
 
 " command mapping
 cnoreabbrev <expr><silent> q buffer#Quit(0)

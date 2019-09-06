@@ -18,13 +18,13 @@
     sudo apt-get update
     sudo apt-get install -y cmake
 
-## Install LLVM-8
+## Install LLVM-9
 
-    sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+    sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 
     sudo apt-get update
-    sudo apt-get install -y llvm-8 libclang-8-dev clang-8
+    sudo apt-get install -y llvm-9 libclang-9-dev clang-9
 
 ## Install g++-7
 refer to <https://gist.github.com/jlblancoc/99521194aba975286c80f93e47966dc5>

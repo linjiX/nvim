@@ -10,9 +10,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function terminal#AutoCmdTerminal() abort
-    set bufhidden=wipe
-    set nobuflisted
-    " set nomodifiable
+    setlocal bufhidden=wipe
+    setlocal nobuflisted
+    " setlocal nomodifiable
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!

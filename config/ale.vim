@@ -203,9 +203,9 @@ function ALEDiags()
 endfunction
 
 function s:AutoCmdALEFixSuggest() abort
-    set buftype=nofile
-    set nobuflisted
-    set bufhidden=wipe
+    setlocal buftype=nofile
+    setlocal nobuflisted
+    setlocal bufhidden=wipe
     nnoremap <silent><buffer> <leader>q :q<CR>
     nnoremap <silent><buffer> q :q<CR>
 endfunction
