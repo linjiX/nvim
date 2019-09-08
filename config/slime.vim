@@ -92,15 +92,7 @@ function s:SlimeSelectTerminal() abort
     call s:SlimeConfig(l:bufs)
 endfunction
 
-function s:SlimeSelectTerminalFast() abort
-    let l:temp = g:slime_sleep_time_ms
-    let g:slime_sleep_time_ms = 1
-    call s:SlimeSelectTerminal()
-    let g:slime_sleep_time_ms = l:temp
-endfunction
-
 nmap <silent> <leader>ec <Plug>SlimeConfig
-nmap <silent> <leader>eo :call <SID>SlimeSelectTerminalFast()<CR>
 nmap <silent> <leader>ea ggVG:call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend

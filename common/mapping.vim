@@ -32,8 +32,8 @@ cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-cnoremap <C-h> <S-Left>
-cnoremap <C-l> <S-Right>
+" cnoremap <C-h> <S-Left>
+" cnoremap <C-l> <S-Right>
 
 " insert mapping
 inoremap <C-x><C-a> <C-a>
@@ -46,6 +46,9 @@ inoremap <C-b> <Left>
 if has('nvim')
     cnoreabbrev terminal botright vsplit term://bash
     nnoremap <silent> <C-p> :botright vsplit term://bash<CR>
+    nnoremap <silent> <leader>ei :botright vsplit term://ipython3<CR>
+    nnoremap <silent> <leader>eb :botright vsplit term://bpython<CR>
+    nnoremap <silent> <leader>ep :botright vsplit term://ptpython3<CR>
     tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
@@ -54,6 +57,9 @@ if has('nvim')
 else
     set termwinkey=<C-v>
     nnoremap <silent> <C-p> :vertical botright terminal<CR>
+    nnoremap <silent> <leader>ei :vertical botright terminal ++close ipython<CR>
+    nnoremap <silent> <leader>eb :vertical botright terminal ++close bpython<CR>
+    nnoremap <silent> <leader>ep :vertical botright terminal ++close ptpython<CR>
     tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-v>h
     tnoremap <C-j> <C-v>j

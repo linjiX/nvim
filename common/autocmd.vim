@@ -32,7 +32,7 @@ endfunction
 
 augroup myBufType
     autocmd!
-    autocmd BufEnter * call s:AutoCmdBufType()
+    autocmd BufWinEnter * call s:AutoCmdBufType()
 augroup END
 
 if !has('nvim')
