@@ -52,6 +52,7 @@ Plug 'tomasr/molokai'
 
 "-- Edit --
 " Plug 'AndrewRadev/linediff.vim'
+" Plug 'AndrewRadev/switch.vim'
 " Plug 'jiangmiao/auto-pairs'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'

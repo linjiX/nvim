@@ -13,6 +13,7 @@ scriptencoding utf-8
 let g:ale_disable_lsp = 1
 let g:ale_linters = {
             \ 'vim': ['vint'],
+            \ 'gitcommit': ['gitlint'],
             \ 'cpp': ['CppCheck'],
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],

@@ -9,15 +9,15 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'
-let g:oct_number_pattern = '\d*\zs\d'
-let g:hex_number_pattern = '0(x|X)\x*\zs\x'
-let g:bin_number_pattern = '0(b|B)[01]*\zs[01]'
-let g:full_pattern = join([
-            \ g:true_false_pattern,
-            \ g:hex_number_pattern,
-            \ g:bin_number_pattern,
-            \ g:oct_number_pattern,
+let s:true_false_pattern = '\v<[Tt]rue>|<[Ff]alse>|<TRUE>|<FALSE>'
+let s:oct_number_pattern = '\d*\zs\d'
+let s:hex_number_pattern = '0(x|X)\x*\zs\x'
+let s:bin_number_pattern = '0(b|B)[01]*\zs[01]'
+let s:full_pattern = join([
+            \ s:true_false_pattern,
+            \ s:hex_number_pattern,
+            \ s:bin_number_pattern,
+            \ s:oct_number_pattern,
             \ ], '|')
 
 function s:AutoCmdGitrebaseSwapList() abort
@@ -34,28 +34,28 @@ endfunction
 
 function s:FallbackIncrement()
     nnoremap <Plug>SwapItFallbackIncrement <C-a>
-    call <SID>LocateNumber()
+    call search(s:full_pattern, 'c', line('.'))
     execute 'normal '. v:count1 ."\<Plug>SwapIncrement"
     nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
 endfunction
 
 function s:FallbackDecrement()
     nnoremap <Plug>SwapItFallbackDecrement <C-x>
-    call <SID>LocateNumber()
+    call search(s:full_pattern, 'c', line('.'))
     execute 'normal '. v:count1 ."\<Plug>SwapDecrement"
     nnoremap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
 endfunction
 
-function s:LocateNumber() abort
-    let l:pos = getpos('.')
-    let l:flag = search(g:true_false_pattern, 'cb', line('.'))
-    let l:col = col('.')
-    call setpos('.', l:pos)
-    if l:flag != 0 && l:pos[2] < l:col + strlen(expand('<cword>'))
-        return
-    endif
-    call search(g:full_pattern, 'c', line('.'))
-endfunction
+" function s:LocateNumber() abort
+"     let l:pos = getpos('.')
+"     let l:flag = search(g:true_false_pattern, 'cb', line('.'))
+"     let l:col = col('.')
+"     call setpos('.', l:pos)
+"     if l:flag != 0 && l:pos[2] < l:col + strlen(expand('<cword>'))
+"         return
+"     endif
+"     call search(g:full_pattern, 'c', line('.'))
+" endfunction
 
 augroup mySwapit
     autocmd!
@@ -63,5 +63,5 @@ augroup mySwapit
     autocmd FileType gitrebase call <SID>AutoCmdGitrebaseSwapList()
 augroup END
 
-nmap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
-nmap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
+nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
+nnoremap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
