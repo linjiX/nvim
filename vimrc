@@ -72,7 +72,6 @@ else
     set clipboard^=unnamedplus
 endif
 
-
 set foldmethod=syntax
 set foldlevel=100
 set foldnestmax=2

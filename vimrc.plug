@@ -54,6 +54,7 @@ Plug 'tomasr/molokai'
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'AndrewRadev/switch.vim'
 " Plug 'jiangmiao/auto-pairs'
+" Plug 'lilydjwg/fcitx.vim'
 " Plug 'mg979/vim-visual-multi'
 " Plug 'raimondi/delimitmate'
 " Plug 'terryma/vim-multiple-cursors'
@@ -64,6 +65,7 @@ Plug 'mjbrownie/swapit'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'xcodebuild/fcitx-vim-osx'
 
 " -- Formatter --
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}

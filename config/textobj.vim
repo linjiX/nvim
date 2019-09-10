@@ -21,17 +21,3 @@ omap aM <Plug>(textobj-comment-big-a)
 
 " Plug 'sgur/vim-textobj-parameter'
 let g:vim_textobj_parameter_mapping = 'a'
-
-" Plug 'kana/vim-textobj-function'
-" COC mapping the 'af' and 'if' for LS function textobj, but it doesn't work now
-function s:AutoCmdTextobj() abort
-    xmap af <Plug>(textobj-function-a)
-    omap af <Plug>(textobj-function-a)
-    xmap if <Plug>(textobj-function-i)
-    omap if <Plug>(textobj-function-i)
-endfunction
-
-augroup myTextobj
-    autocmd!
-    autocmd BufRead * call <SID>AutoCmdTextobj()
-augroup END
