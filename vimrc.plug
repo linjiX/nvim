@@ -92,7 +92,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'ludovicchabant/vim-gutentags'
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
@@ -100,7 +99,6 @@ Plug 'dense-analysis/ale'
 Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
-" Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
