@@ -14,4 +14,4 @@ let g:undotree_SetFocusWhenToggle = 1
 let g:undotree_SplitWidth = 70
 let g:undotree_DiffpanelHeight = 15
 
-nnoremap <leader>U :UndotreeToggle<CR>
+nnoremap <silent> <leader>U :UndotreeToggle<CR>

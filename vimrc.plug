@@ -118,9 +118,9 @@ Plug 'jpalardy/vim-slime'
 " Plug 'google/vim-maktaba'
 
 "-- Git --
+" Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 " Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
-Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
