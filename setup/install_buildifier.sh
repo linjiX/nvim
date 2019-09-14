@@ -5,6 +5,8 @@
 set -e
 set -v
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+
 VERSION="0.28.0"
 TARFILE=$VERSION.tar.gz
 DIR=buildtools-$VERSION
@@ -21,3 +23,5 @@ sudo cp bazel-bin/buildifier/linux_amd64_stripped/buildifier ~/.local/bin
 popd > /dev/null
 rm $TARFILE
 rm -rf $DIR
+
+popd > /dev/null

@@ -5,6 +5,8 @@
 set -e
 set -v
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+
 VERSION="1.88"
 TARFILE=$VERSION.tar.gz
 DIR=cppcheck-$VERSION
@@ -22,5 +24,6 @@ cmake ..
 make -j
 sudo make install
 
+popd > /dev/null
 popd > /dev/null
 popd > /dev/null
