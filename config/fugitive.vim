@@ -24,4 +24,4 @@ augroup myGit
     autocmd FileType GV call <SID>AutoCmdGV()
 augroup END
 
-cnoreabbrev <silent> Gstatus vertical botright Gstatus
+cnoreabbrev <silent> Gst vertical botright Gstatus

@@ -26,4 +26,4 @@ let g:startify_skiplist = [
             \ '/usr/share/vim',
             \ ]
 
-nnoremap <expr> <leader>S buffer#Open(":Startify\<CR>")
+nnoremap <expr><silent> <leader>S buffer#Open(":Startify\<CR>")

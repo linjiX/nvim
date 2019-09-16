@@ -17,3 +17,10 @@ function terminal#AutoCmdTerminal() abort
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!
 endfunction
+
+function terminal#AutoCmdNvimTerminal() abort
+    if &buftype ==# 'terminal'
+        normal! i
+        setlocal nonumber
+    endif
+endfunction

@@ -4,8 +4,7 @@
 
 ## Clone Vim configuration
 
-    cd ~
-    git clone --depth=1 https://github.com/linjiX/.vim.git
+    git clone --depth=1 https://github.com/linjiX/.vim.git ~/.vim
 
 ## Installation
 

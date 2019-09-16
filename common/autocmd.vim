@@ -24,15 +24,19 @@ function s:AutoCmdBufType() abort
         wincmd L
         nnoremap <silent><buffer> <leader>q :helpclose<CR>
         nnoremap <silent><buffer> q :helpclose<CR>
-    elseif has('nvim') && &buftype ==# 'terminal'
-        normal! i
-        setlocal nonumber
     endif
 endfunction
 
-augroup myBufType
+function s:AutoCmdWipeEmptyBuf() abort
+    if bufname('%') ==# '' && line('$') == 1 && getline(1) ==# ''
+        set bufhidden=wipe
+    endif
+endfunction
+
+augroup myBuffer
     autocmd!
     autocmd BufWinEnter * call s:AutoCmdBufType()
+    autocmd BufLeave * call s:AutoCmdWipeEmptyBuf()
 augroup END
 
 if !has('nvim')
@@ -84,6 +88,7 @@ augroup myTerminal
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
         autocmd TermOpen * nnoremap <silent><buffer> i :setlocal nonumber<CR>i
+        autocmd BufEnter * call terminal#AutoCmdNvimTerminal()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
     endif
