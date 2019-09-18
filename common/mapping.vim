@@ -65,7 +65,6 @@ else
     tnoremap <C-j> <C-v>j
     tnoremap <C-k> <C-v>k
     tnoremap <C-l> <C-v>l
-    tnoremap <C-v>n <Nop>
 endif
 
 " quickfix mapping

@@ -10,12 +10,21 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function terminal#AutoCmdTerminal() abort
-    setlocal bufhidden=wipe
+    " setlocal bufhidden=wipe
     setlocal nobuflisted
-    " setlocal nomodifiable
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!
+    if has('nvim')
+        setlocal bufhidden=wipe
+        nnoremap <silent><buffer> i :setlocal nonumber<CR>i
+    endif
+endfunction
+
+function terminal#AutoCmdWipeTerminal() abort
+    if &buftype ==# 'terminal'
+        set bufhidden=wipe
+    endif
 endfunction
 
 function terminal#AutoCmdNvimTerminal() abort

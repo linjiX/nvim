@@ -28,7 +28,12 @@ function s:AutoCmdBufType() abort
 endfunction
 
 function s:AutoCmdWipeEmptyBuf() abort
+    if exists('b:stored_bufhidden')
+        let &bufhidden = b:stored_bufhidden
+        unlet b:stored_bufhidden
+    endif
     if bufname('%') ==# '' && line('$') == 1 && getline(1) ==# ''
+        let b:stored_bufhidden = &bufhidden
         set bufhidden=wipe
     endif
 endfunction
@@ -87,9 +92,9 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd TermOpen * nnoremap <silent><buffer> i :setlocal nonumber<CR>i
         autocmd BufEnter * call terminal#AutoCmdNvimTerminal()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
+        autocmd QuitPre * call terminal#AutoCmdWipeTerminal()
     endif
 augroup END
