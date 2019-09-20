@@ -5,6 +5,10 @@
 set -e
 set -v
 
+###################
+# Install Riggrep #
+###################
+
 VERSION="11.0.2"
 DEBFILE=ripgrep_${VERSION}_amd64.deb
 

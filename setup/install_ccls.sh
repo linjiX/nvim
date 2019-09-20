@@ -4,10 +4,13 @@
 # http://apt.llvm.org/
 # https://github.com/MaskRay/ccls
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 set -e
 set -v
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+################
+# Install ccls #
+################
 
 if [ ! -d 'ccls' ]; then
     # ppa for CMake

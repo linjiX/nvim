@@ -2,10 +2,13 @@
 
 # https://www.gnu.org/software/global/
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 set -e
 set -v
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+######################
+# Install GNU Global #
+######################
 
 VERSION="6.6.3"
 TARFILE=global-$VERSION.tar.gz

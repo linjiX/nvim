@@ -2,10 +2,13 @@
 
 # https://github.com/bazelbuild/buildtools/tree/master/buildifier
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 set -e
 set -v
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+######################
+# Install Buildifier #
+######################
 
 VERSION="0.28.0"
 TARFILE=$VERSION.tar.gz

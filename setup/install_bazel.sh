@@ -5,6 +5,10 @@
 set -e
 set -v
 
+#################
+# Install Bazel #
+#################
+
 sudo apt-get update
 sudo apt-get install -y openjdk-8-jdk curl
 

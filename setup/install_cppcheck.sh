@@ -2,10 +2,13 @@
 
 # http://cppcheck.sourceforge.net/
 
+pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 set -e
 set -v
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+####################
+# Install cppcheck #
+####################
 
 VERSION="1.88"
 TARFILE=$VERSION.tar.gz
