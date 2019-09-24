@@ -18,7 +18,8 @@ syntax enable
 syntax on
 
 " source all configurations
-let s:configs = ['~/.vim/vimrc.plug'] + split(glob('~/.vim/common/*.vim'))
+source ~/.vim/vimrc.plug
+let s:configs = split(glob('~/.vim/common/*.vim'))
 if !exists('g:auto_installation')
     let s:configs += split(glob('~/.vim/config/*.vim'))
 endif
@@ -39,7 +40,7 @@ set cursorline
 set cursorcolumn
 set colorcolumn=100
 set textwidth=0
-" set splitright
+set splitright
 " set splitbelow
 
 set list
@@ -91,4 +92,3 @@ if has('nvim')
                 \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 endif
-

@@ -9,6 +9,9 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Plug 'vim-airline/vim-airline-themes'
+let airline_solarized_enable_command_color = 1
+
 " Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
