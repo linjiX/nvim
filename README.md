@@ -44,3 +44,38 @@ Then enable it in your terminal.
     :PlugUpdate
     :CocUpdateSync
     :qa
+
+## Language Support
+
+#### Git
+
+    pip3 install gitlint
+
+#### Python
+
+    pip3 install yapf isort ipython pylint flake8
+
+#### C/C++
+
+    ./setup/install_clang_format.sh
+    ./setup/install_cppcheck.sh
+    ./setup/install_ccls.sh
+
+#### Bazel
+
+    ./setup/install_bazel.sh
+    ./setup/install_buildifier.sh
+
+#### Json
+
+    pip3 install demjson
+    npm install --global prettier
+
+#### Markdown
+
+    npm install --global prettier
+
+#### VimScript
+
+    pip3 install vim-vint
+

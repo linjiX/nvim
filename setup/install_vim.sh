@@ -9,11 +9,12 @@ pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
 set -e
 set -v
 
-###################
-# Install Vim 8.1 #
-###################
+#############################
+# Install Vim 8.1 && NeoVim #
+#############################
 
 sudo add-apt-repository -y ppa:jonathonf/vim
+sudo apt-add-repository -y ppa:neovim-ppa/unstable
 sudo apt-get update
 sudo apt-get install -y \
     autoconf \
@@ -21,6 +22,7 @@ sudo apt-get install -y \
     vim-scripts \
     vim-doc \
     vim-gtk \
+    neovim \
     python3-dev \
     silversearcher-ag
 

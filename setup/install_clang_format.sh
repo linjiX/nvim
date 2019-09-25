@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# https://releases.llvm.org/8.0.0/tools/clang/docs/ClangFormat.html
+
+set -e
+set -v
+
+########################
+# Install clang-format #
+########################
+
+sudo apt-add-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+
+sudo apt-get update
+sudo apt-get install -y clang-format-8
+sudo ln -sf /usr/bin/clang-format-8 /usr/bin/clang-format

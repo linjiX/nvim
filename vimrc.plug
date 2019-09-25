@@ -106,7 +106,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-endwise'
 
 "-- python --
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Plug 'jpalardy/vim-slime', {'for': ['python', 'sh', 'markdown']}
 Plug 'jpalardy/vim-slime'
 " Plug 'jalvesaq/vimcmdline'

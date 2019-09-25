@@ -10,7 +10,7 @@ set -v
 # Install cppcheck #
 ####################
 
-VERSION="1.88"
+VERSION="1.89"
 TARFILE=$VERSION.tar.gz
 DIR=cppcheck-$VERSION
 sudo apt-get update

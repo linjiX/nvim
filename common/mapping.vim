@@ -49,6 +49,7 @@ if has('nvim')
     nnoremap <silent> <leader>ei :botright vsplit term://ipython3<CR>
     nnoremap <silent> <leader>eb :botright vsplit term://bpython<CR>
     nnoremap <silent> <leader>ep :botright vsplit term://ptpython3<CR>
+    nnoremap <silent> <leader>eh :botright vsplit term://htop<CR>
     tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
     tnoremap <C-h> <C-\><C-n><C-w>h
     tnoremap <C-j> <C-\><C-n><C-w>j
@@ -57,9 +58,10 @@ if has('nvim')
 else
     set termwinkey=<C-v>
     nnoremap <silent> <C-p> :vertical botright terminal<CR>
-    nnoremap <silent> <leader>ei :vertical botright terminal ++close ipython<CR>
+    nnoremap <silent> <leader>ei :vertical botright terminal ++close ipython3<CR>
     nnoremap <silent> <leader>eb :vertical botright terminal ++close bpython<CR>
-    nnoremap <silent> <leader>ep :vertical botright terminal ++close ptpython<CR>
+    nnoremap <silent> <leader>ep :vertical botright terminal ++close ptpython3<CR>
+    nnoremap <silent> <leader>eh :vertical botright terminal ++close htop<CR>
     tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-v>h
     tnoremap <C-j> <C-v>j

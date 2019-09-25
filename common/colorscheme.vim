@@ -46,6 +46,7 @@ function s:AutoCmdColorScheme() abort
 endfunction
 
 function s:AutoCmdSolarzed() abort
+    highlight CursorLineNr term=bold cterm=bold ctermfg=11 gui=bold guifg=Yellow
     highlight UserFloating ctermbg=232
     highlight link CocFloating UserFloating
     highlight link EchoDocFloat UserFloating
