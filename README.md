@@ -6,13 +6,7 @@
 
     git clone --depth=1 https://github.com/linjiX/.vim.git ~/.vim
 
-## Installation
-
-**Install nodejs:**
-
-    curl -sL install-node.now.sh/lts | sudo bash
-
-**Run vim installation scripts (for ubuntu 16.04):**
+## Installation (Ubuntu 16.04)
 
     ~/.vim/setup/install_vim.sh
 
@@ -24,6 +18,7 @@ Vim may meet some display issues in your machine.
 The reason is your terminal font doesn't support powerline or nerd-fonts.  
 Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>  
 
+    # For Ubuntu 16.04
     mkdir -p ~/.local/share/fonts
     git clone --depth=1 https://github.com/linjiX/Consolas-with-Yahei.git
     cp Consolas-with-Yahei/ttf/* ~/.local/share/fonts/
@@ -55,13 +50,13 @@ Then enable it in your terminal.
 
     pip3 install yapf isort ipython pylint flake8
 
-#### C/C++
+#### C/C++ (Ubuntu 16.04)
 
     ./setup/install_clang_format.sh
     ./setup/install_cppcheck.sh
     ./setup/install_ccls.sh
 
-#### Bazel
+#### Bazel (Ubuntu 16.04)
 
     ./setup/install_bazel.sh
     ./setup/install_buildifier.sh
