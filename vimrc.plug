@@ -29,7 +29,9 @@ endif
 call plug#begin('~/.vim/plug')
 
 "-- Help --
-Plug 'yianwillis/vimcdoc'
+if !has('nvim')
+    Plug 'yianwillis/vimcdoc'
+endif
 
 "-- Menu --
 " Plug 'Xuyuanp/nerdtree-git-plugin'
