@@ -19,7 +19,13 @@ function s:AutoCmdPlugInstall() abort
     let g:plug_window = 'buffer'
     PlugInstall --sync
     source $MYVIMRC
-    CocInstall -sync coc-word coc-highlight coc-snippets
+    CocInstall -sync
+                \ coc-word
+                \ coc-highlight
+                \ coc-snippets
+                \ coc-json
+                \ coc-python
+                \ coc-vimlsp
     while s:HasTermianl()
         sleep 1
     endwhile
@@ -30,6 +36,7 @@ function setup#AutoInstallation() abort
     let g:auto_installation = 1
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
                 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !mkdir -p ~/.config
     silent !ln -sf ~/.vim ~/.config/nvim
     silent !ln -sf ~/.vim/vimrc ~/.config/nvim/init.vim
     augroup mySetup

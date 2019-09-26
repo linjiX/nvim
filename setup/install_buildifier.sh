@@ -10,13 +10,17 @@ set -v
 # Install Buildifier #
 ######################
 
-VERSION="0.28.0"
+VERSION="0.29.0"
 TARFILE=$VERSION.tar.gz
 DIR=buildtools-$VERSION
 
-wget https://github.com/bazelbuild/buildtools/archive/$TARFILE
+if [ ! -d $DIR ]; then
+    wget https://github.com/bazelbuild/buildtools/archive/$TARFILE
 
-tar -xvf $TARFILE
+    tar -xvf $TARFILE
+    rm $TARFILE
+fi
+
 pushd $DIR > /dev/null
 bazel build //buildifier
 

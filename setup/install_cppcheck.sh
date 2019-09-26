@@ -13,15 +13,21 @@ set -v
 VERSION="1.89"
 TARFILE=$VERSION.tar.gz
 DIR=cppcheck-$VERSION
-sudo apt-get update
-sudo apt-get install -y cmake make php7.0-xml
 
-wget https://github.com/danmar/cppcheck/archive/$TARFILE
+if [ ! -d $DIR ]; then
+    sudo apt-get update
+    sudo apt-get install -y \
+        cmake \
+        make \
+        php7.0-xml
 
-tar -xvf $TARFILE
-rm $TARFILE
+    wget https://github.com/danmar/cppcheck/archive/$TARFILE
+    tar -xvf $TARFILE
+    rm $TARFILE
+fi
+
 pushd $DIR > /dev/null
-mkdir build
+mkdir -p build
 pushd build > /dev/null
 cmake ..
 make -j

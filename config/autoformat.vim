@@ -34,5 +34,5 @@ let g:formatters_markdown = ['prettier']
 
 let g:autoformat_verbosemode = 0
 
-nnoremap <leader>a :Autoformat<CR>
-vnoremap <leader>a :Autoformat<CR>
+nnoremap <silent> <leader>a :Autoformat<CR>
+vnoremap <silent> <leader>a :Autoformat<CR>
