@@ -9,12 +9,14 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Window Navigator Mapping is done by Plug 'christoomey/vim-tmux-navigator'
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-l> <C-w>l
+
 " normal mode mapping
 nnoremap Y y$
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
 
 nnoremap <silent> <C-w>m :tabnew %<CR>
 nnoremap <silent> <C-w><C-m> :tabnew %<CR>

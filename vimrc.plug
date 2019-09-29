@@ -184,6 +184,7 @@ Plug 'ronakg/quickr-preview.vim'
 
 "-- tmux --
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
+Plug 'christoomey/vim-tmux-navigator'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
