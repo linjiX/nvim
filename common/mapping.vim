@@ -50,7 +50,7 @@ if has('nvim')
     nnoremap <silent> <C-p> :botright vsplit term://bash<CR>
     nnoremap <silent> <leader>ei :botright vsplit term://ipython3<CR>
     nnoremap <silent> <leader>eb :botright vsplit term://bpython<CR>
-    nnoremap <silent> <leader>ep :botright vsplit term://ptpython3<CR>
+    nnoremap <silent> <leader>et :botright vsplit term://ptpython3<CR>
     nnoremap <silent> <leader>eh :botright vsplit term://htop<CR>
     tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
 
@@ -70,7 +70,7 @@ else
     nnoremap <silent> <C-p> :vertical botright terminal<CR>
     nnoremap <silent> <leader>ei :vertical botright terminal ++close ipython3<CR>
     nnoremap <silent> <leader>eb :vertical botright terminal ++close bpython<CR>
-    nnoremap <silent> <leader>ep :vertical botright terminal ++close ptpython3<CR>
+    nnoremap <silent> <leader>et :vertical botright terminal ++close ptpython3<CR>
     nnoremap <silent> <leader>eh :vertical botright terminal ++close htop<CR>
     tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-v>h

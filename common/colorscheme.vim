@@ -33,6 +33,7 @@ function s:AutoCmdColorScheme() abort
     highlight link CocHintHighlight UserInfo
 
     highlight link CocHighlightText CursorLine
+    highlight link HighlightedyankRegion StatusLine
 
     highlight link ALEErrorSign UserErrorSign
     highlight link ALEWarningSign UserWarningSign

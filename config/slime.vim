@@ -28,6 +28,8 @@ if has('nvim')
                     \                     : [a:1, g:slime_sleep_time_ms * 2]
         execute 'botright vsplit term://'. l:cmd
         stopinsert
+        set nonumber
+        let b:terminal_navigate = 1
         execute 'sleep'. l:sleep .'m'
         return [bufnr('%')]
     endfunction
@@ -93,8 +95,9 @@ function s:SlimeSelectTerminal() abort
 endfunction
 
 nmap <silent> <leader>ec <Plug>SlimeConfig
-nmap <silent> <leader>ea ggVG:call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
+nmap <silent> <leader>ea :call <SID>SlimeSelectTerminal()<CR>
+            \:call slime#send_range(1, line('$'))<CR>
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
-nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend
-nmap <silent> <leader>el :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeLineSend
+nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeLineSend
+nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend
 nmap <silent> <leader>em :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeMotionSend

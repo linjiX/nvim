@@ -17,13 +17,14 @@ let g:startify_bookmarks = [
             \ {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
             \ {'b': '~/.config/dotfiles/bashrc'},
             \ {'t': '~/.config/dotfiles/tmux.conf'},
-            \ {'a': '~/.config/alacritty/alacritty.yml'},
             \ ]
 let g:startify_skiplist = [
             \ $HOME .'/.vim',
             \ $HOME .'/.bashrc',
-            \ '/usr/share/nvim',
             \ '/usr/share/vim',
+            \ '/usr/share/nvim',
+            \ '/usr/local/Cellar/vim',
+            \ '/usr/local/Cellar/neovim',
             \ ]
 
 nnoremap <expr><silent> <leader>S buffer#Open(":Startify\<CR>")

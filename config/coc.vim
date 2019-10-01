@@ -90,6 +90,8 @@ nnoremap <silent> <leader>le :CocList --normal extensions<CR>
 nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
 nnoremap <silent> <leader>lx :CocCommand<CR>
 
+nnoremap <silent> <leader>y :CocList --normal yank<CR>
+
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
 nnoremap <silent> <leader><DOWN> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<CR>

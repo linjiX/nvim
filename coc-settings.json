@@ -57,5 +57,8 @@
     "python.linting.enabled": false,
     "python.pythonPath": "python3",
 
+    "yank.list.maxsize": 20,
+    "yank.highlight.duration": 350,
+
     "xml.java.home": "/usr/lib/jvm/java-8-openjdk-amd64"
 }
