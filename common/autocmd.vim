@@ -44,16 +44,16 @@ augroup myBuffer
     autocmd BufLeave * call s:AutoCmdWipeEmptyBuf()
 augroup END
 
-if !has('nvim')
-    augroup mySource
-        autocmd!
-        " autocmd BufWritePost $MYVIMRC source %
-        autocmd BufWritePost ~/.vim/vimrc.plug source %
-        autocmd BufWritePost ~/.vim/common/*.vim source %
-        autocmd BufWritePost ~/.vim/plugin/*.vim source %
-        autocmd BufWritePost ~/.vim/autoload/*.vim source %
-    augroup END
-endif
+augroup mySource
+    autocmd!
+    if has('nvim')
+        autocmd BufWritePost $MYVIMRC source %
+    endif
+    autocmd BufWritePost ~/.vim/vimrc.plug source %
+    autocmd BufWritePost ~/.vim/common/*.vim source %
+    autocmd BufWritePost ~/.vim/plugin/*.vim source %
+    autocmd BufWritePost ~/.vim/autoload/*.vim source %
+augroup END
 
 augroup myFileType
     autocmd!
@@ -92,7 +92,9 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd BufEnter * call terminal#AutoCmdNvimTerminal()
+        autocmd TermClose * quit
+        autocmd TermEnter * setlocal nonumber
+        autocmd BufEnter term://* call terminal#AutoCmdNvimTerminal()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
         autocmd QuitPre * call terminal#AutoCmdWipeTerminal()

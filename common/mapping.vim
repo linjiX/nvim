@@ -53,10 +53,18 @@ if has('nvim')
     nnoremap <silent> <leader>ep :botright vsplit term://ptpython3<CR>
     nnoremap <silent> <leader>eh :botright vsplit term://htop<CR>
     tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
-    tnoremap <C-h> <C-\><C-n><C-w>h
-    tnoremap <C-j> <C-\><C-n><C-w>j
-    tnoremap <C-k> <C-\><C-n><C-w>k
-    tnoremap <C-l> <C-\><C-n><C-w>l
+
+    function s:Navigate(cmd) abort
+        let l:esc = "\<C-\>\<C-n>"
+        let l:flag = ":let b:terminal_navigate = 1\<CR>"
+        let l:wincmd = "\<C-w>". a:cmd
+        return l:esc . l:flag . l:wincmd
+    endfunction
+
+    tnoremap <expr><silent> <C-h> <SID>Navigate('h')
+    tnoremap <expr><silent> <C-j> <SID>Navigate('j')
+    tnoremap <expr><silent> <C-k> <SID>Navigate('k')
+    tnoremap <expr><silent> <C-l> <SID>Navigate('l')
 else
     set termwinkey=<C-v>
     nnoremap <silent> <C-p> :vertical botright terminal<CR>

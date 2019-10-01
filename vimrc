@@ -82,11 +82,6 @@ set foldnestmax=2
 set noshowmode
 set shortmess+=c
 
-" Change cursor shape in different modes
-let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
-let &t_SR .= "\e[3 q" "SR = REPLACE mode
-let &t_SI .= "\e[5 q" "SI = INSERT mode
-
 if has('nvim')
     set inccommand=nosplit
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
@@ -94,4 +89,8 @@ if has('nvim')
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 else
     set encoding=utf-8
+    " Change cursor shape in different modes
+    let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
+    let &t_SR .= "\e[3 q" "SR = REPLACE mode
+    let &t_SI .= "\e[5 q" "SI = INSERT mode
 endif

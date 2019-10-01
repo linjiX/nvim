@@ -17,7 +17,7 @@ function terminal#AutoCmdTerminal() abort
     cnoreabbrev <buffer> q q!
     if has('nvim')
         setlocal bufhidden=wipe
-        nnoremap <silent><buffer> i :setlocal nonumber<CR>i
+        startinsert
     endif
 endfunction
 
@@ -28,8 +28,8 @@ function terminal#AutoCmdWipeTerminal() abort
 endfunction
 
 function terminal#AutoCmdNvimTerminal() abort
-    if &buftype ==# 'terminal'
-        normal! i
-        setlocal nonumber
+    if exists('b:terminal_navigate')
+        unlet b:terminal_navigate
+        startinsert
     endif
 endfunction
