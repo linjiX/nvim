@@ -32,6 +32,8 @@ let g:formatdef_json_tool = "'python3 -m json.tool'"
 let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 
+let g:formatters_sh = ['shfmt']
+
 let g:autoformat_verbosemode = 0
 
 nnoremap <silent> <leader>a :Autoformat<CR>

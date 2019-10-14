@@ -2,7 +2,7 @@
 
 # https://github.com/bazelbuild/buildtools/tree/master/buildifier
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -21,14 +21,14 @@ if [ ! -d $DIR ]; then
     rm $TARFILE
 fi
 
-pushd $DIR > /dev/null
+pushd $DIR >/dev/null
 bazel build //buildifier
 
 mkdir -p ~/.local/bin
 sudo cp bazel-bin/buildifier/linux_amd64_stripped/buildifier ~/.local/bin
 
-popd > /dev/null
+popd >/dev/null
 rm $TARFILE
 rm -rf $DIR
 
-popd > /dev/null
+popd >/dev/null

@@ -4,7 +4,7 @@
 # http://apt.llvm.org/
 # https://github.com/MaskRay/ccls
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -15,11 +15,11 @@ set -v
 if [ ! -d 'ccls' ]; then
     # ppa for CMake
     sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null |
         sudo apt-key add -
     # ppa for LLVM
     sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | \
+    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key |
         sudo apt-key add -
     # ppa for gcc
     sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
@@ -33,9 +33,9 @@ if [ ! -d 'ccls' ]; then
 
     # Clone ccls source code
     git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-    pushd ccls > /dev/null
+    pushd ccls >/dev/null
 else
-    pushd ccls > /dev/null
+    pushd ccls >/dev/null
     git pull
 fi
 
@@ -51,5 +51,5 @@ cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
 cmake --build Release -j
 sudo cmake --build Release --target install
 
-popd > /dev/null
-popd > /dev/null
+popd >/dev/null
+popd >/dev/null

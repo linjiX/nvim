@@ -2,7 +2,7 @@
 
 # http://cppcheck.sourceforge.net/
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -26,13 +26,13 @@ if [ ! -d $DIR ]; then
     rm $TARFILE
 fi
 
-pushd $DIR > /dev/null
+pushd $DIR >/dev/null
 mkdir -p build
-pushd build > /dev/null
+pushd build >/dev/null
 cmake ..
 make -j
 sudo make install
 
-popd > /dev/null
-popd > /dev/null
-popd > /dev/null
+popd >/dev/null
+popd >/dev/null
+popd >/dev/null

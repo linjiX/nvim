@@ -14,6 +14,7 @@ let g:ale_disable_lsp = 1
 let g:ale_linters = {
             \ 'vim': ['vint'],
             \ 'gitcommit': ['gitlint'],
+            \ 'sh': ['shellcheck'],
             \ 'cpp': ['CppCheck'],
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],

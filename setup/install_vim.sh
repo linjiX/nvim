@@ -5,7 +5,7 @@ if [ -f ~/.vimrc ]; then
     exit
 fi
 
-pushd $(dirname ${BASH_SOURCE[0]}) > /dev/null
+pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -38,4 +38,4 @@ sudo apt-get install -y \
 
 vim
 
-popd > /dev/null
+popd >/dev/null

@@ -16,7 +16,7 @@ It will take a long time, make sure your network is unblocked and be patient.
 
 Vim may meet some display issues in your machine.  
 The reason is your terminal font doesn't support powerline or nerd-fonts.  
-Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>  
+Here is a recommended font: <https://github.com/linjiX/Consolas-with-Yahei>
 
     # For Ubuntu 16.04
     mkdir -p ~/.local/share/fonts
@@ -46,6 +46,12 @@ Then enable it in your terminal.
 
     pip3 install gitlint
 
+#### Bash
+
+    npm install --global bash-language-server
+    apt-get install -y shellcheck
+    snap install shfmt
+
 #### Python
 
     pip3 install yapf isort ipython pylint flake8
@@ -73,4 +79,3 @@ Then enable it in your terminal.
 #### VimScript
 
     pip3 install vim-vint
-
