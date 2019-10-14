@@ -19,6 +19,7 @@ let g:ale_linters = {
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],
             \ 'json': ['Jsonlint'],
+            \ 'Dockerfile': ['hadolint'],
             \ }
 let g:ale_python_flake8_options = '--max-line-length=99'
 let g:ale_linters_explicit = 1

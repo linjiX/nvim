@@ -76,6 +76,11 @@ Then enable it in your terminal.
 
     npm install --global prettier
 
+#### Dockerfile
+
+    npm install --global dockerfile-language-server-nodejs
+    ./setup/install_hadolint.sh
+
 #### VimScript
 
     pip3 install vim-vint
