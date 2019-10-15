@@ -25,8 +25,8 @@ function quickfix#ListToggle(cmd) abort
 endfunction
 
 function quickfix#AutoCmdQuickFix() abort
-    setlocal bufhidden=delete
-    silent! setlocal nobuflisted
+    " setlocal bufhidden=delete
+    " silent! setlocal nobuflisted
     nnoremap <silent><buffer> <CR> :pclose<CR><CR>:cclose<CR>:lclose<CR>
     nnoremap <silent><buffer> q :call <SID>PLCclose()<CR>
     nnoremap <silent><buffer> <leader>q :call <SID>PLCclose()<CR>

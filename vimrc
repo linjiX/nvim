@@ -8,7 +8,9 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+if !has('nvim')
+    set encoding=utf-8
+endif
 " set nocompatible
 set nobackup
 let mapleader="\<Space>"
@@ -88,7 +90,6 @@ if has('nvim')
                 \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 else
-    set encoding=utf-8
     " Change cursor shape in different modes
     let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
     let &t_SR .= "\e[3 q" "SR = REPLACE mode
