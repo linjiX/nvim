@@ -33,6 +33,8 @@ let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 
 let g:formatters_sh = ['shfmt']
+let g:formatdef_cmake_format = "'cmake-format --line-width=100 --tab-size=4 --enable-markup=false -'"
+let g:formatters_cmake = ['cmake_format']
 
 let g:autoformat_verbosemode = 0
 

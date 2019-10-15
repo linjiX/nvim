@@ -76,6 +76,11 @@ Then enable it in your terminal.
 
     npm install --global prettier
 
+#### Cmake
+
+    pip3 install cmake_format
+    pip3 install cmakelint
+
 #### Dockerfile
 
     npm install --global dockerfile-language-server-nodejs
