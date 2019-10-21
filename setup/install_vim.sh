@@ -26,6 +26,7 @@ sudo apt-get install -y \
     neovim \
     nodejs \
     python3-dev \
+    openjdk-8-jdk \
     silversearcher-ag
 
 ./install_ctags.sh

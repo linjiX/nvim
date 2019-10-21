@@ -26,6 +26,10 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-json
                 \ coc-python
                 \ coc-vimlsp
+                \ coc-phpls
+    if has('macunix')
+        CocInstall -sync coc-yank
+    endif
     while s:HasTermianl()
         sleep 1
     endwhile

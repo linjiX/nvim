@@ -24,6 +24,12 @@ function! s:CheckBackSpace() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" coc-xml
+let s:java_home =
+            \ has('macunix') ? '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home'
+            \                : '/usr/lib/jvm/java-8-openjdk-amd64'
+call coc#config('xml.java.home', s:java_home)
+
 function! s:ShowDocumentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
