@@ -200,11 +200,7 @@ function ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
     belowright copen
-    autocmd myALE WinLeave *
-                \ if &buftype == 'quickfix' |
-                \     let g:ale_set_quickfix = 0 |
-                \     autocmd! myALE WinLeave |
-                \ endif
+    autocmd myALE WinLeave * ++once let g:ale_set_quickfix = 0
 endfunction
 
 function s:AutoCmdALEFixSuggest() abort

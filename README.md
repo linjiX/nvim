@@ -49,8 +49,8 @@ Then enable it in your terminal.
 #### Bash
 
     npm install --global bash-language-server
-    apt-get install -y shellcheck
     snap install shfmt
+    snap install shellcheck
 
 #### Python
 
