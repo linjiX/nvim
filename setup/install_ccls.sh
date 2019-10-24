@@ -18,7 +18,7 @@ if [ ! -d 'ccls' ]; then
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null |
         sudo apt-key add -
     # ppa for LLVM
-    sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-8 main'
+    sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
     wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key |
         sudo apt-key add -
     # ppa for gcc
@@ -28,7 +28,7 @@ if [ ! -d 'ccls' ]; then
     sudo apt-get install -y \
         cmake \
         g++-7 \
-        llvm-8 libclang-8-dev clang-8 \
+        llvm-9 libclang-9-dev clang-9 \
         zlib1g-dev libncurses-dev
 
     # Clone ccls source code
@@ -36,6 +36,7 @@ if [ ! -d 'ccls' ]; then
     pushd ccls >/dev/null
 else
     pushd ccls >/dev/null
+    rm -rf Release/
     git pull
 fi
 
@@ -44,9 +45,9 @@ export CC=/usr/bin/gcc-7
 export CXX=/usr/bin/g++-7
 
 cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-8 \
-    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-8/include \
-    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-8/
+    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-9 \
+    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-9/include \
+    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-9/
 
 cmake --build Release -j
 sudo cmake --build Release --target install

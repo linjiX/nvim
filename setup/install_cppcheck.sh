@@ -27,10 +27,15 @@ if [ ! -d $DIR ]; then
 fi
 
 pushd $DIR >/dev/null
+rm -rf build
 mkdir -p build
 pushd build >/dev/null
 cmake ..
-make -j
+if [[ -z $DOCKER ]]; then
+    make -j
+else
+    make
+fi
 sudo make install
 
 popd >/dev/null

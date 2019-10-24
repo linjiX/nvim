@@ -27,6 +27,7 @@ bazel build //buildifier
 mkdir -p ~/.local/bin
 sudo cp bazel-bin/buildifier/linux_amd64_stripped/buildifier ~/.local/bin
 
+bazel clean
 popd >/dev/null
 rm -rf $DIR
 
