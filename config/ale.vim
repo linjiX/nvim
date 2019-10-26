@@ -47,7 +47,7 @@ call ale#linter#Define('cpp', {
             \   'name': 'CppCheck',
             \   'output_stream': 'both',
             \   'executable': 'cppcheck',
-            \   'command': '%e -q --language=c++ --enable=all --platform=unix64 '.
+            \   'command': '%e -q --language=c++ --std=c++14 --enable=all --platform=unix64 '.
             \              '--suppress=unusedFunction '.
             \              '--suppress=unusedStructMember '.
             \              '--template="{file}:{line}:{column} {severity}:{id}:{message}" '.

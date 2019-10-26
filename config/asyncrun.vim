@@ -45,7 +45,7 @@ endfunction
 nnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(0, 0, 0)
 nnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(0, 0, 1)
 nnoremap <expr><silent> <leader># <SID>AsyncStarCommand(0, 1, 0)
-nnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(0, 1, 1)
+nnoremap <expr><silent> <leader>g# <SID>AsyncStarCommand(0, 1, 1)
 
 vnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(1, 0, 1)
 vnoremap <expr><silent> <leader>g* <SID>AsyncStarCommand(1, 0, 1)
