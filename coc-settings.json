@@ -58,5 +58,7 @@
     "python.pythonPath": "python3",
 
     "yank.list.maxsize": 20,
-    "yank.highlight.duration": 350
+    "yank.highlight.duration": 350,
+
+    "translator.maxsize": 100
 }

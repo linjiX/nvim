@@ -29,6 +29,7 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-phpls
                 \ coc-docker
                 \ coc-sh
+                \ coc-translator
                 " \ coc-xml
     if has('macunix')
         CocInstall -sync coc-yank

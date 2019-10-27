@@ -51,7 +51,7 @@ augroup mySource
     endif
     autocmd BufWritePost ~/.vim/vimrc.plug source %
     autocmd BufWritePost ~/.vim/common/*.vim source %
-    autocmd BufWritePost ~/.vim/plugin/*.vim source %
+    autocmd BufWritePost ~/.vim/config/*.vim source %
     autocmd BufWritePost ~/.vim/autoload/*.vim source %
 augroup END
 

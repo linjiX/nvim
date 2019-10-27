@@ -90,13 +90,19 @@ nmap <silent> <leader>lj <Plug>(coc-float-jump)
 nmap <silent> ]j <Plug>(coc-diagnostic-next)
 nmap <silent> [j <Plug>(coc-diagnostic-prev)
 
-nnoremap <silent> <leader>t :call CocAction('doHover')<CR>
+nnoremap <silent> <leader>tt :call CocAction('doHover')<CR>
 nnoremap <silent> <leader>d :CocList --normal diagnostics<CR>
 nnoremap <silent> <leader>le :CocList --normal extensions<CR>
 nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
 nnoremap <silent> <leader>lx :CocCommand<CR>
 
 nnoremap <silent> <leader>y :CocList --normal yank<CR>
+
+" coc-translator
+nmap <silent> <leader>tp <Plug>(coc-translator-p)
+nmap <silent> <leader>te <Plug>(coc-translator-e)
+nmap <silent> <leader>tr <Plug>(coc-translator-r)
+nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
