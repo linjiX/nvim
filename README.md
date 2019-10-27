@@ -48,7 +48,6 @@ Then enable it in your terminal.
 
 #### Bash
 
-    npm install --global bash-language-server
     snap install shfmt
     snap install shellcheck
 
@@ -82,7 +81,6 @@ Then enable it in your terminal.
 
 #### Dockerfile
 
-    npm install --global dockerfile-language-server-nodejs
     ./setup/install_hadolint.sh
 
 #### VimScript

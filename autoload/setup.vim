@@ -27,6 +27,8 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-python
                 \ coc-vimlsp
                 \ coc-phpls
+                \ coc-docker
+                \ coc-sh
                 " \ coc-xml
     if has('macunix')
         CocInstall -sync coc-yank
