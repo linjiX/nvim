@@ -10,6 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !has('nvim')
     set encoding=utf-8
+    set ttimeoutlen=50
 endif
 " set nocompatible
 set nobackup

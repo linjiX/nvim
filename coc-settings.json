@@ -60,5 +60,7 @@
     "yank.list.maxsize": 20,
     "yank.highlight.duration": 350,
 
-    "translator.maxsize": 100
+    "translator.maxsize": 100,
+
+    "imselect.defaultInput": "com.apple.keylayout.ABC"
 }
