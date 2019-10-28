@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://github.com/bazelbuild/buildtools/tree/master/buildifier
+# https://github.com/mvdan/sh
 
 set -e
 set -v
@@ -13,6 +13,6 @@ fi
 
 GOPATH="$(mktemp -d)"
 export GOPATH
-go get github.com/bazelbuild/buildtools/buildifier
+go get mvdan.cc/sh/cmd/shfmt
 mkdir -p ~/.local/bin
-cp "$GOPATH/bin/buildifier" ~/.local/bin
+cp "$GOPATH/bin/shfmt" ~/.local/bin

@@ -48,7 +48,7 @@ Then enable it in your terminal.
 
 #### Bash
 
-    snap install shfmt
+    ./setup/install_shfmt.sh
     snap install shellcheck
 
 #### Python
