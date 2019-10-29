@@ -2,7 +2,6 @@
 
 # http://cppcheck.sourceforge.net/
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -14,21 +13,21 @@ VERSION="1.89"
 TARFILE=$VERSION.tar.gz
 DIR=cppcheck-$VERSION
 
-if [ ! -d $DIR ]; then
+if ! dpkg -s cmake make php7.0-xml wget 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
+        wget \
         cmake \
         make \
         php7.0-xml
-
-    wget https://github.com/danmar/cppcheck/archive/$TARFILE
-    tar -xvf $TARFILE
-    rm $TARFILE
 fi
 
+TMPDIR="$(mktemp -d)"
+pushd "$TMPDIR" >/dev/null
+wget https://github.com/danmar/cppcheck/archive/$TARFILE
+tar -xf $TARFILE
 pushd $DIR >/dev/null
-rm -rf build
-mkdir -p build
+mkdir build
 pushd build >/dev/null
 cmake ..
 if [[ -z $DOCKER ]]; then
