@@ -4,7 +4,6 @@
 # http://apt.llvm.org/
 # https://github.com/MaskRay/ccls
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -12,33 +11,32 @@ set -v
 # Install ccls #
 ################
 
-if [ ! -d 'ccls' ]; then
-    # ppa for CMake
-    sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
-    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
-    # ppa for LLVM
-    sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
-    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
-    # ppa for gcc
-    sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+VERSION="0.20190823.4"
+TARFILE="$VERSION.tar.gz"
+DIR="ccls-$VERSION"
 
-    sudo apt-get update
-    sudo apt-get install -y \
-        cmake \
-        g++-7 \
-        llvm-9 libclang-9-dev clang-9 \
-        zlib1g-dev libncurses-dev
+sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
+# ppa for LLVM
+sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
+wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+# ppa for gcc
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
-    # Clone ccls source code
-    git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-    pushd ccls >/dev/null
-else
-    pushd ccls >/dev/null
-    rm -rf Release/
-    git pull
-fi
+sudo apt-get update
+sudo apt-get install -y \
+    wget \
+    cmake \
+    g++-7 \
+    llvm-9 libclang-9-dev clang-9 \
+    zlib1g-dev libncurses-dev
 
-# Compile ccls
+TMPDIR="$(mktemp -d)"
+pushd "$TMPDIR" >/dev/null
+wget https://github.com/MaskRay/ccls/archive/$TARFILE
+tar -xf $TARFILE
+pushd $DIR >/dev/null
+
 export CC=/usr/bin/gcc-7
 export CXX=/usr/bin/g++-7
 

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # http://cppcheck.sourceforge.net/
+# https://github.com/danmar/cppcheck
 
 set -e
 set -v
@@ -10,8 +11,8 @@ set -v
 ####################
 
 VERSION="1.89"
-TARFILE=$VERSION.tar.gz
-DIR=cppcheck-$VERSION
+TARFILE="$VERSION.tar.gz"
+DIR="cppcheck-$VERSION"
 
 if ! dpkg -s cmake make php7.0-xml wget 1>/dev/null 2>&1; then
     sudo apt-get update
