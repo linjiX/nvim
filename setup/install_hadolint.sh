@@ -2,7 +2,6 @@
 
 # https://github.com/hadolint/hadolint
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -12,8 +11,15 @@ set -v
 
 VERSION=v1.17.2
 
+if ! dpkg -s wget 1>/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y wget
+fi
+
+TMPDIR="$(mktemp -d)"
+pushd "$TMPDIR" >/dev/null
 wget https://github.com/hadolint/hadolint/releases/download/$VERSION/hadolint-Linux-x86_64
 chmod +x hadolint-Linux-x86_64
-sudo mv hadolint-Linux-x86_64 /usr/bin/hadolint
+mv hadolint-Linux-x86_64 ~/.local/bin/hadolint
 
 popd >/dev/null

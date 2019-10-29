@@ -2,7 +2,6 @@
 
 # https://www.gnu.org/software/global/
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -e
 set -v
 
@@ -14,22 +13,26 @@ VERSION="6.6.3"
 TARFILE=global-$VERSION.tar.gz
 DIR=global-$VERSION
 
-if [ ! -d $DIR ]; then
+if ! dpkg -s autoconf wget make gperf bison flex libtool-bin texinfo 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
+        autoconf \
+        wget \
+        make \
         gperf \
         bison \
         flex \
         libtool-bin \
-        libncurses-dev \
         texinfo
-
-    wget http://tamacom.com/global/$TARFILE
-    tar -xvf $TARFILE >/dev/null
-    rm $TARFILE
+        # libncurses-dev \
 fi
 
+TMPDIR="$(mktemp -d)"
+pushd "$TMPDIR" >/dev/null
+wget http://tamacom.com/global/$TARFILE
+tar -xf $TARFILE
 pushd $DIR >/dev/null
+
 sh reconf.sh
 ./configure
 make -j
