@@ -14,5 +14,4 @@ fi
 GOPATH="$(mktemp -d)"
 export GOPATH
 go get mvdan.cc/sh/cmd/shfmt
-mkdir -p ~/.local/bin
-cp "$GOPATH/bin/shfmt" ~/.local/bin
+sudo mv "$GOPATH/bin/shfmt" /usr/local/bin

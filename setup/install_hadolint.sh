@@ -20,6 +20,6 @@ TMPDIR="$(mktemp -d)"
 pushd "$TMPDIR" >/dev/null
 wget https://github.com/hadolint/hadolint/releases/download/$VERSION/hadolint-Linux-x86_64
 chmod +x hadolint-Linux-x86_64
-mv hadolint-Linux-x86_64 ~/.local/bin/hadolint
+sudo mv hadolint-Linux-x86_64 /usr/local/bin/hadolint
 
 popd >/dev/null

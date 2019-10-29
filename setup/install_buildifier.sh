@@ -14,5 +14,4 @@ fi
 GOPATH="$(mktemp -d)"
 export GOPATH
 go get github.com/bazelbuild/buildtools/buildifier
-mkdir -p ~/.local/bin
-cp "$GOPATH/bin/buildifier" ~/.local/bin
+sudo mv "$GOPATH/bin/buildifier" /usr/local/bin

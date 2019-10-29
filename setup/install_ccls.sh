@@ -12,8 +12,6 @@ set -v
 ################
 
 VERSION="0.20190823.4"
-TARFILE="$VERSION.tar.gz"
-DIR="ccls-$VERSION"
 
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
@@ -25,17 +23,17 @@ sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
 
 sudo apt-get update
 sudo apt-get install -y \
-    wget \
+    git \
     cmake \
     g++-7 \
     llvm-9 libclang-9-dev clang-9 \
-    zlib1g-dev libncurses-dev
+    zlib1g-dev libncurses5-dev
 
 TMPDIR="$(mktemp -d)"
 pushd "$TMPDIR" >/dev/null
-wget https://github.com/MaskRay/ccls/archive/$TARFILE
-tar -xf $TARFILE
-pushd $DIR >/dev/null
+git clone -b $VERSION --recurse-submodules --depth=1 https://github.com/MaskRay/ccls.git
+pushd ccls >/dev/null
+git checkout $VERSION # temp code due to ccls has duplicate tags
 
 export CC=/usr/bin/gcc-7
 export CXX=/usr/bin/g++-7
