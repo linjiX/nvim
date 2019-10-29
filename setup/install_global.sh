@@ -13,18 +13,19 @@ VERSION="6.6.3"
 TARFILE=global-$VERSION.tar.gz
 DIR=global-$VERSION
 
-if ! dpkg -s autoconf wget make gperf bison flex libtool-bin texinfo 1>/dev/null 2>&1; then
+if ! dpkg -s autoconf wget make bison flex gperf libtool-bin libncurses5-dev texinfo \
+    1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
         autoconf \
         wget \
         make \
-        gperf \
         bison \
         flex \
+        gperf \
         libtool-bin \
+        libncurses5-dev \
         texinfo
-        # libncurses-dev \
 fi
 
 TMPDIR="$(mktemp -d)"
