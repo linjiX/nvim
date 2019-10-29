@@ -19,6 +19,8 @@ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 # sudo apt-get update
 sudo apt-get install -y \
     autoconf \
+    make \
+    wget \
     vim \
     vim-scripts \
     vim-doc \
@@ -26,8 +28,7 @@ sudo apt-get install -y \
     neovim \
     nodejs \
     python3-dev \
-    openjdk-8-jdk \
-    silversearcher-ag
+    openjdk-8-jdk
 
 ./install_ctags.sh
 ./install_global.sh
