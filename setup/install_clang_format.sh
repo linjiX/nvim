@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://releases.llvm.org/8.0.0/tools/clang/docs/ClangFormat.html
+# https://clang.llvm.org/docs/ClangFormat.html
 
 set -e
 set -v
@@ -9,9 +9,11 @@ set -v
 # Install clang-format #
 ########################
 
-if ! dpkg -s wget 1>/dev/null 2>&1; then
+if ! dpkg -s software-properties-common wget 1>/dev/null 2>&1; then
     sudo apt-get update
-    sudo apt-get install -y wget
+    sudo apt-get install -y \
+        software-properties-common \
+        wget
 fi
 
 sudo apt-add-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'

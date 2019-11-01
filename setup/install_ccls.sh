@@ -13,13 +13,20 @@ set -v
 
 VERSION="0.20190823.4"
 
+if ! dpkg -s software-properties-common wget 1>/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y \
+        software-properties-common \
+        wget
+fi
+
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
 # ppa for LLVM
 sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 # ppa for gcc
-sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
 
 sudo apt-get update
 sudo apt-get install -y \
