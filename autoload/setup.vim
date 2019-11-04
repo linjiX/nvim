@@ -27,8 +27,6 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-python
                 \ coc-vimlsp
                 \ coc-phpls
-                \ coc-docker
-                \ coc-sh
                 \ coc-translator
                 " \ coc-xml
     if has('macunix')
