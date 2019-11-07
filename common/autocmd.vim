@@ -60,6 +60,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.launch setlocal filetype=xml
     autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
+    autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead WORKSPACE setlocal filetype=bzl
     autocmd BufNewFile,BufRead .arc* setlocal filetype=json
     autocmd FileType c,cpp setlocal cindent
