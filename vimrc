@@ -10,7 +10,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !has('nvim')
     set encoding=utf-8
-    set ttimeoutlen=50
 endif
 " set nocompatible
 set nobackup
@@ -69,6 +68,7 @@ set smartindent
 set completeopt-=preview
 set diffopt+=vertical
 set path=.,/usr/include,/usr/local/include
+set ttimeoutlen=40
 if has('macunix')
     set backspace=2
     set clipboard^=unnamed
@@ -95,4 +95,5 @@ else
     let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
     let &t_SR .= "\e[3 q" "SR = REPLACE mode
     let &t_SI .= "\e[5 q" "SI = INSERT mode
+    set guifont=Consolas-with-Yahei:h14
 endif

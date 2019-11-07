@@ -73,5 +73,6 @@
 
     "translator.maxsize": 100,
 
-    "imselect.defaultInput": "com.apple.keylayout.ABC"
+    "imselect.defaultInput": "com.apple.keylayout.ABC",
+    "imselect.enableFloating": false
 }
