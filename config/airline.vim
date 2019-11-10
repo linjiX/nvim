@@ -28,6 +28,12 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tmuxline#enabled = 0
 " let g:airline#extensions#tmuxline#color_template = 'insert'
 
+let g:airline_filetype_overrides = {
+            \ 'vista': ['vista', '']
+            \ }
+let g:airline#extensions#tabline#ignore_bufadd_pat =
+            \ '!|<__vista__>|<undotree_|<diffpanel_'
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
