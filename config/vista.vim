@@ -63,7 +63,7 @@ function s:DefxMappings() abort
     nnoremap <silent><buffer><expr> dD
                 \ defx#do_action('remove')
 
-    nnoremap <silent><buffer><expr> C
+    nnoremap <silent><buffer><expr> i
                 \ defx#do_action('toggle_columns',
                 \                'mark:indent:icon:filename:type:size:time')
 
@@ -87,6 +87,8 @@ function s:DefxMappings() abort
                 \ defx#do_action('cd', ['..'])
     nnoremap <silent><buffer><expr> gh
                 \ defx#do_action('cd')
+    nnoremap <silent><buffer><expr> C
+                \ defx#do_action('cd', defx#get_candidate().action__path)
 
     nnoremap <silent><buffer><expr> V
                 \ defx#do_action('toggle_select') . 'j'
@@ -102,3 +104,57 @@ function s:DefxMappings() abort
     nnoremap <silent><buffer><expr> q
                 \ defx#do_action('quit')
 endfunction
+
+function s:HasDefx() abort
+    let l:bufs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    let l:bufs = filter(l:bufs, 'getbufvar(v:val, "&filetype") ==# "defx"')
+    return len(l:bufs) >= 1
+endfunction
+
+function s:ToggleDefxVista() abort
+    let l:has_defx = s:HasDefx()
+    let l:has_vista = vista#sidebar#IsVisible()
+
+    if l:has_defx
+        Defx -toggle
+    endif
+
+    if l:has_vista
+        Vista!
+    endif
+
+    if l:has_defx || l:has_vista
+        return
+    endif
+
+    let s:source_winid = win_getid()
+
+    if exists('g:vista_sidebar_position')
+        let l:vista_sidebar_position_user = g:vista_sidebar_position
+    endif
+    if exists('g:vista_sidebar_width')
+        let l:vista_sidebar_width_user = g:vista_sidebar_width
+    endif
+
+    let g:vista_sidebar_position = 'vertical topleft'
+    let g:vista_sidebar_width = s:testwidth
+    autocmd myDefx User VistaWinOpen ++once call s:OpenDefx()
+    Vista
+endfunction
+
+function s:OpenDefx() abort
+    setlocal nowinfixheight
+    setlocal winfixwidth
+
+    call defx#custom#option('_', 'prev_winid', s:source_winid)
+    Defx -split='horizontal' -direction='aboveleft' -no-winwidth -no-winheight
+    let l:option = defx#custom#_get().option._
+    unlet l:option.prev_winid
+
+    setlocal nowinfixheight
+    setlocal winfixwidth
+
+    call win_gotoid(s:source_winid)
+endfunction
+
+nnoremap <silent> <leader>w :call <SID>ToggleDefxVista()<CR>
