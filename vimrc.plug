@@ -43,7 +43,13 @@ endif
 " Plug 'scrooloose/nerdtree'
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
-Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+    Plug 'Shougo/defx.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vista.vim'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}

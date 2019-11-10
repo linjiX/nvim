@@ -35,7 +35,11 @@ sudo apt-get install -y \
     neovim \
     nodejs \
     python3-dev \
+    python3-pip \
     openjdk-8-jdk
+
+/usr/bin/pip3 install --upgrade pip
+/usr/bin/pip3 install neovim pynvim
 
 ./install_ctags.sh
 ./install_global.sh
