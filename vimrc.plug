@@ -50,6 +50,7 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
+Plug 'linjiX/vim-defx-vista'
 Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vista.vim'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
