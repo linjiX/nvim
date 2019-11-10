@@ -41,6 +41,8 @@ endif
 " Plug 'majutsushi/tagbar'
 " Plug 'pseewald/nerdtree-tagbar-combined'
 " Plug 'scrooloose/nerdtree'
+Plug 'kristijanhusak/defx-icons'
+Plug 'kristijanhusak/defx-git'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vista.vim'

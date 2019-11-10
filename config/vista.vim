@@ -19,6 +19,7 @@ let g:vista_sidebar_width = s:testwidth
 augroup myDefx
     autocmd!
     autocmd FileType defx call s:DefxMappings()
+    autocmd FileType defx call s:DefxGitMappings()
 augroup END
 
 " Defx
@@ -30,6 +31,7 @@ call defx#custom#option('_', {
             \ 'buffer_name': '',
             \ 'toggle': 1,
             \ 'resume': 1,
+            \ 'columns': 'indent:git:icons:filename:type',
             \ 'root_marker': '[]',
             \ })
 
@@ -39,16 +41,21 @@ function s:DefxMappings() abort
                 \                     : defx#do_action('multi', ['drop'])
     nnoremap <silent><buffer><expr> x
                 \ defx#do_action('close_tree')
-    nnoremap <silent><buffer><expr> I
-                \ defx#do_action('toggle_ignored_files')
-    nnoremap <silent><buffer><expr> yp
-                \ defx#do_action('yank_path')
     nnoremap <silent><buffer><expr> s
                 \ defx#do_action('multi',[['drop','split']])
     nnoremap <silent><buffer><expr> v
                 \ defx#do_action('multi',[['drop','vsplit']])
     nnoremap <silent><buffer><expr> t
                 \ defx#do_action('multi',[['drop','tabedit']])
+
+    nnoremap <silent><buffer><expr> I
+                \ defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> zh
+                \ defx#do_action('toggle_ignored_files')
+    nnoremap <silent><buffer><expr> yp
+                \ defx#do_action('yank_path')
+    nnoremap <silent><buffer><expr> <C-g>
+                \ defx#do_action('print')
 
     nnoremap <silent><buffer><expr> cw
                 \ defx#do_action('rename')
@@ -58,14 +65,14 @@ function s:DefxMappings() abort
                 \ defx#do_action('paste')
     nnoremap <silent><buffer><expr> dd
                 \ defx#do_action('move')
-    nnoremap <silent><buffer><expr> N
+    nnoremap <silent><buffer><expr> <C-n>
                 \ defx#do_action('new_multiple_files')
     nnoremap <silent><buffer><expr> dD
                 \ defx#do_action('remove')
 
     nnoremap <silent><buffer><expr> i
                 \ defx#do_action('toggle_columns',
-                \                'mark:indent:icon:filename:type:size:time')
+                \                'indent:git:icons:filename:type:size:time')
 
     nnoremap <silent><buffer><expr> om
                 \ defx#do_action('toggle_sort', 'time')
@@ -89,20 +96,24 @@ function s:DefxMappings() abort
                 \ defx#do_action('cd')
     nnoremap <silent><buffer><expr> C
                 \ defx#do_action('cd', defx#get_candidate().action__path)
-
-    nnoremap <silent><buffer><expr> V
-                \ defx#do_action('toggle_select') . 'j'
-    nnoremap <silent><buffer><expr> *
-                \ defx#do_action('toggle_select_all')
-
     nnoremap <silent><buffer><expr> cd
                 \ defx#do_action('change_vim_cwd')
 
-    nnoremap <silent><buffer><expr> <C-g>
-                \ defx#do_action('print')
+    nnoremap <silent><buffer><expr> V
+                \ defx#do_action('toggle_select') . 'j'
+    nnoremap <silent><buffer><expr> ~
+                \ defx#do_action('toggle_select_all')
+    nnoremap <silent><buffer><expr> <C-v>
+                \ defx#do_action('clear_select_all')
 
     nnoremap <silent><buffer><expr> q
                 \ defx#do_action('quit')
+endfunction
+
+function s:DefxGitMappings() abort
+    nnoremap <silent><buffer> <leader>ga <Plug>(defx-git-stage)
+    nnoremap <silent><buffer> <leader>gA <Plug>(defx-git-reset)
+    nnoremap <silent><buffer> <leader>gu <Plug>(defx-git-discard)
 endfunction
 
 function s:HasDefx() abort
