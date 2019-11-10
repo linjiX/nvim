@@ -38,14 +38,14 @@ endif
 " Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" Plug 'majutsushi/tagbar'
+" Plug 'pseewald/nerdtree-tagbar-combined'
+" Plug 'scrooloose/nerdtree'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/vista.vim'
-Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
-Plug 'pseewald/nerdtree-tagbar-combined'
-Plug 'scrooloose/nerdtree'
 
 "-- Colorscheme --
 " Plug 'flazz/vim-colorschemes'

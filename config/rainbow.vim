@@ -12,9 +12,6 @@
 let g:rainbow_active = 1
 let g:rainbow_conf = {
             \     'ctermfgs': ['166', '034', '164', '178', '104', '045'],
-            \     'separately': {
-            \         'nerdtree': 0,
-            \     }
             \ }
 
 nmap [oR :RainbowToggleOn<CR>
