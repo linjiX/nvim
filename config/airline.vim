@@ -32,7 +32,7 @@ let g:airline_filetype_overrides = {
             \ 'vista': ['vista', '']
             \ }
 let g:airline#extensions#tabline#ignore_bufadd_pat =
-            \ '!|<__vista__>|<undotree_|<diffpanel_|<[defx]'
+            \ '!|<__vista__>|<undotree_|<diffpanel_|\[defx\]'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}

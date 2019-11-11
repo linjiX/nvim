@@ -11,20 +11,27 @@
 scriptencoding utf-8
 
 let g:ale_disable_lsp = 1
+let g:ale_linters_explicit = 1
 let g:ale_linters = {
             \ 'vim': ['vint'],
             \ 'gitcommit': ['gitlint'],
             \ 'sh': ['shellcheck'],
-            \ 'cpp': ['CppCheck'],
+            \ 'cpp': ['CppCheck', 'cpplint'],
             \ 'bzl': ['Buildifier'],
             \ 'python': ['flake8'],
             \ 'json': ['Jsonlint'],
             \ 'Dockerfile': ['hadolint'],
             \ 'cmake': ['cmakelint'],
             \ }
+let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
+            \ '-build/c++11'.
+            \ '-build/include_order,'.
+            \ '-readability/braces,'.
+            \ '-whitespace/brace,'.
+            \ '-whitespace/indent,'
 let g:ale_python_flake8_options = '--max-line-length=99'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
-let g:ale_linters_explicit = 1
+
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0
 let g:ale_set_loclist = 0

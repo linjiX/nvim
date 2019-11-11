@@ -69,6 +69,7 @@ Then enable it in your terminal.
 
 #### C/C++ (Ubuntu 16.04)
 
+    pip3 install cpplint
     ./setup/install_clang_format.sh
     ./setup/install_cppcheck.sh
     ./setup/install_ccls.sh
