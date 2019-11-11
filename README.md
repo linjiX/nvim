@@ -12,6 +12,17 @@
 
 It will take a long time, make sure your network is unblocked and be patient.
 
+## Neovim support
+
+Neovim depends on the Python enviroment and plugin 'defx' requires Python 3.6.1+  
+So please make sure you have Python 3.6.1+ enviroment  
+Then run below commands
+
+```bash
+pip3 install neovim
+nvim -c UpdateRemotePlugins -c sleep 1m -c quit
+```
+
 ## Fonts
 
 Vim may meet some display issues in your machine.  
@@ -46,7 +57,7 @@ Then enable it in your terminal.
 
     pip3 install gitlint
 
-#### Bash
+#### Bash (Ubuntu 16.04)
 
     npm install --global bash-language-server
     ./setup/install_shfmt.sh

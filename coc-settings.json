@@ -39,7 +39,7 @@
     "suggest.echodocSupport": true,
 
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.messageTarget": "echo",
+    "diagnostic.messageTarget": "float",
     "diagnostic.locationlist": false,
     "diagnostic.signOffset": 100000,
     "diagnostic.errorSign": "E",
