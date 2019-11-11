@@ -38,7 +38,6 @@ sudo apt-get install -y \
     python3-pip \
     openjdk-8-jdk
 
-/usr/bin/pip3 install --upgrade pip
 /usr/bin/pip3 install neovim pynvim
 
 ./install_ctags.sh
