@@ -1,6 +1,6 @@
 # .vim
 
-![](preview.png)
+![preview image](preview.png)
 
 ## Clone Vim configuration
 
