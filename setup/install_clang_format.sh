@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# https://clang.llvm.org/docs/ClangFormat.html
+# https://releases.llvm.org/9.0.0/tools/clang/docs/ClangFormat.html
 
 set -e
 set -v

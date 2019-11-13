@@ -36,7 +36,8 @@ sudo apt-get install -y \
     nodejs \
     python3-dev \
     python3-pip \
-    openjdk-8-jdk
+    openjdk-8-jdk \
+    libjansson-dev
 
 /usr/bin/pip3 install neovim pynvim
 

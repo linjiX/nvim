@@ -9,12 +9,13 @@ set -v
 # Install Universal Ctags #
 ###########################
 
-if ! dpkg -s autoconf git make 1>/dev/null 2>&1; then
+if ! dpkg -s autoconf git make libjansson-dev 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
         autoconf \
         git \
-        make
+        make \
+        libjansson-dev
 fi
 
 TMPDIR="$(mktemp -d)"
