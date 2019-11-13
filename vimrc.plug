@@ -84,7 +84,7 @@ endif
 
 " -- Formatter --
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'junegunn/vim-easy-align'
 
 "-- Display --
@@ -203,7 +203,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter', {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
-Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/LargeFile'

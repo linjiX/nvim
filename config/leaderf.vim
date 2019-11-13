@@ -30,6 +30,9 @@ let g:Lf_GtagsSkipUnreadable = 1
 let g:Lf_GtagsSkipSymlink = 'a'
 let g:Lf_Gtagslabel = 'native-pygments'
 
+let g:Lf_PreviewInPopup = 1
+let g:Lf_PreviewHorizontalPosition = 'right'
+
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 

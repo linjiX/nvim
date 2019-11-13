@@ -8,6 +8,11 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let s:minwidth = 30
+let s:ratio = 0.148
+function SiderBarWidth()
+    return max([float2nr(&columns * s:ratio), s:minwidth])
+endfunction
 
 function s:AutoCmdBufType() abort
     " if &previewwindow == 1
@@ -70,7 +75,6 @@ augroup END
 augroup myCommon
     autocmd!
     " autocmd WinEnter * autocmd BufWinEnter * clearjumps
-    " autocmd WinNew * echo expand('%'). '~~~~~~~~'
     " autocmd WinNew * clearjumps
     autocmd VimEnter * clearjumps
     " Disable automatic comment insertion
