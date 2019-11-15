@@ -28,6 +28,7 @@ let g:ctrlsf_auto_focus = {
 function s:AutoCmdCtrlSF() abort
     setlocal colorcolumn=107
     nnoremap <silent><buffer> <leader>q :CtrlSFClose<CR>
+    DisableWhitespace
 endfunction
 
 augroup myCtrlSF
