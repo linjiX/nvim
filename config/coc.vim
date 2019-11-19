@@ -85,7 +85,6 @@ nmap <silent> g= <Plug>(coc-format-selected)
 
 " nmap <silent> <leader>lR <Plug>CocRefresh
 nmap <silent> <leader>lh <Plug>(coc-float-hide)
-nmap <silent> <leader>lj <Plug>(coc-float-jump)
 
 nmap <silent> ]j <Plug>(coc-diagnostic-next)
 nmap <silent> [j <Plug>(coc-diagnostic-prev)

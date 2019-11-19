@@ -16,10 +16,12 @@ let g:ac_smooth_scroll_min_limit_msec = 120
 let g:ac_smooth_scroll_max_limit_msec = 150
 let g:ac_smooth_scroll_skip_redraw_line_size = 3
 
-nmap <expr> <C-u> coc#util#has_float() ? coc#util#float_scroll(0)
-            \                          : '<Plug>(ac-smooth-scroll-c-u)'
-nmap <expr> <C-d> coc#util#has_float() ? coc#util#float_scroll(1)
-            \                          : '<Plug>(ac-smooth-scroll-c-d)'
+nmap <expr> <C-u>
+            \ coc#util#has_float() ? coc#util#float_scroll(0)
+            \                      : '<Plug>(ac-smooth-scroll-c-u)'
+nmap <expr> <C-d>
+            \ coc#util#has_float() ? coc#util#float_scroll(1)
+            \                      : '<Plug>(ac-smooth-scroll-c-d)'
 
 nmap <silent> <C-f> <Plug>(ac-smooth-scroll-c-f)
 nmap <silent> <C-b> <Plug>(ac-smooth-scroll-c-b)

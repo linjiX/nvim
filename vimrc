@@ -68,7 +68,7 @@ set smartindent
 set completeopt-=preview
 set diffopt+=vertical
 set path=.,/usr/include,/usr/local/include
-set ttimeoutlen=40
+set ttimeoutlen=25
 if has('macunix')
     set backspace=2
     set clipboard^=unnamed
