@@ -15,12 +15,12 @@ endif
 
 let g:plug_window = 'botright vertical new'
 
-nnoremap <leader>vv :PlugInstall<CR>
-nnoremap <leader>vc :PlugClean<CR>
-nnoremap <leader>vu :PlugUpdate<CR>
-nnoremap <leader>vg :PlugUpgrade<CR>
-nnoremap <leader>vd :PlugDiff<CR>
-nnoremap <leader>vs :PlugStatus<CR>
+nnoremap <silent> <leader>vv :PlugInstall<CR>
+nnoremap <silent> <leader>vc :PlugClean<CR>
+nnoremap <silent> <leader>vu :PlugUpdate<CR>
+nnoremap <silent> <leader>vg :PlugUpgrade<CR>
+nnoremap <silent> <leader>vd :PlugDiff<CR>
+nnoremap <silent> <leader>vs :PlugStatus<CR>
 
 if empty(glob('~/.vim/autoload/plug.vim'))
     call setup#AutoInstallation()
@@ -152,7 +152,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+if !has('macunix')
+    Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+endif
 Plug 'junegunn/fzf.vim'
 Plug 'linjiX/vim-star'
 

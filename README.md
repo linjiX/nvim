@@ -60,7 +60,7 @@ Then enable it in your terminal.
 #### Bash (Ubuntu 16.04)
 
     npm install --global bash-language-server
-    ./setup/install_shfmt.sh
+    snap install shfmt
     snap install shellcheck
 
 #### Python

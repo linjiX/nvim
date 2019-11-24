@@ -24,7 +24,7 @@ let g:ale_linters = {
             \ 'cmake': ['cmakelint'],
             \ }
 let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
-            \ '-build/c++11'.
+            \ '-build/c++11,'.
             \ '-build/include_order,'.
             \ '-readability/braces,'.
             \ '-whitespace/brace,'.
