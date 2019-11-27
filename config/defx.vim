@@ -107,10 +107,5 @@ augroup myDefx
     autocmd FileType defx call s:DefxGitMappings()
 augroup END
 
-function s:ToggleDefxVista() abort
-    let g:defx_vista_width = SiderBarWidth()
-    ToggleDefxVista
-endfunction
-
-nnoremap <silent> <leader>w :call <SID>ToggleDefxVista()<CR>
+nnoremap <silent> <leader>w :call defx_tagbar#ToggleDefxTagbar()<CR>
 nnoremap <silent> <leader>F :Defx -winwidth=`SiderBarWidth()` -no-toggle -search=`expand('%:p')`<CR>

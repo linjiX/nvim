@@ -29,10 +29,11 @@ let g:airline#extensions#tmuxline#enabled = 0
 " let g:airline#extensions#tmuxline#color_template = 'insert'
 
 let g:airline_filetype_overrides = {
-            \ 'vista': ['vista', '']
+            \ 'defx':  ['Defx', '%{b:defx.paths[0]}'],
+            \ 'startify': [ 'Startify', '' ],
             \ }
 let g:airline#extensions#tabline#ignore_bufadd_pat =
-            \ '!|<__vista__>|<undotree_|<diffpanel_|\[defx\]'
+            \ '!|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}

@@ -35,12 +35,13 @@ endif
 
 "-- Menu --
 " Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'linjiX/vim-defx-vista'
+" Plug 'liuchengxu/vista.vim'
+" Plug 'pseewald/nerdtree-tagbar-combined'
+" Plug 'scrooloose/nerdtree'
 " Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-" Plug 'majutsushi/tagbar'
-" Plug 'pseewald/nerdtree-tagbar-combined'
-" Plug 'scrooloose/nerdtree'
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
 if has('nvim')
@@ -50,9 +51,8 @@ else
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
-Plug 'linjiX/vim-defx-vista'
 Plug 'liuchengxu/vim-which-key'
-Plug 'liuchengxu/vista.vim'
+Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 

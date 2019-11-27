@@ -8,12 +8,9 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-scriptencoding utf-8
 
-let g:vista_sidebar_position = 'vertical topleft'
-let g:vista_sidebar_width = SiderBarWidth()
-let g:vista_icon_indent = ['﬌ ', 'ﲖ ']
-
-let g:vista_executive_for = {
-            \ 'markdown': 'toc',
-            \ }
+let g:tagbar_width = SiderBarWidth()
+let g:tagbar_indent = 0
+let g:tagbar_compact = 1
+let g:tagbar_sort = 0
+let g:tagbar_left = 1
