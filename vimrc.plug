@@ -45,14 +45,14 @@ endif
 Plug 'kristijanhusak/defx-icons'
 Plug 'kristijanhusak/defx-git'
 if has('nvim')
-    Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
 else
     Plug 'Shougo/defx.nvim'
     Plug 'roxma/nvim-yarp'
     Plug 'roxma/vim-hug-neovim-rpc'
 endif
 Plug 'liuchengxu/vim-which-key'
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarOpen', 'TagbarToggle']}
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 
@@ -85,7 +85,7 @@ endif
 " -- Formatter --
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
-Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 
 "-- Display --
 " Plug 'itchyny/vim-cursorword'
@@ -149,7 +149,7 @@ Plug 'tpope/vim-fugitive'
 " Plug 'romainl/vim-cool'
 " Plug 'haya14busa/vim-asterisk'
 " Plug 'nelstrom/vim-visual-star-search'
-Plug 'Yggdroot/LeaderF', {'do': './install.sh'}
+Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
 if !has('macunix')
@@ -162,8 +162,8 @@ Plug 'linjiX/vim-star'
 " Plug 'rhysd/accelerated-jk'
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'yuttie/comfortable-motion.vim'
-Plug 'easymotion/vim-easymotion'
-Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion-prefix)'}
+Plug 'justinmk/vim-sneak', {'on': '<Plug>Sneak_'}
 Plug 'kshenoy/vim-signature'
 Plug 't9md/vim-choosewin'
 Plug 'yonchu/accelerated-smooth-scroll'
