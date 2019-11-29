@@ -31,4 +31,4 @@ augroup myFSwitch
                 \ ], ',')
 augroup END
 
-nnoremap <leader>h :FSHere<CR>
+nnoremap <silent> <leader>h :FSHere<CR>
