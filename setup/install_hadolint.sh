@@ -16,7 +16,7 @@ if ! dpkg -s wget 1>/dev/null 2>&1; then
     sudo apt-get install -y wget
 fi
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_hadolint.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget https://github.com/hadolint/hadolint/releases/download/$VERSION/hadolint-Linux-x86_64
 chmod +x hadolint-Linux-x86_64

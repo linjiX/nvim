@@ -17,7 +17,7 @@ if ! dpkg -s wget 1>/dev/null 2>&1; then
     sudo apt-get install -y wget
 fi
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_ripgrep.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget https://github.com/BurntSushi/ripgrep/releases/download/$VERSION/$DEBFILE
 

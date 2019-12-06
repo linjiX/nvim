@@ -36,7 +36,7 @@ sudo apt-get install -y \
     llvm-9 libclang-9-dev clang-9 \
     zlib1g-dev libncurses5-dev
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_ccls.XXXX)"
 pushd "$TMPDIR" >/dev/null
 git clone -b $VERSION --recurse-submodules --depth=1 https://github.com/MaskRay/ccls.git
 pushd ccls >/dev/null

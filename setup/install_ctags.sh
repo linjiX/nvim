@@ -18,7 +18,7 @@ if ! dpkg -s autoconf git make libjansson-dev 1>/dev/null 2>&1; then
         libjansson-dev
 fi
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_ctags.XXXX)"
 pushd "$TMPDIR" >/dev/null
 git clone --depth=1 https://github.com/universal-ctags/ctags.git
 pushd ctags >/dev/null

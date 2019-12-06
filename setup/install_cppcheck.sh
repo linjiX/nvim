@@ -23,7 +23,7 @@ if ! dpkg -s cmake make php7.0-xml wget 1>/dev/null 2>&1; then
         php7.0-xml
 fi
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_cppcheck.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget https://github.com/danmar/cppcheck/archive/$TARFILE
 tar -xf $TARFILE

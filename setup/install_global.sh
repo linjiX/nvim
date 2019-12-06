@@ -28,7 +28,7 @@ if ! dpkg -s autoconf wget make bison flex gperf libtool-bin libncurses5-dev tex
         texinfo
 fi
 
-TMPDIR="$(mktemp -d)"
+TMPDIR="$(mktemp -d /tmp/install_global.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget http://tamacom.com/global/$TARFILE
 tar -xf $TARFILE
