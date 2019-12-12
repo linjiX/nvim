@@ -22,7 +22,8 @@ fi
 
 sudo apt-add-repository -y ppa:jonathonf/vim
 sudo apt-add-repository -y ppa:neovim-ppa/unstable
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+# https://github.com/nodesource/distributions#debinstall
+curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
 # sudo apt-get update
 sudo apt-get install -y \
     autoconf \
