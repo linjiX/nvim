@@ -28,7 +28,8 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
             \ '-build/include_order,'.
             \ '-readability/braces,'.
             \ '-whitespace/brace,'.
-            \ '-whitespace/indent,'
+            \ '-whitespace/indent,'.
+            \ '-runtime/references,'
 let g:ale_python_flake8_options = '--max-line-length=99'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 
