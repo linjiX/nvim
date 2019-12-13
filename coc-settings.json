@@ -10,7 +10,12 @@
                     "directory": "/tmp/ccls"
                 },
                 "clang": {
-                    "extraArgs": ["-Wno-unused-variable"],
+                    "extraArgs": [
+                        "-Wno-unused-variable",
+                        "-isystem/Library/Developer/CommandLineTools/usr/include/c++/v1",
+                        "-isystem/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include",
+                        "-isystem/opt/emsdk/upstream/emscripten/system/include"
+                    ],
                     "excludeArgs": ["-Werror"]
                 },
                 "diagnostic": {
