@@ -25,3 +25,4 @@ augroup myGit
 augroup END
 
 cnoreabbrev <silent> Gst vertical botright Gstatus
+cnoreabbrev <silent> Gc Gcommit -v
