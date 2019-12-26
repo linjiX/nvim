@@ -70,6 +70,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead .arc* setlocal filetype=json
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
+    autocmd FileType json setlocal foldnestmax=20
 augroup END
 
 augroup myCommon
