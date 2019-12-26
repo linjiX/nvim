@@ -79,5 +79,8 @@
     "translator.maxsize": 100,
 
     "imselect.defaultInput": "com.apple.keylayout.ABC",
-    "imselect.enableFloating": false
+    "imselect.enableFloating": false,
+
+    "explorer.icon.enableNerdfont": true,
+    "explorer.openAction.strategy": "sourceWindow"
 }

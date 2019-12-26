@@ -28,6 +28,7 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-vimlsp
                 \ coc-phpls
                 \ coc-translator
+                \ coc-explorer
                 " \ coc-xml
     if has('macunix')
         CocInstall -sync coc-yank coc-imselect

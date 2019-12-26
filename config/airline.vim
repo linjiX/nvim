@@ -30,6 +30,7 @@ let g:airline#extensions#tmuxline#enabled = 0
 
 let g:airline_filetype_overrides = {
             \ 'defx':  ['Defx', '%{b:defx.paths[0]}'],
+            \ 'coc-explorer':  ['coc-explorer', ''],
             \ 'startify': [ 'Startify', '' ],
             \ }
 let g:airline#extensions#tabline#ignore_bufadd_pat =
