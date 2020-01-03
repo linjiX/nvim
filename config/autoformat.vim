@@ -23,7 +23,9 @@ let g:formatdef_buildifier = "'buildifier'"
 let g:formatters_bzl = ['buildifier']
 " let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"
 let g:formatdef_yapf_isort = "'isort - | yapf'"
-let g:formatters_python = ['yapf_isort']
+let g:formatdef_black_isort = "'black -q -l 100 - | isort -'"
+" let g:formatters_python = ['yapf_isort']
+let g:formatters_python = ['black_isort']
 
 let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
             \              "--parser='.&filetype.' --stdin'"

@@ -18,7 +18,7 @@ let g:ale_linters = {
             \ 'sh': ['shellcheck'],
             \ 'cpp': ['CppCheck', 'cpplint'],
             \ 'bzl': ['Buildifier'],
-            \ 'python': ['flake8'],
+            \ 'python': ['flake8', 'pylint'],
             \ 'json': ['Jsonlint'],
             \ 'Dockerfile': ['hadolint'],
             \ 'cmake': ['cmakelint'],

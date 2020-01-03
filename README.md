@@ -65,7 +65,7 @@ Then enable it in your terminal.
 
 #### Python
 
-    pip3 install yapf isort ipython pylint flake8
+    pip3 install black isort ipython pylint flake8
 
 #### C/C++ (Ubuntu 16.04)
 
