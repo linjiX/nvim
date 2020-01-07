@@ -29,7 +29,6 @@ let g:airline#extensions#tmuxline#enabled = 0
 " let g:airline#extensions#tmuxline#color_template = 'insert'
 
 let g:airline_filetype_overrides = {
-            \ 'defx':  ['Defx', '%{b:defx.paths[0]}'],
             \ 'coc-explorer':  ['coc-explorer', ''],
             \ 'startify': [ 'Startify', '' ],
             \ }

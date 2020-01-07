@@ -42,15 +42,15 @@ endif
 " Plug 'sjl/gundo.vim', {'on': ['GundoToggle', 'GundoShow']}
 " Plug 'skywind3000/quickmenu.vim'
 " Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'kristijanhusak/defx-icons'
-Plug 'kristijanhusak/defx-git'
-if has('nvim')
-    Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
-else
-    Plug 'Shougo/defx.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" Plug 'kristijanhusak/defx-icons'
+" Plug 'kristijanhusak/defx-git'
+" if has('nvim')
+"     Plug 'Shougo/defx.nvim', {'do': ':UpdateRemotePlugins'}
+" else
+"     Plug 'Shougo/defx.nvim'
+"     Plug 'roxma/nvim-yarp'
+"     Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarOpen', 'TagbarToggle']}
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}

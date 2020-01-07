@@ -40,7 +40,7 @@ sudo apt-get install -y \
     openjdk-8-jdk \
     libjansson-dev
 
-/usr/bin/pip3 install neovim pynvim
+/usr/bin/pip3 install neovim
 
 ./install_ctags.sh
 ./install_global.sh
