@@ -103,6 +103,9 @@ nmap <silent> <leader>te <Plug>(coc-translator-e)
 nmap <silent> <leader>tr <Plug>(coc-translator-r)
 nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
+" coc-explorer
+nnoremap <silent> <leader>w :call workspace#ToggleWorkspace()<CR>
+
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
 nnoremap <silent> <leader><DOWN> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<CR>
