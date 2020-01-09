@@ -52,7 +52,7 @@ if has('nvim')
     nnoremap <silent> <leader>eb :botright vsplit term://bpython<CR>
     nnoremap <silent> <leader>et :botright vsplit term://ptpython3<CR>
     nnoremap <silent> <leader>eh :botright vsplit term://htop<CR>
-    tnoremap <silent> <ESC> <C-\><C-n>:set number<CR>
+    tnoremap <silent> <ESC><ESC> <C-\><C-n>:set number<CR>
 
     function s:Navigate(cmd) abort
         let l:esc = "\<C-\>\<C-n>"
