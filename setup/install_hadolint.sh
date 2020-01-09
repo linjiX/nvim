@@ -9,7 +9,7 @@ set -v
 # Install hadolint #
 ####################
 
-VERSION=v1.17.2
+VERSION=v1.17.4
 
 if ! dpkg -s wget 1>/dev/null 2>&1; then
     sudo apt-get update

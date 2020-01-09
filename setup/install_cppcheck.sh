@@ -10,7 +10,7 @@ set -v
 # Install cppcheck #
 ####################
 
-VERSION="1.89"
+VERSION="1.90"
 TARFILE="$VERSION.tar.gz"
 DIR="cppcheck-$VERSION"
 

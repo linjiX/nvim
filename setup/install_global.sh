@@ -9,7 +9,7 @@ set -v
 # Install GNU Global #
 ######################
 
-VERSION="6.6.3"
+VERSION="6.6.4"
 TARFILE=global-$VERSION.tar.gz
 DIR=global-$VERSION
 
