@@ -83,6 +83,7 @@
 
     "explorer.icon.enableNerdfont": true,
     "explorer.openAction.strategy": "sourceWindow",
+    "explorer.file.autoReveal": false,
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings": {
         "k": "nodePrev",

@@ -79,8 +79,8 @@ function s:OpenTagbarPre() abort
 endfunction
 
 function s:OpenTagbar() abort
-    setlocal nowinfixheight
-    setlocal winfixwidth
+    " setlocal nowinfixheight
+    " setlocal winfixwidth
     TagbarOpen
     call s:ResetWindowConfig()
 endfunction
