@@ -71,7 +71,7 @@ function workspace#ToggleWorkspace() abort
     call s:SetWindowConfig()
 
     autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once call s:OpenTagbarPre()
-    CocCommand explorer
+    execute 'CocCommand explorer --width '. SiderBarWidth()
 endfunction
 
 function s:OpenTagbarPre() abort
