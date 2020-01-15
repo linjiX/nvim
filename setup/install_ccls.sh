@@ -2,6 +2,7 @@
 
 # https://github.com/Kitware/CMake & https://apt.kitware.com/
 # http://apt.llvm.org/
+# https://wiki.ubuntu.com/ToolChain
 # https://github.com/MaskRay/ccls
 
 set -e
@@ -32,7 +33,7 @@ sudo apt-get update
 sudo apt-get install -y \
     git \
     cmake \
-    g++-7 \
+    g++-9 \
     llvm-9 libclang-9-dev clang-9 \
     zlib1g-dev libncurses5-dev
 
@@ -42,8 +43,8 @@ git clone -b $VERSION --recurse-submodules --depth=1 https://github.com/MaskRay/
 pushd ccls >/dev/null
 git checkout $VERSION # temp code due to ccls has duplicate tags
 
-export CC=/usr/bin/gcc-7
-export CXX=/usr/bin/g++-7
+export CC=/usr/bin/gcc-9
+export CXX=/usr/bin/g++-9
 
 cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_PREFIX_PATH=/usr/lib/llvm-9 \
