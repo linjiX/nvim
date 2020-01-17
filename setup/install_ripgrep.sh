@@ -19,6 +19,6 @@ fi
 
 TMPDIR="$(mktemp -d /tmp/install_ripgrep.XXXX)"
 pushd "$TMPDIR" >/dev/null
-wget https://github.com/BurntSushi/ripgrep/releases/download/$VERSION/$DEBFILE
+wget -c https://github.com/BurntSushi/ripgrep/releases/download/$VERSION/$DEBFILE
 
 sudo dpkg -i $DEBFILE

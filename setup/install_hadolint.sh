@@ -19,7 +19,7 @@ fi
 
 TMPDIR="$(mktemp -d /tmp/install_hadolint.XXXX)"
 pushd "$TMPDIR" >/dev/null
-wget https://github.com/hadolint/hadolint/releases/download/$VERSION/$FILE
+wget -c https://github.com/hadolint/hadolint/releases/download/$VERSION/$FILE
 chmod +x $FILE
 sudo mv $FILE /usr/local/bin/hadolint
 

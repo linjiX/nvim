@@ -25,7 +25,7 @@ fi
 
 TMPDIR="$(mktemp -d /tmp/install_cppcheck.XXXX)"
 pushd "$TMPDIR" >/dev/null
-wget https://github.com/danmar/cppcheck/archive/$TARFILE
+wget -c https://github.com/danmar/cppcheck/archive/$TARFILE
 tar -xf $TARFILE
 pushd $DIR >/dev/null
 mkdir build

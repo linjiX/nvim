@@ -30,7 +30,7 @@ fi
 
 TMPDIR="$(mktemp -d /tmp/install_global.XXXX)"
 pushd "$TMPDIR" >/dev/null
-wget http://tamacom.com/global/$TARFILE
+wget -c http://tamacom.com/global/$TARFILE
 tar -xf $TARFILE
 pushd $DIR >/dev/null
 
