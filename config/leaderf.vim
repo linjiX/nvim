@@ -36,7 +36,6 @@ let g:Lf_PreviewHorizontalPosition = 'right'
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 
-" nnoremap <expr><silent> <C-p> buffer#Open(":Leaderf file\<CR>")
 nnoremap <expr><silent> <leader>ff buffer#Open(":Leaderf file\<CR>")
 nnoremap <expr><silent> <leader>fb buffer#Open(":Leaderf buffer\<CR>")
 nnoremap <expr><silent> <leader>fB buffer#Open(":Leaderf buffer --all\<CR>")
@@ -57,9 +56,9 @@ nnoremap <silent> <leader>fs :Leaderf self<CR>
 nnoremap <silent> <leader>fh :Leaderf help<CR>
 nnoremap <silent> <leader>fc :Leaderf colorscheme<CR>
 
-nnoremap <silent> <leader>gg :Leaderf! gtags -d <C-r><C-w><CR>
-nnoremap <silent> <leader>gr :Leaderf! gtags -r <C-r><C-w><CR>
-nnoremap <silent> <leader>gs :Leaderf! gtags -s <C-r><C-w><CR>
-nnoremap <silent> <leader>gt :Leaderf! gtags -g <C-r><C-w><CR>
-nnoremap <silent> <leader>gi :Leaderf! gtags -g <C-r>=expand("<cfile>:t")<CR><CR>
-nnoremap <silent> <leader>gI :Leaderf! gtags -g <C-r>=fnameescape(expand("%:t"))<CR><CR>
+nnoremap <silent> <leader>gg :Leaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gr :Leaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gs :Leaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gt :Leaderf! gtags --grep <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gi :Leaderf! gtags --grep <C-r>=expand("<cfile>:t")<CR> --auto-jump <CR>
+nnoremap <silent> <leader>gI :Leaderf! gtags --grep <C-r>=fnameescape(expand("%:t"))<CR> --auto-jump <CR>
