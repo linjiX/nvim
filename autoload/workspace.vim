@@ -72,8 +72,8 @@ function workspace#ToggleWorkspace() abort
     endif
 
     call s:GetWinID()
+    call TagbarTrigger()
 
-    autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once call s:OpenTagbarPre()
     execute 'CocCommand explorer --width '. SiderBarWidth()
 endfunction
 
@@ -81,14 +81,15 @@ function workspace#RevealWorkspace() abort
     let l:has_tagbar = s:HasTagbar()
 
     if !l:has_tagbar
-        autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once call s:OpenTagbarPre()
+        call TagbarTrigger()
     endif
 
     execute 'CocCommand explorer --no-toggle --width '. SiderBarWidth() .' --reveal='. expand('%:p')
 endfunction
 
-function s:OpenTagbarPre() abort
-    autocmd myWorkspace CursorMoved * ++once call s:OpenTagbar()
+function TagbarTrigger() abort
+    autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once
+                \ autocmd myWorkspace CursorMoved * ++once call s:OpenTagbar()
 endfunction
 
 function s:OpenTagbar() abort
