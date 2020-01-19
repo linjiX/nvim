@@ -165,7 +165,7 @@ Plug 'linjiX/vim-star'
 Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion-prefix)'}
 Plug 'justinmk/vim-sneak', {'on': '<Plug>Sneak_'}
 Plug 'kshenoy/vim-signature'
-Plug 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
 Plug 'yonchu/accelerated-smooth-scroll'
 
 "-- Visual --
