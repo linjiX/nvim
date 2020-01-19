@@ -24,31 +24,34 @@ function s:HasTagbar() abort
 endfunction
 
 function s:SetWindowConfig() abort
-    if exists('g:tagbar_left')
-        let s:tagbar_left_user = g:tagbar_left
-    endif
-
-    let s:tagbar_vertical_user = exists('g:tagbar_vertical') ? g:tagbar_vertical : 0
+    let s:tagbar_left_user = get(g:, 'tagbar_left', 0)
+    let s:tagbar_autofocus_user = get(g:, 'tagbar_autofocus', 0)
+    let s:tagbar_vertical_user = get(g:, 'tagbar_vertical', 0)
 
     let g:tagbar_left = 0
+    let g:tagbar_autofocus = 0
     let g:tagbar_vertical = winheight(0)/2
-
-    let s:prev_winid = win_getid()
 endfunction
 
 function s:ResetWindowConfig() abort
-    if exists('s:tagbar_left_user')
-        let g:tagbar_left = s:tagbar_left_user
-        unlet s:tagbar_left_user
-    else
-        unlet g:tagbar_left
-    endif
-
+    let g:tagbar_left = s:tagbar_left_user
+    let g:tagbar_autofocus = s:tagbar_autofocus_user
     let g:tagbar_vertical = s:tagbar_vertical_user
+
+    unlet s:tagbar_left_user
+    unlet s:tagbar_autofocus_user
     unlet s:tagbar_vertical_user
+endfunction
 
+function s:GetWinID() abort
+    let s:prev_winid = win_getid()
+endfunction
+
+function s:GotoWinID() abort
+    if !exists('s:prev_winid')
+        return
+    endif
     call win_gotoid(s:prev_winid)
-
     unlet s:prev_winid
 endfunction
 
@@ -68,10 +71,20 @@ function workspace#ToggleWorkspace() abort
         return
     endif
 
-    call s:SetWindowConfig()
+    call s:GetWinID()
 
     autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once call s:OpenTagbarPre()
     execute 'CocCommand explorer --width '. SiderBarWidth()
+endfunction
+
+function workspace#RevealWorkspace() abort
+    let l:has_tagbar = s:HasTagbar()
+
+    if !l:has_tagbar
+        autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once call s:OpenTagbarPre()
+    endif
+
+    execute 'CocCommand explorer --no-toggle --width '. SiderBarWidth() .' --reveal='. expand('%:p')
 endfunction
 
 function s:OpenTagbarPre() abort
@@ -79,8 +92,9 @@ function s:OpenTagbarPre() abort
 endfunction
 
 function s:OpenTagbar() abort
-    " setlocal nowinfixheight
-    " setlocal winfixwidth
+    clearjumps
+    call s:SetWindowConfig()
     TagbarOpen
     call s:ResetWindowConfig()
+    call s:GotoWinID()
 endfunction

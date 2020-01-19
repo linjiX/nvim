@@ -33,7 +33,7 @@ let g:airline_filetype_overrides = {
             \ 'startify': [ 'Startify', '' ],
             \ }
 let g:airline#extensions#tabline#ignore_bufadd_pat =
-            \ '!|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|<bash>'
+            \ '!|\[coc-explorer\]|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|<bash>'
 
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
