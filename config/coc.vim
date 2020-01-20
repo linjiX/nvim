@@ -44,6 +44,7 @@ augroup myCoc
     autocmd CursorHold * silent! call CocActionAsync('highlight')
     " Disable locationlist auto preview
     autocmd User CocLocationsChange CocList --normal location
+    autocmd FileType coc-explorer nnoremap <buffer> <leader> <Nop>
 augroup END
 
 inoremap <silent><expr> <C-j>
@@ -105,7 +106,7 @@ nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
 " coc-explorer
 nnoremap <silent> <leader>w :call workspace#ToggleWorkspace()<CR>
-nnoremap <silent> <leader>F :call workspace#RevealWorkspace()<CR>
+nnoremap <silent> <leader>W :call workspace#RevealWorkspace()<CR>
 
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>

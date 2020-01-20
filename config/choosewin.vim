@@ -13,4 +13,4 @@
 let g:choosewin_label = '123456789'
 let g:choosewin_tablabel = 'ABCDEFGHIJKLMNOPQRTUVWYZ'
 
-nmap <leader>W <Plug>(choosewin)
+nmap <leader>C <Plug>(choosewin)
