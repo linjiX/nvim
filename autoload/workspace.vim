@@ -94,8 +94,13 @@ endfunction
 
 function s:OpenTagbar() abort
     clearjumps
+    let l:line = line('.')
+    execute '1'
+
     call s:SetWindowConfig()
     TagbarOpen
     call s:ResetWindowConfig()
+
+    execute l:line
     call s:GotoWinID()
 endfunction
