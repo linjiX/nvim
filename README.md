@@ -54,7 +54,13 @@ Then enable it in your terminal.
 
 #### Python
 
-    pip3 install black isort ipython pylint flake8
+    pip3 install \
+        black \
+        isort \
+        ipython \
+        pylint \
+        flake8 \
+        mypy
 
 #### C/C++ (Ubuntu 16.04)
 
