@@ -31,6 +31,7 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
             \ '-whitespace/indent,'.
             \ '-runtime/references,'
 let g:ale_python_flake8_options = '--max-line-length=100'
+let g:ale_python_pylint_options = '--disable=bad-continuation'
 let g:ale_python_mypy_options = '--cache-dir=/tmp/mypy_cache'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 
