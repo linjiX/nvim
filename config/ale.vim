@@ -214,6 +214,7 @@ function ALEDiags()
 endfunction
 
 function s:AutoCmdALEFixSuggest() abort
+    wincmd L
     setlocal buftype=nofile
     setlocal nobuflisted
     setlocal bufhidden=wipe
