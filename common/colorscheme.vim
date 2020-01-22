@@ -51,6 +51,7 @@ function s:AutoCmdSolarzed() abort
     highlight UserFloating ctermbg=232
     highlight link CocFloating UserFloating
     highlight link EchoDocFloat UserFloating
+    highlight link WhichKeyFloating UserFloating
     highlight link NormalFloat UserFloating
 endfunction
 
@@ -59,6 +60,7 @@ function s:AutoCmdMolokai() abort
     highlight! link CursorLine CursorColumn
     highlight link CocFloating Visual
     highlight link EchoDocFloat Visual
+    highlight link WhichKeyFloating Visual
     highlight link NormalFloat Visual
 endfunction
 
