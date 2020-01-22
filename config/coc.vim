@@ -38,6 +38,13 @@ function! s:ShowDocumentation()
     endif
 endfunction
 
+function s:AutoCmdCocInfo() abort
+    if &buftype ==# 'nofile'
+        setlocal nobuflisted
+        setlocal bufhidden=wipe
+    endif
+endfunction
+
 augroup myCoc
     autocmd!
     " Highlight symbol under cursor on CursorHold
@@ -45,6 +52,7 @@ augroup myCoc
     " Disable locationlist auto preview
     autocmd User CocLocationsChange CocList --normal location
     autocmd FileType coc-explorer nnoremap <buffer> <leader> <Nop>
+    autocmd FileType log call s:AutoCmdCocInfo()
 augroup END
 
 inoremap <silent><expr> <C-j>
