@@ -33,7 +33,7 @@ endfunction
 
 augroup myCtrlSF
     autocmd!
-    autocmd FileType ctrlsf call <SID>AutoCmdCtrlSF()
+    autocmd FileType ctrlsf call s:AutoCmdCtrlSF()
 augroup END
 
 nmap <leader>s<Space> <Plug>CtrlSFPrompt

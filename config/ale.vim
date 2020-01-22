@@ -222,7 +222,7 @@ endfunction
 augroup myALE
     autocmd!
     autocmd BufRead * ALELint
-    autocmd FileType ale-fix-suggest call <SID>AutoCmdALEFixSuggest()
+    autocmd FileType ale-fix-suggest call s:AutoCmdALEFixSuggest()
 augroup END
 
 nnoremap <silent> <leader>D :call ALEDiags()<CR>

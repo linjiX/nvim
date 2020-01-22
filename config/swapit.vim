@@ -59,8 +59,8 @@ endfunction
 
 augroup mySwapit
     autocmd!
-    autocmd BufRead * call <SID>AutoCmdSwapList()
-    autocmd FileType gitrebase call <SID>AutoCmdGitrebaseSwapList()
+    autocmd BufRead * call s:AutoCmdSwapList()
+    autocmd FileType gitrebase call s:AutoCmdGitrebaseSwapList()
 augroup END
 
 nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>

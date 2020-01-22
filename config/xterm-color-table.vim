@@ -20,5 +20,5 @@ endfunction
 
 augroup myXtermColorTable
     autocmd!
-    autocmd BufEnter __XtermColorTable__ call <SID>AutoCmdXtermColorTable()
+    autocmd BufEnter __XtermColorTable__ call s:AutoCmdXtermColorTable()
 augroup END

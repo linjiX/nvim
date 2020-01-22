@@ -64,7 +64,7 @@ endfunction
 
 augroup myColorScheme
     autocmd!
-    autocmd ColorScheme * call <SID>AutoCmdColorScheme()
-    autocmd ColorScheme solarized call <SID>AutoCmdSolarzed()
-    autocmd ColorScheme molokai call <SID>AutoCmdMolokai()
+    autocmd ColorScheme * call s:AutoCmdColorScheme()
+    autocmd ColorScheme solarized call s:AutoCmdSolarzed()
+    autocmd ColorScheme molokai call s:AutoCmdMolokai()
 augroup END

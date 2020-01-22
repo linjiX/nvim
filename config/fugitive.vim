@@ -20,8 +20,8 @@ endfunction
 
 augroup myGit
     autocmd!
-    autocmd FileType fugitive call <SID>AutoCmdFugitive()
-    autocmd FileType GV call <SID>AutoCmdGV()
+    autocmd FileType fugitive call s:AutoCmdFugitive()
+    autocmd FileType GV call s:AutoCmdGV()
 augroup END
 
 cnoreabbrev <silent> Gst vertical botright Gstatus
