@@ -85,7 +85,9 @@ Then enable it in your terminal.
 
 #### Cmake
 
-    pip3 install cmake_format cmakelint
+    pip3 install \
+        cmake_format \
+        cmakelint
 
 #### Dockerfile
 
