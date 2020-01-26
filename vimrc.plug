@@ -152,11 +152,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim'
 Plug 'google/vim-searchindex'
-if !has('macunix')
+Plug 'linjiX/vim-star'
+if has('macunix')
+    Plug '/usr/local/opt/fzf'
+else
     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 endif
 Plug 'junegunn/fzf.vim'
-Plug 'linjiX/vim-star'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'
