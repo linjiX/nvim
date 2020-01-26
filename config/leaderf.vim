@@ -10,14 +10,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
 
-let s:WindowHeight = 0.3
-" let s:PositionLine = float2nr(&lines * (1 - s:WindowHeight)) - 1
-" let s:PositionCol = SiderBarWidth() + 2
-
-let g:Lf_WindowHeight = s:WindowHeight
+let g:Lf_WindowHeight = 0.3
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupHeight = s:WindowHeight
-" let g:Lf_PopupPosition = [s:PositionLine, s:PositionCol]
+let g:Lf_PopupHeight = 0.3
 let g:Lf_StlSeparator = {'left': '', 'right': ''}
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
