@@ -98,9 +98,12 @@ function s:OpenTagbar() abort
     execute '1'
 
     call s:SetWindowConfig()
-    TagbarOpen
-    call s:ResetWindowConfig()
+    try
+        TagbarOpen
+    finally
+        call s:ResetWindowConfig()
 
-    execute l:line
-    call s:GotoWinID()
+        execute l:line
+        call s:GotoWinID()
+    endtry
 endfunction
