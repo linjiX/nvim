@@ -10,9 +10,14 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
 
-let g:Lf_WindowHeight = 0.3
+let s:WindowHeight = 0.3
+let s:PositionLine = float2nr(&lines * (1 - s:WindowHeight))
+let s:PositionCol = SiderBarWidth() + 2
+
+let g:Lf_WindowHeight = s:WindowHeight
 let g:Lf_WindowPosition = 'popup'
-let g:Lf_PopupHeight = 0.3
+let g:Lf_PopupHeight = s:WindowHeight
+let g:Lf_PopupPosition = [s:PositionLine, s:PositionCol]
 let g:Lf_StlSeparator = {'left': '', 'right': ''}
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
@@ -39,6 +44,13 @@ let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 
 function s:MyLeaderf(bang, args) abort
+    let l:bangcmd = a:bang ? '! ' : ' '
+    let l:cmd = 'Leaderf'. l:bangcmd . a:args
+    if !has('nvim')
+        execute l:cmd
+        return
+    endif
+
     let l:screencol = screencol() - 6
     let l:screenrow = screenrow() - 1
     let l:max_screenrow = float2nr(&lines * (1 - g:Lf_PopupHeight))
@@ -49,8 +61,7 @@ function s:MyLeaderf(bang, args) abort
     let l:Lf_PopupPosition_User = get(g:, 'Lf_PopupPosition', [0, 0])
     try
         let g:Lf_PopupPosition = [l:screenrow, l:screencol]
-        let l:bangcmd = a:bang ? '! ' : ' '
-        execute 'Leaderf'. l:bangcmd . a:args
+        execute l:cmd
     finally
         let g:Lf_PopupPosition = l:Lf_PopupPosition_User
     endtry
