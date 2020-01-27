@@ -32,5 +32,5 @@ call which_key#register('<Space>', 'g:which_key_map')
 
 " nnoremap <F4> :WhichKey ''<CR>
 " vnoremap <F4> :WhichKeyVisual ''<CR>
-nnoremap <silent> <leader> :<C-u>silent WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<C-u>silent WhichKeyVisual '<Space>'<CR>
+nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
+vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>

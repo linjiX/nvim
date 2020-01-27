@@ -50,7 +50,7 @@ function s:MyLeaderf(bang, args) abort
     try
         let g:Lf_PopupPosition = [l:screenrow, l:screencol]
         let l:bangcmd = a:bang ? '! ' : ' '
-        execute 'silent Leaderf'. l:bangcmd . a:args
+        execute 'Leaderf'. l:bangcmd . a:args
     finally
         let g:Lf_PopupPosition = l:Lf_PopupPosition_User
     endtry

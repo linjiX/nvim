@@ -11,6 +11,22 @@
 
 let g:BufKillCreateMappings = 0
 
+function s:AutoCmdBufKill() abort
+    if !exists('w:BufKillList')
+        return
+    endif
+    if index(w:BufKillList, bufnr()) == -1
+        unlet w:BufKillList
+        unlet w:BufKillIndex
+        unlet w:BufKillColumnList
+    endif
+endfunction
+
+augroup myBufKill
+    autocmd!
+    autocmd BufLeave * call s:AutoCmdBufKill()
+augroup END
+
 nnoremap <expr><silent> <leader>o buffer#Open(":BB\<CR>")
 nnoremap <expr><silent> <leader>i buffer#Open(":BF\<CR>")
 nnoremap <expr><silent> <leader>` buffer#Open(":BA\<CR>")
