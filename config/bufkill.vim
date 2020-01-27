@@ -13,10 +13,7 @@ let g:BufKillCreateMappings = 0
 
 if has('nvim')
     function s:AutoCmdBufKill() abort
-        if !exists('w:BufKillList')
-            return
-        endif
-        if index(w:BufKillList, bufnr()) == -1
+        if exists('w:BufKillList') && index(w:BufKillList, bufnr()) == -1
             unlet w:BufKillList
             unlet w:BufKillIndex
             unlet w:BufKillColumnList
