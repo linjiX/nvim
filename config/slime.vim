@@ -20,20 +20,12 @@ let g:slime_python_ipython = 1
 " let g:slime_paste_file = s:vim_cache .'/slime_paste'
 
 let g:slime_sleep_time_ms = 200
-let g:slime_command = {'python': ['ipython3', 'python3', 'ipython', 'python']}
+let g:slime_command = {
+            \ 'python': ['ipython3', 'python3', 'ipython', 'python'],
+            \ 'default': 'bash'
+            \ }
 
 if has('nvim')
-    function s:SlimeOpenTerminalCmd(...) abort
-        let [l:cmd, l:sleep] = (a:0 == 0) ? ['bash', g:slime_sleep_time_ms]
-                    \                     : [a:1, g:slime_sleep_time_ms * 2]
-        execute 'botright vsplit term://'. l:cmd
-        stopinsert
-        set nonumber
-        let b:terminal_navigate = 1
-        execute 'sleep'. l:sleep .'m'
-        return [bufnr('%')]
-    endfunction
-
     function s:SlimeConfig(bufs) abort
         let l:jobids = map(a:bufs, 'getbufvar(v:val, "terminal_job_id")')
         echo l:jobids
@@ -44,14 +36,6 @@ if has('nvim')
         endif
     endfunction
 else
-    function s:SlimeOpenTerminalCmd(...) abort
-        let [l:cmd, l:sleep] = (a:0 == 0) ? ['', g:slime_sleep_time_ms]
-                    \                     : [' ++close '. a:1, g:slime_sleep_time_ms * 2]
-        execute 'botright vertical terminal'. l:cmd
-        execute 'sleep'. l:sleep .'m'
-        return [bufnr('%')]
-    endfunction
-
     function s:SlimeConfig(bufs) abort
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'bufnr') ||
@@ -61,17 +45,29 @@ else
     endfunction
 endif
 
+function s:SlimeOpenTerminalCmd(cmd) abort
+    let l:sleep = a:cmd ==# 'bash' ? g:slime_sleep_time_ms
+                \                  : g:slime_sleep_time_ms * 2
+    call terminal#SmartTerminal(a:cmd)
+    if has('nvim')
+        stopinsert
+        set nonumber
+        let b:terminal_navigate = 1
+    endif
+    execute 'sleep'. l:sleep .'m'
+    return [bufnr('%')]
+endfunction
+
 function s:SlimeOpenTerminal() abort
     let l:winid = win_getid()
     try
-        if has_key(g:slime_command, &filetype)
-            for l:cmd in g:slime_command[&filetype]
-                if executable(l:cmd)
-                    return s:SlimeOpenTerminalCmd(l:cmd)
-                endif
-            endfor
-        endif
-        return s:SlimeOpenTerminalCmd()
+        let l:cmdlist = get(g:slime_command, &filetype, [])
+        for l:cmd in l:cmdlist
+            if executable(l:cmd)
+                return s:SlimeOpenTerminalCmd(l:cmd)
+            endif
+        endfor
+        return s:SlimeOpenTerminalCmd(g:slime_command.default)
     finally
         call win_gotoid(l:winid)
     endtry
