@@ -68,3 +68,11 @@ function terminal#SmartTerminal(cmd) abort
     call s:OpenTerminal(v:true, a:cmd)
     return
 endfunction
+
+if has('nvim')
+    function terminal#Navigate(cmd) abort
+        let l:esc = "\<C-\>\<C-n>"
+        let l:flag = ":let b:terminal_navigate = 1\<CR>"
+        return l:esc . l:flag . a:cmd
+    endfunction
+endif
