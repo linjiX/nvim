@@ -18,3 +18,10 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
 nmap <silent><expr> <C-j>
             \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
             \                      : ':TmuxNavigateDown<CR>'
+
+if !has('nvim')
+    tnoremap <silent> <C-h> <C-v>:TmuxNavigateLeft<CR>
+    tnoremap <silent> <C-j> <C-v>:TmuxNavigateDown<CR>
+    tnoremap <silent> <C-k> <C-v>:TmuxNavigateUp<CR>
+    tnoremap <silent> <C-l> <C-v>:TmuxNavigateRight<CR>
+endif

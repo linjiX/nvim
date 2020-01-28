@@ -10,10 +10,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Window Navigator Mapping is done by Plug 'christoomey/vim-tmux-navigator'
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-l> <C-w>l
+nnoremap <C-h> <C-w>h
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nmap <silent><expr> <C-j>
+            \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
+            \                      : "\<C-w>j"
 
 " normal mode mapping
 nnoremap Y y$
