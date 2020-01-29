@@ -28,7 +28,6 @@ let g:slime_command = {
 if has('nvim')
     function s:SlimeConfig(bufs) abort
         let l:jobids = map(a:bufs, 'getbufvar(v:val, "terminal_job_id")')
-        echo l:jobids
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'jobid') ||
          \ index(l:jobids, b:slime_config['jobid']) == -1
