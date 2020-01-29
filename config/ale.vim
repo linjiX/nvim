@@ -22,6 +22,7 @@ let g:ale_linters = {
             \ 'json': ['Jsonlint'],
             \ 'Dockerfile': ['hadolint'],
             \ 'cmake': ['cmakelint'],
+            \ 'markdown': ['markdownlint-cli'],
             \ }
 let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
             \ '-build/c++11,'.
@@ -201,6 +202,36 @@ function HandleJsonlintFormat(buffer, lines) abort
                         \             ."\ntext: ". l:match[5],
                         \})
         endif
+    endfor
+
+    return l:output
+endfunction
+
+call ale#linter#Define('markdown', {
+            \   'name': 'markdownlint-cli',
+            \   'executable': 'markdownlint',
+            \   'lint_file': 1,
+            \   'output_stream': 'both',
+            \   'command': '%e %t',
+            \   'callback': 'HandleMarkdownLintCliFormat'
+            \})
+
+function HandleMarkdownLintCliFormat(buffer, lines) abort
+    let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.+)$'
+    let l:output=[]
+
+    for l:match in ale#util#GetMatches(a:lines, l:pattern)
+        call add(l:output, {
+                    \   'lnum': str2nr(l:match[2]),
+                    \   'type': 'W',
+                    \   'code': l:match[3],
+                    \   'text': '('. l:match[4] .') '. l:match[5],
+                    \   'detail': l:match[1] .':'. l:match[2]
+                    \             ."\ntype: W"
+                    \             ."\ncode: ". l:match[3]
+                    \             ."\nname: ". l:match[4]
+                    \             ."\ntext: ". l:match[5],
+                    \})
     endfor
 
     return l:output

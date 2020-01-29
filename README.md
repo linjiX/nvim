@@ -82,6 +82,7 @@ Then enable it in your terminal.
 #### Markdown
 
     npm install --global prettier
+    npm install --global markdownlint-cli
 
 #### Cmake
 
