@@ -210,9 +210,8 @@ endfunction
 call ale#linter#Define('markdown', {
             \   'name': 'markdownlint-cli',
             \   'executable': 'markdownlint',
-            \   'lint_file': 1,
             \   'output_stream': 'both',
-            \   'command': '%e %t',
+            \   'command': '%e --config='. $HOME .'/.vim/markdownlint.json %t',
             \   'callback': 'HandleMarkdownLintCliFormat'
             \})
 
