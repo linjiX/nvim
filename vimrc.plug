@@ -9,10 +9,6 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if !has('nvim')
-    packadd! matchit
-endif
-
 let g:plug_window = 'botright vertical new'
 
 nnoremap <silent> <leader>vv :PlugInstall<CR>
@@ -164,6 +160,7 @@ Plug 'junegunn/fzf.vim'
 " Plug 'rhysd/accelerated-jk'
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'yuttie/comfortable-motion.vim'
+Plug 'andymass/vim-matchup'
 Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion-prefix)'}
 Plug 'justinmk/vim-sneak', {'on': '<Plug>Sneak_'}
 Plug 'kshenoy/vim-signature'

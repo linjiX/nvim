@@ -14,6 +14,7 @@ let g:solarized_termtrans = 1
 function s:AutoCmdColorScheme() abort
     highlight Sneak cterm=bold,underline ctermfg=red
     highlight MatchParen NONE term=bold,underline cterm=bold,underline gui=bold,underline
+    highlight MatchWord term=underline cterm=underline gui=underline
     highlight link ctrlsfMatch StatusLineNC
 
     highlight UserError cterm=bold,underline ctermfg=9
