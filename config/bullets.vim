@@ -9,18 +9,4 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Plug 'octol/vim-cpp-enhanced-highlight'
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-"let g:cpp_experimental_simple_template_highlight = 1
-"let g:cpp_concepts_highlight = 1
-
-" Plug 'chrisbra/csv.vim'
-let g:csv_nomap_cr = 1
-let g:csv_nomap_bs = 1
-let g:csv_nomap_space = 1
-
-" Plug 'plasticboy/vim-markdown'
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_auto_insert_bullets = 0
+let g:bullets_enabled_file_types = ['markdown', 'text', 'log', 'gitcommit', '']
