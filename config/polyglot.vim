@@ -20,3 +20,6 @@ let g:cpp_class_decl_highlight = 1
 let g:csv_nomap_cr = 1
 let g:csv_nomap_bs = 1
 let g:csv_nomap_space = 1
+
+" Plug 'plasticboy/vim-markdown'
+let g:vim_markdown_conceal_code_blocks = 0
