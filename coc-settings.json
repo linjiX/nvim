@@ -55,7 +55,7 @@
     "signature.enable": true,
     "signature.target": "float",
 
-    "workspace.ignoredFiletypes": ["markdown", "log", "txt", "help", ""],
+    "workspace.ignoredFiletypes": ["log", "help"],
 
     "coc.preferences.hoverTarget": "float",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
