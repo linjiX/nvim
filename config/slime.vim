@@ -117,8 +117,8 @@ function s:SlimeSelectTerminal() abort
 endfunction
 
 nmap <silent> <leader>ec <Plug>SlimeConfig
-nmap <silent> <leader>ea :call <SID>SlimeSelectTerminal()<CR>
-            \:call slime#send_range(1, line('$'))<CR>
+nmap <silent> <leader>ea
+            \ :call <SID>SlimeSelectTerminal()<CR>:call slime#send_range(1, line('$'))<CR>
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeRegionSend
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeLineSend
 nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal()<CR><Plug>SlimeParagraphSend
