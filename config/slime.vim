@@ -26,8 +26,8 @@ let g:slime_command = {
             \ }
 
 if has('nvim')
-    function s:SlimeConfig(bufs) abort
-        let l:jobids = map(a:bufs, 'getbufvar(v:val, "terminal_job_id")')
+    function s:SlimeConfig(bufnrs) abort
+        let l:jobids = map(a:bufnrs, 'getbufvar(v:val, "terminal_job_id")')
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'jobid') ||
          \ index(l:jobids, b:slime_config['jobid']) == -1
@@ -35,11 +35,11 @@ if has('nvim')
         endif
     endfunction
 else
-    function s:SlimeConfig(bufs) abort
+    function s:SlimeConfig(bufnrs) abort
         if !exists('b:slime_config') ||
          \ !has_key(b:slime_config, 'bufnr') ||
-         \ index(a:bufs, b:slime_config['bufnr']) == -1
-            let b:slime_config = {'bufnr': min(a:bufs)}
+         \ index(a:bufnrs, b:slime_config['bufnr']) == -1
+            let b:slime_config = {'bufnr': min(a:bufnrs)}
         endif
     endfunction
 endif
@@ -78,8 +78,8 @@ endfunction
 function s:SlimeOpenTerminal() abort
     let l:winid = win_getid()
     try
-        let l:cmdlist = get(g:slime_command, &filetype, [])
-        for l:cmd in l:cmdlist
+        let l:cmds = get(g:slime_command, &filetype, [])
+        for l:cmd in l:cmds
             if executable(l:cmd)
                 return s:SlimeOpenTerminalCmd(l:cmd)
             endif
@@ -91,29 +91,29 @@ function s:SlimeOpenTerminal() abort
 endfunction
 
 function s:SlimeAvailableTerminals() abort
-    let l:bufs = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let l:bufs = filter(l:bufs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
+    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
     if !has('nvim')
-        let l:bufs = filter(l:bufs, 'term_getstatus(v:val) =~# "running"')
+        let l:bufnrs = filter(l:bufnrs, 'term_getstatus(v:val) =~# "running"')
     endif
 
     let l:cmds = get(g:slime_command, &filetype, [g:slime_command.default])
-    for l:bufnr in l:bufs
+    for l:bufnr in l:bufnrs
         let l:cmd = s:SlimeGetTerminalCommand(l:bufnr)
         if index(l:cmds, l:cmd) == -1
-            call remove(l:bufs, index(l:bufs, l:bufnr))
+            call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
         endif
     endfor
 
-    return l:bufs
+    return l:bufnrs
 endfunction
 
 function s:SlimeSelectTerminal() abort
-    let l:bufs = s:SlimeAvailableTerminals()
-    if len(l:bufs) == 0
-        let l:bufs = s:SlimeOpenTerminal()
+    let l:bufnrs = s:SlimeAvailableTerminals()
+    if len(l:bufnrs) == 0
+        let l:bufnrs = s:SlimeOpenTerminal()
     endif
-    call s:SlimeConfig(l:bufs)
+    call s:SlimeConfig(l:bufnrs)
 endfunction
 
 nmap <silent> <leader>ec <Plug>SlimeConfig
