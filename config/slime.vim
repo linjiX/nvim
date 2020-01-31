@@ -47,7 +47,7 @@ endif
 function s:SlimeGetTerminalCommand(bufnr) abort
     if has('nvim')
         let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
-        let l:tty = system('ps -e -o tty= '. l:pid)
+        let l:tty = system('ps -o tty= '. l:pid)
     else
         let l:tty = term_gettty(a:bufnr)
     endif
