@@ -236,7 +236,7 @@ function HandleMarkdownLintCliFormat(buffer, lines) abort
     return l:output
 endfunction
 
-function ALEDiags()
+function s:ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
     belowright copen
@@ -258,7 +258,7 @@ augroup myALE
     autocmd FileType ale-fix-suggest call s:AutoCmdALEFixSuggest()
 augroup END
 
-nnoremap <silent> <leader>D :call ALEDiags()<CR>
+nnoremap <silent> <leader>D :call <SID>ALEDiags()<CR>
 nnoremap <leader>E :ALEDetail<CR>
 
 nmap [w <Plug>(ale_previous)
