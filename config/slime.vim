@@ -21,7 +21,7 @@ let g:slime_python_ipython = 1
 
 let g:slime_sleep_time_ms = 200
 let g:slime_command = {
-            \ 'python': ['ipython3', 'python3', 'ipython', 'python'],
+            \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': 'bash'
             \ }
 
