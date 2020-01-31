@@ -44,6 +44,24 @@ else
     endfunction
 endif
 
+function s:SlimeGetTerminalCommand(bufnr) abort
+    if has('nvim')
+        let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
+        let l:tty = system('ps -e -o tty= '. l:pid)
+    else
+        let l:tty = term_gettty(a:bufnr)
+    endif
+
+    let l:ps = system('ps -o stat= -o command= -t '. l:tty)
+    for l:item in split(l:ps, '\n')
+        let l:list = split(l:item)
+        if l:list[0] =~# '+'
+            return split(l:list[-1], '/')[-1]
+        endif
+    endfor
+    echoerr 'Fail to get terminal command!'
+endfunction
+
 function s:SlimeOpenTerminalCmd(cmd) abort
     let l:sleep = a:cmd ==# 'bash' ? g:slime_sleep_time_ms
                 \                  : g:slime_sleep_time_ms * 2
@@ -78,6 +96,15 @@ function s:SlimeAvailableTerminals() abort
     if !has('nvim')
         let l:bufs = filter(l:bufs, 'term_getstatus(v:val) =~# "running"')
     endif
+
+    let l:cmds = get(g:slime_command, &filetype, [g:slime_command.default])
+    for l:bufnr in l:bufs
+        let l:cmd = s:SlimeGetTerminalCommand(l:bufnr)
+        if index(l:cmds, l:cmd) == -1
+            call remove(l:bufs, index(l:bufs, l:bufnr))
+        endif
+    endfor
+
     return l:bufs
 endfunction
 
