@@ -69,7 +69,7 @@ endif
 function s:SlimeGetTerminalCommand(pid) abort
     let l:command = system('ps -o command= '. a:pid)
     let l:idx = strridx(l:command, '/') + 1
-    return l:command[l:idx:-2]
+    return l:command[l:idx : -2]
 endfunction
 
 function s:SlimeGetTerminalPID(bufnr) abort
