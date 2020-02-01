@@ -126,7 +126,18 @@ function s:SlimeRun() abort
     endif
 
     let l:cmd = s:SlimeGetRunCommand(l:terminal_cwd, l:root_cwd)
-    execute 'SlimeSend1 '. l:cmd
+
+    if exists('g:slime_python_ipython')
+        let l:ipython_config = g:slime_python_ipython
+        unlet g:slime_python_ipython
+    endif
+    try
+        execute 'SlimeSend1 '. l:cmd
+    finally
+        if exists('l:ipython_config')
+            let g:slime_python_ipython = l:ipython_config
+        endif
+    endtry
 endfunction
 
 function s:SlimeOpenTerminalCmd(cmd) abort
