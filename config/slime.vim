@@ -56,7 +56,7 @@ else
     function s:SlimeGetTermianlCwd(pid) abort
         if executable('pwdx')
             let l:pwdx = system('pwdx '. a:pid)
-            return l:pwdx[stridx(l:pwdx, '/'):]
+            return l:pwdx[stridx(l:pwdx, '/') : -2]
         elseif isdirectory('/proc/')
             return system('readlink /proc/'. a:pid .'/cwd')
         endif
