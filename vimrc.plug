@@ -203,7 +203,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
-Plug 'airblade/vim-rooter', {'on': 'Rooter'}
+Plug 'airblade/vim-rooter' ", {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 Plug 'tpope/vim-eunuch'
