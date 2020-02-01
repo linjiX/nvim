@@ -17,10 +17,9 @@ endif
 
 let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
-" let g:slime_paste_file = s:vim_cache .'/slime_paste'
 
-let g:slime_sleep_time_ms = 200
-let g:slime_command = {
+let s:slime_sleep_time_ms = 200
+let s:slime_command = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
             \ }
@@ -141,8 +140,8 @@ function s:SlimeRun() abort
 endfunction
 
 function s:SlimeOpenTerminalCmd(cmd) abort
-    let l:sleep = a:cmd ==# 'bash' ? g:slime_sleep_time_ms
-                \                  : g:slime_sleep_time_ms * 2
+    let l:sleep = a:cmd ==# 'bash' ? s:slime_sleep_time_ms
+                \                  : s:slime_sleep_time_ms * 2
     call terminal#SmartTerminal(a:cmd)
     if has('nvim')
         stopinsert
@@ -186,8 +185,8 @@ function s:SlimeAvailableTerminals(cmds) abort
 endfunction
 
 function s:SlimeSelectTerminal(is_run) abort
-    let l:cmds = a:is_run ? g:slime_command.default
-                \         : get(g:slime_command, &filetype, g:slime_command.default)
+    let l:cmds = a:is_run ? s:slime_command.default
+                \         : get(s:slime_command, &filetype, s:slime_command.default)
     let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
     if empty(l:bufnrs)
         let l:bufnrs = s:SlimeOpenTerminal(l:cmds)
