@@ -44,6 +44,28 @@ else
     endfunction
 endif
 
+if has('macunix')
+    function s:SlimeGetTermianlCwd(pid) abort
+        if executable('lsof')
+            let l:lsof = system('lsof -aFn -d cwd -p '. a:pid)
+            return split(l:lsof, '\n')[-1][1:]
+        endif
+        echoerr 'Fail to get terminal working direcroty, "lsof" is not executable!'
+        return ''
+    endfunction
+else
+    function s:SlimeGetTermianlCwd(pid) abort
+        if executable('pwdx')
+            let l:pwdx = system('pwdx '. a:pid)
+            return l:pwdx[stridx(l:pwdx, '/'):]
+        elseif isdirectory('/proc/')
+            return system('readlink /proc/'. a:pid .'/cwd')
+        endif
+        echoerr 'Fail to get terminal working direcroty!'
+        return ''
+    endfunction
+endif
+
 function s:SlimeGetTerminalCommand(bufnr) abort
     if has('nvim')
         let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
@@ -60,6 +82,7 @@ function s:SlimeGetTerminalCommand(bufnr) abort
         endif
     endfor
     echoerr 'Fail to get terminal command!'
+    return ''
 endfunction
 
 function s:SlimeOpenTerminalCmd(cmd) abort
