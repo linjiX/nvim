@@ -107,9 +107,9 @@ function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
 
     if a:terminal_cwd !=# a:root_cwd
         let l:cd_cmd = 'cd '. escape(a:root_cwd, ' ')
-        return [l:cd_cmd, l:run_cmd]
+        return l:cd_cmd ." && \\\n". l:run_cmd
     endif
-    return [l:run_cmd]
+    return l:run_cmd
 endfunction
 
 function s:SlimeRun() abort
@@ -125,10 +125,8 @@ function s:SlimeRun() abort
         echom l:root_cwd
     endif
 
-    let l:cmds = s:SlimeGetRunCommand(l:terminal_cwd, l:root_cwd)
-    for l:cmd in l:cmds
-        execute 'SlimeSend1 '. l:cmd
-    endfor
+    let l:cmd = s:SlimeGetRunCommand(l:terminal_cwd, l:root_cwd)
+    execute 'SlimeSend1 '. l:cmd
 endfunction
 
 function s:SlimeOpenTerminalCmd(cmd) abort
