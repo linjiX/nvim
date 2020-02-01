@@ -118,8 +118,7 @@ Plug 'tpope/vim-endwise'
 
 "-- python --
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-" Plug 'jpalardy/vim-slime', {'for': ['python', 'sh', 'markdown']}
-Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend1']}
 " Plug 'jalvesaq/vimcmdline'
 " Plug 'rhysd/reply.vim'
 " Plug 'szymonmaszke/vimpyter'
