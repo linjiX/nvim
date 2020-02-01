@@ -25,11 +25,6 @@ let g:slime_command = {
             \ 'default': ['bash'],
             \ }
 
-function s:SlimeGetFiletypeCommand(is_run) abort
-    return a:is_run ? g:slime_command.default
-                \   : get(g:slime_command, &filetype, g:slime_command.default)
-endfunction
-
 function s:SlimeConfig(bufnrs, is_run) abort
     if !exists('b:slime_config')
         let b:slime_config = {}
@@ -149,11 +144,10 @@ function s:SlimeOpenTerminalCmd(cmd) abort
     return [bufnr('%')]
 endfunction
 
-function s:SlimeOpenTerminal(is_run) abort
+function s:SlimeOpenTerminal(cmds) abort
     let l:winid = win_getid()
     try
-        let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
-        for l:cmd in l:cmds
+        for l:cmd in a:cmds
             if executable(l:cmd)
                 return s:SlimeOpenTerminalCmd(l:cmd)
             endif
@@ -164,18 +158,17 @@ function s:SlimeOpenTerminal(is_run) abort
     endtry
 endfunction
 
-function s:SlimeAvailableTerminals(is_run) abort
+function s:SlimeAvailableTerminals(cmds) abort
     let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
     let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
     if !has('nvim')
         let l:bufnrs = filter(l:bufnrs, 'term_getstatus(v:val) =~# "running"')
     endif
 
-    let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
     for l:bufnr in l:bufnrs
         let l:pid = s:SlimeGetTerminalPID(l:bufnr)
         let l:cmd = s:SlimeGetTerminalCommand(l:pid)
-        if index(l:cmds, l:cmd) == -1
+        if index(a:cmds, l:cmd) == -1
             call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
         endif
     endfor
@@ -184,9 +177,11 @@ function s:SlimeAvailableTerminals(is_run) abort
 endfunction
 
 function s:SlimeSelectTerminal(is_run) abort
-    let l:bufnrs = s:SlimeAvailableTerminals(a:is_run)
-    if len(l:bufnrs) == 0
-        let l:bufnrs = s:SlimeOpenTerminal(a:is_run)
+    let l:cmds = a:is_run ? g:slime_command.default
+                \         : get(g:slime_command, &filetype, g:slime_command.default)
+    let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
+    if empty(l:bufnrs)
+        let l:bufnrs = s:SlimeOpenTerminal(l:cmds)
     endif
     call s:SlimeConfig(l:bufnrs, a:is_run)
 endfunction
