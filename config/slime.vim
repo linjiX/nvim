@@ -22,7 +22,7 @@ let g:slime_python_ipython = 1
 let g:slime_sleep_time_ms = 200
 let g:slime_command = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
-            \ 'default': 'bash'
+            \ 'default': ['bash'],
             \ }
 
 if has('nvim')
@@ -101,13 +101,13 @@ endfunction
 function s:SlimeOpenTerminal() abort
     let l:winid = win_getid()
     try
-        let l:cmds = get(g:slime_command, &filetype, [])
+        let l:cmds = get(g:slime_command, &filetype, g:slime_command.default)
         for l:cmd in l:cmds
             if executable(l:cmd)
                 return s:SlimeOpenTerminalCmd(l:cmd)
             endif
         endfor
-        return s:SlimeOpenTerminalCmd(g:slime_command.default)
+        echoerr 'Fail to open slime terminal!'
     finally
         call win_gotoid(l:winid)
     endtry
@@ -120,7 +120,7 @@ function s:SlimeAvailableTerminals() abort
         let l:bufnrs = filter(l:bufnrs, 'term_getstatus(v:val) =~# "running"')
     endif
 
-    let l:cmds = get(g:slime_command, &filetype, [g:slime_command.default])
+    let l:cmds = get(g:slime_command, &filetype, g:slime_command.default)
     for l:bufnr in l:bufnrs
         let l:cmd = s:SlimeGetTerminalCommand(l:bufnr)
         if index(l:cmds, l:cmd) == -1
