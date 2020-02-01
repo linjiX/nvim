@@ -14,9 +14,9 @@ augroup myWorkspace
 augroup END
 
 function s:HasExplorer() abort
-    let l:bufs = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let l:bufs = filter(l:bufs, 'getbufvar(v:val, "&filetype") ==# "coc-explorer"')
-    return len(l:bufs) >= 1
+    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&filetype") ==# "coc-explorer"')
+    return len(l:bufnrs) >= 1
 endfunction
 
 function s:HasTagbar() abort
