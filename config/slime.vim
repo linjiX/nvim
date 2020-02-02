@@ -19,17 +19,17 @@ let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
 
 let s:slime_sleep_time_ms = 200
-let s:slime_command = {
+let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
             \ }
 function s:SlimeGetFiletypeCommand(is_run) abort
-    return a:is_run ? s:slime_command.default
-                \   : get(s:slime_command, &filetype, s:slime_command.default)
+    return a:is_run ? s:slime_repl.default
+                \   : get(s:slime_repl, &filetype, s:slime_repl.default)
 endfunction
 
 function s:SlimeGetConfigKey(is_run) abort
-    return a:is_run ? 'run' : 'slime'
+    return a:is_run ? 'run' : 'repl'
 endfunction
 
 function s:SlimeUserConfig(is_run) abort
@@ -224,7 +224,7 @@ function s:SlimeSelectTerminal(is_run) abort
 endfunction
 
 command! SlimeRunConfig call <SID>SlimeUserConfig(v:true)
-command! SlimeUserConfig call <SID>SlimeUserConfig(v:false)
+command! SlimeReplConfig call <SID>SlimeUserConfig(v:false)
 nmap <silent> <leader>ea
             \ :call <SID>SlimeSelectTerminal(v:false)<CR>:call slime#send_range(1, line('$'))<CR>
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeRegionSend
