@@ -23,11 +23,17 @@ let s:slime_command = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
             \ }
+function s:SlimeGetFiletypeCommand(is_run) abort
+    return a:is_run ? s:slime_command.default
+                \   : get(s:slime_command, &filetype, s:slime_command.default)
+endfunction
+
+function s:SlimeGetConfigKey(is_run) abort
+    return a:is_run ? 'run' : 'slime'
+endfunction
 
 function s:SlimeUserConfig(is_run) abort
-    let l:cmds = a:is_run ? s:slime_command.default
-                \         : get(s:slime_command, &filetype, s:slime_command.default)
-
+    let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
     let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
     if empty(l:bufnrs)
         echo 'No available terminal!'
@@ -37,7 +43,7 @@ function s:SlimeUserConfig(is_run) abort
     if !exists('b:slime_config')
         let b:slime_config = {}
     endif
-    let l:key = a:is_run ? 'run' : 'slime'
+    let l:key = s:SlimeGetConfigKey(a:is_run)
     let l:current_bufnr = get(b:slime_config, l:key, 0)
 
     let l:input_message = "Available terminals: \n"
@@ -58,8 +64,7 @@ function s:SlimeConfig(bufnrs, is_run) abort
         let b:slime_config = {}
     endif
 
-    let l:key = a:is_run ? 'run' : 'slime'
-
+    let l:key = s:SlimeGetConfigKey(a:is_run)
     if !has_key(b:slime_config, l:key) || index(a:bufnrs, b:slime_config[l:key]) == -1
         let b:slime_config[l:key] = min(a:bufnrs)
     endif
@@ -210,8 +215,7 @@ function s:SlimeAvailableTerminals(cmds) abort
 endfunction
 
 function s:SlimeSelectTerminal(is_run) abort
-    let l:cmds = a:is_run ? s:slime_command.default
-                \         : get(s:slime_command, &filetype, s:slime_command.default)
+    let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
     let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
     if empty(l:bufnrs)
         let l:bufnrs = s:SlimeOpenTerminal(l:cmds)
