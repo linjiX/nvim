@@ -49,8 +49,7 @@ if has('macunix')
             let l:lsof = system('lsof -aFn -d cwd -p '. a:pid)
             return split(l:lsof, '\n')[-1][1:]
         endif
-        echoerr 'Fail to get terminal working direcroty, "lsof" is not executable!'
-        return ''
+        throw 'Fail to get terminal working direcroty, "lsof" is not executable!'
     endfunction
 else
     function s:SlimeGetTermianlCwd(pid) abort
@@ -60,8 +59,7 @@ else
         elseif isdirectory('/proc/')
             return system('readlink /proc/'. a:pid .'/cwd')
         endif
-        echoerr 'Fail to get terminal working direcroty!'
-        return ''
+        throw 'Fail to get terminal working direcroty!'
     endfunction
 endif
 
@@ -86,8 +84,7 @@ function s:SlimeGetTerminalPID(bufnr) abort
             return l:pid
         endif
     endfor
-    echoerr 'Fail to get terminal command!'
-    return 0
+    throw 'Fail to get foreground terminal PID!'
 endfunction
 
 function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
@@ -100,8 +97,7 @@ function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
     elseif &filetype ==# 'sh'
         let l:run_cmd = 'bash '. l:filepath
     else
-        echom 'Filetype not support!'
-        return ''
+        throw 'Filetype not support!'
     endif
 
     if a:terminal_cwd !=# a:root_cwd
@@ -160,7 +156,7 @@ function s:SlimeOpenTerminal(cmds) abort
                 return s:SlimeOpenTerminalCmd(l:cmd)
             endif
         endfor
-        echoerr 'Fail to open slime terminal!'
+        throw 'Fail to open slime terminal!'
     finally
         call win_gotoid(l:winid)
     endtry
