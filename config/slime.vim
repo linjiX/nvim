@@ -24,6 +24,35 @@ let s:slime_command = {
             \ 'default': ['bash'],
             \ }
 
+function s:SlimeUserConfig(is_run) abort
+    let l:cmds = a:is_run ? s:slime_command.default
+                \         : get(s:slime_command, &filetype, s:slime_command.default)
+
+    let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
+    if empty(l:bufnrs)
+        echo 'No available terminal!'
+        return
+    endif
+
+    if !exists('b:slime_config')
+        let b:slime_config = {}
+    endif
+    let l:key = a:is_run ? 'run' : 'slime'
+    let l:current_bufnr = get(b:slime_config, l:key, 0)
+
+    let l:input_message = "Available terminals: \n"
+    for l:bufnr in l:bufnrs
+        let l:bufnr_message = (l:bufnr == l:current_bufnr) ? '['. l:bufnr .']'
+                    \                                      : ' '. l:bufnr .' '
+        let l:input_message .= printf("%6s: %s\n", l:bufnr_message, bufname(l:bufnr))
+    endfor
+    let l:input_message .= 'Select targat terminal: '
+
+    call inputsave()
+    let b:slime_config[l:key] = input(l:input_message, l:current_bufnr)
+    call inputrestore()
+endfunction
+
 function s:SlimeConfig(bufnrs, is_run) abort
     if !exists('b:slime_config')
         let b:slime_config = {}
@@ -190,7 +219,8 @@ function s:SlimeSelectTerminal(is_run) abort
     call s:SlimeConfig(l:bufnrs, a:is_run)
 endfunction
 
-nmap <silent> <leader>ec <Plug>SlimeConfig
+command! SlimeRunConfig call <SID>SlimeUserConfig(v:true)
+command! SlimeUserConfig call <SID>SlimeUserConfig(v:false)
 nmap <silent> <leader>ea
             \ :call <SID>SlimeSelectTerminal(v:false)<CR>:call slime#send_range(1, line('$'))<CR>
 vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeRegionSend
