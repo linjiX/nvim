@@ -27,7 +27,7 @@ function s:AsyncGrep(cmd, args)
     let l:args = empty(a:args) ? expand('<cword>') .' %' : escape(a:args, '#%')
     execute join([a:cmd, g:asyncgrepprg, l:args], ' ')
 endfunction
-command -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)
+command! -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)
 
 function AsyncStar(is_visual, is_global, is_g) abort
     let l:pattern = '"'. escape(a:is_visual ? star#Vword() : star#Cword(), '$\`"#%') .'"'

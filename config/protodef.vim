@@ -21,5 +21,5 @@ function s:ProtoDef(includeNS) abort
     endif
     call append(line('.'), split(l:protos, '\n'))
 endfunction
-command ProtoDef call <SID>ProtoDef(1)
+command! ProtoDef call <SID>ProtoDef(1)
 
