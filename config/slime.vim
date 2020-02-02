@@ -19,6 +19,7 @@ let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
 
 let s:slime_sleep_time_ms = 200
+let s:slime_run_filetype = ['python', 'sh']
 let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
@@ -141,6 +142,16 @@ function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
     return l:run_cmd
 endfunction
 
+function s:Run() abort
+    if &filetype ==# 'markdown'
+        MarkdownPreview
+    elseif index(s:slime_run_filetype, &filetype) != -1
+        call s:SlimeRun()
+    else
+        echo 'Filetype not supported!'
+    endif
+endfunction
+
 function s:SlimeRun() abort
     call s:SlimeSelectTerminal(v:true)
 
@@ -231,4 +242,4 @@ vmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeR
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeLineSend
 nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeParagraphSend
 nmap <silent> <leader>em :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeMotionSend
-nmap <silent> <leader>r :call <SID>SlimeRun()<CR>
+nmap <silent> <leader>r :call <SID>Run()<CR>
