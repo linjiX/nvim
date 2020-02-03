@@ -53,6 +53,7 @@ set incsearch
 set hidden
 set autoread
 set wildmenu
+set wildmode=longest:full,full
 set scrolloff=1
 set history=30
 set updatetime=10
