@@ -33,7 +33,7 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
             \ '-runtime/references,'
 let g:ale_python_flake8_options = '--max-line-length=100'
 let g:ale_python_pylint_options = '--disable=bad-continuation'
-let g:ale_python_mypy_options = '--cache-dir=/tmp/mypy_cache'
+let g:ale_python_mypy_options = '--cache-dir=/tmp/mypy_cache --ignore-missing-imports'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
