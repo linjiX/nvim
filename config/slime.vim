@@ -124,7 +124,7 @@ endfunction
 
 function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
     execute 'lcd '. a:root_cwd
-    let l:filepath = escape(expand('%:.'), ' ')
+    let l:filepath = fnameescape(expand('%:.'))
     lcd -
 
     if &filetype ==# 'python'
@@ -136,7 +136,7 @@ function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
     endif
 
     if a:terminal_cwd !=# a:root_cwd
-        let l:cd_cmd = 'cd '. escape(a:root_cwd, ' ')
+        let l:cd_cmd = 'cd '. fnameescape(a:root_cwd)
         return l:cd_cmd ." && \\\n". l:run_cmd
     endif
     return l:run_cmd
