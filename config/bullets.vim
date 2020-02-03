@@ -9,4 +9,4 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:bullets_enabled_file_types = ['markdown', 'text', 'log', 'gitcommit', '']
+let g:bullets_enabled_file_types = ['markdown', 'text', 'log', 'gitcommit', 'conf', '']

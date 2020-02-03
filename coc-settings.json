@@ -67,7 +67,7 @@
         "cpp": ["c"]
     },
 
-    "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", ""],
+    "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", "conf", ""],
 
     "python.jediEnabled": false,
     "python.linting.enabled": false,
