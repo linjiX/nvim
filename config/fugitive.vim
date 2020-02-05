@@ -24,5 +24,5 @@ augroup myGit
     autocmd FileType GV call s:AutoCmdGV()
 augroup END
 
-cnoreabbrev <silent> Gst vertical botright Gstatus
-cnoreabbrev <silent> Gc Gcommit -v
+command! Gst vertical botright Gstatus
+command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc execute 'Gcommit -v '. <q-args>
