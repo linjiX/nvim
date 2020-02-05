@@ -25,12 +25,16 @@ function buffer#Open(cmd) abort
     return l:wincmd . a:cmd
 endfunction
 
-function buffer#Quit(is_write) abort
+function buffer#Quit(cmd) abort
+    if getcmdtype() !=# ':' || trim(getcmdline()) !=# a:cmd
+        return a:cmd
+    endif
+    let l:is_write = a:cmd =~# 'w'
     let l:winnrs = s:GetListedBufWinnrs()
     if empty(l:winnrs)
-        return tabpagenr('$') > 1 ? a:is_write ? 'w | tabclose' : 'tabclose'
-                    \             : a:is_write ? 'w | qa' : 'qa'
+        return tabpagenr('$') > 1 ? l:is_write ? 'w | tabclose' : 'tabclose'
+                    \             : l:is_write ? 'w | qa' : 'qa'
     else
-        return a:is_write ? 'wq' : 'q'
+        return l:is_write ? 'wq' : 'q'
     endif
 endfunction

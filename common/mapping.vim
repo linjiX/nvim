@@ -25,8 +25,8 @@ nnoremap <silent> <C-w><C-m> :tabnew %<CR>
 vnoremap <silent> <C-n> :sort<CR>
 
 " command mapping
-cnoreabbrev <expr><silent> q buffer#Quit(v:false)
-cnoreabbrev <expr><silent> wq buffer#Quit(v:true)
+cnoreabbrev <expr><silent> q buffer#Quit('q')
+cnoreabbrev <expr><silent> wq buffer#Quit('wq')
 cnoreabbrev <silent> w!! w !sudo tee % >/dev/null
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
