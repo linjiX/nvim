@@ -37,6 +37,9 @@ let g:ale_python_mypy_options = join([
             \ '--cache-dir=/tmp/mypy_cache',
             \ '--ignore-missing-imports',
             \ '--follow-imports=silent',
+            \ '--warn-unreachable',
+            \ '--strict-equality',
+            \ '--strict',
             \ ])
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 
