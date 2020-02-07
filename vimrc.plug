@@ -145,9 +145,9 @@ Plug 'tpope/vim-fugitive'
 " Plug 'haya14busa/vim-asterisk'
 " Plug 'nelstrom/vim-visual-star-search'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
-Plug 'dyng/ctrlsf.vim'
-Plug 'google/vim-searchindex'
-Plug 'linjiX/vim-star'
+Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
+Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
+Plug 'linjiX/vim-star', {'on': '<Plug>(star-'}
 if has('macunix')
     Plug '/usr/local/opt/fzf'
 else
@@ -167,7 +167,7 @@ Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
 Plug 'yonchu/accelerated-smooth-scroll', {'on': '<Plug>(ac-smooth-scroll-c-'}
 
 "-- Visual --
-Plug 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
 Plug 'kana/vim-niceblock'
 
 "-- Text Object --
@@ -194,7 +194,7 @@ Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()},
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 
 "-- QuickFix --
-Plug 'ronakg/quickr-preview.vim'
+Plug 'ronakg/quickr-preview.vim', {'on': '<Plug>(quickr_preview)'}
 
 "-- tmux --
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
