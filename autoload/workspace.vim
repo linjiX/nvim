@@ -30,7 +30,7 @@ function s:SetWindowConfig() abort
 
     let g:tagbar_left = 0
     let g:tagbar_autofocus = 0
-    let g:tagbar_vertical = winheight(0)/2
+    let g:tagbar_vertical = (winheight(0) - 1)/2
 endfunction
 
 function s:ResetWindowConfig() abort
