@@ -147,7 +147,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
 Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
-Plug 'linjiX/vim-star', {'on': '<Plug>(star-'}
+Plug 'linjiX/vim-star'
 if has('macunix')
     Plug '/usr/local/opt/fzf'
 else
@@ -194,7 +194,7 @@ Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()},
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 
 "-- QuickFix --
-Plug 'ronakg/quickr-preview.vim', {'on': '<Plug>(quickr_preview)'}
+Plug 'ronakg/quickr-preview.vim'
 
 "-- tmux --
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
