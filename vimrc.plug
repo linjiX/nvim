@@ -164,7 +164,7 @@ Plug 'easymotion/vim-easymotion', {'on': '<Plug>(easymotion-prefix)'}
 Plug 'justinmk/vim-sneak', {'on': '<Plug>Sneak_'}
 Plug 'kshenoy/vim-signature'
 Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
-Plug 'yonchu/accelerated-smooth-scroll'
+Plug 'yonchu/accelerated-smooth-scroll', {'on': '<Plug>(ac-smooth-scroll-c-'}
 
 "-- Visual --
 Plug 'terryma/vim-expand-region'

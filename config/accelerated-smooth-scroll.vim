@@ -37,3 +37,8 @@ nmap <silent> <C-f> <Plug>(ac-smooth-scroll-c-f)
 nmap <silent> <C-b> <Plug>(ac-smooth-scroll-c-b)
 nmap <silent> <C-u> <Plug>(ac-smooth-scroll-c-u)
 nmap <silent> <C-d> <Plug>(ac-smooth-scroll-c-d)
+
+xmap <silent> <C-f> <Plug>(ac-smooth-scroll-c-f_v)
+xmap <silent> <C-b> <Plug>(ac-smooth-scroll-c-b_v)
+xmap <silent> <C-u> <Plug>(ac-smooth-scroll-c-u_v)
+xmap <silent> <C-d> <Plug>(ac-smooth-scroll-c-d_v)
