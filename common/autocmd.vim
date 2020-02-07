@@ -15,12 +15,6 @@ function SiderBarWidth()
 endfunction
 
 function s:AutoCmdBufType() abort
-    " if &previewwindow == 1
-    "     setlocal nobuflisted
-    "     nnoremap <silent><buffer> <leader>q :pclose<CR>
-    "     nnoremap <silent><buffer> q :pclose<CR>
-    "     return
-    " endif
     if &buftype ==# 'nofile'
         nnoremap <silent><buffer> <leader>q :q<CR>
         nnoremap <silent><buffer> q :q<CR>
@@ -74,8 +68,6 @@ augroup END
 
 augroup myCommon
     autocmd!
-    " autocmd WinEnter * autocmd BufWinEnter * clearjumps
-    " autocmd WinNew * clearjumps
     autocmd VimEnter * clearjumps
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro

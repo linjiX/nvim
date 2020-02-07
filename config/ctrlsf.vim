@@ -17,7 +17,6 @@ endif
 
 let g:ctrlsf_position = 'right'
 let g:ctrlsf_default_root = 'project+fw'
-" let g:ctrlsf_extra_root_markers = ['.root']
 let g:ctrlsf_winsize = '45%'
 let g:ctrlsf_ignore_dir = ['bazel-*', 'build', 'devel', 'install']
 let g:ctrlsf_auto_focus = {
