@@ -1,14 +1,17 @@
 {
     "default": true,
-    "MD001": false,
-    "MD007": {
+    "header-increment": false,
+    "ul-indent": {
         "indent": 4
     },
-    "MD013": {
+    "line-length": {
         "line_length": 100
     },
-    "MD024": false,
-    "MD026": false,
-    "MD030": false,
-    "MD040": false
+    "no-duplicate-header": false,
+    "no-trailing-punctuation": false,
+    "list-marker-space": false,
+    "fenced-code-language": false,
+    "code-block-style": {
+        "style": "fenced"
+    }
 }
