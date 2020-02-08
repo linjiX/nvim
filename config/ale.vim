@@ -223,7 +223,7 @@ call ale#linter#Define('markdown', {
             \})
 
 function HandleMarkdownLintCliFormat(buffer, lines) abort
-    let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.+)$'
+    let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.{-})( \[Context: .+\])?$'
     let l:output=[]
 
     for l:match in ale#util#GetMatches(a:lines, l:pattern)
@@ -236,7 +236,7 @@ function HandleMarkdownLintCliFormat(buffer, lines) abort
                     \             ."\ntype: W"
                     \             ."\ncode: ". l:match[3]
                     \             ."\nname: ". l:match[4]
-                    \             ."\ntext: ". l:match[5],
+                    \             ."\ntext: ". l:match[5].l:match[6]
                     \})
     endfor
 
