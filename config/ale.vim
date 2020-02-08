@@ -70,178 +70,32 @@ call ale#linter#Define('cpp', {
             \              '--suppress=unusedStructMember '.
             \              '--template="{file}:{line}:{column} {severity}:{id}:{message}" '.
             \              '--template-location="{file}:{line}:{column} {info}" %t',
-            \   'callback': 'HandleCppCheckFormat',
+            \   'callback': 'lint#cpp#HandleCppCheckFormat',
             \})
-
-function HandleCppCheckFormat(buffer, lines) abort
-    let l:pattern = '\v^(.+):(\d+):(\d+) (.+):(.+):(.+)$'
-    let l:output = []
-
-    for l:match in ale#util#GetMatches(a:lines, l:pattern)
-        if ale#path#IsBufferPath(a:buffer, l:match[1])
-            call add(l:output, {
-                        \   'lnum': str2nr(l:match[2]),
-                        \   'col': str2nr(l:match[3]),
-                        \   'type': l:match[4] is# 'error' ? 'E' : 'W',
-                        \   'code': l:match[5],
-                        \   'text': l:match[6],
-                        \   'detail': l:match[1] .':'. l:match[2] .':'. l:match[3]
-                        \             ."\ntype: ". l:match[4]
-                        \             ."\ncode: ". l:match[5]
-                        \             ."\ntext: ". l:match[6],
-                        \})
-        endif
-    endfor
-
-    let l:pattern_location = '\v^(.+):(\d+):(\d+) (.+)$'
-    for l:match in ale#util#GetMatches(a:lines, l:pattern_location)
-        if ale#path#IsBufferPath(a:buffer, l:match[1])
-            let l:lnum = str2nr(l:match[2])
-            let l:flag = 1
-            for l:item in l:output
-                if l:lnum == l:item['lnum'] && l:item['type'] !=# 'I'
-                    let l:flag = 0
-                    break
-                endif
-            endfor
-            if l:flag == 1
-                call add(l:output, {
-                            \   'lnum': l:lnum,
-                            \   'col': str2nr(l:match[3]),
-                            \   'type': 'I',
-                            \   'code': '~',
-                            \   'text': l:match[4],
-                            \   'detail': l:match[1] .':'. l:match[2] .':'. l:match[3]
-                            \             ."\ntext: ". l:match[4],
-                            \})
-            endif
-        endif
-    endfor
-
-    return l:output
-endfunction
 
 call ale#linter#Define('bzl', {
             \   'name': 'Buildifier',
             \   'output_stream': 'both',
             \   'executable': 'buildifier',
             \   'command': '%e --lint=warn --format=json --mode=check %t',
-            \   'callback': 'HandleBuildifierFormat',
+            \   'callback': 'lint#bzl#HandleBuildifierFormat',
             \})
-
-function HandleBuildifierFormat(buffer, lines) abort
-    let l:pattern = '\v^(.+):(\d+):(\d+): (.+)$'
-    let l:output = []
-    for l:match in ale#util#GetMatches(a:lines, l:pattern)
-        if ale#path#IsBufferPath(a:buffer, l:match[1])
-            call add(l:output, {
-                        \   'lnum': l:match[2],
-                        \   'col': l:match[3],
-                        \   'type': 'E',
-                        \   'code': '~',
-                        \   'text': l:match[4],
-                        \   'detail': l:match[1]
-                        \             .':'. l:match[2]
-                        \             .':'. l:match[3]
-                        \             ."\ntext: ". l:match[4]
-                        \})
-        endif
-    endfor
-    if len(l:output) >= 1
-        return l:output
-    endif
-
-    let l:json = json_decode(a:lines[0])
-    if l:json['success']
-        return []
-    endif
-
-    for l:file in l:json['files']
-        for l:warning in l:file['warnings']
-            if ale#path#IsBufferPath(a:buffer, l:file['filename'])
-                call add(l:output, {
-                            \   'lnum': l:warning['start']['line'],
-                            \   'end_lnum': l:warning['end']['line'],
-                            \   'col': l:warning['start']['column'],
-                            \   'end_col': l:warning['end']['column'],
-                            \   'type': 'W',
-                            \   'code': l:warning['category'],
-                            \   'text': l:warning['message'],
-                            \   'detail': l:file['filename']
-                            \             .':'. l:warning['start']['line']
-                            \             .':'. l:warning['start']['column']
-                            \             .' -> '. l:warning['end']['line']
-                            \             .':'. l:warning['end']['column']
-                            \             ."\ncode: ". l:warning['category']
-                            \             ."\ntext: ". l:warning['message']
-                            \             ."\nurl: ". l:warning['url'],
-                            \})
-            endif
-        endfor
-    endfor
-
-    return l:output
-endfunction
 
 call ale#linter#Define('json', {
             \   'name': 'Jsonlint',
             \   'output_stream': 'both',
             \   'executable': 'jsonlint',
             \   'command': '%e %t',
-            \   'callback': 'HandleJsonlintFormat',
+            \   'callback': 'lint#json#HandleJsonlintFormat',
             \})
-
-function HandleJsonlintFormat(buffer, lines) abort
-    let l:pattern = '\v^(.+):(\d+):(\d+): (.{-}): (.+)$'
-    let l:output = []
-
-    for l:match in ale#util#GetMatches(a:lines, l:pattern)
-        if ale#path#IsBufferPath(a:buffer, l:match[1])
-            call add(l:output, {
-                        \   'lnum': str2nr(l:match[2]),
-                        \   'col': str2nr(l:match[3]),
-                        \   'type': l:match[4] is# 'Error' ? 'E'
-                        \                                  : l:match[4] is# 'Warning' ? 'W'
-                        \                                                             : 'I',
-                        \   'text': l:match[5],
-                        \   'detail': l:match[1] .':'. l:match[2] .':'. l:match[3]
-                        \             ."\ntype: ". l:match[4]
-                        \             ."\ntext: ". l:match[5],
-                        \})
-        endif
-    endfor
-
-    return l:output
-endfunction
 
 call ale#linter#Define('markdown', {
             \   'name': 'markdownlint-cli',
             \   'executable': 'markdownlint',
             \   'output_stream': 'both',
             \   'command': '%e --config='. $HOME .'/.vim/markdownlint.json %t',
-            \   'callback': 'HandleMarkdownLintCliFormat'
+            \   'callback': 'lint#markdown#HandleMarkdownlintFormat'
             \})
-
-function HandleMarkdownLintCliFormat(buffer, lines) abort
-    let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.{-})( \[Context: .+\])?$'
-    let l:output=[]
-
-    for l:match in ale#util#GetMatches(a:lines, l:pattern)
-        call add(l:output, {
-                    \   'lnum': str2nr(l:match[2]),
-                    \   'type': 'W',
-                    \   'code': l:match[3],
-                    \   'text': '('. l:match[4] .') '. l:match[5],
-                    \   'detail': l:match[1] .':'. l:match[2]
-                    \             ."\ntype: W"
-                    \             ."\ncode: ". l:match[3]
-                    \             ."\nname: ". l:match[4]
-                    \             ."\ntext: ". l:match[5].l:match[6]
-                    \})
-    endfor
-
-    return l:output
-endfunction
 
 function s:ALEDiags()
     let g:ale_set_quickfix = 1
