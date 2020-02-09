@@ -61,42 +61,6 @@ let g:ale_echo_msg_info_str = 'I'
 let g:ale_warn_about_trailing_blank_lines = 0
 let g:ale_warn_about_trailing_whitespace = 0
 
-call ale#linter#Define('cpp', {
-            \   'name': 'CppCheck',
-            \   'output_stream': 'both',
-            \   'executable': 'cppcheck',
-            \   'command': '%e -q --language=c++ --std=c++17 --enable=all --platform=unix64 '.
-            \              '--suppress=unusedFunction '.
-            \              '--suppress=unusedStructMember '.
-            \              '--template="{file}:{line}:{column} {severity}:{id}:{message}" '.
-            \              '--template-location="{file}:{line}:{column} {info}" %t',
-            \   'callback': 'lint#cpp#HandleCppCheckFormat',
-            \})
-
-call ale#linter#Define('bzl', {
-            \   'name': 'Buildifier',
-            \   'output_stream': 'both',
-            \   'executable': 'buildifier',
-            \   'command': '%e --lint=warn --format=json --mode=check %t',
-            \   'callback': 'lint#bzl#HandleBuildifierFormat',
-            \})
-
-call ale#linter#Define('json', {
-            \   'name': 'Jsonlint',
-            \   'output_stream': 'both',
-            \   'executable': 'jsonlint',
-            \   'command': '%e %t',
-            \   'callback': 'lint#json#HandleJsonlintFormat',
-            \})
-
-call ale#linter#Define('markdown', {
-            \   'name': 'markdownlint-cli',
-            \   'executable': 'markdownlint',
-            \   'output_stream': 'both',
-            \   'command': '%e --config='. $HOME .'/.vim/markdownlint.json %t',
-            \   'callback': 'lint#markdown#HandleMarkdownlintFormat'
-            \})
-
 function s:ALEDiags()
     let g:ale_set_quickfix = 1
     ALELint
