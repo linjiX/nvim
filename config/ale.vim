@@ -24,6 +24,14 @@ let g:ale_linters = {
             \ 'cmake': ['cmakelint'],
             \ 'markdown': ['markdownlint-cli'],
             \ }
+let g:ale_cpp_CppCheck_options = join([
+            \ '--language=c++',
+            \ '--std=c++17',
+            \ '--enable=all',
+            \ '--platform=unix64',
+            \ '--suppress=unusedFunction',
+            \ '--suppress=unusedStructMember',
+            \ ])
 let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
             \ '-build/c++11,'.
             \ '-build/include_order,'.
@@ -42,6 +50,7 @@ let g:ale_python_mypy_options = join([
             \ '--strict',
             \ ])
 let g:ale_cmake_cmakelint_options = '--linelength=100'
+let g:ale_markdown_markdownlint_cli_options = '--config='. $HOME .'/.vim/markdownlint.json'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0

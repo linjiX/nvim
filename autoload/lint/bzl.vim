@@ -9,6 +9,11 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function lint#bzl#GetBuildifierCommand(buffer) abort
+    let l:options = ale#Var(a:buffer, 'bzl_buildifier_options')
+    return '%e --lint=warn --format=json --mode=check'. ale#Pad(l:options) .' %t'
+endfunction
+
 function lint#bzl#HandleBuildifierFormat(buffer, lines) abort
     let l:pattern = '\v^(.+):(\d+):(\d+): (.+)$'
     let l:output = []

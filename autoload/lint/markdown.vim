@@ -9,6 +9,11 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function lint#markdown#GetMarkdownlintCommand(buffer) abort
+    let l:options = ale#Var(a:buffer, 'markdown_markdownlint_cli_options')
+    return '%e'. ale#Pad(l:options) .' %t'
+endfunction
+
 function lint#markdown#HandleMarkdownlintFormat(buffer, lines) abort
     let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.{-})( \[Context: .+\])?$'
     let l:output=[]

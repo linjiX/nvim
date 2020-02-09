@@ -9,6 +9,11 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function lint#json#GetJsonlintCommand(buffer) abort
+    let l:options = ale#Var(a:buffer, 'json_Jsonlint_options')
+    return '%e'. ale#Pad(l:options) .' %t'
+endfunction
+
 function lint#json#HandleJsonlintFormat(buffer, lines) abort
     let l:pattern = '\v^(.+):(\d+):(\d+): (.{-}): (.+)$'
     let l:output = []

@@ -9,6 +9,15 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function lint#cpp#GetCppCheckCommand(buffer) abort
+    let l:options = ale#Var(a:buffer, 'cpp_CppCheck_options')
+
+    return '%e -q '.
+                \ '--template="{file}:{line}:{column} {severity}:{id}:{message}" '.
+                \ '--template-location="{file}:{line}:{column} {info}"'.
+                \ ale#Pad(l:options) .' %t'
+endfunction
+
 function lint#cpp#HandleCppCheckFormat(buffer, lines) abort
     let l:pattern = '\v^(.+):(\d+):(\d+) (.+):(.+):(.+)$'
     let l:output = []
