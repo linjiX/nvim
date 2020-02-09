@@ -11,12 +11,12 @@
 
 let g:which_key_use_floating_win = 0
 let g:which_key_map = {
-            \ '`' :'BufKillAlt',
-            \ 'i' :'BufKillForward',
-            \ 'o' :'BufKillBack',
-            \ 'q' :'BufKillBw',
-            \ 'Q' :'BufKillBd',
-            \ 'u' :'BufKillUndo',
+            \   '`' :'BufKillAlt',
+            \   'i' :'BufKillForward',
+            \   'o' :'BufKillBack',
+            \   'q' :'BufKillBw',
+            \   'Q' :'BufKillBd',
+            \   'u' :'BufKillUndo',
             \}
 let g:which_key_map.c = {'name':'+prefix NERDCommenter'}
 let g:which_key_map.e = {'name':'+prefix Slime'}

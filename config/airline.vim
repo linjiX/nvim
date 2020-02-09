@@ -29,9 +29,9 @@ let g:airline#extensions#tmuxline#enabled = 0
 " let g:airline#extensions#tmuxline#color_template = 'insert'
 
 let g:airline_filetype_overrides = {
-            \ 'coc-explorer':  ['coc-explorer', ''],
-            \ 'startify': [ 'Startify', '' ],
-            \ }
+            \   'coc-explorer':  ['coc-explorer', ''],
+            \   'startify': [ 'Startify', '' ],
+            \}
 let g:airline#extensions#tabline#ignore_bufadd_pat =
             \ '!|\[coc-explorer\]|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|<bash>'
 
@@ -52,12 +52,12 @@ nmap <expr> <leader>9 buffer#Open('<Plug>AirlineSelectTab9')
 
 " Plug 'edkolev/tmuxline.vim'
  let g:tmuxline_preset = {
-      \'a'    : 'Tmux',
-      \'b'    : 'Session: #S',
-      \'c'    : '',
-      \'win'  : '#I.#W#F',
-      \'cwin' : '#I.#W#F',
-      \'x'    : ['#(whoami)@#H', '%F %a', '#{cpu_fg_color}#{cpu_icon} #{cpu_percentage}'],
-      \'z'    : '%R',
-      \'options' : {'status-justify' : 'left', 'status-position' : 'top'}
-\ }
+      \   'a'    : 'Tmux',
+      \   'b'    : 'Session: #S',
+      \   'c'    : '',
+      \   'win'  : '#I.#W#F',
+      \   'cwin' : '#I.#W#F',
+      \   'x'    : ['#(whoami)@#H', '%F %a', '#{cpu_fg_color}#{cpu_icon} #{cpu_percentage}'],
+      \   'z'    : '%R',
+      \   'options' : {'status-justify' : 'left', 'status-position' : 'top'}
+      \}

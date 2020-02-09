@@ -13,42 +13,43 @@ scriptencoding utf-8
 let g:ale_disable_lsp = 1
 let g:ale_linters_explicit = 1
 let g:ale_linters = {
-            \ 'vim': ['vint'],
-            \ 'gitcommit': ['gitlint'],
-            \ 'sh': ['shellcheck'],
-            \ 'cpp': ['CppCheck', 'cpplint'],
-            \ 'bzl': ['Buildifier'],
-            \ 'python': ['flake8', 'pylint', 'mypy'],
-            \ 'json': ['Jsonlint'],
-            \ 'Dockerfile': ['hadolint'],
-            \ 'cmake': ['cmakelint'],
-            \ 'markdown': ['markdownlint-cli'],
-            \ }
+            \   'vim': ['vint'],
+            \   'gitcommit': ['gitlint'],
+            \   'sh': ['shellcheck'],
+            \   'cpp': ['CppCheck', 'cpplint'],
+            \   'bzl': ['Buildifier'],
+            \   'python': ['flake8', 'pylint', 'mypy'],
+            \   'json': ['Jsonlint'],
+            \   'Dockerfile': ['hadolint'],
+            \   'cmake': ['cmakelint'],
+            \   'markdown': ['markdownlint-cli'],
+            \}
 let g:ale_cpp_CppCheck_options = join([
-            \ '--language=c++',
-            \ '--std=c++17',
-            \ '--enable=all',
-            \ '--platform=unix64',
-            \ '--suppress=unusedFunction',
-            \ '--suppress=unusedStructMember',
-            \ ])
-let g:ale_cpp_cpplint_options = '--linelength=100 --filter='.
-            \ '-build/c++11,'.
-            \ '-build/include_order,'.
-            \ '-readability/braces,'.
-            \ '-whitespace/brace,'.
-            \ '-whitespace/indent,'.
-            \ '-runtime/references,'
+            \   '--language=c++',
+            \   '--std=c++17',
+            \   '--enable=all',
+            \   '--platform=unix64',
+            \   '--suppress=unusedFunction',
+            \   '--suppress=unusedStructMember',
+            \])
+let g:ale_cpp_cpplint_options = '--linelength=100 --filter='. join([
+            \   '-build/c++11',
+            \   '-build/include_order',
+            \   '-readability/braces',
+            \   '-whitespace/brace',
+            \   '-whitespace/indent',
+            \   '-runtime/references',
+            \], ',')
 let g:ale_python_flake8_options = '--max-line-length=100'
 let g:ale_python_pylint_options = '--disable=bad-continuation'
 let g:ale_python_mypy_options = join([
-            \ '--cache-dir=/tmp/mypy_cache',
-            \ '--ignore-missing-imports',
-            \ '--follow-imports=silent',
-            \ '--warn-unreachable',
-            \ '--strict-equality',
-            \ '--strict',
-            \ ])
+            \   '--cache-dir=/tmp/mypy_cache',
+            \   '--ignore-missing-imports',
+            \   '--follow-imports=silent',
+            \   '--warn-unreachable',
+            \   '--strict-equality',
+            \   '--strict',
+            \])
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 let g:ale_markdown_markdownlint_cli_options = '--config='. $HOME .'/.vim/markdownlint.json'
 
