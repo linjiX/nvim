@@ -86,6 +86,9 @@ set foldnestmax=2
 set noshowmode
 set shortmess+=c
 
+" Disable generate '.netrwhist'
+let g:netrw_dirhistmax = 0
+
 if has('nvim')
     set inccommand=nosplit
     set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
