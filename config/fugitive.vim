@@ -25,4 +25,6 @@ augroup myGit
 augroup END
 
 command! Gst vertical botright Gstatus
-command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc execute 'Gcommit -v '. <q-args>
+command! Gd vertical botright Gdiffsplit
+command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc
+            \ execute 'vertical botright Gcommit -v '. <q-args>
