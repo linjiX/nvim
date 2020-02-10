@@ -32,7 +32,7 @@ function lint#bzl#HandleBuildifierFormat(buffer, lines) abort
                         \})
         endif
     endfor
-    if len(l:output) >= 1
+    if !empty(l:output)
         return l:output
     endif
 
