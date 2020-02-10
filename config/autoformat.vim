@@ -19,12 +19,11 @@ let g:formatdef_clang_format = "'clang-format ".
             \                  "-style=file'"
 let g:formatters_cpp = ['clang_format']
 let g:formatters_proto = ['clang_format']
+
 let g:formatdef_buildifier = "'buildifier'"
 let g:formatters_bzl = ['buildifier']
-" let g:formatdef_yapf = "'yapf --lines '.a:firstline.'-'.a:lastline"
-let g:formatdef_yapf_isort = "'isort - | yapf'"
+
 let g:formatdef_black_isort = "'black -q -l 100 - | isort -'"
-" let g:formatters_python = ['yapf_isort']
 let g:formatters_python = ['black_isort']
 
 let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
@@ -35,6 +34,7 @@ let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 
 let g:formatters_sh = ['shfmt']
+
 let g:formatdef_cmake_format = "'cmake-format --line-width=100 --tab-size=4 --enable-markup=false -'"
 let g:formatters_cmake = ['cmake_format']
 
