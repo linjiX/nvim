@@ -29,9 +29,10 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-phpls
                 \ coc-translator
                 \ coc-explorer
+                \ coc-yank
                 " \ coc-xml
     if has('macunix')
-        CocInstall -sync coc-yank coc-imselect
+        CocInstall -sync coc-imselect
     endif
     while s:HasTermianl()
         sleep 1
