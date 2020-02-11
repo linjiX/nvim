@@ -11,4 +11,17 @@
             <property name="absoluteLineLimit" value="0" />
         </properties>
     </rule>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found"/>
+    <rule ref="Squiz.Strings.ConcatenationSpacing.PaddingFound"/>
+    <rule ref="Squiz.Operators.ValidLogicalOperators.NotAllowed"/>
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
+
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+        <properties>
+            <property name="spacing" value="1" />
+            <property name="spacingBeforeFirst" value="0" />
+            <property name="spacingAfterLast" value="0" />
+        </properties>
+    </rule>
+
 </ruleset>
