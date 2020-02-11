@@ -52,9 +52,9 @@ let g:ale_python_mypy_options = join([
             \   '--strict',
             \])
 let g:ale_cmake_cmakelint_options = '--linelength=100'
-let g:ale_markdown_markdownlint_cli_options = '--config='. $HOME .'/.vim/markdownlint.json'
+let g:ale_markdown_markdownlint_cli_options = '--config='. $HOME .'/.vim/linter/markdownlint.json'
 
-let g:ale_php_phpcs_options = '--standard='. $HOME .'/.vim/standard.xml'
+let g:ale_php_phpcs_options = '--standard='. $HOME .'/.vim/linter/phpcs.xml'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0
