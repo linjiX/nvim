@@ -23,6 +23,7 @@ let g:ale_linters = {
             \   'Dockerfile': ['hadolint'],
             \   'cmake': ['cmakelint'],
             \   'markdown': ['markdownlint-cli'],
+            \   'php': ['php', 'phpcs'],
             \}
 let g:ale_cpp_CppCheck_options = join([
             \   '--language=c++',
@@ -52,6 +53,8 @@ let g:ale_python_mypy_options = join([
             \])
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 let g:ale_markdown_markdownlint_cli_options = '--config='. $HOME .'/.vim/markdownlint.json'
+
+let g:ale_php_phpcs_options = '--standard='. $HOME .'/.vim/standard.xml'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0

@@ -30,13 +30,18 @@ let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
             \              "--parser='.&filetype.' --stdin'"
 let g:formatdef_json_tool = "'python3 -m json.tool'"
 " let g:formatters_json = ['json_tool']
+let g:formatters_xml = ['prettier']
 let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 
 let g:formatters_sh = ['shfmt']
 
-let g:formatdef_cmake_format = "'cmake-format --line-width=100 --tab-size=4 --enable-markup=false -'"
+let g:formatdef_cmake_format = "'cmake-format --line-width=100 --tab-size=4 ".
+            \                  "--enable-markup=false -'"
 let g:formatters_cmake = ['cmake_format']
+
+let g:formatdef_phpcbf = "'phpcbf --standard='. $HOME .'/.vim/standard.xml -; true'"
+let g:formatters_php = ['phpcbf']
 
 let g:autoformat_verbosemode = 0
 

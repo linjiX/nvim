@@ -26,7 +26,6 @@ function s:AutoCmdPlugInstall() abort
                 \ coc-json
                 \ coc-python
                 \ coc-vimlsp
-                \ coc-phpls
                 \ coc-translator
                 \ coc-explorer
                 \ coc-yank
