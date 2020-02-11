@@ -121,6 +121,12 @@ npm install --global dockerfile-language-server-nodejs
 ./setup/install_hadolint.sh
 ```
 
+#### Php
+
+```bash
+./setup/install_phpcs.sh
+```
+
 #### VimScript
 
 ```bash
