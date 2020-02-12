@@ -127,6 +127,12 @@ npm install --global dockerfile-language-server-nodejs
 ./setup/install_phpcs.sh
 ```
 
+#### Xml
+
+```bash
+npm install --global prettydiff
+```
+
 #### VimScript
 
 ```bash
