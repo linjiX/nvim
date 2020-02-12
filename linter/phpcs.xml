@@ -1,8 +1,9 @@
 <?xml version="1.0"?>
+<!DOCTYPE xml>
 
 <ruleset name="MyStandard">
     <rule ref="PSR2">
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace" />
     </rule>
 
     <rule ref="Generic.Files.LineLength">
@@ -11,10 +12,10 @@
             <property name="absoluteLineLimit" value="0" />
         </properties>
     </rule>
-    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found"/>
-    <rule ref="Squiz.Strings.ConcatenationSpacing.PaddingFound"/>
-    <rule ref="Squiz.Operators.ValidLogicalOperators.NotAllowed"/>
-    <rule ref="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax.Found" />
+    <rule ref="Squiz.Strings.ConcatenationSpacing.PaddingFound" />
+    <rule ref="Squiz.Operators.ValidLogicalOperators.NotAllowed" />
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage.NotAllowed" />
 
     <rule ref="Squiz.WhiteSpace.FunctionSpacing">
         <properties>
