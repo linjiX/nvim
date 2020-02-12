@@ -30,9 +30,12 @@ let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
             \              "--parser='.&filetype.' --stdin'"
 let g:formatdef_json_tool = "'python3 -m json.tool'"
 " let g:formatters_json = ['json_tool']
-let g:formatters_xml = ['prettier']
 let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
+
+let g:formatdef_prettydiff = "$HOME .'/.vim/linter/prettydiff.sh beautify ".
+            \                "warp:100 indent_size:4 preserve:2 space_close:true'"
+let g:formatters_xml = ['prettydiff']
 
 let g:formatters_sh = ['shfmt']
 

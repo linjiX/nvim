@@ -23,6 +23,7 @@ let g:ale_linters = {
             \   'Dockerfile': ['hadolint'],
             \   'cmake': ['cmakelint'],
             \   'markdown': ['markdownlint-cli'],
+            \   'xml': ['xmllint'],
             \   'php': ['php', 'phpcs'],
             \}
 let g:ale_cpp_CppCheck_options = join([
