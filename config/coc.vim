@@ -104,7 +104,7 @@ nnoremap <silent> <leader>le :CocList --normal extensions<CR>
 nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
 nnoremap <silent> <leader>lx :CocCommand<CR>
 
-nnoremap <silent> <leader>y :CocList --normal yank<CR>
+nnoremap <silent> <leader>p :CocList --normal yank<CR>
 
 " coc-translator
 nmap <silent> <leader>tp <Plug>(coc-translator-p)
