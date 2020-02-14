@@ -40,6 +40,8 @@ let g:Lf_Gtagslabel = 'native-pygments'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
 
+let g:Lf_CommandMap = {'<F5>': ['<C-q>']}
+
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 
@@ -81,14 +83,18 @@ nnoremap <expr><silent> <leader>fu buffer#Open(":MyLeaderf function\<CR>")
 nnoremap <expr><silent> <leader>fU buffer#Open(":MyLeaderf function --all\<CR>")
 nnoremap <expr><silent> <leader>fg buffer#Open(":MyLeaderf gtags\<CR>")
 nnoremap <expr><silent> <leader>fr buffer#Open(":MyLeaderf rg\<CR>")
-nnoremap <expr><silent> <leader>fR buffer#Open(":MyLeaderf rg --recall\<CR>")
+nnoremap <expr><silent> <leader>fR buffer#Open(":MyLeaderf rg --cword\<CR>")
 nnoremap <silent> <leader>fl :MyLeaderf line<CR>
 nnoremap <silent> <leader>fL :MyLeaderf line --all<CR>
+nnoremap <silent> <leader>fw :MyLeaderf window<CR>
+nnoremap <silent> <leader>fe :MyLeaderf filetype<CR>
+nnoremap <silent> <leader>fx :MyLeaderf command<CR>
 nnoremap <silent> <leader>f: :MyLeaderf cmdHistory<CR>
 nnoremap <silent> <leader>f/ :MyLeaderf searchHistory<CR>
 nnoremap <silent> <leader>fs :MyLeaderf self<CR>
 nnoremap <silent> <leader>fh :MyLeaderf help<CR>
 nnoremap <silent> <leader>fc :MyLeaderf colorscheme<CR>
+nnoremap <silent> <leader>fo :MyLeaderf --recall<CR>
 
 nnoremap <silent> <leader>gg :MyLeaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gr :MyLeaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
