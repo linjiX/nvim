@@ -144,16 +144,16 @@ Plug 'tpope/vim-fugitive'
 " Plug 'romainl/vim-cool'
 " Plug 'haya14busa/vim-asterisk'
 " Plug 'nelstrom/vim-visual-star-search'
+" if has('macunix')
+"     Plug '/usr/local/opt/fzf'
+" else
+"     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+" endif
+" Plug 'junegunn/fzf.vim'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
 Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
 Plug 'linjiX/vim-star'
-if has('macunix')
-    Plug '/usr/local/opt/fzf'
-else
-    Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
-endif
-Plug 'junegunn/fzf.vim'
 
 "-- Cursor Move --
 " Plug 'rhysd/accelerated-jk'

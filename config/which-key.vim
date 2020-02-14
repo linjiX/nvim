@@ -26,7 +26,6 @@ let g:which_key_map.l = {'name':'+prefix Coc'}
 let g:which_key_map.m = {'name':'+prefix Markdown'}
 let g:which_key_map.s = {'name':'+prefix CtrlSF'}
 let g:which_key_map.v = {'name':'+prefix Plug'}
-let g:which_key_map.z = {'name':'+prefix fzf'}
 
 call which_key#register('<Space>', 'g:which_key_map')
 
