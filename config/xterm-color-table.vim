@@ -16,6 +16,7 @@ function s:AutoCmdXtermColorTable() abort
     setlocal nobuflisted
     setlocal nonumber
     setlocal colorcolumn=0
+    normal! gg
 endfunction
 
 augroup myXtermColorTable
