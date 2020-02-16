@@ -11,9 +11,9 @@
 
 let g:plug_window = 'botright vertical new'
 
-nnoremap <silent> <leader>vv :PlugInstall<CR>
+nnoremap <silent> <leader>vv :PlugUpdate<CR>
+nnoremap <silent> <leader>vi :PlugInstall<CR>
 nnoremap <silent> <leader>vc :PlugClean<CR>
-nnoremap <silent> <leader>vu :PlugUpdate<CR>
 nnoremap <silent> <leader>vg :PlugUpgrade<CR>
 nnoremap <silent> <leader>vd :PlugDiff<CR>
 nnoremap <silent> <leader>vs :PlugStatus<CR>
