@@ -41,8 +41,9 @@ set confirm
 set cursorline
 set cursorcolumn
 set colorcolumn=100
-set textwidth=0
+set textwidth=100
 set splitright
+set lazyredraw
 " set splitbelow
 
 set list
