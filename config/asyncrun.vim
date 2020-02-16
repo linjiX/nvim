@@ -31,15 +31,24 @@ command! -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<b
 
 function AsyncStar(is_visual, is_global, is_g) abort
     let l:pattern = '"'. escape(a:is_visual ? star#Vword() : star#Cword(), '$\`"#%') .'"'
-    call setpos('.', s:pos)
     let l:whole = a:is_g ? '' : '-w'
     let l:file = a:is_global ? '<root>' : '%'
-    execute join(['AsyncGrep!', l:whole, l:pattern, l:file], ' ')
+    execute join(['AsyncGrep!', l:whole, l:pattern, l:file])
 endfunction
 
 function s:AsyncStarCommand(is_visual, is_global, is_g) abort
-    let s:pos = getpos('.')
-    return ":\<C-u>call AsyncStar(". a:is_visual .', '. a:is_global .', '. a:is_g .")\<CR>"
+    if &lazyredraw == 0
+        set lazyredraw
+        let l:setlz = ":set nolazyredraw\<CR>"
+    else
+        let l:setlz = ''
+    endif
+    let l:setpos = ":noautocmd call setpos('.', ". string(getcurpos()) .")\<CR>"
+
+    let l:args = join([a:is_visual, a:is_global, a:is_g], ',')
+    let l:starcmd = ":\<C-u>call AsyncStar(". l:args .")\<CR>"
+
+    return l:starcmd . l:setpos . l:setlz
 endfunction
 
 nnoremap <expr><silent> <leader>* <SID>AsyncStarCommand(0, 0, 0)
