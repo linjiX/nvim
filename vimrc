@@ -86,6 +86,9 @@ set foldnestmax=2
 " for echodoc
 set noshowmode
 set shortmess+=c
+if !has('nvim')
+    set shortmess-=S
+endif
 
 " Disable generate '.netrwhist'
 let g:netrw_dirhistmax = 0

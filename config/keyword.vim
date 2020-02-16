@@ -13,5 +13,5 @@ vmap <silent> <leader>k <Plug>(keyword-highlight)
 nmap <silent> <leader>k <Plug>(keyword-highlight)
 nmap <silent> <BS> <Plug>(keyword-clear):nohlsearch<CR>
 
-nmap <silent> n <Plug>(keyword-forward)
-nmap <silent> N <Plug>(keyword-backward)
+nmap n <Plug>(keyword-forward)
+nmap N <Plug>(keyword-backward)
