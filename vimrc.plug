@@ -87,10 +87,11 @@ Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
 " Plug 'itchyny/vim-cursorword'
 " Plug 'itchyny/vim-parenmatch'
 " Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
+" Plug 'lfv89/vim-interestingwords'
 " Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
-Plug 'lfv89/vim-interestingwords'
+Plug 'linjiX/vim-keyword'
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ryanoasis/vim-devicons'
