@@ -48,5 +48,19 @@ let g:formatters_php = ['phpcbf']
 
 let g:autoformat_verbosemode = 0
 
+function s:VimFormat() abort
+    let l:winview = winsaveview()
+    try
+        noautocmd silent normal! gg=G
+    finally
+        noautocmd call winrestview(l:winview)
+    endtry
+endfunction
+
+augroup myAutoformat
+    autocmd!
+    autocmd FileType vim nnoremap <silent><buffer> <leader>a :<C-u>call <SID>VimFormat()<CR>
+augroup END
+
 nnoremap <silent> <leader>a :Autoformat<CR>
 vnoremap <silent> <leader>a :Autoformat<CR>
