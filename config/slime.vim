@@ -204,7 +204,7 @@ function s:SlimeOpenTerminal(cmds) abort
         endfor
         throw 'Fail to open slime terminal!'
     finally
-        call win_gotoid(l:winid)
+        noautocmd call win_gotoid(l:winid)
     endtry
 endfunction
 

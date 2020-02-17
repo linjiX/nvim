@@ -58,7 +58,7 @@ function terminal#SmartTerminal(cmd) abort
             endif
             let l:is_terminal = getwininfo(l:winid)[0].terminal
             if l:is_terminal
-                call win_gotoid(l:winid)
+                noautocmd call win_gotoid(l:winid)
                 call s:OpenTerminal(v:false, a:cmd)
                 return
             endif

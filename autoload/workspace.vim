@@ -51,7 +51,7 @@ function s:GotoWinID() abort
     if !exists('s:prev_winid')
         return
     endif
-    call win_gotoid(s:prev_winid)
+    noautocmd call win_gotoid(s:prev_winid)
     unlet s:prev_winid
 endfunction
 
@@ -95,7 +95,7 @@ endfunction
 function s:OpenTagbar() abort
     clearjumps
     let l:line = line('.')
-    execute '1'
+    noautocmd execute '1'
 
     call s:SetWindowConfig()
     try
@@ -103,7 +103,7 @@ function s:OpenTagbar() abort
     finally
         call s:ResetWindowConfig()
 
-        execute l:line
+        noautocmd execute l:line
         call s:GotoWinID()
     endtry
 endfunction
