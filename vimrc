@@ -19,6 +19,13 @@ filetype plugin indent on
 syntax enable
 syntax on
 
+" create cache directory
+let g:vim_cache = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
+            \                    : $HOME .'/.cache/vim_cache'
+if !isdirectory(g:vim_cache)
+    call mkdir(g:vim_cache, 'p')
+endif
+
 " source all configurations
 source ~/.vim/vimrc.plug
 let s:configs = split(glob('~/.vim/common/*.vim'))
