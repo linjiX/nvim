@@ -55,6 +55,13 @@
     "signature.enable": true,
     "signature.target": "float",
 
+    "list.normalMappings": {
+        "<C-j>": "do:next",
+        "<C-k>": "do:previous",
+        "<C-n>": "do:next",
+        "<C-p>": "do:previous"
+    },
+
     "workspace.ignoredFiletypes": ["log", "help"],
 
     "coc.preferences.hoverTarget": "float",

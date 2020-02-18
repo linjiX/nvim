@@ -41,6 +41,12 @@ let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
 
 let g:Lf_CommandMap = {'<F5>': ['<C-q>']}
+let g:Lf_NormalMap = {'Gtags': [
+            \   ['<C-j>', 'j'],
+            \   ['<C-k>', 'k'],
+            \   ['<C-h>', '<NOP>'],
+            \   ['<C-l>', '<NOP>']
+            \]}
 
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
