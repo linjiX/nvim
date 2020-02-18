@@ -16,7 +16,7 @@ endfunction
 
 function buffer#Open(cmd) abort
     let l:wincmd = ''
-    if (&buflisted == 0 && winnr('$') > 1)
+    if &buflisted == 0 && winnr('$') > 1
         let l:winnrs = s:GetListedBufWinnrs()
         if !empty(l:winnrs)
             let l:wincmd = ':'. l:winnrs[0] ."wincmd w\<CR>"

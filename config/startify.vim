@@ -17,6 +17,7 @@ let g:startify_bookmarks = [
             \   {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
             \   {'b': '~/.config/dotfiles/bashrc'},
             \   {'t': '~/.config/dotfiles/tmux.conf'},
+            \   {'g': '~/.config/dotfiles/gitconfig'},
             \]
 let g:startify_skiplist = [
             \   $HOME .'/.vim',
