@@ -34,16 +34,22 @@ endfunction
 
 function s:FallbackIncrement()
     nnoremap <Plug>SwapItFallbackIncrement <C-a>
-    call search(s:full_pattern, 'c', line('.'))
-    execute 'normal '. v:count1 ."\<Plug>SwapIncrement"
-    nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
+    try
+        call search(s:full_pattern, 'c', line('.'))
+        execute 'normal '. v:count1 ."\<Plug>SwapIncrement"
+    finally
+        nnoremap <silent> <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
+    endtry
 endfunction
 
 function s:FallbackDecrement()
     nnoremap <Plug>SwapItFallbackDecrement <C-x>
-    call search(s:full_pattern, 'c', line('.'))
-    execute 'normal '. v:count1 ."\<Plug>SwapDecrement"
-    nnoremap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
+    try
+        call search(s:full_pattern, 'c', line('.'))
+        execute 'normal '. v:count1 ."\<Plug>SwapDecrement"
+    finally
+        nnoremap <silent> <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
+    endtry
 endfunction
 
 " function s:LocateNumber() abort
@@ -63,5 +69,5 @@ augroup mySwapit
     autocmd FileType gitrebase call s:AutoCmdGitrebaseSwapList()
 augroup END
 
-nnoremap <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
-nnoremap <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
+nnoremap <silent> <Plug>SwapItFallbackIncrement :<C-u>call <SID>FallbackIncrement()<CR>
+nnoremap <silent> <Plug>SwapItFallbackDecrement :<C-u>call <SID>FallbackDecrement()<CR>
