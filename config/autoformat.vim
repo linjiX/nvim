@@ -52,6 +52,7 @@ function s:VimFormat() abort
     let l:winview = winsaveview()
     try
         noautocmd silent normal! gg=G
+        RemoveTrailingSpaces
     finally
         noautocmd call winrestview(l:winview)
     endtry
