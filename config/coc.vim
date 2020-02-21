@@ -45,18 +45,13 @@ function s:AutoCmdCocInfo() abort
     endif
 endfunction
 
-function s:AutoCmdCocExplorer() abort
-    nnoremap <buffer> <leader> <Nop>
-    setlocal noswapfile
-endfunction
-
 augroup myCoc
     autocmd!
     " Highlight symbol under cursor on CursorHold
     autocmd CursorHold * silent! call CocActionAsync('highlight')
     " Disable locationlist auto preview
     autocmd User CocLocationsChange CocList --normal location
-    autocmd FileType coc-explorer call s:AutoCmdCocExplorer()
+    autocmd FileType coc-explorer nnoremap <buffer> <leader> <Nop>
     autocmd FileType log call s:AutoCmdCocInfo()
 augroup END
 

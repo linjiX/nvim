@@ -89,6 +89,7 @@
     "imselect.enableFloating": false,
 
     "explorer.icon.enableNerdfont": true,
+    "explorer.previewAction.onHover": false,
     "explorer.openAction.strategy": "sourceWindow",
     "explorer.file.autoReveal": false,
     "explorer.keyMappingMode": "none",
@@ -100,16 +101,18 @@
         "<tab>": "actionMenu",
 
         "h": "collapse",
-        "l": "expand",
+        "l": ["expandable?", "expand", "open"],
         "J": ["toggleSelection", "normal:j"],
         "K": ["toggleSelection", "normal:k"],
         "gl": "expandRecursive",
         "gh": "collapseRecursive",
-        "<CR>": "expandOrCollapse",
+        "<CR>": ["expandable?", "expandOrCollapse", "open"],
         "e": "open",
-        "v": "openInVsplit",
-        "t": "openInTab",
+        "s": "open:split",
+        "v": "open:vsplit",
+        "t": "open:tab",
         "<BS>": "gotoParent",
+        "<C-p>": "preview:labeling",
 
         "yp": "copyFilepath",
         "yn": "copyFilename",
@@ -129,6 +132,7 @@
 
         "?": "help",
         "q": "quit",
+        "<ESC>": "esc",
         "O": "systemExecute",
         "gd": "listDrive",
 
