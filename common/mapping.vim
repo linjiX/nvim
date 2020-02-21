@@ -19,10 +19,12 @@ nmap <silent><expr> <C-j>
 
 " normal mode mapping
 nnoremap Y y$
+nnoremap <C-p> "0p
+xnoremap <C-p> "0p
 
 nnoremap <silent> <C-w>m :tabnew %<CR>
 nnoremap <silent> <C-w><C-m> :tabnew %<CR>
-vnoremap <silent> <C-n> :sort<CR>
+vnoremap <silent> <C-m> :sort<CR>
 
 " command mapping
 cnoreabbrev <expr><silent> q buffer#Quit('q')
@@ -47,7 +49,7 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 " terminal mapping
-nnoremap <silent> <C-p> :call terminal#SmartTerminal('bash')<CR>
+nnoremap <silent> <C-n> :call terminal#SmartTerminal('bash')<CR>
 nnoremap <silent> <leader>ei :call terminal#SmartTerminal('ipython')<CR>
 nnoremap <silent> <leader>eb :call terminal#SmartTerminal('bpython')<CR>
 nnoremap <silent> <leader>et :call terminal#SmartTerminal('ptpython')<CR>
