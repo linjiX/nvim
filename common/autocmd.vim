@@ -90,7 +90,6 @@ augroup myTerminal
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
         autocmd TermClose * quit
-        autocmd TermEnter * setlocal nonumber
         autocmd BufEnter term://* call terminal#AutoCmdNvimTerminal()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()

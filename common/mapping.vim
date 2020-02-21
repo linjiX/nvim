@@ -54,15 +54,15 @@ nnoremap <silent> <leader>ei :call terminal#SmartTerminal('ipython')<CR>
 nnoremap <silent> <leader>eb :call terminal#SmartTerminal('bpython')<CR>
 nnoremap <silent> <leader>et :call terminal#SmartTerminal('ptpython')<CR>
 nnoremap <silent> <leader>eh :call terminal#SmartTerminal('htop')<CR>
+
+tnoremap <ESC><ESC> <C-\><C-n>
 if has('nvim')
-    tnoremap <silent> <ESC><ESC> <C-\><C-n>:set number<CR>
     tmap <expr><silent> <C-h> terminal#Navigate("\<C-h>")
     tmap <expr><silent> <C-j> terminal#Navigate("\<C-j>")
     tmap <expr><silent> <C-k> terminal#Navigate("\<C-k>")
     tmap <expr><silent> <C-l> terminal#Navigate("\<C-k>")
 else
     set termwinkey=<C-v>
-    tnoremap <ESC><ESC> <C-\><C-n>
     tnoremap <C-h> <C-v>h
     tnoremap <C-j> <C-v>j
     tnoremap <C-k> <C-v>k

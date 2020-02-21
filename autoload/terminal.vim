@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function terminal#AutoCmdTerminal() abort
-    " setlocal bufhidden=wipe
+    setlocal nonumber
     setlocal nobuflisted
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
