@@ -24,6 +24,7 @@ let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_ShowHidden = 1
 let g:Lf_CacheDirectory = g:vim_cache
+let g:Lf_IgnoreCurrentBufferName = 1
 
 if executable('gtags')
     let g:Lf_GtagsAutoGenerate = 1
@@ -40,12 +41,14 @@ let g:Lf_Gtagslabel = 'native-pygments'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
 
-let g:Lf_CommandMap = {'<F5>': ['<C-q>']}
+let g:Lf_CommandMap = {'<F5>': ['<C-l>']}
 let g:Lf_NormalMap = {'Gtags': [
             \   ['<C-j>', 'j'],
             \   ['<C-k>', 'k'],
             \   ['<C-h>', '<NOP>'],
-            \   ['<C-l>', '<NOP>']
+            \   ['<C-l>', '<NOP>'],
+            \   ['<C-n>', 'j'],
+            \   ['<C-p>', 'k']
             \]}
 
 let g:Lf_ShortcutF = ''
