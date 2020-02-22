@@ -56,15 +56,14 @@ function s:GotoWinID() abort
 endfunction
 
 function workspace#ToggleWorkspace() abort
-    let l:has_tagbar = s:HasTagbar()
     let l:has_explorer = s:HasExplorer()
-
-    if l:has_tagbar
-        TagbarClose
-    endif
-
     if l:has_explorer
         CocCommand explorer --toggle
+    endif
+
+    let l:has_tagbar = s:HasTagbar()
+    if l:has_tagbar
+        TagbarClose
     endif
 
     if l:has_tagbar || l:has_explorer
@@ -78,12 +77,9 @@ function workspace#ToggleWorkspace() abort
 endfunction
 
 function workspace#RevealWorkspace() abort
-    let l:has_tagbar = s:HasTagbar()
-
-    if !l:has_tagbar
+    if !s:HasTagbar()
         call TagbarTrigger()
     endif
-
     execute 'CocCommand explorer --no-toggle --width '. SiderBarWidth() .' --reveal='. expand('%:p')
 endfunction
 
