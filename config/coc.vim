@@ -38,6 +38,37 @@ function! s:ShowDocumentation()
     endif
 endfunction
 
+function s:CocToggle() abort
+    return g:coc_enabled ? ":CocDisable\<CR>"
+                \        : ":CocEnable\<CR>"
+endfunction
+
+let s:coc_lsp = {
+            \   'python': 'coc-python',
+            \   'json': 'coc-json',
+            \   'vim': 'coc-vimlsp',
+            \   'xml': 'coc-xml',
+            \}
+function s:ToggleLSP() abort
+    if !has_key(s:coc_lsp, &filetype)
+        return
+    endif
+    let l:name = s:coc_lsp[&filetype]
+    let l:list = CocAction('extensionStats')
+    for l:item in l:list
+        if l:item.id ==# l:name
+            let l:state = l:item.state
+        endif
+    endfor
+    if l:state ==# 'activated'
+        echo 'Disable '. l:name
+        call CocAction('deactivateExtension', l:name)
+    else
+        echo 'Enable '. l:name
+        call CocAction('reloadExtension', l:name)
+    endif
+endfunction
+
 function s:AutoCmdCocInfo() abort
     if &buftype ==# 'nofile'
         setlocal nobuflisted
@@ -73,6 +104,13 @@ inoremap <silent><expr> <S-TAB> coc#refresh()
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 
+nmap [oL :CocEnable<CR>
+nmap ]oL :CocDisable<CR>
+nmap <expr> yoL <SID>CocToggle()
+nnoremap <silent> <leader>L :CocRestart<CR>
+nnoremap <silent> <leader>lu :CocUpdate<CR>
+nnoremap <silent> <leader>ll :call <SID>ToggleLSP()<CR>
+
 nmap <silent> <leader>j <Plug>(coc-definition)
 nmap <silent> <leader>J <Plug>(coc-declaration)
 nmap <silent> <leader>x <Plug>(coc-fix-current)
@@ -84,7 +122,7 @@ nmap <silent> <leader>T <Plug>(coc-type-definition)
 nmap <silent> <leader>lr <Plug>(coc-rename)
 nmap <silent> <leader>lR <Plug>(coc-refactor)
 nmap <silent> <leader>la <Plug>(coc-codeaction)
-nmap <silent> <leader>ll <Plug>(coc-codelens-action)
+" nmap <silent> <leader>ll <Plug>(coc-codelens-action)
 
 nmap <silent> <leader>A <Plug>(coc-format)
 vmap <silent> <leader>A <Plug>(coc-format-selected)
