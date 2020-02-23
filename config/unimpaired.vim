@@ -76,11 +76,6 @@ nmap [oC :setlocal conceallevel=2<CR>
 nmap ]oC :setlocal conceallevel=0<CR>
 nmap <expr> yoC <SID>ConcealToggle()
 
-" Plug 'Yggdroot/indentLine'
-nmap [oI :IndentLinesEnable<CR>
-nmap ]oI :IndentLinesDisable<CR>
-nmap yoI :IndentLinesToggle<CR>
-
 nmap <silent> [oa :call <SID>SidebarOn()<CR>
 nmap <silent> ]oa :call <SID>SidebarOff()<CR>
 nmap <silent> yoa :call <SID>SidebarToggle()<CR>
