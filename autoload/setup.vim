@@ -19,20 +19,7 @@ function s:AutoCmdPlugInstall() abort
     let g:plug_window = 'buffer'
     PlugInstall --sync
     source $MYVIMRC
-    CocInstall -sync
-                \ coc-word
-                \ coc-highlight
-                \ coc-snippets
-                \ coc-json
-                \ coc-python
-                \ coc-vimlsp
-                \ coc-translator
-                \ coc-explorer
-                \ coc-yank
-                " \ coc-xml
-    if has('macunix')
-        CocInstall -sync coc-imselect
-    endif
+    execute 'CocInstall -sync '. join(g:coc_global_extensions)
     while s:HasTermianl()
         sleep 1
     endwhile

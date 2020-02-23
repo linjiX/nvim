@@ -18,6 +18,22 @@ nnoremap <silent> <leader>vg :PlugUpgrade<CR>
 nnoremap <silent> <leader>vd :PlugDiff<CR>
 nnoremap <silent> <leader>vs :PlugStatus<CR>
 
+let g:coc_global_extensions = [
+            \   'coc-word',
+            \   'coc-highlight',
+            \   'coc-snippets',
+            \   'coc-json',
+            \   'coc-python',
+            \   'coc-vimlsp',
+            \   'coc-translator',
+            \   'coc-explorer',
+            \   'coc-yank',
+            \]
+            " \   'coc-xml',
+if has('macunix')
+    let g:coc_global_extensions += ['coc-imselect']
+endif
+
 if empty(glob('~/.vim/autoload/plug.vim'))
     call setup#AutoInstallation()
 endif
