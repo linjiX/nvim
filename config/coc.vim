@@ -30,6 +30,11 @@ let s:java_home =
             \                : '/usr/lib/jvm/java-8-openjdk-amd64'
 call coc#config('xml.java.home', s:java_home)
 
+" coc-python
+let s:python_path = executable('pyenv') ? system('pyenv which python3')[:-2]
+            \                           : system('which python3')[:-2]
+call coc#config('python.pythonPath', s:python_path)
+
 function! s:ShowDocumentation()
     if (index(['vim','help'], &filetype) >= 0)
         execute 'h '.expand('<cword>')
