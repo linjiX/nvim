@@ -93,7 +93,7 @@ else
             let l:pwdx = system('pwdx '. a:pid)
             return l:pwdx[stridx(l:pwdx, '/') : -2]
         elseif isdirectory('/proc/')
-            return system('readlink /proc/'. a:pid .'/cwd')
+            return system('readlink /proc/'. a:pid .'/cwd')[:-2]
         endif
         throw 'Fail to get terminal working direcroty!'
     endfunction
@@ -108,7 +108,7 @@ endfunction
 function s:SlimeGetTerminalPID(bufnr) abort
     if has('nvim')
         let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
-        let l:tty = system('ps -o tty= '. l:pid)
+        let l:tty = system('ps -o tty= '. l:pid)[:-2]
     else
         let l:tty = term_gettty(a:bufnr)
     endif
