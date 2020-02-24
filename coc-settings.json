@@ -78,6 +78,7 @@
 
     "python.jediEnabled": false,
     "python.linting.enabled": false,
+    "python.pythonPath": "python3",
 
     "yank.list.maxsize": 20,
     "yank.highlight.duration": 350,
