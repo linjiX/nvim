@@ -38,6 +38,13 @@ function! s:ShowDocumentation()
     endif
 endfunction
 
+function s:CocRestart() abort
+    if workspace#Disable()
+        autocmd myCoc User CocNvimInit ++once call workspace#Toggle()
+    endif
+    CocRestart
+endfunction
+
 function s:CocToggle() abort
     return g:coc_enabled ? ":CocDisable\<CR>"
                 \        : ":CocEnable\<CR>"
@@ -107,9 +114,9 @@ nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 nmap [oL :CocEnable<CR>
 nmap ]oL :CocDisable<CR>
 nmap <expr> yoL <SID>CocToggle()
-nnoremap <silent> <leader>L :CocRestart<CR>
-nnoremap <silent> <leader>lu :CocUpdate<CR>
+nnoremap <silent> <leader>L :call <SID>CocRestart()<CR>
 nnoremap <silent> <leader>ll :call <SID>ToggleLSP()<CR>
+nnoremap <leader>lu :CocUpdate<CR>
 
 nmap <silent> <leader>j <Plug>(coc-definition)
 nmap <silent> <leader>J <Plug>(coc-declaration)
@@ -151,8 +158,8 @@ nmap <silent> <leader>tr <Plug>(coc-translator-r)
 nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
 " coc-explorer
-nnoremap <silent> <leader>w :call workspace#ToggleWorkspace()<CR>
-nnoremap <silent> <leader>W :call workspace#RevealWorkspace()<CR>
+nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
+nnoremap <silent> <leader>W :call workspace#Reveal()<CR>
 
 " ccls
 nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
