@@ -11,7 +11,7 @@
 
 function s:GetListedBufWinnrs() abort
     let l:other_winnrs = range(1, winnr() - 1) + range(winnr() + 1, winnr('$'))
-    return filter(l:other_winnrs, 'getbufvar(winbufnr(v:val), "&buflisted") == 1')
+    return filter(l:other_winnrs, 'buflisted(winbufnr(v:val))')
 endfunction
 
 function buffer#Open(cmd) abort
