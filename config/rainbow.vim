@@ -11,6 +11,7 @@
 
 let g:rainbow_active = 1
 let g:rainbow_conf = {
+            \     'guifgs': ['#df5f00', '#00af00', '#df00df', '#dfaf00', '#8787df', '#00dfff'],
             \     'ctermfgs': ['166', '034', '164', '178', '104', '045'],
             \ }
 
