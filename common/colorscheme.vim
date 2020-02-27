@@ -12,17 +12,18 @@
 let g:solarized_termtrans = 1
 
 function s:AutoCmdColorScheme() abort
-    highlight Sneak cterm=bold,underline ctermfg=red
-    highlight MatchParen NONE term=bold,underline cterm=bold,underline gui=bold,underline
-    highlight MatchWord term=underline cterm=underline gui=underline
+    highlight Sneak cterm=bold,underline ctermfg=9 gui=bold,underline guifg=#cb4b16
+    highlight MatchParen NONE cterm=bold,underline gui=bold,underline
+    highlight MatchWord cterm=underline gui=underline
     highlight link ctrlsfMatch StatusLineNC
 
-    highlight UserError cterm=bold,underline ctermfg=9
-    highlight UserWarning cterm=bold,underline ctermfg=13
-    highlight UserInfo cterm=bold,underline ctermfg=12
-    highlight UserErrorSign cterm=bold ctermfg=9 ctermbg=0
-    highlight UserWarningSign cterm=bold ctermfg=13 ctermbg=0
-    highlight UserInfoSign cterm=bold ctermfg=12 ctermbg=0
+    highlight UserError cterm=bold,underline ctermfg=9 gui=bold,underline guifg=#cb4b16
+    highlight UserWarning cterm=bold,underline ctermfg=13 gui=bold,underline guifg=#6c71c4
+    highlight UserInfo cterm=bold,underline ctermfg=12 gui=bold,underline guifg=#839496
+
+    highlight UserErrorSign cterm=bold ctermfg=9 ctermbg=0 gui=bold guifg=#cb4b16 guibg=#073642
+    highlight UserWarningSign cterm=bold ctermfg=13 ctermbg=0 gui=bold guifg=#6c71c4 guibg=#073642
+    highlight UserInfoSign cterm=bold ctermfg=12 ctermbg=0 gui=bold guifg=#839496 guibg=#073642
 
     highlight link CocErrorSign UserErrorSign
     highlight link CocWarningSign UserWarningSign
@@ -48,8 +49,8 @@ function s:AutoCmdColorScheme() abort
 endfunction
 
 function s:AutoCmdSolarzed() abort
-    highlight CursorLineNr term=bold cterm=bold ctermfg=11 gui=bold guifg=Yellow
-    highlight UserFloating ctermbg=232
+    highlight CursorLineNr cterm=bold ctermfg=11 gui=bold guifg=#657b83
+    highlight UserFloating ctermbg=232 guibg=#080808
     highlight link CocFloating UserFloating
     highlight link EchoDocFloat UserFloating
     highlight link WhichKeyFloating UserFloating
@@ -57,7 +58,7 @@ function s:AutoCmdSolarzed() abort
 endfunction
 
 function s:AutoCmdMolokai() abort
-    highlight Visual ctermbg=238
+    highlight Visual ctermbg=238 guibg=#444444
     highlight! link CursorLine CursorColumn
     highlight link CocFloating Visual
     highlight link EchoDocFloat Visual
