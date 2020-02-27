@@ -41,6 +41,7 @@ let g:Lf_Gtagslabel = 'native-pygments'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
 
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0}
 let g:Lf_CommandMap = {'<F5>': ['<C-l>']}
 let g:Lf_NormalMap = {'Gtags': [
             \   ['<C-j>', 'j'],
@@ -105,6 +106,8 @@ nnoremap <silent> <leader>fh :MyLeaderf help<CR>
 nnoremap <silent> <leader>fc :MyLeaderf colorscheme<CR>
 nnoremap <silent> <leader>fo :MyLeaderf --recall<CR>
 
+nnoremap <silent> <leader>go :MyLeaderf! gtags --update<CR>
+nnoremap <silent> <leader>gO :MyLeaderf! gtags --remove<CR>
 nnoremap <silent> <leader>gg :MyLeaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gr :MyLeaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gs :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
