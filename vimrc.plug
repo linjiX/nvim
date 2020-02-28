@@ -95,7 +95,12 @@ endif
 " -- Formatter --
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
-Plug 'junegunn/vim-easy-align', {'on': '<Plug>(EasyAlign)'}
+Plug 'junegunn/vim-easy-align', {'on': [
+            \   '<Plug>(EasyAlign)',
+            \   '<Plug>(LiveEasyAlign)',
+            \   'EasyAlign',
+            \   'LiveEasyAlign'
+            \]}
 
 "-- Display --
 " Plug 'itchyny/vim-cursorword'

@@ -11,3 +11,5 @@
 
 vmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+vmap gA <Plug>(LiveEasyAlign)
+nmap gA <Plug>(LiveEasyAlign)
