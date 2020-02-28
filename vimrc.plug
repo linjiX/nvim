@@ -93,8 +93,8 @@ if !has('macunix')
 endif
 
 " -- Formatter --
+" Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
-Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'junegunn/vim-easy-align', {'on': [
             \   '<Plug>(EasyAlign)',
             \   '<Plug>(LiveEasyAlign)',
@@ -192,6 +192,7 @@ Plug 'kana/vim-niceblock'
 
 "-- Text Object --
 " Plug 'gaving/vim-textobj-argument'
+" Plug 'mattn/vim-textobj-url'
 " Plug 'rhysd/vim-textobj-anyblock'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'glts/vim-textobj-comment'
@@ -201,7 +202,6 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
 Plug 'lucapette/vim-textobj-underscore'
-Plug 'mattn/vim-textobj-url'
 Plug 'sgur/vim-textobj-parameter'
 
 "-- Markdown --
