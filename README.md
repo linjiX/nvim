@@ -88,7 +88,6 @@ pip3 install cpplint
 #### Bazel (Ubuntu 16.04)
 
 ```bash
-./setup/install_bazel.sh
 ./setup/install_buildifier.sh
 ```
 
