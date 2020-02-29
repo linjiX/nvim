@@ -187,7 +187,7 @@ Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
 Plug 'yonchu/accelerated-smooth-scroll', {'on': '<Plug>(ac-smooth-scroll-c-'}
 
 "-- Visual --
-Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
+" Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
 Plug 'kana/vim-niceblock'
 
 "-- Text Object --
