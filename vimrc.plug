@@ -70,7 +70,7 @@ Plug 'mhinz/vim-startify'
 " Plug 'flazz/vim-colorschemes'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'chxuan/change-colorscheme'
+Plug 'chxuan/change-colorscheme', {'on': ['NextColorScheme', 'PreviousColorScheme']}
 Plug 'tomasr/molokai'
 
 "-- Edit --
@@ -220,14 +220,35 @@ Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 
 "-- tmux --
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'christoomey/vim-tmux-navigator', {'on': [
+            \   'TmuxNavigateUp',
+            \   'TmuxNavigateDown',
+            \   'TmuxNavigateLeft',
+            \   'TmuxNavigateRight',
+            \]}
 
 "-- Others --
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter' ", {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
 Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
-Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch', {'on': [
+            \   'Delete',
+            \   'Unlink',
+            \   'Remove',
+            \   'Move',
+            \   'Rename',
+            \   'Chmod',
+            \   'Mkdir',
+            \   'Cfind',
+            \   'Lfind',
+            \   'Clocate',
+            \   'Llocate',
+            \   'SudoEdit',
+            \   'SudoWrite',
+            \   'Wall',
+            \   'W',
+            \]}
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/LargeFile'
 
