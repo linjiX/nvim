@@ -110,7 +110,7 @@ Plug 'junegunn/vim-easy-align', {'on': [
 " Plug 'pboettch/vim-highlight-cursor-words'
 Plug 'Yggdroot/indentLine'
 Plug 'guns/xterm-color-table.vim', {'on': 'XtermColorTable'}
-Plug 'linjiX/vim-keyword'
+Plug 'linjiX/vim-keyword', {'on': '<Plug>(keyword-'}
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ryanoasis/vim-devicons'
@@ -133,7 +133,7 @@ Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
-Plug 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim', {'on': '<Plug>TComment_'}
 Plug 'tpope/vim-endwise'
 
 "-- python --
