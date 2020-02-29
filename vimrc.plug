@@ -192,17 +192,19 @@ Plug 'kana/vim-niceblock'
 
 "-- Text Object --
 " Plug 'gaving/vim-textobj-argument'
+" Plug 'kana/vim-textobj-line'
+" Plug 'lucapette/vim-textobj-underscore'
 " Plug 'mattn/vim-textobj-url'
 " Plug 'rhysd/vim-textobj-anyblock'
+" Plug 'sgur/vim-textobj-parameter'
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-function'
 Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-user'
-Plug 'lucapette/vim-textobj-underscore'
-Plug 'sgur/vim-textobj-parameter'
+Plug 'wellle/line-targets.vim'
+Plug 'wellle/targets.vim'
 
 "-- Markdown --
 " Plug 'plasticboy/vim-markdown'
