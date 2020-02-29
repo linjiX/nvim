@@ -118,11 +118,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 "-- Coding --
-" Plug 'jsfaint/gen_tags.vim'
-" Plug 'octol/vim-cpp-enhanced-highlight'
 " Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe'
+" Plug 'jsfaint/gen_tags.vim'
 " Plug 'ludovicchabant/vim-gutentags'
+" Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'scrooloose/nerdcommenter'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
@@ -131,7 +132,6 @@ Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdcommenter'
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim', {'on': '<Plug>TComment_'}
 Plug 'tpope/vim-endwise'
