@@ -67,11 +67,12 @@ Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 
 "-- Colorscheme --
+" Plug 'chxuan/change-colorscheme', {'on': ['NextColorScheme', 'PreviousColorScheme']}
 " Plug 'flazz/vim-colorschemes'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'chxuan/change-colorscheme', {'on': ['NextColorScheme', 'PreviousColorScheme']}
 Plug 'tomasr/molokai'
+Plug 'vim-scripts/ScrollColors', {'on': ['NEXTCOLOR', 'PREVCOLOR']}
 
 "-- Edit --
 " Plug 'AndrewRadev/linediff.vim'

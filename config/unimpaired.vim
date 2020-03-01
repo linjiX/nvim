@@ -112,8 +112,8 @@ nmap <expr> [<C-q> buffer#Open('<Plug>unimpairedQPFile')
 nmap <expr> ]<C-q> buffer#Open('<Plug>unimpairedQNFile')
 
 " Plug 'chxuan/change-colorscheme'
-nnoremap <silent> ]r :NextColorScheme<CR>
-nnoremap <silent> [r :PreviousColorScheme<CR>
+nnoremap <silent> ]r :NEXTCOLOR<CR>
+nnoremap <silent> [r :PREVCOLOR<CR>
 
 " Plug 'ntpeters/vim-better-whitespace'
 nnoremap <silent> ]. :NextTrailingWhitespace<CR>
