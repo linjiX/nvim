@@ -9,15 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:plug_window = 'botright vertical new'
-
-nnoremap <silent> <leader>vv :PlugUpdate<CR>
-nnoremap <silent> <leader>vi :PlugInstall<CR>
-nnoremap <silent> <leader>vc :PlugClean<CR>
-nnoremap <silent> <leader>vg :PlugUpgrade<CR>
-nnoremap <silent> <leader>vd :PlugDiff<CR>
-nnoremap <silent> <leader>vs :PlugStatus<CR>
-
+" {{{ COC plugins
 let g:coc_global_extensions = [
             \   'coc-word',
             \   'coc-highlight',
@@ -33,17 +25,30 @@ let g:coc_global_extensions = [
 if has('macunix')
     let g:coc_global_extensions += ['coc-imselect']
 endif
+" }}}
 
+" {{{ vim-plug config
 if empty(glob('~/.vim/autoload/plug.vim'))
     call setup#AutoInstallation()
 endif
 
+let g:plug_window = 'botright vertical new'
+
+nnoremap <silent> <leader>vv :PlugUpdate<CR>
+nnoremap <silent> <leader>vi :PlugInstall<CR>
+nnoremap <silent> <leader>vc :PlugClean<CR>
+nnoremap <silent> <leader>vg :PlugUpgrade<CR>
+nnoremap <silent> <leader>vd :PlugDiff<CR>
+nnoremap <silent> <leader>vs :PlugStatus<CR>
+" }}}
+
 call plug#begin('~/.vim/plug')
 
-"-- Help --
+" {{{ Help
 Plug 'yianwillis/vimcdoc', has('nvim') ? {'on': []} : {}
+" }}}
 
-"-- Menu --
+" {{{ Menu
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'linjiX/vim-defx-vista'
 " Plug 'liuchengxu/vista.vim'
@@ -65,16 +70,18 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarOpen', 'TagbarToggle']}
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
+" }}}
 
-"-- Colorscheme --
+" {{{ Colorscheme
 " Plug 'chxuan/change-colorscheme', {'on': ['NextColorScheme', 'PreviousColorScheme']}
 " Plug 'flazz/vim-colorschemes'
 " Plug 'rafi/awesome-vim-colorschemes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'tomasr/molokai'
 Plug 'vim-scripts/ScrollColors', {'on': ['NEXTCOLOR', 'PREVCOLOR']}
+" }}}
 
-"-- Edit --
+" {{{ Edit
 " Plug 'AndrewRadev/linediff.vim'
 " Plug 'AndrewRadev/switch.vim'
 " Plug 'jiangmiao/auto-pairs'
@@ -92,8 +99,9 @@ Plug 'tpope/vim-surround'
 if !has('macunix')
     Plug 'lilydjwg/fcitx.vim'
 endif
+" }}}
 
-" -- Formatter --
+" {{{ Formatter
 " Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 Plug 'chiel92/vim-autoformat', {'on': ['Autoformat', 'RemoveTrailingSpaces']}
 Plug 'junegunn/vim-easy-align', {'on': [
@@ -102,8 +110,9 @@ Plug 'junegunn/vim-easy-align', {'on': [
             \   'EasyAlign',
             \   'LiveEasyAlign'
             \]}
+" }}}
 
-"-- Display --
+" {{{ Display
 " Plug 'itchyny/vim-cursorword'
 " Plug 'itchyny/vim-parenmatch'
 " Plug 'junegunn/limelight.vim', {'on': 'Limelight'}
@@ -117,8 +126,9 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" }}}
 
-"-- Coding --
+" {{{ Coding
 " Plug 'SirVer/ultisnips'
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'jsfaint/gen_tags.vim'
@@ -136,27 +146,31 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim', {'on': '<Plug>TComment_'}
 Plug 'tpope/vim-endwise'
+" }}}
 
-"-- python --
+" {{{ Python
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend1']}
 " Plug 'jalvesaq/vimcmdline'
 " Plug 'rhysd/reply.vim'
 " Plug 'szymonmaszke/vimpyter'
+" }}}
 
-"-- Compile --
+" {{{ Compile
 " Plug 'bazelbuild/vim-bazel'
 " Plug 'google/vim-maktaba'
+" }}}
 
-"-- Git --
+" {{{ Git
 " Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 " Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'tpope/vim-fugitive'
+" }}}
 
-"-- Searcher --
+" {{{ Searcher
 " Plug 'tacahiroy/ctrlp-funky'
 " Plug 'vim-scripts/ctrlp.vim'
 " Plug 'mileszs/ack.vim'
@@ -175,8 +189,9 @@ Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
 Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
 Plug 'linjiX/vim-star'
+" }}}
 
-"-- Cursor Move --
+" {{{ Cursor Move
 " Plug 'rhysd/accelerated-jk'
 " Plug 'terryma/vim-smooth-scroll'
 " Plug 'yuttie/comfortable-motion.vim'
@@ -186,12 +201,14 @@ Plug 'justinmk/vim-sneak', {'on': '<Plug>Sneak_'}
 Plug 'kshenoy/vim-signature'
 Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
 Plug 'yonchu/accelerated-smooth-scroll', {'on': '<Plug>(ac-smooth-scroll-c-'}
+" }}}
 
-"-- Visual --
+" {{{ Visual
 " Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
 Plug 'kana/vim-niceblock'
+" }}}
 
-"-- Text Object --
+" {{{ Text Object
 " Plug 'gaving/vim-textobj-argument'
 " Plug 'kana/vim-textobj-line'
 " Plug 'lucapette/vim-textobj-underscore'
@@ -206,8 +223,9 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user'
 Plug 'wellle/line-targets.vim'
 Plug 'wellle/targets.vim'
+" }}}
 
-"-- Markdown --
+" {{{ Markdown
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
@@ -215,11 +233,9 @@ Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'co
 Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()},
             \                         'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
+" }}}
 
-"-- QuickFix --
-" Plug 'ronakg/quickr-preview.vim'
-
-"-- tmux --
+" {{{ Tmux
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
 Plug 'christoomey/vim-tmux-navigator', {'on': [
             \   'TmuxNavigateUp',
@@ -227,8 +243,9 @@ Plug 'christoomey/vim-tmux-navigator', {'on': [
             \   'TmuxNavigateLeft',
             \   'TmuxNavigateRight',
             \]}
+" }}}
 
-"-- Others --
+" {{{ Others
 " Plug 'tpope/vim-sensible'
 Plug 'airblade/vim-rooter' ", {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
@@ -252,5 +269,8 @@ Plug 'tpope/vim-eunuch', {'on': [
             \]}
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/LargeFile'
+" }}}
 
 call plug#end()
+
+" vim:foldmethod=marker
