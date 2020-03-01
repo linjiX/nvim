@@ -9,15 +9,10 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if !has('nvim')
-    set encoding=utf-8
+    source ~/.vim/defaults.vim
 endif
-" set nocompatible
 set nobackup
 let mapleader="\<Space>"
-
-filetype plugin indent on
-syntax enable
-syntax on
 
 " create cache directory
 let g:vim_cache = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
@@ -54,13 +49,9 @@ set lazyredraw
 " set splitbelow
 
 set list
-set listchars=tab:>-
-set hlsearch
-set incsearch
+set listchars=tab:>-,nbsp:+
 
 set hidden
-set autoread
-set wildmenu
 set wildmode=longest:full,full
 set scrolloff=1
 set history=30
@@ -71,19 +62,13 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set autoindent
 set smartindent
 
 set completeopt-=preview
 set diffopt+=vertical
 set path=.,/usr/include,/usr/local/include
 set ttimeoutlen=25
-if has('macunix')
-    set backspace=2
-    set clipboard^=unnamed
-else
-    set clipboard^=unnamedplus
-endif
+set clipboard=unnamedplus
 
 set foldmethod=syntax
 set foldlevel=100
@@ -92,10 +77,7 @@ set foldnestmax=2
 
 " for echodoc
 set noshowmode
-set shortmess+=c
-if !has('nvim')
-    set shortmess-=S
-endif
+set shortmess+=cS
 
 " Disable generate '.netrwhist'
 let g:netrw_dirhistmax = 0

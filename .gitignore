@@ -2,8 +2,5 @@ plug/
 autoload/plug.vim
 autoload/plug.vim.old
 
-*.swp
-*.swo
-*.swn
 init.vim
 vimrc.bak
