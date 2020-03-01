@@ -31,9 +31,6 @@ for s:config in s:configs
     execute 'source '. s:config
 endfor
 
-set background=dark
-set t_Co=256
-
 silent! colorscheme solarized
 " silent! colorscheme molokai
 
@@ -89,8 +86,10 @@ if has('nvim')
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 else
     " Change cursor shape in different modes
-    let &t_EI .= "\e[1 q" "EI = NORMAL mode (ELSE)
-    let &t_SR .= "\e[3 q" "SR = REPLACE mode
-    let &t_SI .= "\e[5 q" "SI = INSERT mode
+    let &t_EI .= "\e[1 q"  " EI = NORMAL mode (ELSE)
+    let &t_SR .= "\e[3 q"  " SR = REPLACE mode
+    let &t_SI .= "\e[5 q"  " SI = INSERT mode
+
+    let &t_Co = 256
     set guifont=Consolas-with-Yahei:h14
 endif
