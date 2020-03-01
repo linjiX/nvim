@@ -31,6 +31,7 @@ let g:ale_cpp_CppCheck_options = join([
             \   '--std=c++17',
             \   '--enable=all',
             \   '--platform=unix64',
+            \   '--suppress=unknownMacro',
             \   '--suppress=unusedFunction',
             \   '--suppress=unusedStructMember',
             \])

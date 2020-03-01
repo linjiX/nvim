@@ -25,6 +25,8 @@ let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 
+let airline#extensions#ale#show_line_numbers = 0
+
 let g:airline#extensions#tmuxline#enabled = 0
 " let g:airline#extensions#tmuxline#color_template = 'insert'
 
