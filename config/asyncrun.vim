@@ -30,7 +30,7 @@ endfunction
 command! -bang -nargs=* -complete=file AsyncGrep call <SID>AsyncGrep('AsyncRun<bang>', <q-args>)
 
 function AsyncStar(is_visual, is_global, is_g) abort
-    let l:pattern = '"'. escape(a:is_visual ? star#Vword() : star#Cword(), '$\`"#%') .'"'
+    let l:pattern = '"'. escape(a:is_visual ? star#Word(1) : star#Word(0), '$\`"#%') .'"'
     let l:whole = a:is_g ? '' : '-w'
     let l:file = a:is_global ? '<root>' : '%'
     execute join(['AsyncGrep!', l:whole, l:pattern, l:file])
