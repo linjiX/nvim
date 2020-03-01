@@ -90,8 +90,9 @@ Plug 'vim-scripts/ScrollColors', {'on': ['NEXTCOLOR', 'PREVCOLOR']}
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'vim-scripts/YankRing.vim'
 " Plug 'xcodebuild/fcitx-vim-osx'
-Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
+Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'conf', '']}
 Plug 'junegunn/vim-peekaboo'
+Plug 'kana/vim-niceblock'
 Plug 'mjbrownie/swapit'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
@@ -124,6 +125,7 @@ Plug 'linjiX/vim-keyword', {'on': '<Plug>(keyword-'}
 Plug 'luochen1990/rainbow'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ryanoasis/vim-devicons'
+Plug 'sheerun/vim-polyglot'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " }}}
@@ -134,8 +136,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'jsfaint/gen_tags.vim'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'octol/vim-cpp-enhanced-highlight'
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 " Plug 'scrooloose/nerdcommenter'
 " Plug 'skywind3000/gutentags_plus'
+" Plug 'szymonmaszke/vimpyter'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
 Plug 'dense-analysis/ale'
@@ -143,22 +147,17 @@ Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
 Plug 'tomtom/tcomment_vim', {'on': '<Plug>TComment_'}
 Plug 'tpope/vim-endwise'
 " }}}
 
-" {{{ Python
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
-Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend1']}
-" Plug 'jalvesaq/vimcmdline'
-" Plug 'rhysd/reply.vim'
-" Plug 'szymonmaszke/vimpyter'
-" }}}
-
-" {{{ Compile
+" {{{ Build & Run
 " Plug 'bazelbuild/vim-bazel'
 " Plug 'google/vim-maktaba'
+" Plug 'jalvesaq/vimcmdline'
+" Plug 'rhysd/reply.vim'
+Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend1']}
+Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " }}}
 
 " {{{ Git
@@ -203,11 +202,6 @@ Plug 't9md/vim-choosewin', {'on': '<Plug>(choosewin)'}
 Plug 'yonchu/accelerated-smooth-scroll', {'on': '<Plug>(ac-smooth-scroll-c-'}
 " }}}
 
-" {{{ Visual
-" Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
-Plug 'kana/vim-niceblock'
-" }}}
-
 " {{{ Text Object
 " Plug 'gaving/vim-textobj-argument'
 " Plug 'kana/vim-textobj-line'
@@ -215,6 +209,7 @@ Plug 'kana/vim-niceblock'
 " Plug 'mattn/vim-textobj-url'
 " Plug 'rhysd/vim-textobj-anyblock'
 " Plug 'sgur/vim-textobj-parameter'
+" Plug 'terryma/vim-expand-region', {'on': '<Plug>(expand_region_'}
 Plug 'coderifous/textobj-word-column.vim'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
@@ -229,7 +224,6 @@ Plug 'wellle/targets.vim'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
 Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
-Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'conf', '']}
 Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()},
             \                         'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
@@ -247,9 +241,11 @@ Plug 'christoomey/vim-tmux-navigator', {'on': [
 
 " {{{ Others
 " Plug 'tpope/vim-sensible'
+Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'airblade/vim-rooter' ", {'on': 'Rooter'}
 Plug 'qpkorr/vim-bufkill'
-Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/LargeFile'
 Plug 'tpope/vim-eunuch', {'on': [
             \   'Delete',
             \   'Unlink',
@@ -267,8 +263,6 @@ Plug 'tpope/vim-eunuch', {'on': [
             \   'Wall',
             \   'W',
             \]}
-Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/LargeFile'
 " }}}
 
 call plug#end()
