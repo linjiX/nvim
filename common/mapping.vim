@@ -33,13 +33,14 @@ cnoreabbrev <silent> w!! w !sudo tee % >/dev/null
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
+cnoremap <C-o> <C-f>
 cnoremap <C-a> <Home>
 cnoremap <C-k> <Up>
 cnoremap <C-j> <Down>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
-" cnoremap <C-h> <S-Left>
-" cnoremap <C-l> <S-Right>
+cnoremap <C-h> <S-Left>
+cnoremap <C-l> <S-Right>
 
 " insert mapping
 inoremap <C-x><C-a> <C-a>
