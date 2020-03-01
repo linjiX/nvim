@@ -94,6 +94,7 @@ Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'co
 Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-niceblock'
 Plug 'mjbrownie/swapit'
+Plug 'svermeulen/vim-subversive', {'on': '<Plug>(Subversive'}
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'

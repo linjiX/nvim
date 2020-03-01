@@ -9,13 +9,16 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Plug 'justinmk/vim-sneak'
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-map <leader>n <Plug>Sneak_s
-map <leader>N <Plug>Sneak_S
+let g:subversiveCurrentTextRegister = '-'
 
-" Plug 'easymotion/vim-easymotion'
-map <leader><leader> <Plug>(easymotion-prefix)
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+nmap gs <plug>(SubversiveSubstituteRange)
+xmap gs <plug>(SubversiveSubstituteRange)
+nmap gss <plug>(SubversiveSubstituteWordRange)
+
+nmap gS <plug>(SubversiveSubvertRange)
+xmap gS <plug>(SubversiveSubvertRange)
+nmap gSS <plug>(SubversiveSubvertWordRange)
