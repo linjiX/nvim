@@ -65,7 +65,11 @@ set completeopt-=preview
 set diffopt+=vertical
 set path=.,/usr/include,/usr/local/include
 set ttimeoutlen=25
-set clipboard=unnamedplus
+if has('macunix')
+    set clipboard=unnamed
+else
+    set clipboard=unnamedplus
+endif
 
 set foldmethod=syntax
 set foldlevel=100
