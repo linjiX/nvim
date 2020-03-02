@@ -11,15 +11,17 @@
 filetype plugin indent on
 syntax on
 
+let $VIM_DATA_PATH = $HOME .'/.local/share/vim'
+
 set autoindent
 set autoread
 set background=dark
 set backspace=indent,eol,start
-set backupdir=.,~/.local/share/vim/backup
+set backupdir=.,$VIM_DATA_PATH/backup
 set belloff=all
 set complete-=i
 set cscopeverbose
-set directory=~/.local/share/vim/swap//
+set directory=$VIM_DATA_PATH/swap//
 set display=lastline  " lastline,msgsep
 set encoding=utf-8
 set fillchars=vert:│,fold:·
@@ -43,8 +45,9 @@ set tabpagemax=50
 set tags=./tags;,tags
 set ttimeoutlen=50
 set ttyfast
-set undodir=~/.local/share/vim/undo
+set undodir=$VIM_DATA_PATH/undo
 set viminfo+=!
+set viminfofile=$VIM_DATA_PATH/viminfo
 set wildmenu
 set wildoptions=tagfile  "pum,tagfile
 
