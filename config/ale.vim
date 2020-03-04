@@ -105,3 +105,11 @@ nmap [w <Plug>(ale_previous)
 nmap ]w <Plug>(ale_next)
 nmap [W <Plug>(ale_first)
 nmap ]W <Plug>(ale_last)
+
+nnoremap [ra :ALEEnable<CR>
+nnoremap ]ra :ALEDisable<CR>
+nnoremap yra :ALEToggle<CR>
+
+nnoremap [rA :ALEEnableBuffer<CR>
+nnoremap ]rA :ALEDisableBuffer<CR>
+nnoremap yrA :ALEToggleBuffer<CR>

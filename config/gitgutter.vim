@@ -11,7 +11,7 @@
 
 let g:gitgutter_preview_win_location = 'belowright'
 
-nnoremap <silent> <leader>gR :GitGutter<CR>
+nnoremap <silent> <leader>gl :GitGutter<CR>
 nnoremap <silent> <leader>gf :GitGutterFold<CR>
 nnoremap <silent> <leader>gq :GitGutterQuickFix<CR>:belowright copen<CR>
 nmap <leader>gp <Plug>(GitGutterPreviewHunk)
@@ -22,3 +22,11 @@ omap ig <Plug>(GitGutterTextObjectInnerPending)
 omap ag <Plug>(GitGutterTextObjectOuterPending)
 xmap ig <Plug>(GitGutterTextObjectInnerVisual)
 xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+
+nnoremap [rg :GitGutterEnable<CR>
+nnoremap ]rg :GitGutterDisable<CR>
+nnoremap yrg :GitGutterToggle<CR>
+
+nnoremap [rG :GitGutterBufferEnable<CR>
+nnoremap ]rG :GitGutterBufferDisable<CR>
+nnoremap yrG :GitGutterBufferToggle<CR>

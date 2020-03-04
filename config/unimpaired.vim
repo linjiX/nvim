@@ -47,20 +47,20 @@ endfunction
 function s:ListOn() abort
     EnableWhitespace
     setlocal list
+    echo ':setlocal list'
 endfunction
 
 function s:ListOff() abort
     DisableWhitespace
     setlocal nolist
+    echo ':setlocal nolist'
 endfunction
 
 function s:ListToggle() abort
     if &list
         call s:ListOff()
-        echo ':setlocal nolist'
     else
         call s:ListOn()
-        echo ':setlocal list'
     endif
 endfunction
 
@@ -68,13 +68,13 @@ nmap [om :set mouse=a<CR>
 nmap ]om :set mouse=<CR>
 nmap <expr> yom <SID>MouseToggle()
 
-nmap [oS :setlocal signcolumn=auto<CR>
-nmap ]oS :setlocal signcolumn=no<CR>
-nmap <expr> yoS <SID>SigncolumnToggle()
+nmap [og :setlocal signcolumn=auto<CR>
+nmap ]og :setlocal signcolumn=no<CR>
+nmap <expr> yog <SID>SigncolumnToggle()
 
-nmap [oC :setlocal conceallevel=2<CR>
-nmap ]oC :setlocal conceallevel=0<CR>
-nmap <expr> yoC <SID>ConcealToggle()
+nmap [oc :setlocal conceallevel=2<CR>
+nmap ]oc :setlocal conceallevel=0<CR>
+nmap <expr> yoc <SID>ConcealToggle()
 
 nmap <silent> [oa :call <SID>SidebarOn()<CR>
 nmap <silent> ]oa :call <SID>SidebarOff()<CR>
@@ -112,13 +112,13 @@ nmap <expr> [<C-q> buffer#Open('<Plug>unimpairedQPFile')
 nmap <expr> ]<C-q> buffer#Open('<Plug>unimpairedQNFile')
 
 " Plug 'chxuan/change-colorscheme'
-nnoremap <silent> ]r :NEXTCOLOR<CR>
-nnoremap <silent> [r :PREVCOLOR<CR>
+nnoremap <silent> ]h :NEXTCOLOR<CR>
+nnoremap <silent> [h :PREVCOLOR<CR>
 
 " Plug 'ntpeters/vim-better-whitespace'
 nnoremap <silent> ]. :NextTrailingWhitespace<CR>
 nnoremap <silent> [. :PrevTrailingWhitespace<CR>
 
-nmap [o. :EnableWhitespace<CR>
-nmap ]o. :DisableWhitespace<CR>
-nmap yo. :ToggleWhitespace<CR>
+nmap [r. :EnableWhitespace<CR>
+nmap ]r. :DisableWhitespace<CR>
+nmap yr. :ToggleWhitespace<CR>

@@ -11,6 +11,7 @@
 
 let g:indentLine_fileTypeExclude = ['coc-explorer']
 
-nmap [oI :IndentLinesEnable<CR>
-nmap ]oI :IndentLinesDisable<CR>
-nmap yoI :IndentLinesToggle<CR>
+nmap [ri :IndentLinesEnable<CR>
+nmap ]ri :IndentLinesDisable<CR>
+nmap yri :IndentLinesToggle<CR>
+nmap yrI :IndentLinesReset<CR>

@@ -15,6 +15,6 @@ let g:rainbow_conf = {
             \     'ctermfgs': ['166', '034', '164', '178', '104', '045'],
             \ }
 
-nmap [oR :RainbowToggleOn<CR>
-nmap ]oR :RainbowToggleOff<CR>
-nmap yoR :RainbowToggle<CR>
+nmap [rr :RainbowToggleOn<CR>
+nmap ]rr :RainbowToggleOff<CR>
+nmap yrr :RainbowToggle<CR>

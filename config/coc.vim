@@ -111,10 +111,11 @@ inoremap <silent><expr> <S-TAB> coc#refresh()
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 
-nmap [oL :CocEnable<CR>
-nmap ]oL :CocDisable<CR>
-nmap <expr> yoL <SID>CocToggle()
-nnoremap <silent> <leader>L :call <SID>CocRestart()<CR>
+nmap [rl :CocEnable<CR>
+nmap ]rl :CocDisable<CR>
+nmap <expr> yrl <SID>CocToggle()
+nnoremap <silent> yrL :call <SID>CocRestart()<CR>
+
 nnoremap <silent> <leader>ll :call <SID>ToggleLSP()<CR>
 nnoremap <leader>lu :CocUpdate<CR>
 
