@@ -15,10 +15,10 @@ set nobackup
 let mapleader="\<Space>"
 
 " create cache directory
-let g:vim_cache = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
-            \                    : $HOME .'/.cache/vim_cache'
-if !isdirectory(g:vim_cache)
-    call mkdir(g:vim_cache, 'p')
+let $MY_CACHE_PATH = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
+            \                        : $HOME .'/.cache/vim_cache'
+if !isdirectory($MY_CACHE_PATH)
+    call mkdir($MY_CACHE_PATH, 'p')
 endif
 
 " source all configurations

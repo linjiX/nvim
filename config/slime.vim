@@ -17,7 +17,7 @@ endif
 
 let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
-let g:slime_paste_file = g:vim_cache .'/slime_paste'
+let g:slime_paste_file = $MY_CACHE_PATH .'/slime_paste'
 
 let s:slime_sleep_time_ms = 200
 let s:slime_run_filetype = ['python', 'sh']

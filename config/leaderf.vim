@@ -23,7 +23,7 @@ let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_ShowHidden = 1
-let g:Lf_CacheDirectory = g:vim_cache
+let g:Lf_CacheDirectory = $MY_CACHE_PATH
 let g:Lf_IgnoreCurrentBufferName = 1
 
 if executable('gtags')
