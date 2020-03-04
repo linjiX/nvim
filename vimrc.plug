@@ -233,6 +233,7 @@ Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
 " {{{ Tmux
 " Plug 'edkolev/tmuxline.vim', {'on': 'Tmuxline'}
 Plug 'christoomey/vim-tmux-navigator', {'on': [
+            \   'TmuxNavigatePrevious',
             \   'TmuxNavigateUp',
             \   'TmuxNavigateDown',
             \   'TmuxNavigateLeft',

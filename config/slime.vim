@@ -9,12 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has('nvim')
-    let g:slime_target = 'neovim'
-else
-    let g:slime_target = 'vimterminal'
-endif
-
+let g:slime_target = has('nvim') ? 'neovim' : 'vimterminal'
 let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
 let g:slime_paste_file = $MY_CACHE_PATH .'/slime_paste'

@@ -46,7 +46,7 @@ set lazyredraw
 " set splitbelow
 
 set list
-set listchars=tab:>-,nbsp:+
+set listchars=tab:-->,nbsp:+
 
 set hidden
 set wildmode=longest:full,full
