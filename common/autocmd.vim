@@ -64,6 +64,7 @@ augroup myFileType
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
     autocmd FileType json setlocal foldnestmax=20
+    autocmd FileType gitcommit setlocal colorcolumn=72
 augroup END
 
 augroup myCommon

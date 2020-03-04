@@ -28,3 +28,5 @@ command! Gst vertical botright Gstatus
 command! Gd vertical botright Gdiffsplit
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc
             \ execute 'vertical botright Gcommit -v '. <q-args>
+command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
+            \ execute 'vertical botright Gcommit -v -a'. <q-args>
