@@ -30,3 +30,7 @@ nnoremap yrg :GitGutterToggle<CR>
 nnoremap [rG :GitGutterBufferEnable<CR>
 nnoremap ]rG :GitGutterBufferDisable<CR>
 nnoremap yrG :GitGutterBufferToggle<CR>
+
+" Plug 'rhysd/git-messenger.vim'
+let g:git_messenger_no_default_mappings = 1
+nmap <Leader>gm <Plug>(git-messenger)
