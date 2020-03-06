@@ -11,7 +11,8 @@
 
 function s:AutoCmdFugitive() abort
     setlocal nobuflisted
-    nnoremap <silent><buffer> <leader>q :q<CR>
+    nmap <silent><buffer> <leader>q gq
+    nmap <silent><buffer> q gq
 endfunction
 
 function s:AutoCmdGV() abort
@@ -20,7 +21,7 @@ endfunction
 
 augroup myGit
     autocmd!
-    autocmd FileType fugitive call s:AutoCmdFugitive()
+    autocmd FileType fugitive,fugitiveblame call s:AutoCmdFugitive()
     autocmd FileType GV call s:AutoCmdGV()
 augroup END
 

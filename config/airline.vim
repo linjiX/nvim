@@ -33,6 +33,7 @@ let g:airline#extensions#tmuxline#enabled = 0
 let g:airline_filetype_overrides = {
             \   'coc-explorer':  ['coc-explorer', ''],
             \   'startify': [ 'Startify', '' ],
+            \   'fugitiveblame': [ 'fugitiveblame', '' ],
             \}
 let g:airline#extensions#tabline#ignore_bufadd_pat =
             \ '!|\[coc-explorer\]|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|^term://'
