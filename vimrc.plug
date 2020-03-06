@@ -90,7 +90,7 @@ Plug 'vim-scripts/ScrollColors', {'on': ['NEXTCOLOR', 'PREVCOLOR']}
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'vim-scripts/YankRing.vim'
 " Plug 'xcodebuild/fcitx-vim-osx'
-Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'conf', '']}
+Plug 'dkarter/bullets.vim', {'for': ['markdown', 'gitcommit', 'text', 'log', 'conf', 'arcdiff']}
 Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-niceblock'
 Plug 'mjbrownie/swapit'

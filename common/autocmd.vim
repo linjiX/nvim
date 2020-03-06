@@ -61,10 +61,12 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead .arc* setlocal filetype=json
+    autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
     autocmd FileType json setlocal foldnestmax=20
     autocmd FileType gitcommit setlocal colorcolumn=72
+    autocmd FileType arcdiff setlocal colorcolumn=72 | setlocal commentstring=#%s
 augroup END
 
 augroup myCommon
