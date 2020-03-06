@@ -64,7 +64,7 @@ function s:MyLeaderf(bang, args) abort
     endif
 
     let l:screencol = screencol() - 6
-    let l:screenrow = screenrow() - 1
+    let l:screenrow = screenrow()
     let l:max_screenrow = float2nr(&lines * (1 - g:Lf_PopupHeight))
     if l:screenrow > l:max_screenrow
         let l:screenrow = l:max_screenrow
@@ -106,8 +106,9 @@ nnoremap <silent> <leader>fh :MyLeaderf help<CR>
 nnoremap <silent> <leader>fc :MyLeaderf colorscheme<CR>
 nnoremap <silent> <leader>fo :MyLeaderf --recall<CR>
 
-nnoremap <silent> <leader>go :MyLeaderf! gtags --update<CR>
-nnoremap <silent> <leader>gO :MyLeaderf! gtags --remove<CR>
+nnoremap <silent> <leader>go :MyLeaderf! gtags --recall<CR>
+nnoremap <silent> <leader>gc :MyLeaderf! gtags --update<CR>
+nnoremap <silent> <leader>gC :MyLeaderf! gtags --remove<CR>
 nnoremap <silent> <leader>gg :MyLeaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gr :MyLeaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gs :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
