@@ -23,3 +23,5 @@ augroup myXtermColorTable
     autocmd!
     autocmd BufEnter __XtermColorTable__ call s:AutoCmdXtermColorTable()
 augroup END
+
+nnoremap <silent> <leader>X :XtermColorTable<CR>
