@@ -11,6 +11,7 @@
 
 " Plug 'vim-airline/vim-airline-themes'
 let g:airline_solarized_enable_command_color = 1
+let g:airline_solarized_dark_inactive_background = 1
 
 " Plug 'vim-airline/vim-airline'
 let g:airline_powerline_fonts = 1
@@ -24,6 +25,11 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.dirty='*'
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.whitespace = ''
+
+let g:airline#parts#ffenc#skip_expected_string = 'utf-8[unix]'
 
 let g:airline#extensions#hunks#non_zero_only = 1
 
@@ -37,6 +43,13 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#ignore_bufadd_pat =
             \ '!|\[coc-explorer\]|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|^term://'
+
+let g:airline#extensions#whitespace#long_format = 'L[%s]'
+let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
+let g:airline#extensions#whitespace#conflicts_format = 'C[%s]'
+let g:airline#extensions#whitespace#mixed_indent_format = 'i[%s]'
+let g:airline#extensions#whitespace#mixed_indent_file_format = 'I[%s]'
+let g:airline#extensions#whitespace#skip_indent_check_ft = {'markdown': ['trailing']}
 
 nmap <expr> <leader>1 buffer#Open('<Plug>AirlineSelectTab1')
 nmap <expr> <leader>2 buffer#Open('<Plug>AirlineSelectTab2')
