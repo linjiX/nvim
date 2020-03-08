@@ -9,26 +9,22 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:vimFunction = hlID('vimFunction')
-let s:vimAugroupKey = hlID('vimAugroupKey')
-let s:vimAugroup = hlID('vimAugroup')
-let s:vimFuncBody = hlID('vimFuncBody')
-
 function fold#vimscript#Expr() abort
-    if exists('b:current_syntax') && b:current_syntax ==# 'vim'
-        let l:line = getline(v:lnum)
-        let l:col = match(l:line, '^\s*\zs') + 1
-        let l:syntax_names = synstack(v:lnum, l:col)
+    let l:line = getline(v:lnum)
 
-        if index(l:syntax_names, s:vimFunction) != -1
-            return 'a1'
-        elseif index(l:syntax_names, s:vimAugroupKey) != -1
-            return match(l:line, '\<aug\%[roup]\>\s\+[eE][nN][dD]\>') == -1 ? 'a1' : 's1'
-        elseif index(l:syntax_names, s:vimAugroup) != -1 ||
-                    \ index(l:syntax_names, s:vimFuncBody) != -1
-            return '='
-        else
-            return 's1'
-        endif
+    if l:line !~# '\v^\s*[aef]'
+        return '='
+    endif
+
+    if l:line =~# '\v^\s*<fu%[nction]>'
+        return 'a1'
+    elseif l:line =~# '\v^\s*<(endf>|endfu%[nction]>)'
+        return 's1'
+    elseif l:line =~# '\v^\s*<aug%[roup]>\s+[eE][nN][dD]>'
+        return 's1'
+    elseif l:line =~# '\v^\s*<aug%[roup]>\s+\K\k*'
+        return 'a1'
+    else
+        return '='
     endif
 endfunction
