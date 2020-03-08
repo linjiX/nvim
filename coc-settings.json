@@ -87,6 +87,7 @@
 
     "imselect.defaultInput": "com.apple.keylayout.ABC",
     "imselect.enableFloating": false,
+    "imselect.enableStatusItem": false,
 
     "explorer.icon.enableNerdfont": true,
     "explorer.previewAction.onHover": false,
