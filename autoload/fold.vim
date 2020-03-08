@@ -11,7 +11,7 @@
 scriptencoding utf-8
 
 function fold#Text()
-    let l:line = s:GetText(v:foldstart) .' '
+    let l:line = s:GetText(v:foldstart, v:foldend) .' '
     let l:info = printf('--- lines:%3d', v:foldend - v:foldstart + 1)
 
     let l:text_width = &colorcolumn - len(l:info) - 1
@@ -25,7 +25,7 @@ function fold#Text()
     return l:text . l:info
 endfunction
 
-function s:GetText(foldstart) abort
+function s:GetText(foldstart, foldend) abort
     let l:line = getline(a:foldstart)
 
     if &foldmethod ==# 'marker'
@@ -41,6 +41,17 @@ function s:GetText(foldstart) abort
             endif
         endif
         return l:text
+    elseif &foldmethod ==# 'syntax'
+        if &filetype ==# 'json'
+            let [l:pair_start, l:start, l:end] = matchstrpos(l:line, '[{[]')
+            let l:pair_end = l:pair_start ==# '[' ? ']' : '}'
+
+            let l:endline = getline(a:foldend)
+            let l:comma = matchstr(l:endline, l:pair_end .'\s\{-}\zs,\ze.\{-}$')
+
+            let l:text = l:line[: l:start] .'…'. l:pair_end . l:comma
+            return l:text
+        endif
     endif
 
     return l:line
