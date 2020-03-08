@@ -154,8 +154,11 @@ nnoremap <silent> <leader>p :CocList --normal yank<CR>
 
 " coc-translator
 nmap <silent> <leader>tp <Plug>(coc-translator-p)
+xmap <silent> <leader>tp <Plug>(coc-translator-pv)
 nmap <silent> <leader>te <Plug>(coc-translator-e)
+xmap <silent> <leader>te <Plug>(coc-translator-ev)
 nmap <silent> <leader>tr <Plug>(coc-translator-r)
+xmap <silent> <leader>tr <Plug>(coc-translator-rv)
 nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
 " coc-explorer
