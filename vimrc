@@ -71,10 +71,12 @@ else
     set clipboard=unnamedplus
 endif
 
+set fillchars=fold:\ ,vert:│
 set foldmethod=syntax
 set foldlevel=100
 set foldnestmax=2
-"set foldcolumn=2
+set foldtext=fold#Text()
+" set foldcolumn=6
 
 " for echodoc
 set noshowmode
@@ -97,3 +99,5 @@ else
     let &t_Co = 256
     set guifont=Consolas-with-Yahei:h14
 endif
+
+scriptencoding utf-8

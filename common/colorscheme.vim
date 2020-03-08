@@ -56,6 +56,8 @@ function s:AutoCmdSolarzed() abort
     highlight link EchoDocFloat UserFloating
     highlight link WhichKeyFloating UserFloating
     highlight link NormalFloat UserFloating
+
+    highlight Folded cterm=bold ctermfg=12 ctermbg=0 guifg=Cyan guibg=DarkGrey
 endfunction
 
 function s:AutoCmdMolokai() abort

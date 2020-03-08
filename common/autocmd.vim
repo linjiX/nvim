@@ -67,6 +67,9 @@ augroup myFileType
     autocmd FileType json setlocal foldnestmax=20
     autocmd FileType gitcommit setlocal colorcolumn=72
     autocmd FileType arcdiff setlocal colorcolumn=72 | setlocal commentstring=#%s
+
+    autocmd FileType markdown setlocal foldmethod=expr | setlocal foldexpr=fold#markdown#Expr()
+    autocmd FileType vim setlocal foldmethod=expr | setlocal foldexpr=fold#vimscript#Expr()
 augroup END
 
 augroup myCommon
