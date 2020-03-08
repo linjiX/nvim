@@ -16,7 +16,7 @@ let mapleader="\<Space>"
 
 " create cache directory
 let $MY_CACHE_PATH = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
-            \                        : $HOME .'/.cache/vim_cache'
+            \                       : $HOME .'/.cache/vim_cache'
 if !isdirectory($MY_CACHE_PATH)
     call mkdir($MY_CACHE_PATH, 'p')
 endif

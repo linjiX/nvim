@@ -96,7 +96,7 @@
     "explorer.file.hiddenRules": {
         "extensions": ["o", "a", "obj", "pyc"],
         "filenames": ["__pycache__"],
-        "patternMatches": ["^\\."]
+        "patternMatches": ["^\\.", "^bazel-"]
     },
     "explorer.keyMappingMode": "none",
     "explorer.keyMappings": {
