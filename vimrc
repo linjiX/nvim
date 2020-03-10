@@ -72,9 +72,7 @@ else
 endif
 
 set fillchars=fold:\ ,vert:│
-set foldmethod=syntax
 set foldlevel=100
-set foldnestmax=2
 set foldtext=fold#Text()
 " set foldcolumn=6
 

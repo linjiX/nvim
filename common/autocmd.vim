@@ -64,10 +64,10 @@ augroup myFileType
     autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
-    autocmd FileType json setlocal foldnestmax=20
     autocmd FileType gitcommit setlocal colorcolumn=72
     autocmd FileType arcdiff setlocal colorcolumn=72 | setlocal commentstring=#%s
 
+    autocmd FileType json setlocal foldmethod=syntax
     autocmd FileType markdown setlocal foldmethod=expr | setlocal foldexpr=fold#markdown#Expr()
     autocmd FileType vim setlocal foldmethod=expr | setlocal foldexpr=fold#vimscript#Expr()
 augroup END
