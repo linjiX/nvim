@@ -46,8 +46,7 @@ function large#handle() abort
     if exists('g:matchup_matchparen_enabled')
         let b:large_config.matchup_matchparen_enabled =
                     \ get(b:, 'matchup_matchparen_enabled', g:matchup_matchparen_enabled)
-        let b:large_config.matchup_matchparen_fallback =
-                    \ get(b:, 'matchup_matchparen_fallback', g:matchup_matchparen_fallback)
+        let b:large_config.matchup_matchparen_fallback = get(b:, 'matchup_matchparen_fallback', 1)
         let b:matchup_matchparen_enabled = 0
         let b:matchup_matchparen_fallback = 0
     endif
