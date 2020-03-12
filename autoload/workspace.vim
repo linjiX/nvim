@@ -24,23 +24,22 @@ function s:HasTagbar() abort
 endfunction
 
 function s:SetWindowConfig() abort
-    let s:tagbar_left_user = get(g:, 'tagbar_left', 0)
-    let s:tagbar_autofocus_user = get(g:, 'tagbar_autofocus', 0)
-    let s:tagbar_vertical_user = get(g:, 'tagbar_vertical', 0)
+    let l:tagbar_config = {}
+    let l:tagbar_config.tagbar_left = get(g:, 'tagbar_left', 0)
+    let l:tagbar_config.tagbar_autofocus = get(g:, 'tagbar_autofocus', 0)
+    let l:tagbar_config.tagbar_vertical = get(g:, 'tagbar_vertical', 0)
 
     let g:tagbar_left = 0
     let g:tagbar_autofocus = 0
     let g:tagbar_vertical = (winheight(0) - 1)/2
+
+    return l:tagbar_config
 endfunction
 
-function s:ResetWindowConfig() abort
-    let g:tagbar_left = s:tagbar_left_user
-    let g:tagbar_autofocus = s:tagbar_autofocus_user
-    let g:tagbar_vertical = s:tagbar_vertical_user
-
-    unlet s:tagbar_left_user
-    unlet s:tagbar_autofocus_user
-    unlet s:tagbar_vertical_user
+function s:ResetWindowConfig(tagbar_config) abort
+    let g:tagbar_left = a:tagbar_config.tagbar_left
+    let g:tagbar_autofocus = a:tagbar_config.tagbar_autofocus
+    let g:tagbar_vertical = a:tagbar_config.tagbar_vertical
 endfunction
 
 function s:GetWinID() abort
@@ -95,11 +94,11 @@ function s:OpenTagbar() abort
     let l:line = line('.')
     noautocmd execute '1'
 
-    call s:SetWindowConfig()
+    let l:tagbar_config = s:SetWindowConfig()
     try
         TagbarOpen
     finally
-        call s:ResetWindowConfig()
+        call s:ResetWindowConfig(l:tagbar_config)
 
         noautocmd execute l:line
         call s:GotoWinID()
