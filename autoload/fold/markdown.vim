@@ -10,11 +10,11 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function fold#markdown#Expr()
-    let l:thisline = getline(v:lnum)
-    let l:thislevel = len(matchstr(l:thisline, '^#\{1,6}'))
+    let l:line = getline(v:lnum)
+    let l:level = len(matchstr(l:line, '^\zs#\{1,6}\ze\s'))
 
-    if l:thislevel && !s:IsCodeBlock(v:lnum)
-        return '>'. l:thislevel
+    if l:level && !s:IsCodeBlock(v:lnum)
+        return '>'. l:level
     else
         return '='
     endif
