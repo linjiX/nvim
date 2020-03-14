@@ -25,7 +25,7 @@ endfunction
 
 function s:CheckCocInit()
     if !exists('g:coc_init')
-        call utility#Log('COC is not initialized yet!')
+        call utility#Log('[coc.nvim] Not initialized yet!')
         return v:false
     endif
     return v:true

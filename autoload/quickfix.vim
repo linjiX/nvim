@@ -17,9 +17,9 @@ endfunction
 
 " QuickFix window toggle
 function quickfix#ListToggle(cmd) abort
-    let window_count_before = winnr('$')
+    let l:old_winnr = winnr('$')
     call s:PLCclose()
-    if winnr('$') == window_count_before
+    if winnr('$') == l:old_winnr
         execute 'belowright '. a:cmd
     endif
 endfunction
