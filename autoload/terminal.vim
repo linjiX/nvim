@@ -12,19 +12,13 @@
 function terminal#AutoCmdTerminal() abort
     setlocal nonumber
     setlocal nobuflisted
+    setlocal bufhidden=wipe
+
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!
-    if has('nvim')
-        setlocal bufhidden=wipe
-        startinsert
-    endif
-endfunction
 
-function terminal#AutoCmdWipeTerminal() abort
-    if &buftype ==# 'terminal'
-        set bufhidden=wipe
-    endif
+    startinsert
 endfunction
 
 function terminal#AutoCmdNvimTerminal() abort

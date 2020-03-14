@@ -114,6 +114,5 @@ augroup myTerminal
         autocmd BufEnter term://* call terminal#AutoCmdNvimTerminal()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
-        autocmd QuitPre * call terminal#AutoCmdWipeTerminal()
     endif
 augroup END
