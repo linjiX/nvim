@@ -33,6 +33,9 @@ function large#reset() abort
         return
     endif
     call utility#SetConfig(b:large_config)
+    unlet b:large_config
+
+    filetype detect
 endfunction
 
 function s:EnterLargeFile() abort
