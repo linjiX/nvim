@@ -9,7 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-vmap <silent> <leader>k <Plug>(keyword-highlight)
+xmap <silent> <leader>k <Plug>(keyword-highlight)
 nmap <silent> <leader>k <Plug>(keyword-highlight)
 nmap <silent> <BS> <Plug>(keyword-clear):nohlsearch<CR>
 

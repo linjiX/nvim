@@ -134,10 +134,10 @@ nmap <silent> <leader>la <Plug>(coc-codeaction)
 " nmap <silent> <leader>ll <Plug>(coc-codelens-action)
 
 nmap <silent> <leader>A <Plug>(coc-format)
-vmap <silent> <leader>A <Plug>(coc-format-selected)
+xmap <silent> <leader>A <Plug>(coc-format-selected)
 nmap <silent> g= <Plug>(coc-format-selected)
 " nmap <silent> g== <Plug>(coc-format)
-" vmap <silent> g= <Plug>(coc-format-selected)
+" xmap <silent> g= <Plug>(coc-format-selected)
 
 " nmap <silent> <leader>lR <Plug>CocRefresh
 nmap <silent> <leader>lh <Plug>(coc-float-hide)

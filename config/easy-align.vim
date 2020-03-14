@@ -9,7 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-vmap ga <Plug>(EasyAlign)
+xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-vmap gA <Plug>(LiveEasyAlign)
+xmap gA <Plug>(LiveEasyAlign)
 nmap gA <Plug>(LiveEasyAlign)

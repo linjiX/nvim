@@ -30,6 +30,6 @@ let g:which_key_map.v = {'name':'+prefix Plug'}
 call which_key#register('<Space>', 'g:which_key_map')
 
 " nnoremap <F4> :WhichKey ''<CR>
-" vnoremap <F4> :WhichKeyVisual ''<CR>
+" xnoremap <F4> :WhichKeyVisual ''<CR>
 nnoremap <silent> <leader> :<C-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>
+xnoremap <silent> <leader> :<C-u>WhichKeyVisual '<Space>'<CR>

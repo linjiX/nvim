@@ -64,4 +64,4 @@ augroup myAutoformat
 augroup END
 
 nnoremap <silent> <leader>a :Autoformat<CR>
-vnoremap <silent> <leader>a :Autoformat<CR>
+xnoremap <silent> <leader>a :Autoformat<CR>

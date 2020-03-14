@@ -26,8 +26,8 @@ function s:AutoCmdGitrebaseSwapList() abort
 endfunction
 
 function s:AutoCmdSwapList() abort
-    vnoremap <C-a> <C-a>
-    vnoremap <C-x> <C-x>
+    xnoremap <C-a> <C-a>
+    xnoremap <C-x> <C-x>
     SwapList TRUE/FALSE TRUE FALSE
     SwapList YES/NO YES NO
 endfunction

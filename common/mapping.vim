@@ -24,7 +24,7 @@ xnoremap <C-p> "0p
 
 nnoremap <silent> <C-w>m :tabnew %<CR>
 nnoremap <silent> <C-w><C-m> :tabnew %<CR>
-vnoremap <silent> <C-m> :sort<CR>
+xnoremap <silent> <C-m> :sort<CR>
 
 " command mapping
 cnoreabbrev <expr><silent> q buffer#Quit('q')

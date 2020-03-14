@@ -42,6 +42,6 @@ nmap <leader>sS <Plug>CtrlSFCCwordPath
 nmap <leader>ss <Plug>CtrlSFCCwordExec
 nmap <leader>sP <Plug>CtrlSFPwordPath
 nmap <leader>sp <Plug>CtrlSFPwordExec
-vmap <leader>sS <Plug>CtrlSFVwordPath
-vmap <leader>ss <Plug>CtrlSFVwordExec
+xmap <leader>sS <Plug>CtrlSFVwordPath
+xmap <leader>ss <Plug>CtrlSFVwordExec
 nnoremap <leader>so :CtrlSFToggle<CR>
