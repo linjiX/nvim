@@ -10,7 +10,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let s:large_config = {
-            \   '&l:bufhidden': 'unload',
             \   '&l:complete': '.',
             \   '&l:foldmethod': 'manual',
             \   '&l:foldenable': 0,
