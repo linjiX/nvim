@@ -48,19 +48,25 @@ let g:formatters_php = ['phpcbf']
 
 let g:autoformat_verbosemode = 0
 
-function s:VimFormat() abort
+function s:VimFormat(is_visual) abort
     let l:winview = winsaveview()
     try
-        noautocmd silent normal! gg=G
+        let l:cmd = a:is_visual ? 'gv=' : 'gg=G'
+        silent execute 'noautocmd keepjump normal! '. l:cmd
         RemoveTrailingSpaces
     finally
         noautocmd call winrestview(l:winview)
     endtry
 endfunction
 
+function s:AutoCmdAutoformat() abort
+    nnoremap <silent><buffer> <leader>a :<C-u>call <SID>VimFormat(0)<CR>
+    xnoremap <silent><buffer> <leader>a :<C-u>call <SID>VimFormat(1)<CR>
+endfunction
+
 augroup myAutoformat
     autocmd!
-    autocmd FileType vim nnoremap <silent><buffer> <leader>a :<C-u>call <SID>VimFormat()<CR>
+    autocmd FileType vim call s:AutoCmdAutoformat()
 augroup END
 
 nnoremap <silent> <leader>a :Autoformat<CR>
