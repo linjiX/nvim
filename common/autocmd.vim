@@ -31,7 +31,7 @@ function s:AutoCmdWipeEmptyBuf() abort
         let &bufhidden = b:stored_bufhidden
         unlet b:stored_bufhidden
     endif
-    if bufname('%') ==# '' && line('$') == 1 && getline(1) ==# ''
+    if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
         let b:stored_bufhidden = &bufhidden
         set bufhidden=wipe
     endif
@@ -75,6 +75,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead .arc* setlocal filetype=json
     autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
+
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
     autocmd FileType gitcommit setlocal colorcolumn=72
@@ -83,17 +84,18 @@ augroup myFileType
     autocmd FileType json setlocal foldmethod=syntax
     autocmd FileType markdown setlocal foldmethod=expr | setlocal foldexpr=fold#markdown#Expr()
     autocmd FileType vim setlocal foldmethod=expr | setlocal foldexpr=fold#vimscript#Expr()
+
+    " Disable automatic comment insertion
+    autocmd FileType * setlocal formatoptions-=cro
 augroup END
 
 augroup myCommon
     autocmd!
     autocmd VimEnter * clearjumps
-    " Disable automatic comment insertion
-    autocmd FileType * setlocal formatoptions-=cro
     " Locate cursor to the last position
     autocmd BufReadPost *
                 \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype !~# 'commit' |
-                \     execute "normal g`\"" |
+                \     execute "normal! g`\"" |
                 \ endif
 augroup END
 
