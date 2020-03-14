@@ -107,7 +107,6 @@ imap <silent><expr> <TAB>
             \                                 : <SID>CheckBackSpace() ? "\<TAB>"
             \                                                         : coc#refresh()
 inoremap <silent><expr> <S-TAB> coc#refresh()
-" imap <silent><expr> <BS> join(["<BS>", coc#refresh()], "")
 
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>

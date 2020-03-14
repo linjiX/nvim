@@ -43,7 +43,6 @@ set colorcolumn=100
 set textwidth=0
 set splitright
 set lazyredraw
-" set splitbelow
 
 set list
 set listchars=tab:-->,nbsp:+
@@ -74,7 +73,6 @@ endif
 set fillchars=fold:\ ,vert:│
 set foldlevel=100
 set foldtext=fold#Text()
-" set foldcolumn=6
 
 " for echodoc
 set noshowmode
