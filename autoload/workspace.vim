@@ -23,30 +23,9 @@ function s:HasTagbar() abort
     return bufwinnr('__Tagbar__') != -1
 endfunction
 
-function s:SetWindowConfig() abort
-    let l:tagbar_config = {}
-    let l:tagbar_config.tagbar_left = get(g:, 'tagbar_left', 0)
-    let l:tagbar_config.tagbar_autofocus = get(g:, 'tagbar_autofocus', 0)
-    let l:tagbar_config.tagbar_vertical = get(g:, 'tagbar_vertical', 0)
-
-    let g:tagbar_left = 0
-    let g:tagbar_autofocus = 0
-    let g:tagbar_vertical = (winheight(0) - 1)/2
-
-    return l:tagbar_config
-endfunction
-
-function s:ResetWindowConfig(tagbar_config) abort
-    let g:tagbar_left = a:tagbar_config.tagbar_left
-    let g:tagbar_autofocus = a:tagbar_config.tagbar_autofocus
-    let g:tagbar_vertical = a:tagbar_config.tagbar_vertical
-endfunction
-
 function s:CheckCocInit()
     if !exists('g:coc_init')
-        echohl WarningMsg
-        echo 'COC is not initialized yet!'
-        echohl None
+        call utility#Log('COC is not initialized yet!')
         return v:false
     endif
     return v:true
@@ -110,11 +89,17 @@ function s:OpenTagbar() abort
     let l:line = line('.')
     noautocmd execute '1'
 
-    let l:tagbar_config = s:SetWindowConfig()
+    let l:workspace_config = {
+                \   'g:tagbar_left': 0,
+                \   'g:tagbar_autofocus': 0,
+                \   'g:tagbar_vertical': (winheight(0) - 1)/2,
+                \}
+
+    let l:old_config = utility#SetConfig(l:workspace_config)
     try
         TagbarOpen
     finally
-        call s:ResetWindowConfig(l:tagbar_config)
+        call utility#SetConfig(l:old_config)
 
         noautocmd execute l:line
         call s:GotoWinID()
