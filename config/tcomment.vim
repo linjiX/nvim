@@ -27,11 +27,17 @@ xmap <silent> gc <Plug>TComment_gc
 nmap <silent> gcc <Plug>TComment_gcc
 nmap <silent> gcs <Plug>TComment_gcb
 
-map <silent> <leader>cc <Plug>TComment_<Leader>__
-map <silent> <leader>cs <Plug>TComment_<Leader>_b
-map <silent> <leader>cr <Plug>TComment_<Leader>_r
-map <silent> <leader>ca <Plug>TComment_<Leader>_a
+nmap <silent> <leader>cc <Plug>TComment_<Leader>__
+xmap <silent> <leader>cc <Plug>TComment_<Leader>__
+nmap <silent> <leader>cs <Plug>TComment_<Leader>_b
+xmap <silent> <leader>cs <Plug>TComment_<Leader>_b
+nmap <silent> <leader>cr <Plug>TComment_<Leader>_r
+xmap <silent> <leader>cr <Plug>TComment_<Leader>_r
+nmap <silent> <leader>ca <Plug>TComment_<Leader>_a
+xmap <silent> <leader>ca <Plug>TComment_<Leader>_a
 xmap <silent> <leader>ci <Plug>TComment_<Leader>_i
 
-map <silent> <leader>cy :TCommentYank<CR>
-map <silent> <leader>cp :TCommentPaste<CR>
+nnoremap <silent> <leader>cy :TCommentYank<CR>
+xnoremap <silent> <leader>cy :TCommentYank<CR>
+nnoremap <silent> <leader>cp :TCommentPaste<CR>
+xnoremap <silent> <leader>cp :TCommentPaste<CR>
