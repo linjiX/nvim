@@ -42,6 +42,16 @@ function s:ResetWindowConfig(tagbar_config) abort
     let g:tagbar_vertical = a:tagbar_config.tagbar_vertical
 endfunction
 
+function s:CheckCocInit()
+    if !exists('g:coc_init')
+        echohl WarningMsg
+        echo 'COC is not initialized yet!'
+        echohl None
+        return v:false
+    endif
+    return v:true
+endfunction
+
 function s:GetWinID() abort
     let s:prev_winid = win_getid()
 endfunction
@@ -69,6 +79,9 @@ function workspace#Disable() abort
 endfunction
 
 function workspace#Toggle() abort
+    if !s:CheckCocInit()
+        return
+    endif
     if workspace#Disable()
         return
     endif
@@ -78,6 +91,9 @@ function workspace#Toggle() abort
 endfunction
 
 function workspace#Reveal() abort
+    if !s:CheckCocInit()
+        return
+    endif
     if !s:HasTagbar()
         call TagbarTrigger()
     endif

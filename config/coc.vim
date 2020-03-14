@@ -89,6 +89,7 @@ augroup myCoc
     autocmd CursorHold * silent! call CocActionAsync('highlight')
     " Disable locationlist auto preview
     autocmd User CocLocationsChange CocList --normal location
+    autocmd User CocNvimInit let g:coc_init = 1
     autocmd FileType coc-explorer nnoremap <buffer> <leader> <Nop>
     autocmd FileType log call s:AutoCmdCocInfo()
 augroup END
