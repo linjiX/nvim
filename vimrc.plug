@@ -149,7 +149,7 @@ Plug 'derekwyatt/vim-fswitch', {'for': ['c', 'cpp']}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'tomtom/tcomment_vim', {'on': '<Plug>TComment_'}
+Plug 'tomtom/tcomment_vim', {'on': ['<Plug>TComment_', 'TComment']}
 Plug 'tpope/vim-endwise'
 " }}}
 
