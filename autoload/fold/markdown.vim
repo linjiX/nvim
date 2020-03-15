@@ -15,6 +15,8 @@ function fold#markdown#Expr()
 
     if l:level && !s:IsCodeBlock(v:lnum)
         return '>'. l:level
+    elseif l:line =~# '\v^\s*$'
+        return -1
     else
         return '='
     endif

@@ -12,7 +12,9 @@
 function fold#python#Expr() abort
     let l:line = getline(v:lnum)
 
-    if l:line !~# '\v^\s*[cda]'
+    if l:line =~# '\v^\s*%(\@\w*)?$'
+        return -1
+    elseif l:line !~# '\v^\s*[cda]'
         return '='
     endif
 
