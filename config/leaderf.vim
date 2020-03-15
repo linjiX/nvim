@@ -40,18 +40,33 @@ let g:Lf_Gtagslabel = 'native-pygments'
 
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
-
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0}
-let g:Lf_CommandMap = {'<F5>': ['<C-l>']}
-let g:Lf_NormalMap = {'Gtags': [
-            \   ['<C-j>', 'j'],
-            \   ['<C-k>', 'k'],
-            \   ['<C-h>', '<NOP>'],
-            \   ['<C-l>', '<NOP>'],
-            \   ['<C-n>', 'j'],
-            \   ['<C-p>', 'k']
-            \]}
 
+function s:NormalMap() abort
+    let l:subcommands = [
+                \   'File', 'Buffer', 'Mru', 'Tag', 'BufTag', 'Function', 'Line', 'History',
+                \   'Help', 'Self', 'Colorscheme', 'Window', 'Filetype', 'Command', 'Gtags', 'Rg'
+                \]
+    let l:map = [
+                \   ['<C-j>', 'j'],
+                \   ['<C-k>', 'k'],
+                \   ['<C-h>', '<NOP>'],
+                \   ['<C-l>', '<NOP>'],
+                \   ['<C-n>', 'j'],
+                \   ['<C-p>', 'k']
+                \]
+    let l:Lf_NormalMap = {}
+    for l:key in l:subcommands
+        let l:short_key = l:key ==# 'Buffer' ? 'buf' : tolower(l:key[0]) . l:key[1:]
+        let l:quit_command = printf(':exec g:Lf_py "%sExplManager.quit()"<CR>', l:short_key)
+        let l:Lf_NormalMap[l:key] = l:map + [['<ESC>', l:quit_command]]
+    endfor
+
+    return l:Lf_NormalMap
+endfunction
+
+let g:Lf_NormalMap = s:NormalMap()
+let g:Lf_CommandMap = {'<F5>': ['<C-l>']}
 let g:Lf_ShortcutF = ''
 let g:Lf_ShortcutB = ''
 
