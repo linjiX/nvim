@@ -16,9 +16,9 @@ function fold#vimscript#Expr() abort
         return '='
     endif
 
-    if l:line =~# '\v^\s*<(endf>|endfu%[nction]>|aug%[roup]>\s+[eE][nN][dD])'
+    if l:line =~# '\v^\s*<%(endf>|endfu%[nction]>|aug%[roup]>\s+[eE][nN][dD])'
         return 's1'
-    elseif l:line =~# '\v^\s*<(fu%[nction]|aug%[roup]>\s+\K\k*)'
+    elseif l:line =~# '\v^\s*<%(fu%[nction]|aug%[roup]>\s+\K\k*)'
         return 'a1'
     else
         return '='

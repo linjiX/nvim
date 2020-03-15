@@ -44,7 +44,7 @@ function s:GetText(foldstart, foldend) abort
     elseif &foldmethod ==# 'syntax'
         if &filetype ==# 'json'
             let [l:pair_start, l:start, l:end] =
-                        \ matchstrpos(l:line, '\v^([^"]|"([^"]|\")*"){-}\zs[{[]')
+                        \ matchstrpos(l:line, '\v^%([^"]|"%([^"]|\")*"){-}\zs[{[]')
             let l:pair_end = l:pair_start ==# '[' ? ']' : '}'
 
             let l:endline = getline(a:foldend)
