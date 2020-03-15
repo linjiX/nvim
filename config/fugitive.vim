@@ -15,14 +15,10 @@ function s:AutoCmdFugitive() abort
     nmap <silent><buffer> q gq
 endfunction
 
-function s:AutoCmdGV() abort
-    setlocal colorcolumn=0
-endfunction
-
 augroup myGit
     autocmd!
     autocmd FileType fugitive,fugitiveblame call s:AutoCmdFugitive()
-    autocmd FileType GV call s:AutoCmdGV()
+    autocmd FileType GV setlocal colorcolumn=0
 augroup END
 
 command! Gst vertical botright Gstatus
