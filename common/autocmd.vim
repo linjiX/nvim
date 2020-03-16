@@ -73,8 +73,9 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
-    autocmd BufNewFile,BufRead .arc* setlocal filetype=json
+    autocmd BufNewFile,BufRead .arc*,*.book setlocal filetype=json
     autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
+    autocmd BufNewFile,BufRead *.diviner setlocal filetype=markdown
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
