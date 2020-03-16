@@ -23,14 +23,6 @@ function s:HasTagbar() abort
     return bufwinnr('__Tagbar__') != -1
 endfunction
 
-function s:CheckCocInit()
-    if !exists('g:coc_init')
-        call utility#Log('[coc.nvim] Not initialized yet!')
-        return v:false
-    endif
-    return v:true
-endfunction
-
 function s:GetWinID() abort
     let s:prev_winid = win_getid()
 endfunction
@@ -58,7 +50,9 @@ function workspace#Disable() abort
 endfunction
 
 function workspace#Toggle() abort
-    if !s:CheckCocInit()
+    if !exists('g:coc_init')
+        autocmd! myWorkspace
+        autocmd myWorkspace User CocNvimInit ++once call workspace#Toggle()
         return
     endif
     if workspace#Disable()
@@ -70,7 +64,9 @@ function workspace#Toggle() abort
 endfunction
 
 function workspace#Reveal() abort
-    if !s:CheckCocInit()
+    if !exists('g:coc_init')
+        autocmd! myWorkspace
+        autocmd myWorkspace User CocNvimInit ++once call workspace#Reveal()
         return
     endif
     if !s:HasTagbar()
@@ -80,6 +76,7 @@ function workspace#Reveal() abort
 endfunction
 
 function TagbarTrigger() abort
+    autocmd! myWorkspace
     autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once
                 \ autocmd myWorkspace CursorMoved * ++once call s:OpenTagbar()
 endfunction
