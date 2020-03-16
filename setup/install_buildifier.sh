@@ -5,6 +5,8 @@
 set -e
 set -v
 
+VERSION="2.2.1"
+
 if ! command -v go 1>/dev/null 2>&1; then
     if ! dpkg -s git software-properties-common 1>/dev/null 2>&1; then
         sudo apt-get update
@@ -19,5 +21,6 @@ fi
 
 GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
 export GOPATH
-go get github.com/bazelbuild/buildtools/buildifier
+export GO111MODULE=on
+go get github.com/bazelbuild/buildtools/buildifier@$VERSION
 sudo mv "$GOPATH/bin/buildifier" /usr/local/bin

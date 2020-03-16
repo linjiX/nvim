@@ -19,5 +19,6 @@ fi
 
 GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
 export GOPATH
-go get mvdan.cc/sh/cmd/shfmt
+export GO111MODULE=on
+go get mvdan.cc/sh/v3/cmd/shfmt
 sudo mv "$GOPATH/bin/shfmt" /usr/local/bin
