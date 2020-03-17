@@ -29,7 +29,9 @@ let g:formatters_python = ['black_isort']
 let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
             \              "--parser='.&filetype.' --stdin'"
 let g:formatdef_json_tool = "'python3 -m json.tool'"
+let g:formatdef_jq = "'jq -M --indent 4'"
 " let g:formatters_json = ['json_tool']
+" let g:formatters_json = ['jq']
 let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 
