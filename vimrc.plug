@@ -226,7 +226,7 @@ Plug 'wellle/targets.vim'
 " Markdown {{{
 " Plug 'plasticboy/vim-markdown'
 " Plug 'suan/vim-instant-markdown'
-Plug 'dhruvasagar/vim-table-mode', {'for': 'markdown'}
+Plug 'dhruvasagar/vim-table-mode', {'on': ['TableModeToggle', 'TableModeEnable']}
 Plug 'iamcco/markdown-preview.nvim', {'do': {-> mkdp#util#install()},
             \                         'for': ['markdown', 'vim-plug']}
 Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}
