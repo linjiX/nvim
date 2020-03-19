@@ -119,12 +119,12 @@ nnoremap <silent> yrL :call <SID>CocRestart()<CR>
 nnoremap <silent> <leader>ll :call <SID>ToggleLSP()<CR>
 nnoremap <leader>lu :CocUpdate<CR>
 
-nmap <silent> <leader>j <Plug>(coc-definition)
-nmap <silent> <leader>J <Plug>(coc-declaration)
+nmap <silent> <leader>jj <Plug>(coc-definition)
+nmap <silent> <leader>jd <Plug>(coc-declaration)
+nmap <silent> <leader>ji <Plug>(coc-implementation)
+nmap <silent> <leader>jr <Plug>(coc-references)
+nmap <silent> <leader>jt <Plug>(coc-type-definition)
 nmap <silent> <leader>x <Plug>(coc-fix-current)
-nmap <silent> <leader>I <Plug>(coc-implementation)
-nmap <silent> <leader>R <Plug>(coc-references)
-nmap <silent> <leader>T <Plug>(coc-type-definition)
 
 " nmap <silent> <leader>ld <Plug>(coc-diagnostic-info)
 nmap <silent> <leader>lr <Plug>(coc-rename)
