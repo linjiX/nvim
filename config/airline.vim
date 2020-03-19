@@ -46,8 +46,15 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#tabline#show_tabs = 0
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#tabline#ignore_bufadd_pat =
-            \ '!|\[coc-explorer\]|<__tagbar__>|<undotree_|<diffpanel_|\[defx\]|^term://'
+let g:airline#extensions#tabline#ignore_bufadd_pat = join([
+            \    '!',
+            \    '\[coc-explorer\]',
+            \    '<__tagbar__>',
+            \    '<undotree_',
+            \    '<diffpanel_',
+            \    '\[defx\]',
+            \    '^term://',
+            \], '|')
 
 let g:airline#extensions#whitespace#long_format = 'L[%s]'
 let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
