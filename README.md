@@ -96,6 +96,7 @@ pip3 install cpplint
 ```bash
 pip3 install demjson
 npm install --global prettier
+./setup/install_jq.sh
 ```
 
 #### Markdown
