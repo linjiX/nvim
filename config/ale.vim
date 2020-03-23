@@ -8,7 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-scriptencoding utf-8
 
 let g:ale_disable_lsp = 1
 let g:ale_linters_explicit = 1
@@ -113,3 +112,5 @@ nnoremap yra :ALEToggle<CR>
 nnoremap [rA :ALEEnableBuffer<CR>
 nnoremap ]rA :ALEDisableBuffer<CR>
 nnoremap yrA :ALEToggleBuffer<CR>
+
+scriptencoding utf-8

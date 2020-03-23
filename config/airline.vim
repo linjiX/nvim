@@ -8,7 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-scriptencoding utf-8
 
 " Plug 'vim-airline/vim-airline-themes'
 let g:airline_solarized_enable_command_color = 1
@@ -86,3 +85,5 @@ let g:tmuxline_preset = {
             \   'z'    : '%R',
             \   'options' : {'status-justify' : 'left', 'status-position' : 'top'}
             \}
+
+scriptencoding utf-8

@@ -55,8 +55,8 @@ set viminfofile=$MY_DATA_PATH/viminfo
 set wildmenu
 set wildoptions=tagfile  "pum,tagfile
 
-scriptencoding utf-8
-
 if !isdirectory(&directory)
     call mkdir(&directory, 'p')
 endif
+
+scriptencoding utf-8

@@ -8,7 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-scriptencoding utf-8
 
 function fold#Text()
     let l:line = s:GetText(v:foldstart, v:foldend) .' '
@@ -57,3 +56,5 @@ function s:GetText(foldstart, foldend) abort
 
     return l:line
 endfunction
+
+scriptencoding utf-8

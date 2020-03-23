@@ -8,7 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-scriptencoding utf-8
 
 let s:WindowHeight = 0.3
 let s:PositionLine = float2nr(&lines * (1 - s:WindowHeight))
@@ -130,3 +129,5 @@ nnoremap <silent> <leader>gs :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <
 nnoremap <silent> <leader>gt :MyLeaderf! gtags --grep <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gi :MyLeaderf! gtags --grep <C-r>=expand("<cfile>:t")<CR> --auto-jump <CR>
 nnoremap <silent> <leader>gI :MyLeaderf! gtags --grep <C-r>=fnameescape(expand("%:t"))<CR> --auto-jump <CR>
+
+scriptencoding utf-8
