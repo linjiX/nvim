@@ -8,9 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-if !has('nvim')
-    source ~/.vim/defaults.vim
-endif
 set nobackup
 let mapleader="\<Space>"
 
@@ -22,6 +19,7 @@ if !isdirectory($MY_CACHE_PATH)
 endif
 
 " source all configurations
+source ~/.vim/defaults.vim
 source ~/.vim/vimrc.plug
 let s:configs = split(glob('~/.vim/common/*.vim'))
 if !exists('g:auto_installation')

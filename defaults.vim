@@ -8,6 +8,10 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+if has('nvim')
+    finish
+endif
+
 filetype plugin indent on
 syntax on
 
