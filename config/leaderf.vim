@@ -85,12 +85,12 @@ function s:MyLeaderf(bang, args) abort
         let l:screenrow = l:max_screenrow
     endif
 
-    let l:Lf_PopupPosition_User = get(g:, 'Lf_PopupPosition', [0, 0])
+    let l:leaderf_config = {'g:Lf_PopupPosition': [l:screenrow, l:screencol]}
+    let l:old_config = utility#SetConfig(l:leaderf_config)
     try
-        let g:Lf_PopupPosition = [l:screenrow, l:screencol]
         execute l:cmd
     finally
-        let g:Lf_PopupPosition = l:Lf_PopupPosition_User
+        call utility#SetConfig(l:old_config)
     endtry
 endfunction
 
