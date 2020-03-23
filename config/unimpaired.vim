@@ -24,6 +24,11 @@ function s:ConcealToggle() abort
                 \              : ":setlocal conceallevel=2\<CR>"
 endfunction
 
+function s:FoldToggle() abort
+    return &foldmethod ==# 'manual' ? ":setlocal foldmethod=expr\<CR>"
+                \                   : ":setlocal foldmethod=manual\<CR>"
+endfunction
+
 function s:SidebarOn() abort
     setlocal number
     setlocal signcolumn=auto
@@ -75,6 +80,10 @@ nmap <expr> yog <SID>SigncolumnToggle()
 nmap [oc :setlocal conceallevel=2<CR>
 nmap ]oc :setlocal conceallevel=0<CR>
 nmap <expr> yoc <SID>ConcealToggle()
+
+nmap [of :setlocal foldmethod=expr<CR>
+nmap ]of :setlocal foldmethod=manual<CR>
+nmap <expr> yof <SID>FoldToggle()
 
 nmap <silent> [oa :call <SID>SidebarOn()<CR>
 nmap <silent> ]oa :call <SID>SidebarOff()<CR>
