@@ -25,7 +25,7 @@ pushd ctags >/dev/null
 
 ./autogen.sh
 ./configure
-make -j
+make -j "$(nproc)"
 sudo make install
 
 popd >/dev/null

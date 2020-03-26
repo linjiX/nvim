@@ -36,7 +36,7 @@ pushd $DIR >/dev/null
 
 sh reconf.sh
 ./configure
-make -j
+make -j "$(nproc)"
 sudo make install
 
 popd >/dev/null
