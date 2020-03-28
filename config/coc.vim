@@ -153,6 +153,10 @@ nnoremap <silent> <leader>lx :CocCommand<CR>
 nnoremap <silent> <leader>p :CocList --normal yank<CR>
 
 " coc-git
+function CocGitStatus() abort
+    return get(b:, 'coc_git_status', '')[2:]
+endfunction
+
 nmap <leader>gp <Plug>(coc-git-chunkinfo)
 nmap <leader>gM <Plug>(coc-git-commit)
 nnoremap <silent> <leader>gy :CocCommand git.copyUrl<CR>
