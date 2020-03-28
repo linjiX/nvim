@@ -48,6 +48,7 @@ call plug#begin('~/.vim/plug')
 " Feature {{{
 Plug $HOME .'/.vim/feature/buffer'
 Plug $HOME .'/.vim/feature/large'
+Plug $HOME .'/.vim/feature/arc'
 " }}}
 
 " Help {{{
