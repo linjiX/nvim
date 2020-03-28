@@ -9,6 +9,8 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+
 call ale#Set('cpp_CppCheck_executable', 'cppcheck')
 call ale#Set('cpp_CppCheck_options', '')
 call ale#linter#Define('cpp', {

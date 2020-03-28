@@ -46,9 +46,10 @@ nnoremap <silent> <leader>vs :PlugStatus<CR>
 call plug#begin('~/.vim/plug')
 
 " Feature {{{
+Plug $HOME .'/.vim/feature/arc'
 Plug $HOME .'/.vim/feature/buffer'
 Plug $HOME .'/.vim/feature/large'
-Plug $HOME .'/.vim/feature/arc'
+Plug $HOME .'/.vim/feature/linter'
 " }}}
 
 " Help {{{
