@@ -73,3 +73,7 @@ endif
 " quickfix mapping
 nnoremap <silent> <leader>co :call quickfix#ListToggle('copen')<CR>
 nnoremap <silent> <leader>lo :call quickfix#ListToggle('lopen')<CR>
+
+" buffer mapping
+nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
+nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>

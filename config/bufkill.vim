@@ -26,8 +26,8 @@ if has('nvim')
     augroup END
 endif
 
-nnoremap <expr><silent> <leader>o buffer#Open(":BB\<CR>")
-nnoremap <expr><silent> <leader>i buffer#Open(":BF\<CR>")
+" nnoremap <expr><silent> <leader>o buffer#Open(":BB\<CR>")
+" nnoremap <expr><silent> <leader>i buffer#Open(":BF\<CR>")
 nnoremap <expr><silent> <leader>` buffer#Open(":BA\<CR>")
 nnoremap <expr><silent> <leader>u buffer#Open(":BUNDO\<CR>")
 
