@@ -27,3 +27,7 @@ command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc
             \ execute 'vertical botright Gcommit -v '. <q-args>
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
             \ execute 'vertical botright Gcommit -v -a'. <q-args>
+
+" Plug 'rhysd/git-messenger.vim'
+let g:git_messenger_no_default_mappings = 1
+nmap <Leader>gm <Plug>(git-messenger)

@@ -152,6 +152,25 @@ nnoremap <silent> <leader>lx :CocCommand<CR>
 
 nnoremap <silent> <leader>p :CocList --normal yank<CR>
 
+" coc-git
+nmap <leader>gp <Plug>(coc-git-chunkinfo)
+nmap <leader>gM <Plug>(coc-git-commit)
+nnoremap <silent> <leader>gy :CocCommand git.copyUrl<CR>
+nnoremap <silent> <leader>gu :CocCommand git.chunkUndo<CR>
+nnoremap <silent> <leader>ga :CocCommand git.chunkStage<CR>
+nnoremap <silent> <leader>gd :CocCommand git.diffCached<CR>
+nnoremap <silent> <leader>gb :CocCommand git.browserOpen<CR>
+nnoremap <silent> <leader>gf :CocCommand git.foldUnchanged<CR>
+
+nmap [c <Plug>(coc-git-prevchunk)
+nmap ]c <Plug>(coc-git-nextchunk)
+nnoremap <silent> yrg :CocCommand git.toggleGutters<CR>
+
+omap ig <Plug>(coc-git-chunk-inner)
+xmap ig <Plug>(coc-git-chunk-inner)
+omap ag <Plug>(coc-git-chunk-outer)
+xmap ag <Plug>(coc-git-chunk-outer)
+
 " coc-translator
 nmap <silent> <leader>tp <Plug>(coc-translator-p)
 xmap <silent> <leader>tp <Plug>(coc-translator-pv)

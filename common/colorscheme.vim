@@ -13,6 +13,7 @@ let g:solarized_termtrans = 1
 
 function s:AutoCmdColorScheme() abort
     syntax enable
+    highlight! link SignColumn LineNr
     highlight Sneak cterm=bold,underline ctermfg=9 gui=bold,underline guifg=#cb4b16
     highlight MatchParen NONE cterm=bold,underline gui=bold,underline
     highlight MatchWord cterm=underline gui=underline

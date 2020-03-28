@@ -76,6 +76,8 @@
 
     "coc.source.word.filetypes": ["markdown", "text", "log", "gitcommit", "conf", "arcdiff", ""],
 
+    "git.splitWindowCommand": "botright vsplit",
+
     "python.jediEnabled": false,
     "python.linting.enabled": false,
     "python.pythonPath": "python3",
