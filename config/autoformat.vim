@@ -26,8 +26,7 @@ let g:formatters_bzl = ['buildifier']
 let g:formatdef_black_isort = "'black -q -l 100 - | isort -w 100 -'"
 let g:formatters_python = ['black_isort']
 
-let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 ".
-            \              "--parser='.&filetype.' --stdin'"
+let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 --parser='.&filetype"
 let g:formatdef_json_tool = "'python3 -m json.tool'"
 let g:formatdef_jq = "'jq -M --indent 4'"
 " let g:formatters_json = ['json_tool']
