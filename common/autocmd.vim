@@ -31,19 +31,6 @@ augroup myBufferType
     autocmd BufWinEnter * call s:AutoCmdBufType()
 augroup END
 
-let s:large_file_limit = 2
-function s:AutoCmdLargeFile(filename) abort
-    let l:size = getfsize(a:filename)
-    if l:size > s:large_file_limit * 1024 * 1024 || l:size == -2
-        call large#handle()
-    endif
-endfunction
-
-augroup myLargeFile
-    autocmd!
-    autocmd BufReadPre * call s:AutoCmdLargeFile(expand('<afile>'))
-augroup END
-
 augroup mySource
     autocmd!
     if has('nvim')
