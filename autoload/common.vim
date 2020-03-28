@@ -14,7 +14,7 @@ function s:GetListedBufWinnrs() abort
     return filter(l:other_winnrs, 'buflisted(winbufnr(v:val))')
 endfunction
 
-function buffer#Open(cmd) abort
+function common#Open(cmd) abort
     let l:wincmd = ''
     if &buflisted == 0 && winnr('$') > 1
         let l:winnrs = s:GetListedBufWinnrs()
@@ -25,7 +25,7 @@ function buffer#Open(cmd) abort
     return l:wincmd . a:cmd
 endfunction
 
-function buffer#Quit(cmd) abort
+function common#Quit(cmd) abort
     if getcmdtype() !=# ':' || trim(getcmdline()) !=# a:cmd
         return a:cmd
     endif
@@ -37,27 +37,4 @@ function buffer#Quit(cmd) abort
     else
         return l:is_write ? 'wq' : 'q'
     endif
-endfunction
-
-function buffer#Navigate(is_backward) abort
-    let l:index = a:is_backward ? w:buffer_order.index - 1
-                \               : w:buffer_order.index + 1
-
-    while l:index >= 0 && l:index < len(w:buffer_order.bufnrs)
-        let l:bufnr = w:buffer_order.bufnrs[l:index]
-
-        if buflisted(l:bufnr)
-            let w:buffer_order.index = l:index
-            execute 'buffer '. l:bufnr
-            return
-        endif
-
-        call remove(w:buffer_order.bufnrs, l:index)
-        if a:is_backward
-            let l:index -= 1
-        endif
-    endwhile
-
-    echo a:is_backward ? 'No backward buffer'
-                \      : 'No forward buffer'
 endfunction

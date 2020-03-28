@@ -27,8 +27,8 @@ nnoremap <silent> <C-w><C-m> :tabnew %<CR>
 xnoremap <silent> <C-m> :sort<CR>
 
 " command mapping
-cnoreabbrev <expr><silent> q buffer#Quit('q')
-cnoreabbrev <expr><silent> wq buffer#Quit('wq')
+cnoreabbrev <expr><silent> q common#Quit('q')
+cnoreabbrev <expr><silent> wq common#Quit('wq')
 cnoreabbrev <silent> w!! w !sudo tee % >/dev/null
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
@@ -73,7 +73,3 @@ endif
 " quickfix mapping
 nnoremap <silent> <leader>co :call quickfix#ListToggle('copen')<CR>
 nnoremap <silent> <leader>lo :call quickfix#ListToggle('lopen')<CR>
-
-" buffer mapping
-nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
-nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>

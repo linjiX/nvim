@@ -14,31 +14,6 @@ function SiderBarWidth()
     return max([float2nr(&columns * s:ratio), s:minwidth])
 endfunction
 
-function s:UpdateBufferList() abort
-    if !exists('w:buffer_order')
-        let w:buffer_order = {}
-        let w:buffer_order.index = v:null
-        let w:buffer_order.bufnrs = []
-    endif
-    let l:bufnr = bufnr()
-
-    if !empty(w:buffer_order.bufnrs) && w:buffer_order.bufnrs[w:buffer_order.index] == l:bufnr
-        return
-    endif
-
-    " if w:buffer_order.index != len(w:buffer_order.bufnrs) - 1
-    let w:buffer_order.bufnrs = w:buffer_order.bufnrs[0 : w:buffer_order.index]
-    " endif
-
-    let l:index = index(w:buffer_order.bufnrs, l:bufnr)
-    if l:index != -1
-        call remove(w:buffer_order.bufnrs, l:index)
-    endif
-    call add(w:buffer_order.bufnrs, l:bufnr)
-
-    let w:buffer_order.index = len(w:buffer_order.bufnrs) - 1
-endfunction
-
 function s:AutoCmdBufType() abort
     if &buftype ==# 'nofile'
         nnoremap <silent><buffer> <leader>q :q<CR>
@@ -62,11 +37,10 @@ function s:AutoCmdWipeEmptyBuf() abort
     endif
 endfunction
 
-augroup myBuffer
+augroup myBufferType
     autocmd!
     autocmd BufWinEnter * call s:AutoCmdBufType()
     autocmd BufLeave * call s:AutoCmdWipeEmptyBuf()
-    autocmd BufEnter * call s:UpdateBufferList()
 augroup END
 
 let s:large_file_limit = 2

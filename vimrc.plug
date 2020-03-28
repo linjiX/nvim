@@ -45,6 +45,10 @@ nnoremap <silent> <leader>vs :PlugStatus<CR>
 
 call plug#begin('~/.vim/plug')
 
+" Feature {{{
+Plug $HOME .'/.vim/feature/buffer'
+" }}}
+
 " Help {{{
 Plug 'yianwillis/vimcdoc', has('nvim') ? {'on': []} : {}
 " }}}

@@ -28,4 +28,4 @@ let g:startify_skiplist = [
             \   '/usr/local/Cellar/neovim',
             \]
 
-nnoremap <expr><silent> <leader>S buffer#Open(":Startify\<CR>")
+nnoremap <expr><silent> <leader>S common#Open(":Startify\<CR>")

@@ -96,18 +96,18 @@ endfunction
 command! -bang -nargs=+ -complete=customlist,leaderf#Any#parseArguments
             \ MyLeaderf call s:MyLeaderf(<bang>0, <q-args>)
 
-nnoremap <expr><silent> <leader>ff buffer#Open(":MyLeaderf file\<CR>")
-nnoremap <expr><silent> <leader>fb buffer#Open(":MyLeaderf buffer\<CR>")
-nnoremap <expr><silent> <leader>fB buffer#Open(":MyLeaderf buffer --all\<CR>")
-nnoremap <expr><silent> <leader>fm buffer#Open(":MyLeaderf mru --cwd\<CR>")
-nnoremap <expr><silent> <leader>fM buffer#Open(":MyLeaderf mru\<CR>")
-nnoremap <expr><silent> <leader>ft buffer#Open(":MyLeaderf bufTag\<CR>")
-nnoremap <expr><silent> <leader>fT buffer#Open(":MyLeaderf bufTag --all\<CR>")
-nnoremap <expr><silent> <leader>fu buffer#Open(":MyLeaderf function\<CR>")
-nnoremap <expr><silent> <leader>fU buffer#Open(":MyLeaderf function --all\<CR>")
-nnoremap <expr><silent> <leader>fg buffer#Open(":MyLeaderf gtags\<CR>")
-nnoremap <expr><silent> <leader>fr buffer#Open(":MyLeaderf rg\<CR>")
-nnoremap <expr><silent> <leader>fR buffer#Open(":MyLeaderf rg --cword\<CR>")
+nnoremap <expr><silent> <leader>ff common#Open(":MyLeaderf file\<CR>")
+nnoremap <expr><silent> <leader>fb common#Open(":MyLeaderf buffer\<CR>")
+nnoremap <expr><silent> <leader>fB common#Open(":MyLeaderf buffer --all\<CR>")
+nnoremap <expr><silent> <leader>fm common#Open(":MyLeaderf mru --cwd\<CR>")
+nnoremap <expr><silent> <leader>fM common#Open(":MyLeaderf mru\<CR>")
+nnoremap <expr><silent> <leader>ft common#Open(":MyLeaderf bufTag\<CR>")
+nnoremap <expr><silent> <leader>fT common#Open(":MyLeaderf bufTag --all\<CR>")
+nnoremap <expr><silent> <leader>fu common#Open(":MyLeaderf function\<CR>")
+nnoremap <expr><silent> <leader>fU common#Open(":MyLeaderf function --all\<CR>")
+nnoremap <expr><silent> <leader>fg common#Open(":MyLeaderf gtags\<CR>")
+nnoremap <expr><silent> <leader>fr common#Open(":MyLeaderf rg\<CR>")
+nnoremap <expr><silent> <leader>fR common#Open(":MyLeaderf rg --cword\<CR>")
 nnoremap <silent> <leader>fl :MyLeaderf line<CR>
 nnoremap <silent> <leader>fL :MyLeaderf line --all<CR>
 nnoremap <silent> <leader>fw :MyLeaderf window<CR>
