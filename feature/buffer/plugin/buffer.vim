@@ -51,5 +51,5 @@ augroup myBuffer
     autocmd BufLeave * call s:WipeEmptyBuffer()
 augroup END
 
-nnoremap <silent> <leader>o :call kill#Navigate(1)<CR>
-nnoremap <silent> <leader>i :call kill#Navigate(0)<CR>
+nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
+nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>
