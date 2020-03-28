@@ -26,21 +26,9 @@ function s:AutoCmdBufType() abort
     endif
 endfunction
 
-function s:AutoCmdWipeEmptyBuf() abort
-    if exists('b:stored_bufhidden')
-        let &bufhidden = b:stored_bufhidden
-        unlet b:stored_bufhidden
-    endif
-    if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
-        let b:stored_bufhidden = &bufhidden
-        set bufhidden=wipe
-    endif
-endfunction
-
 augroup myBufferType
     autocmd!
     autocmd BufWinEnter * call s:AutoCmdBufType()
-    autocmd BufLeave * call s:AutoCmdWipeEmptyBuf()
 augroup END
 
 let s:large_file_limit = 2

@@ -9,6 +9,17 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function s:WipeEmptyBuffer() abort
+    if exists('b:stored_bufhidden')
+        let &bufhidden = b:stored_bufhidden
+        unlet b:stored_bufhidden
+    endif
+    if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
+        let b:stored_bufhidden = &bufhidden
+        set bufhidden=wipe
+    endif
+endfunction
+
 function s:UpdateBufferList() abort
     if !exists('w:buffer_order')
         let w:buffer_order = {}
@@ -34,9 +45,10 @@ function s:UpdateBufferList() abort
     let w:buffer_order.index = len(w:buffer_order.bufnrs) - 1
 endfunction
 
-augroup myKill
+augroup myBuffer
     autocmd!
     autocmd BufEnter * call s:UpdateBufferList()
+    autocmd BufLeave * call s:WipeEmptyBuffer()
 augroup END
 
 nnoremap <silent> <leader>o :call kill#Navigate(1)<CR>
