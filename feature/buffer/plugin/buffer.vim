@@ -21,22 +21,21 @@ function s:WipeEmptyBuffer() abort
 endfunction
 
 let g:buffer_reopen = []
-function s:UpdateBufferUndo(bufnr) abort
-    if !buflisted(a:bufnr)
+function s:UpdateBufferUndo(filename) abort
+    if !filereadable(a:filename)
         return
     endif
-    let l:filename = bufname(a:bufnr)
 
-    let l:index = index(g:buffer_reopen, l:filename)
+    let l:index = index(g:buffer_reopen, a:filename)
     if l:index != -1
         call remove(g:buffer_reopen, l:index)
     endif
-    call add(g:buffer_reopen, l:filename)
+    call add(g:buffer_reopen, a:filename)
 endfunction
 
 augroup myBuffer
     autocmd!
-    autocmd BufDelete,BufWipeout * call s:UpdateBufferUndo(str2nr(expand('<abuf>')))
+    autocmd BufUnload * call s:UpdateBufferUndo(expand('<afile>:p'))
     autocmd BufLeave * call s:WipeEmptyBuffer()
 augroup END
 

@@ -30,7 +30,7 @@ function buffer#Navigate(is_backward) abort
         endif
 
         let l:count += 1
-        if l:item.bufnr != l:bufnr
+        if buflisted(l:item.bufnr) && l:item.bufnr != l:bufnr
             let l:cmd = a:is_backward ? "\<C-o>"
                         \             : "\<C-i>"
             execute 'normal! '. l:count . l:cmd
@@ -124,7 +124,7 @@ function buffer#Reopen() abort
         let l:filename = g:buffer_reopen[-1]
         call remove(g:buffer_reopen, -1)
 
-        if !bufexists(l:filename)
+        if !buflisted(l:filename)
             execute 'edit '. l:filename
             return
         endif
