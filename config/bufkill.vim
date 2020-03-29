@@ -28,12 +28,12 @@ endif
 
 " nnoremap <expr><silent> <leader>o common#Open(":BB\<CR>")
 " nnoremap <expr><silent> <leader>i common#Open(":BF\<CR>")
-nnoremap <expr><silent> <leader>` common#Open(":BA\<CR>")
+" nnoremap <expr><silent> <leader>` common#Open(":BA\<CR>")
 nnoremap <expr><silent> <leader>u common#Open(":BUNDO\<CR>")
 
-nnoremap <expr><silent> + common#Open(":bn\<CR>")
-nnoremap <expr><silent> _ common#Open(":bp\<CR>")
-xnoremap <expr><silent> + common#Open(":\<C-u>bn\<CR>")
-xnoremap <expr><silent> _ common#Open(":\<C-u>bp\<CR>")
+" nnoremap <expr><silent> + common#Open(":bn\<CR>")
+" nnoremap <expr><silent> _ common#Open(":bp\<CR>")
+" xnoremap <expr><silent> + common#Open(":\<C-u>bn\<CR>")
+" xnoremap <expr><silent> _ common#Open(":\<C-u>bp\<CR>")
 " nnoremap <silent> <leader>q :BW<CR>
 " nnoremap <silent> <leader>Q :BD<CR>
