@@ -39,9 +39,10 @@ function buffer#Navigate(is_backward) abort
     return v:false
 endfunction
 
-function s:BPrevious(bufnr) abort
+function s:BPrevious() abort
+    let l:bufnr = bufnr()
     bprevious
-    return a:bufnr != bufnr()
+    return l:bufnr != bufnr()
 endfunction
 
 function s:CheckModified() abort
@@ -96,14 +97,13 @@ function buffer#Close(cmd) abort
     if !s:CheckMultiWindow(l:winids)
         return
     endif
-
     if !s:CheckModified()
         return
     endif
 
     for l:winid in l:winids
         noautocmd call win_gotoid(l:winid)
-        silent if !(buffer#Navigate(1) || buffer#Navigate(0) || s:BPrevious(l:bufnr))
+        silent if !(buffer#Navigate(1) || buffer#Navigate(0) || s:BPrevious())
             Startify
         endif
     endfor
