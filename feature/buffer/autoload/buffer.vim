@@ -118,3 +118,16 @@ function buffer#Close(cmd) abort
         endtry
     endif
 endfunction
+
+function buffer#Reopen() abort
+    while !empty(g:buffer_reopen)
+        let l:filename = g:buffer_reopen[-1]
+        call remove(g:buffer_reopen, -1)
+
+        if !bufexists(l:filename)
+            execute 'edit '. l:filename
+            return
+        endif
+    endwhile
+    echo 'No reopen buffer'
+endfunction

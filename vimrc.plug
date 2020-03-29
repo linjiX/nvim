@@ -252,11 +252,11 @@ Plug 'christoomey/vim-tmux-navigator', {'on': [
 " }}}
 
 " Others {{{
+" Plug 'qpkorr/vim-bufkill'
 " Plug 'tpope/vim-sensible'
 " Plug 'vim-scripts/LargeFile'
 Plug 'Shougo/vinarise.vim', {'on': 'Vinarise'}
 Plug 'airblade/vim-rooter' ", {'on': 'Rooter'}
-Plug 'qpkorr/vim-bufkill'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch', {'on': [
             \   'Delete',
