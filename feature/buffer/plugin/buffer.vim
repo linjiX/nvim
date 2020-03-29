@@ -32,9 +32,7 @@ function s:UpdateBufferList() abort
         return
     endif
 
-    " if w:buffer_order.index != len(w:buffer_order.bufnrs) - 1
     let w:buffer_order.bufnrs = w:buffer_order.bufnrs[0 : w:buffer_order.index]
-    " endif
 
     let l:index = index(w:buffer_order.bufnrs, l:bufnr)
     if l:index != -1

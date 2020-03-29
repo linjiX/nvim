@@ -50,13 +50,13 @@ function s:CheckModified() abort
     endif
 
     if !&confirm
-        throw 'E89: No write since last change for buffer'. bufname() .'(add ! to override)'
-        " call utility#LogError('No write since last change for buffer '. bufname() .
-        " \         ' (add ! to override)')
+        let l:msg = 'No write since last change for buffer "'. bufname() .'" (add ! to override)'
+        call utility#LogError(l:msg)
+        return v:false
     endif
 
-    let l:options = "&Yes\n&No\n&Cancel"
-    let l:choice = confirm('Save Changes in '. bufname() .' before removing it?', l:options, 3)
+    let l:msg = 'Save Changes in "'. bufname() .'" before removing it?'
+    let l:choice = confirm(l:msg, "&Yes\n&No\n&Cancel", 3)
 
     if l:choice == 1
         silent w!
@@ -75,10 +75,13 @@ function s:CheckMultiWindow(winids) abort
     endif
 
     if !&confirm
-        throw 'Buffer '. bufname() .' displayed in multiple windows, command cancelled (add ! to delete anyway)'
+        let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows (add ! to force delete)'
+        call utility#LogError(l:msg)
+        return v:false
     endif
 
-    let l:choice = confirm('Buffer '. bufname() .' displayed in multiple windows, delete it anyway?', "&Yes\n&No", 1)
+    let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows, delete it anyway?'
+    let l:choice = confirm(l:msg, "&Yes\n&No", 2)
     if l:choice == 1
         return v:true
     endif
@@ -87,14 +90,14 @@ function s:CheckMultiWindow(winids) abort
 endfunction
 
 function buffer#Close(cmd) abort
-    if !s:CheckModified()
-        return
-    endif
-
     let l:bufnr = bufnr()
     let l:winids = filter(win_findbuf(l:bufnr), 'v:val != win_getid()') + [win_getid()]
 
     if !s:CheckMultiWindow(l:winids)
+        return
+    endif
+
+    if !s:CheckModified()
         return
     endif
 
