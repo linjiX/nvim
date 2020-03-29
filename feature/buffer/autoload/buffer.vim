@@ -9,6 +9,58 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function s:CheckMultiWindow(winids) abort
+    if len(a:winids) == 1
+        return v:true
+    endif
+
+    if !&confirm
+        let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows (add ! to force delete)'
+        call utility#LogError(l:msg)
+        return v:false
+    endif
+
+    let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows, delete it anyway?'
+    let l:choice = confirm(l:msg, "&Yes\n&Cancel", 2)
+    if l:choice == 1
+        return v:true
+    endif
+
+    return v:false
+endfunction
+
+function s:CheckModified() abort
+    if !&l:modified
+        return v:true
+    endif
+
+    if !&confirm
+        let l:msg = 'No write since last change for buffer "'. bufname() .'" (add ! to override)'
+        call utility#LogError(l:msg)
+        return v:false
+    endif
+
+    let l:msg = 'Save Changes in "'. bufname() .'" before removing it?'
+    let l:choice = confirm(l:msg, "&Yes\n&No\n&Cancel", 3)
+
+    if l:choice == 1
+        silent w!
+    elseif l:choice == 2
+        setlocal nomodified
+    else
+        return v:false
+    endif
+
+    return v:true
+endfunction
+
+
+function s:BPrevious() abort
+    let l:bufnr = bufnr()
+    bprevious
+    return l:bufnr != bufnr()
+endfunction
+
 function buffer#Navigate(is_backward) abort
     let [l:jumplist, l:index] = getjumplist()
     let l:len = len(l:jumplist)
@@ -39,65 +91,11 @@ function buffer#Navigate(is_backward) abort
     endwhile
 endfunction
 
-function s:BPrevious() abort
-    let l:bufnr = bufnr()
-    bprevious
-    return l:bufnr != bufnr()
-endfunction
-
-function s:CheckModified() abort
-    if !&l:modified
-        return v:true
-    endif
-
-    if !&confirm
-        let l:msg = 'No write since last change for buffer "'. bufname() .'" (add ! to override)'
-        call utility#LogError(l:msg)
-        return v:false
-    endif
-
-    let l:msg = 'Save Changes in "'. bufname() .'" before removing it?'
-    let l:choice = confirm(l:msg, "&Yes\n&No\n&Cancel", 3)
-
-    if l:choice == 1
-        silent w!
-    elseif l:choice == 2
-        setlocal nomodified
-    else
-        return v:false
-    endif
-
-    return v:true
-endfunction
-
-function s:CheckMultiWindow(winids) abort
-    if len(a:winids) == 1
-        return v:true
-    endif
-
-    if !&confirm
-        let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows (add ! to force delete)'
-        call utility#LogError(l:msg)
-        return v:false
-    endif
-
-    let l:msg = 'Buffer "'. bufname() .'" displayed in multiple windows, delete it anyway?'
-    let l:choice = confirm(l:msg, "&Yes\n&No", 2)
-    if l:choice == 1
-        return v:true
-    endif
-
-    return v:false
-endfunction
-
 function buffer#Close(cmd) abort
     let l:bufnr = bufnr()
     let l:winids = filter(win_findbuf(l:bufnr), 'v:val != win_getid()') + [win_getid()]
 
-    if !s:CheckMultiWindow(l:winids)
-        return
-    endif
-    if !s:CheckModified()
+    if !s:CheckMultiWindow(l:winids) || !s:CheckModified()
         return
     endif
 
