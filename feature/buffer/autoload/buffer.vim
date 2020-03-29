@@ -10,33 +10,33 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function buffer#Navigate(is_backward) abort
-    let l:index = a:is_backward ? w:buffer_history.index - 1
-                \               : w:buffer_history.index + 1
+    let [l:jumplist, l:index] = getjumplist()
+    let l:len = len(l:jumplist)
+    let l:bufnr = bufnr()
+    let l:count = 0
 
-    while l:index >= 0 && l:index < len(w:buffer_history.bufnrs)
-        let l:bufnr = w:buffer_history.bufnrs[l:index]
+    while v:true
+        let l:index = a:is_backward ? l:index - 1
+                    \               : l:index + 1
+        if l:index < 0 || l:index >= l:len
+            echo a:is_backward ? 'No backward buffer'
+                        \      : 'No forward buffer'
+            return v:false
+        endif
 
-        if buflisted(l:bufnr)
-            let l:old_index = w:buffer_history.index
-            let w:buffer_history.index = l:index
-            try
-                execute 'buffer '. l:bufnr
-            catch /^Vim\%((\a\+)\)\=:E37/
-                let w:buffer_history.index = l:old_index
-            endtry
+        let l:item = l:jumplist[l:index]
+        if !bufexists(l:item.bufnr)
+            continue
+        endif
+
+        let l:count += 1
+        if l:item.bufnr != l:bufnr
+            let l:cmd = a:is_backward ? "\<C-o>"
+                        \             : "\<C-i>"
+            execute 'normal! '. l:count . l:cmd
             return v:true
         endif
-
-        call remove(w:buffer_history.bufnrs, l:index)
-        if a:is_backward
-            let l:index -= 1
-            let w:buffer_history.index -= 1
-        endif
     endwhile
-
-    echo a:is_backward ? 'No backward buffer'
-                \      : 'No forward buffer'
-    return v:false
 endfunction
 
 function s:BPrevious() abort
