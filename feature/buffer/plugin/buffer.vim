@@ -21,14 +21,15 @@ function s:WipeEmptyBuffer() abort
 endfunction
 
 function s:UpdateBufferList() abort
+    let l:bufnr = bufnr()
     if !exists('w:buffer_order')
         let w:buffer_order = {}
-        let w:buffer_order.index = v:null
-        let w:buffer_order.bufnrs = []
+        let w:buffer_order.index = 0
+        let w:buffer_order.bufnrs = [l:bufnr]
+        return
     endif
-    let l:bufnr = bufnr()
 
-    if !empty(w:buffer_order.bufnrs) && w:buffer_order.bufnrs[w:buffer_order.index] == l:bufnr
+    if w:buffer_order.bufnrs[w:buffer_order.index] == l:bufnr
         return
     endif
 
