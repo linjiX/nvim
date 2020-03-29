@@ -9,13 +9,21 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function utility#Log(msg) abort
+function s:Log(level, msg) abort
     try
-        echohl WarningMsg
+        execute 'echohl '. a:level
         echo a:msg
     finally
         echohl None
     endtry
+endfunction
+
+function utility#LogError(msg) abort
+    call s:Log('ErrorMsg', a:msg)
+endfunction
+
+function utility#LogWarning(msg) abort
+    call s:Log('WarningMsg', a:msg)
 endfunction
 
 function utility#SetConfig(config) abort

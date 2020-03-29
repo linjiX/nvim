@@ -39,7 +39,7 @@ function large#reset() abort
 endfunction
 
 function s:EnterLargeFile() abort
-    call utility#Log('File is too large, trigger large file handling!')
+    call utility#LogWarning('File is too large, trigger large file handling!')
     let &eventignore = s:eventignore
     unlet s:eventignore
 endfunction
