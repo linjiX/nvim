@@ -47,9 +47,12 @@ endfunction
 
 augroup myBuffer
     autocmd!
-    autocmd BufEnter * call s:UpdateBufferList()
+    autocmd WinEnter,BufEnter * call s:UpdateBufferList()
     autocmd BufLeave * call s:WipeEmptyBuffer()
 augroup END
 
 nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
 nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>
+
+nnoremap <silent> <leader>q :call buffer#Close('bwipeout')<CR>
+nnoremap <silent> <leader>Q :call buffer#Close('bdelete')<CR>
