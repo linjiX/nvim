@@ -20,33 +20,33 @@ function s:WipeEmptyBuffer() abort
     endif
 endfunction
 
-function s:UpdateBufferList() abort
+function s:UpdateBufferHistory() abort
     let l:bufnr = bufnr()
-    if !exists('w:buffer_order')
-        let w:buffer_order = {}
-        let w:buffer_order.index = 0
-        let w:buffer_order.bufnrs = [l:bufnr]
+    if !exists('w:buffer_history')
+        let w:buffer_history = {}
+        let w:buffer_history.index = 0
+        let w:buffer_history.bufnrs = [l:bufnr]
         return
     endif
 
-    if w:buffer_order.bufnrs[w:buffer_order.index] == l:bufnr
+    if w:buffer_history.bufnrs[w:buffer_history.index] == l:bufnr
         return
     endif
 
-    let w:buffer_order.bufnrs = w:buffer_order.bufnrs[0 : w:buffer_order.index]
+    let w:buffer_history.bufnrs = w:buffer_history.bufnrs[0 : w:buffer_history.index]
 
-    let l:index = index(w:buffer_order.bufnrs, l:bufnr)
+    let l:index = index(w:buffer_history.bufnrs, l:bufnr)
     if l:index != -1
-        call remove(w:buffer_order.bufnrs, l:index)
+        call remove(w:buffer_history.bufnrs, l:index)
     endif
-    call add(w:buffer_order.bufnrs, l:bufnr)
+    call add(w:buffer_history.bufnrs, l:bufnr)
 
-    let w:buffer_order.index = len(w:buffer_order.bufnrs) - 1
+    let w:buffer_history.index = len(w:buffer_history.bufnrs) - 1
 endfunction
 
 augroup myBuffer
     autocmd!
-    autocmd WinEnter,BufEnter * call s:UpdateBufferList()
+    autocmd WinEnter,BufEnter * call s:UpdateBufferHistory()
     autocmd BufLeave * call s:WipeEmptyBuffer()
 augroup END
 

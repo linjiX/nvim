@@ -10,27 +10,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function buffer#Navigate(is_backward) abort
-    let l:index = a:is_backward ? w:buffer_order.index - 1
-                \               : w:buffer_order.index + 1
+    let l:index = a:is_backward ? w:buffer_history.index - 1
+                \               : w:buffer_history.index + 1
 
-    while l:index >= 0 && l:index < len(w:buffer_order.bufnrs)
-        let l:bufnr = w:buffer_order.bufnrs[l:index]
+    while l:index >= 0 && l:index < len(w:buffer_history.bufnrs)
+        let l:bufnr = w:buffer_history.bufnrs[l:index]
 
         if buflisted(l:bufnr)
-            let l:old_index = w:buffer_order.index
-            let w:buffer_order.index = l:index
+            let l:old_index = w:buffer_history.index
+            let w:buffer_history.index = l:index
             try
                 execute 'buffer '. l:bufnr
             catch /^Vim\%((\a\+)\)\=:E37/
-                let w:buffer_order.index = l:old_index
+                let w:buffer_history.index = l:old_index
             endtry
             return v:true
         endif
 
-        call remove(w:buffer_order.bufnrs, l:index)
+        call remove(w:buffer_history.bufnrs, l:index)
         if a:is_backward
             let l:index -= 1
-            let w:buffer_order.index -= 1
+            let w:buffer_history.index -= 1
         endif
     endwhile
 
