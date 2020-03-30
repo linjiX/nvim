@@ -62,20 +62,18 @@ function s:BPrevious() abort
 endfunction
 
 function buffer#Navigate(is_backward) abort
-    let [l:jumplist, l:index] = getjumplist()
-    let l:len = len(l:jumplist)
+    let [l:jumplist, l:position] = getjumplist()
     let l:bufnr = bufnr()
     let l:count = 0
 
-    while v:true
-        let l:index = a:is_backward ? l:index - 1
-                    \               : l:index + 1
-        if l:index < 0 || l:index >= l:len
-            echo a:is_backward ? 'No backward buffer'
-                        \      : 'No forward buffer'
-            return v:false
-        endif
+    try
+        let l:range = a:is_backward ? range(l:position - 1, 0, -1)
+                    \               : range(l:position + 1, len(l:jumplist) - 1)
+    catch /^Vim\%((\a\+)\)\=:E727/
+        let l:range = []
+    endtry
 
+    for l:index in l:range
         let l:item = l:jumplist[l:index]
         if !bufexists(l:item.bufnr)
             continue
@@ -88,7 +86,10 @@ function buffer#Navigate(is_backward) abort
             execute 'normal! '. l:count . l:cmd
             return v:true
         endif
-    endwhile
+    endfor
+    echo a:is_backward ? 'No backward buffer'
+                \      : 'No forward buffer'
+    return v:false
 endfunction
 
 function buffer#Close(cmd) abort
