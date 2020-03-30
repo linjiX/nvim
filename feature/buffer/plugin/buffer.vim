@@ -37,6 +37,7 @@ augroup myBuffer
     autocmd!
     autocmd BufUnload * call s:UpdateBufferUndo(expand('<afile>:p'))
     autocmd BufLeave * call s:WipeEmptyBuffer()
+    autocmd FileType vim nnoremap <buffer><silent> <leader>h :call buffer#Switch()<CR>
 augroup END
 
 nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>

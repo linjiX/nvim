@@ -130,3 +130,17 @@ function buffer#Reopen() abort
     endwhile
     echo 'No reopen buffer'
 endfunction
+
+let s:switch_regex = '\v\C\/\zs(plugin|autoload)\ze\/\w*\.vim'
+let s:switch = {'plugin': 'autoload', 'autoload': 'plugin'}
+
+function buffer#Switch() abort
+    let l:bufname = expand('%:p')
+    let l:switch_bufname = substitute(l:bufname, s:switch_regex, '\=s:switch[submatch(1)]', '')
+
+    if l:switch_bufname == l:bufname || !filereadable(l:switch_bufname)
+        echo 'No switch file'
+    endif
+
+    execute 'edit '. l:switch_bufname
+endfunction
