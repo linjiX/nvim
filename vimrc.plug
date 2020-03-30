@@ -46,11 +46,13 @@ nnoremap <silent> <leader>vs :PlugStatus<CR>
 call plug#begin('~/.vim/plug')
 
 " Feature {{{
-Plug $HOME .'/.vim/feature/arc'
-Plug $HOME .'/.vim/feature/buffer'
-Plug $HOME .'/.vim/feature/large'
-Plug $HOME .'/.vim/feature/linter'
-let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+if !exists('g:auto_installation')
+    Plug $HOME .'/.vim/feature/arc'
+    Plug $HOME .'/.vim/feature/buffer'
+    Plug $HOME .'/.vim/feature/large'
+    Plug $HOME .'/.vim/feature/linter'
+    let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+endif
 " }}}
 
 " Help {{{
@@ -175,6 +177,7 @@ Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " Plug 'airblade/vim-gitgutter'
 " Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 " Plug 'mhinz/vim-signify'
+" Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'rhysd/git-messenger.vim', {'on': ['<Plug>(git-messenger)', 'GitMessenger']}
