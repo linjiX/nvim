@@ -9,6 +9,8 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+call plug#load('tagbar')
+
 augroup myWorkspace
     autocmd!
 augroup END
