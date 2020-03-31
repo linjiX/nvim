@@ -10,17 +10,25 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:buffer_reopen = []
+let s:reopen_ignore_filetype = ['gitcommit', 'help']
 
-function s:UpdateBufferUndo(filename) abort
-    if !filereadable(a:filename)
+function s:UpdateBufferUndo() abort
+    let l:filename = expand('<afile>:p')
+    if !filereadable(l:filename)
         return
     endif
 
-    let l:index = index(g:buffer_reopen, a:filename)
+    let l:bufnr = str2nr(expand('<abuf>'))
+    let l:filetype = getbufvar(l:bufnr, '&filetype')
+    if index(s:reopen_ignore_filetype, l:filetype) == -1
+        return
+    endif
+
+    let l:index = index(g:buffer_reopen, l:filename)
     if l:index != -1
         call remove(g:buffer_reopen, l:index)
     endif
-    call add(g:buffer_reopen, a:filename)
+    call add(g:buffer_reopen, l:filename)
 endfunction
 
 function s:WipeEmptyBuffer() abort
@@ -37,7 +45,7 @@ endfunction
 augroup myBuffer
     autocmd!
     autocmd BufLeave * call s:WipeEmptyBuffer()
-    autocmd BufUnload * call s:UpdateBufferUndo(expand('<afile>:p'))
+    autocmd BufUnload * call s:UpdateBufferUndo()
     autocmd FileType vim nnoremap <buffer><silent> <leader>h :call buffer#Switch()<CR>
 augroup END
 
