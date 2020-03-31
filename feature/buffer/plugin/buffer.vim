@@ -9,18 +9,8 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function s:WipeEmptyBuffer() abort
-    if exists('b:stored_bufhidden')
-        let &bufhidden = b:stored_bufhidden
-        unlet b:stored_bufhidden
-    endif
-    if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
-        let b:stored_bufhidden = &bufhidden
-        set bufhidden=wipe
-    endif
-endfunction
-
 let g:buffer_reopen = []
+
 function s:UpdateBufferUndo(filename) abort
     if !filereadable(a:filename)
         return
@@ -33,10 +23,21 @@ function s:UpdateBufferUndo(filename) abort
     call add(g:buffer_reopen, a:filename)
 endfunction
 
+function s:WipeEmptyBuffer() abort
+    if exists('b:stored_bufhidden')
+        let &bufhidden = b:stored_bufhidden
+        unlet b:stored_bufhidden
+    endif
+    if empty(bufname('%')) && line('$') == 1 && empty(getline(1))
+        let b:stored_bufhidden = &bufhidden
+        set bufhidden=wipe
+    endif
+endfunction
+
 augroup myBuffer
     autocmd!
-    autocmd BufUnload * call s:UpdateBufferUndo(expand('<afile>:p'))
     autocmd BufLeave * call s:WipeEmptyBuffer()
+    autocmd BufUnload * call s:UpdateBufferUndo(expand('<afile>:p'))
     autocmd FileType vim nnoremap <buffer><silent> <leader>h :call buffer#Switch()<CR>
 augroup END
 
