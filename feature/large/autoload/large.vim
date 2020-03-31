@@ -25,7 +25,7 @@ function large#handle() abort
 
     let s:eventignore = &eventignore
     set eventignore+=FileType
-    autocmd myLargeFile BufEnter <buffer> ++once call s:EnterLargeFile()
+    autocmd myLarge BufEnter <buffer> ++once call s:EnterLargeFile()
 endfunction
 
 function large#reset() abort
