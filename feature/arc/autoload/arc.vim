@@ -9,13 +9,6 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-augroup myArc
-    autocmd!
-    autocmd BufNewFile,BufRead .arc*,*.book setlocal filetype=json
-    autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
-    autocmd BufNewFile,BufRead *.diviner setlocal filetype=markdown
-
-    autocmd FileType arcdiff setlocal colorcolumn=72 | setlocal commentstring=#%s
-augroup END
-
-command! Abrowse call arc#Browse()
+function arc#Browse() abort
+    call system('arc browse '. bufname())
+endfunction
