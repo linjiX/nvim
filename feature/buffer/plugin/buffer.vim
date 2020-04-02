@@ -20,7 +20,7 @@ function s:UpdateBufferUndo() abort
 
     let l:bufnr = str2nr(expand('<abuf>'))
     let l:filetype = getbufvar(l:bufnr, '&filetype')
-    if index(s:reopen_ignore_filetype, l:filetype) == -1
+    if index(s:reopen_ignore_filetype, l:filetype) != -1
         return
     endif
 
