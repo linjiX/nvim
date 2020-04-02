@@ -9,7 +9,7 @@ set -v
 # Install Riggrep #
 ###################
 
-VERSION="11.0.2"
+VERSION="12.0.1"
 DEBFILE=ripgrep_${VERSION}_amd64.deb
 
 if ! dpkg -s wget 1>/dev/null 2>&1; then
