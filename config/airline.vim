@@ -14,8 +14,6 @@ let g:airline_solarized_enable_command_color = 1
 let g:airline_solarized_dark_inactive_background = 1
 
 " Plug 'vim-airline/vim-airline'
-call airline#parts#define_function('hunks', 'CocGitStatus')
-
 call airline#parts#define_accent('coc_status', 'none')
 call airline#parts#define_minwidth('coc_status', 100)
 
