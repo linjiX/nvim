@@ -43,7 +43,11 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='. join([
             \   '-runtime/references',
             \], ',')
 let g:ale_python_flake8_options = '--max-line-length=100'
-let g:ale_python_pylint_options = '--disable=bad-continuation, --generated-members=torch.*,cv2.*'
+let g:ale_python_pylint_options = join([
+            \   '--disable=bad-continuation',
+            \   '--generated-members=torch.*,cv2.*',
+            \   '--ignored-modules=tensorflow.compat.v1'
+            \], ',')
 let g:ale_python_mypy_options = join([
             \   '--cache-dir=/tmp/mypy_cache',
             \   '--ignore-missing-imports',
