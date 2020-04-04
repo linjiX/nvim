@@ -112,13 +112,11 @@ inoremap <silent><expr> <S-TAB> coc#refresh()
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
 
-nmap [rl :CocEnable<CR>
-nmap ]rl :CocDisable<CR>
-nmap <expr> yrl <SID>CocToggle()
-nnoremap <silent> yrL :call <SID>CocRestart()<CR>
-
-nnoremap <silent> <leader>ll :call <SID>ToggleLSP()<CR>
-nnoremap <leader>lu :CocUpdate<CR>
+nmap [rc :CocEnable<CR>
+nmap ]rc :CocDisable<CR>
+nmap <expr> yrc <SID>CocToggle()
+nnoremap <silent> yrC :call <SID>CocRestart()<CR>
+nnoremap <silent> yrl :call <SID>ToggleLSP()<CR>
 
 nmap <silent> <leader>jj <Plug>(coc-definition)
 nmap <silent> <leader>jd <Plug>(coc-declaration)
@@ -127,31 +125,31 @@ nmap <silent> <leader>jr <Plug>(coc-references)
 nmap <silent> <leader>jt <Plug>(coc-type-definition)
 nmap <silent> <leader>x <Plug>(coc-fix-current)
 
-" nmap <silent> <leader>ld <Plug>(coc-diagnostic-info)
-nmap <silent> <leader>lr <Plug>(coc-rename)
-nmap <silent> <leader>lR <Plug>(coc-refactor)
-nmap <silent> <leader>la <Plug>(coc-codeaction)
-" nmap <silent> <leader>ll <Plug>(coc-codelens-action)
-
 nmap <silent> <leader>A <Plug>(coc-format)
 xmap <silent> <leader>A <Plug>(coc-format-selected)
 nmap <silent> g= <Plug>(coc-format-selected)
 " nmap <silent> g== <Plug>(coc-format)
 " xmap <silent> g= <Plug>(coc-format-selected)
 
-" nmap <silent> <leader>lR <Plug>CocRefresh
-nmap <silent> <leader>lh <Plug>(coc-float-hide)
-
 nmap <silent> ]j <Plug>(coc-diagnostic-next)
 nmap <silent> [j <Plug>(coc-diagnostic-prev)
 
 nnoremap <silent> <leader>tt :call CocAction('doHover')<CR>
-nnoremap <silent> <leader>d :CocList --normal diagnostics<CR>
-nnoremap <silent> <leader>le :CocList --normal extensions<CR>
-nnoremap <silent> <leader>ls :call CocAction('workspaceSymbols')<CR>
-nnoremap <silent> <leader>lx :CocCommand<CR>
 
-nnoremap <silent> <leader>p :CocList --normal yank<CR>
+nnoremap <leader>lu :CocUpdate<CR>
+nmap <silent> <leader>lr <Plug>(coc-rename)
+nmap <silent> <leader>lR <Plug>(coc-refactor)
+nmap <silent> <leader>lh <Plug>(coc-float-hide)
+
+" CocList
+nnoremap <silent> <leader>ll :CocList<CR>
+nnoremap <silent> <leader>lo :CocListResume<CR>
+nnoremap <silent> <leader>ld :CocList --normal diagnostics<CR>
+nnoremap <silent> <leader>le :CocList --normal extensions<CR>
+nnoremap <silent> <leader>lp :CocList --normal yank<CR>
+nnoremap <silent> <leader>lt :CocList --normal translation<CR>
+nnoremap <silent> <leader>ls :CocList --interactive symbols<CR>
+nnoremap <silent> <leader>lx :CocList commands<CR>
 
 " coc-git
 nmap <leader>gp <Plug>(coc-git-chunkinfo)
