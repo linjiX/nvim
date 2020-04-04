@@ -9,12 +9,15 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap <silent> <leader>dc <Plug>VimspectorContinue
-nmap <silent> <leader>ds <Plug>VimspectorStop
+nmap <silent> <leader>df <Plug>VimspectorContinue
+nmap <silent> <leader>dq <Plug>VimspectorStop
 nmap <silent> <leader>dr <Plug>VimspectorRestart
 nmap <silent> <leader>dp <Plug>VimspectorPause
 nmap <silent> <leader>dd <Plug>VimspectorToggleBreakpoint
 nmap <silent> <leader>dD <Plug>VimspectorAddFunctionBreakpoint
-nmap <silent> <leader>df <Plug>VimspectorStepOver
+nmap <silent> <leader>dj <Plug>VimspectorStepOver
 nmap <silent> <leader>di <Plug>VimspectorStepInto
 nmap <silent> <leader>do <Plug>VimspectorStepOut
+
+nnoremap <silent> <leader>dc :call vimspector#ClearBreakpoints()<CR>
+nnoremap <silent> <leader>dl :call vimspector#ListBreakpoints()<CR>
