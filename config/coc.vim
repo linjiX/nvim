@@ -55,24 +55,34 @@ let s:coc_lsp = {
             \   'json': 'coc-json',
             \   'vim': 'coc-vimlsp',
             \   'xml': 'coc-xml',
+            \   'c': 'languageserver.ccls',
+            \   'cpp': 'languageserver.ccls',
+            \   'sh': 'languageserver.bash',
+            \   'Dockerfile': 'languageserver.dockerfile',
             \}
 function s:ToggleLSP() abort
     if !has_key(s:coc_lsp, &filetype)
         return
     endif
     let l:name = s:coc_lsp[&filetype]
-    let l:list = CocAction('extensionStats')
-    for l:item in l:list
-        if l:item.id ==# l:name
-            let l:state = l:item.state
+
+    if l:name =~# '\v^coc-'
+        let l:list = CocAction('extensionStats')
+        for l:item in l:list
+            if l:item.id ==# l:name
+                let l:state = l:item.state
+            endif
+        endfor
+        if l:state ==# 'activated'
+            echo 'Disable '. l:name
+            call CocAction('deactivateExtension', l:name)
+        else
+            echo 'Enable '. l:name
+            call CocAction('reloadExtension', l:name)
         endif
-    endfor
-    if l:state ==# 'activated'
-        echo 'Disable '. l:name
-        call CocAction('deactivateExtension', l:name)
     else
-        echo 'Enable '. l:name
-        call CocAction('reloadExtension', l:name)
+        echo 'Toggle '. l:name
+        call CocAction('toggleService', l:name)
     endif
 endfunction
 
@@ -177,7 +187,6 @@ nmap <silent> <leader>te <Plug>(coc-translator-e)
 xmap <silent> <leader>te <Plug>(coc-translator-ev)
 nmap <silent> <leader>tr <Plug>(coc-translator-r)
 xmap <silent> <leader>tr <Plug>(coc-translator-rv)
-nnoremap <silent> <leader>tl :CocList --normal translation<CR>
 
 " coc-explorer
 nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
