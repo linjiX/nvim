@@ -140,6 +140,7 @@ function buffer#Switch() abort
 
     if l:switch_bufname == l:bufname || !filereadable(l:switch_bufname)
         echo 'No switch file'
+        return
     endif
 
     execute 'edit '. l:switch_bufname
