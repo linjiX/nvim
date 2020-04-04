@@ -184,7 +184,7 @@ nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
 nnoremap <silent> <leader>W :call workspace#Reveal()<CR>
 
 " ccls
-function AutoCmdCcls() abort
+function s:AutoCmdCcls() abort
     nnoremap <silent><buffer> <leader>zk
                 \ :call CocLocations('ccls', '$ccls/navigate', {'direction':'U'})<CR>
     nnoremap <silent><buffer> <leader>zj
