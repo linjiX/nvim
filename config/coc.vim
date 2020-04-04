@@ -92,6 +92,7 @@ augroup myCoc
     autocmd User CocNvimInit let g:coc_init = 1
     autocmd FileType coc-explorer nnoremap <buffer> <leader> <Nop>
     autocmd FileType log call s:AutoCmdCocInfo()
+    autocmd FileType c,cpp call s:AutoCmdCcls()
 augroup END
 
 inoremap <silent><expr> <C-j>
@@ -185,22 +186,40 @@ nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
 nnoremap <silent> <leader>W :call workspace#Reveal()<CR>
 
 " ccls
-nnoremap <silent> <leader><UP> :call CocLocations('ccls','$ccls/navigate',{'direction':'U'})<CR>
-nnoremap <silent> <leader><DOWN> :call CocLocations('ccls','$ccls/navigate',{'direction':'D'})<CR>
-nnoremap <silent> <leader><LEFT> :call CocLocations('ccls','$ccls/navigate',{'direction':'L'})<CR>
-nnoremap <silent> <leader><RIGHT> :call CocLocations('ccls','$ccls/navigate',{'direction':'R'})<CR>
+function AutoCmdCcls() abort
+    nnoremap <silent><buffer> <leader>zk
+                \ :call CocLocations('ccls', '$ccls/navigate', {'direction':'U'})<CR>
+    nnoremap <silent><buffer> <leader>zj
+                \ :call CocLocations('ccls', '$ccls/navigate', {'direction':'D'})<CR>
+    nnoremap <silent><buffer> <leader>zl
+                \ :call CocLocations('ccls', '$ccls/navigate', {'direction':'L'})<CR>
+    nnoremap <silent><buffer> <leader>zh
+                \ :call CocLocations('ccls', '$ccls/navigate', {'direction':'R'})<CR>
 
-nnoremap <silent> <leader>lb :call CocLocations('ccls','$ccls/inheritance')<CR>
-nnoremap <silent> <leader>lB :call CocLocations('ccls','$ccls/inheritance',{'levels':3})<CR>
-nnoremap <silent> <leader>ld :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true})<CR>
-nnoremap <silent> <leader>lD :call CocLocations('ccls','$ccls/inheritance',{'derived':v:true,'levels':3})<CR>
+    nnoremap <silent><buffer> <leader>zb
+                \ :call CocLocations('ccls', '$ccls/inheritance')<CR>
+    nnoremap <silent><buffer> <leader>zB
+                \ :call CocLocations('ccls', '$ccls/inheritance', {'levels':3})<CR>
+    nnoremap <silent><buffer> <leader>zd
+                \ :call CocLocations('ccls', '$ccls/inheritance', {'derived': v:true})<CR>
+    nnoremap <silent><buffer> <leader>zD
+                \ :call CocLocations('ccls', '$ccls/inheritance',
+                \                    {'derived': v:true, 'levels': 3})<CR>
 
-nnoremap <silent> <leader>lc :call CocLocations('ccls','$ccls/call')<CR>
-nnoremap <silent> <leader>lC :call CocLocations('ccls','$ccls/call',{'callee':v:true})<CR>
+    nnoremap <silent><buffer> <leader>zc
+                \ :call CocLocations('ccls', '$ccls/call')<CR>
+    nnoremap <silent><buffer> <leader>zC
+                \ :call CocLocations('ccls', '$ccls/call', {'callee': v:true})<CR>
 
-nnoremap <silent> <leader>lm :call CocLocations('ccls','$ccls/member')<CR>
-nnoremap <silent> <leader>lM :call CocLocations('ccls','$ccls/member',{'kind':3})<CR>
-nnoremap <silent> <leader>lt :call CocLocations('ccls','$ccls/member',{'kind':2})<CR>
+    nnoremap <silent><buffer> <leader>zm
+                \ :call CocLocations('ccls', '$ccls/member')<CR>
+    nnoremap <silent><buffer> <leader>zM
+                \ :call CocLocations('ccls', '$ccls/member', {'kind': 3})<CR>
+    nnoremap <silent><buffer> <leader>zt
+                \ :call CocLocations('ccls', '$ccls/member', {'kind': 2})<CR>
 
-nnoremap <silent> <leader>lv :call CocLocations('ccls','$ccls/vars',{'kind':1})<CR>
-nnoremap <silent> <leader>lV :call CocLocations('ccls','$ccls/vars')<CR>
+    nnoremap <silent><buffer> <leader>zv
+                \ :call CocLocations('ccls', '$ccls/vars', {'kind': 1})<CR>
+    nnoremap <silent><buffer> <leader>zV
+                \ :call CocLocations('ccls', '$ccls/vars')<CR>
+endfunction
