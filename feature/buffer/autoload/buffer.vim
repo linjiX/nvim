@@ -84,6 +84,12 @@ function buffer#Navigate(is_backward) abort
             let l:cmd = a:is_backward ? "\<C-o>"
                         \             : "\<C-i>"
             execute 'normal! '. l:count . l:cmd
+
+            if l:bufnr == bufnr()
+                " protect code
+                throw 'Buffer not change in buffer#Navigate()'
+            endif
+
             return v:true
         endif
     endfor
