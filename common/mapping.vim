@@ -9,13 +9,25 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Window Navigator Mapping is done by Plug 'christoomey/vim-tmux-navigator'
-nnoremap <C-h> <C-w>h
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-nmap <silent><expr> <C-j>
-            \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
-            \                      : "\<C-w>j"
+if has_key(g:plugs, 'vim-tmux-navigator')
+    " Plug 'christoomey/vim-tmux-navigator'
+    let g:tmux_navigator_no_mappings = 1
+
+    nnoremap <silent> <C-\> :TmuxNavigatePrevious<CR>
+    nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
+    nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
+    nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
+    nmap <silent><expr> <C-j>
+                \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
+                \                      : ':TmuxNavigateDown<CR>'
+else
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
+    nmap <silent><expr> <C-j>
+                \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
+                \                      : "\<C-w>j"
+endif
 
 " normal mode mapping
 nnoremap Y y$

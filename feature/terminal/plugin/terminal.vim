@@ -35,8 +35,15 @@ if has('nvim')
     tmap <expr><silent> <C-l> terminal#Navigate("\<C-k>")
 else
     set termwinkey=<C-v>
-    tnoremap <C-h> <C-v>h
-    tnoremap <C-j> <C-v>j
-    tnoremap <C-k> <C-v>k
-    tnoremap <C-l> <C-v>l
+    if has_key(g:plugs, 'vim-tmux-navigator')
+        tnoremap <silent> <C-h> <C-v>:TmuxNavigateLeft<CR>
+        tnoremap <silent> <C-j> <C-v>:TmuxNavigateDown<CR>
+        tnoremap <silent> <C-k> <C-v>:TmuxNavigateUp<CR>
+        tnoremap <silent> <C-l> <C-v>:TmuxNavigateRight<CR>
+    else
+        tnoremap <C-h> <C-v>h
+        tnoremap <C-j> <C-v>j
+        tnoremap <C-k> <C-v>k
+        tnoremap <C-l> <C-v>l
+    endif
 endif
