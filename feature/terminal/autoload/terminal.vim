@@ -95,24 +95,22 @@ function terminal#GetCommand(bufnr) abort
     return l:command[l:idx : -2]
 endfunction
 
-if has('macunix')
-    function terminal#GetCwd(bufnr) abort
-        let l:pid = s:GetPID(a:bufnr)
+function terminal#GetCwd(bufnr) abort
+    let l:pid = s:GetPID(a:bufnr)
+
+    if has('macunix')
         if executable('lsof')
             let l:lsof = system('lsof -aFn -d cwd -p '. l:pid)
             return split(l:lsof, '\n')[-1][1:]
         endif
-        throw 'Fail to get terminal working direcroty, "lsof" is not executable!'
-    endfunction
-else
-    function terminal#GetCwd(bufnr) abort
-        let l:pid = s:GetPID(a:bufnr)
+    else
         if executable('pwdx')
             let l:pwdx = system('pwdx '. l:pid)
             return l:pwdx[stridx(l:pwdx, '/') : -2]
         elseif isdirectory('/proc/')
             return system('readlink /proc/'. l:pid .'/cwd')[:-2]
         endif
-        throw 'Fail to get terminal working direcroty!'
-    endfunction
-endif
+    endif
+
+    throw 'Fail to get terminal working direcroty!'
+endfunction
