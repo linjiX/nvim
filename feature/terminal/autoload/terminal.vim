@@ -15,18 +15,33 @@ if has('nvim')
         let l:flag = ":let b:terminal_navigate = 1\<CR>"
         return l:esc . l:flag . a:cmd
     endfunction
+
+    function terminal#AutoCmdNavigate() abort
+        if exists('b:terminal_navigate')
+            unlet b:terminal_navigate
+            startinsert
+        endif
+    endfunction
+else
+    function terminal#AutoCmdWipeTerminal() abort
+        if &buftype ==# 'terminal'
+            set bufhidden=wipe
+        endif
+    endfunction
 endif
 
 function terminal#AutoCmdTerminal() abort
     setlocal nonumber
     setlocal nobuflisted
-    setlocal bufhidden=wipe
 
     nnoremap <silent><buffer> <leader>q :q!<CR>
     nnoremap <silent><buffer> q :q!<CR>
     cnoreabbrev <buffer> q q!
 
-    startinsert
+    if has('nvim')
+        setlocal bufhidden=wipe
+        startinsert
+    endif
 endfunction
 
 function terminal#AutoCmdNvimTerminal() abort
