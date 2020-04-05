@@ -42,3 +42,12 @@ function utility#SetConfig(config) abort
     endfor
     return l:old_config
 endfunction
+
+function utility#TerminalList() abort
+    if has('nvim')
+        let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+        return filter(l:bufnrs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
+    else
+        return term_list()
+    endif
+endfunction

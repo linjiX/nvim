@@ -9,18 +9,12 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function s:HasTermianl() abort
-    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
-    return !empty(l:bufnrs)
-endfunction
-
 function s:AutoCmdPlugInstall() abort
     let g:plug_window = 'buffer'
     PlugInstall --sync
     source $MYVIMRC
     execute 'CocInstall -sync '. join(g:coc_global_extensions)
-    while s:HasTermianl()
+    while !empty(utility#TerminalList())
         sleep 1
     endwhile
     quitall

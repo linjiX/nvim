@@ -157,11 +157,7 @@ function s:SlimeOpenTerminal(cmds) abort
 endfunction
 
 function s:SlimeAvailableTerminals(cmds) abort
-    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&buftype") ==# "terminal"')
-    if !has('nvim')
-        let l:bufnrs = filter(l:bufnrs, 'term_getstatus(v:val) =~# "running"')
-    endif
+    let l:bufnrs = utility#TerminalList()
 
     if s:slime_smart_mode
         for l:bufnr in l:bufnrs
