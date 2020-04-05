@@ -66,7 +66,6 @@ function s:SlimeConfig(bufnrs, is_run) abort
         let b:slime_config[l:key] = min(a:bufnrs)
     endif
 
-    let l:slime_key = has('nvim') ? 'jobid' : 'bufnr'
     if has('nvim')
         let b:slime_config.jobid = getbufvar(b:slime_config[l:key], 'terminal_job_id')
     else
@@ -182,11 +181,10 @@ function s:SlimeOpenTerminalCmd(cmd) abort
     call terminal#SmartTerminal(a:cmd)
     if has('nvim')
         stopinsert
-        set nonumber
         let b:terminal_navigate = 1
     endif
     execute 'sleep'. l:sleep .'m'
-    return [bufnr('%')]
+    return [bufnr()]
 endfunction
 
 function s:SlimeOpenTerminal(cmds) abort

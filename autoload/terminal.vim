@@ -60,7 +60,6 @@ function terminal#SmartTerminal(cmd) abort
     endif
 
     call s:OpenTerminal(v:true, a:cmd)
-    return
 endfunction
 
 if has('nvim')
