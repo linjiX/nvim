@@ -14,6 +14,7 @@ let g:slime_no_mappings = 1
 let g:slime_python_ipython = 1
 let g:slime_paste_file = $MY_CACHE_PATH .'/slime_paste'
 
+let s:slime_smart_mode = 1
 let s:slime_sleep_time_ms = 200
 let s:slime_run_filetype = ['python', 'sh']
 let s:slime_repl = {
@@ -208,13 +209,15 @@ function s:SlimeAvailableTerminals(cmds) abort
         let l:bufnrs = filter(l:bufnrs, 'term_getstatus(v:val) =~# "running"')
     endif
 
-    for l:bufnr in l:bufnrs
-        let l:pid = s:SlimeGetTerminalPID(l:bufnr)
-        let l:cmd = s:SlimeGetTerminalCommand(l:pid)
-        if index(a:cmds, l:cmd) == -1
-            call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
-        endif
-    endfor
+    if s:slime_smart_mode
+        for l:bufnr in l:bufnrs
+            let l:pid = s:SlimeGetTerminalPID(l:bufnr)
+            let l:cmd = s:SlimeGetTerminalCommand(l:pid)
+            if index(a:cmds, l:cmd) == -1
+                call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
+            endif
+        endfor
+    endif
 
     return l:bufnrs
 endfunction
@@ -228,6 +231,15 @@ function s:SlimeSelectTerminal(is_run) abort
     call s:SlimeConfig(l:bufnrs, a:is_run)
 endfunction
 
+function s:SlimeModeSwitch() abort
+    let s:slime_smart_mode = !s:slime_smart_mode
+    if s:slime_smart_mode
+        echo 'Slime Smart Mode'
+    else
+        echo 'Slime Normal Mode'
+    endif
+endfunction
+
 command! SlimeRunConfig call <SID>SlimeUserConfig(v:true)
 command! SlimeReplConfig call <SID>SlimeUserConfig(v:false)
 nmap <silent> <leader>ea
@@ -236,4 +248,5 @@ xmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeR
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeLineSend
 nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeParagraphSend
 nmap <silent> <leader>em :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeMotionSend
+nmap <silent> <leader>es :call <SID>SlimeModeSwitch()<CR>
 nmap <silent> <leader>r :call <SID>Run()<CR>
