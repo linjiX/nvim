@@ -93,32 +93,32 @@ nmap <silent> [ol :call <SID>ListOn()<CR>
 nmap <silent> ]ol :call <SID>ListOff()<CR>
 nmap <silent> yol :call <SID>ListToggle()<CR>
 
-nmap <expr> [a common#Open('<Plug>unimpairedAPrevious')
-nmap <expr> ]a common#Open('<Plug>unimpairedANext')
-nmap <expr> [A common#Open('<Plug>unimpairedAFirst')
-nmap <expr> ]A common#Open('<Plug>unimpairedALast')
+nmap <expr> [a utility#Open('<Plug>unimpairedAPrevious')
+nmap <expr> ]a utility#Open('<Plug>unimpairedANext')
+nmap <expr> [A utility#Open('<Plug>unimpairedAFirst')
+nmap <expr> ]A utility#Open('<Plug>unimpairedALast')
 
-nmap <expr> [b common#Open('<Plug>unimpairedBPrevious')
-nmap <expr> ]b common#Open('<Plug>unimpairedBNext')
-nmap <expr> [B common#Open('<Plug>unimpairedBFirst')
-nmap <expr> ]B common#Open('<Plug>unimpairedBLast')
+nmap <expr> [b utility#Open('<Plug>unimpairedBPrevious')
+nmap <expr> ]b utility#Open('<Plug>unimpairedBNext')
+nmap <expr> [B utility#Open('<Plug>unimpairedBFirst')
+nmap <expr> ]B utility#Open('<Plug>unimpairedBLast')
 
-nmap <expr> [f common#Open('<Plug>unimpairedDirectoryPrevious')
-nmap <expr> ]f common#Open('<Plug>unimpairedDirectoryNext')
+nmap <expr> [f utility#Open('<Plug>unimpairedDirectoryPrevious')
+nmap <expr> ]f utility#Open('<Plug>unimpairedDirectoryNext')
 
-nmap <expr> [l common#Open('<Plug>unimpairedLPrevious')
-nmap <expr> ]l common#Open('<Plug>unimpairedLNext')
-nmap <expr> [L common#Open('<Plug>unimpairedLFirst')
-nmap <expr> ]L common#Open('<Plug>unimpairedLLast')
-nmap <expr> [<C-l> common#Open('<Plug>unimpairedLPFile')
-nmap <expr> ]<C-l> common#Open('<Plug>unimpairedLNFile')
+nmap <expr> [l utility#Open('<Plug>unimpairedLPrevious')
+nmap <expr> ]l utility#Open('<Plug>unimpairedLNext')
+nmap <expr> [L utility#Open('<Plug>unimpairedLFirst')
+nmap <expr> ]L utility#Open('<Plug>unimpairedLLast')
+nmap <expr> [<C-l> utility#Open('<Plug>unimpairedLPFile')
+nmap <expr> ]<C-l> utility#Open('<Plug>unimpairedLNFile')
 
-nmap <expr> [q common#Open('<Plug>unimpairedQPrevious')
-nmap <expr> ]q common#Open('<Plug>unimpairedQNext')
-nmap <expr> [Q common#Open('<Plug>unimpairedQFirst')
-nmap <expr> ]Q common#Open('<Plug>unimpairedQLast')
-nmap <expr> [<C-q> common#Open('<Plug>unimpairedQPFile')
-nmap <expr> ]<C-q> common#Open('<Plug>unimpairedQNFile')
+nmap <expr> [q utility#Open('<Plug>unimpairedQPrevious')
+nmap <expr> ]q utility#Open('<Plug>unimpairedQNext')
+nmap <expr> [Q utility#Open('<Plug>unimpairedQFirst')
+nmap <expr> ]Q utility#Open('<Plug>unimpairedQLast')
+nmap <expr> [<C-q> utility#Open('<Plug>unimpairedQPFile')
+nmap <expr> ]<C-q> utility#Open('<Plug>unimpairedQNFile')
 
 " Plug 'chxuan/change-colorscheme'
 nnoremap <silent> ]h :NEXTCOLOR<CR>

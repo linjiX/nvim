@@ -62,15 +62,15 @@ let g:airline#extensions#whitespace#mixed_indent_format = 'i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'I[%s]'
 let g:airline#extensions#whitespace#skip_indent_check_ft = {'markdown': ['trailing']}
 
-nmap <expr> <leader>1 common#Open('<Plug>AirlineSelectTab1')
-nmap <expr> <leader>2 common#Open('<Plug>AirlineSelectTab2')
-nmap <expr> <leader>3 common#Open('<Plug>AirlineSelectTab3')
-nmap <expr> <leader>4 common#Open('<Plug>AirlineSelectTab4')
-nmap <expr> <leader>5 common#Open('<Plug>AirlineSelectTab5')
-nmap <expr> <leader>6 common#Open('<Plug>AirlineSelectTab6')
-nmap <expr> <leader>7 common#Open('<Plug>AirlineSelectTab7')
-nmap <expr> <leader>8 common#Open('<Plug>AirlineSelectTab8')
-nmap <expr> <leader>9 common#Open('<Plug>AirlineSelectTab9')
+nmap <expr> <leader>1 utility#Open('<Plug>AirlineSelectTab1')
+nmap <expr> <leader>2 utility#Open('<Plug>AirlineSelectTab2')
+nmap <expr> <leader>3 utility#Open('<Plug>AirlineSelectTab3')
+nmap <expr> <leader>4 utility#Open('<Plug>AirlineSelectTab4')
+nmap <expr> <leader>5 utility#Open('<Plug>AirlineSelectTab5')
+nmap <expr> <leader>6 utility#Open('<Plug>AirlineSelectTab6')
+nmap <expr> <leader>7 utility#Open('<Plug>AirlineSelectTab7')
+nmap <expr> <leader>8 utility#Open('<Plug>AirlineSelectTab8')
+nmap <expr> <leader>9 utility#Open('<Plug>AirlineSelectTab9')
 
 " Plug 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0

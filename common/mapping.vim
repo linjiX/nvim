@@ -27,8 +27,8 @@ nnoremap <silent> <C-w><C-m> :tabnew %<CR>
 xnoremap <silent> <C-m> :sort<CR>
 
 " command mapping
-cnoreabbrev <expr><silent> q common#Quit('q')
-cnoreabbrev <expr><silent> wq common#Quit('wq')
+cnoreabbrev <expr><silent> q utility#Quit('q')
+cnoreabbrev <expr><silent> wq utility#Quit('wq')
 cnoreabbrev <silent> w!! w !sudo tee % >/dev/null
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
