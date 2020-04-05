@@ -21,9 +21,15 @@ let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
             \ }
+
 function s:SlimeGetFiletypeCommand(is_run) abort
-    return a:is_run ? s:slime_repl.default
-                \   : get(s:slime_repl, &filetype, s:slime_repl.default)
+    let l:cmds = a:is_run ? s:slime_repl.default
+                \         : get(s:slime_repl, &filetype, s:slime_repl.default)
+    let l:cmds = filter(l:cmds, 'executable(v:val)')
+    if empty(l:cmds)
+        throw 'No executable repl for filetype: '. &filetype
+    endif
+    return l:cmds
 endfunction
 
 function s:SlimeGetConfigKey(is_run) abort
@@ -130,27 +136,19 @@ function s:SlimeRun() abort
     endtry
 endfunction
 
-function s:SlimeOpenTerminalCmd(cmd) abort
-    let l:sleep = a:cmd ==# 'bash' ? s:slime_sleep_time_ms
-                \                  : s:slime_sleep_time_ms * 2
-    call terminal#SmartTerminal(a:cmd)
-    if has('nvim')
-        stopinsert
-        let b:terminal_navigate = 1
-    endif
-    execute 'sleep'. l:sleep .'m'
-    return [bufnr()]
-endfunction
-
-function s:SlimeOpenTerminal(cmds) abort
+function s:SlimeOpenTerminal(cmd) abort
     let l:winid = win_getid()
     try
-        for l:cmd in a:cmds
-            if executable(l:cmd)
-                return s:SlimeOpenTerminalCmd(l:cmd)
-            endif
-        endfor
-        throw 'Fail to open slime terminal!'
+        call terminal#SmartTerminal(a:cmd)
+        if has('nvim')
+            stopinsert
+            let b:terminal_navigate = 1
+        endif
+
+        let l:sleep = (a:cmd ==# 'bash') ? s:slime_sleep_time_ms
+                    \                    : s:slime_sleep_time_ms * 2
+        execute 'sleep'. l:sleep .'m'
+        return [bufnr()]
     finally
         noautocmd call win_gotoid(l:winid)
     endtry
@@ -175,18 +173,15 @@ function s:SlimeSelectTerminal(is_run) abort
     let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
     let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
     if empty(l:bufnrs)
-        let l:bufnrs = s:SlimeOpenTerminal(l:cmds)
+        let l:bufnrs = s:SlimeOpenTerminal(l:cmds[0])
     endif
     call s:SlimeConfig(l:bufnrs, a:is_run)
 endfunction
 
 function s:SlimeModeSwitch() abort
     let s:slime_smart_mode = !s:slime_smart_mode
-    if s:slime_smart_mode
-        echo 'Slime Smart Mode'
-    else
-        echo 'Slime Normal Mode'
-    endif
+    echo s:slime_smart_mode ? 'Slime Smart Mode'
+                \           : 'Slime Normal Mode'
 endfunction
 
 command! SlimeRunConfig call <SID>SlimeUserConfig(v:true)
