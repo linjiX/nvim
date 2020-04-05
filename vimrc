@@ -8,7 +8,6 @@
 "                |__/                                         "
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set nobackup
 let mapleader="\<Space>"
 
 " create cache directory
@@ -32,6 +31,7 @@ endfor
 silent! colorscheme solarized
 " silent! colorscheme molokai
 
+set nobackup
 set number
 set nowrap
 set confirm
