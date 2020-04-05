@@ -40,6 +40,7 @@ augroup mySource
     autocmd BufWritePost ~/.vim/common/*.vim source %
     autocmd BufWritePost ~/.vim/config/*.vim source %
     autocmd BufWritePost ~/.vim/autoload/*.vim source %
+    autocmd BufWritePost ~/.vim/feature/*.vim source %
 augroup END
 
 augroup myFileType
