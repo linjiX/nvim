@@ -74,50 +74,6 @@ function s:SlimeConfig(bufnrs, is_run) abort
     endif
 endfunction
 
-if has('macunix')
-    function s:SlimeGetTermianlCwd(pid) abort
-        if executable('lsof')
-            let l:lsof = system('lsof -aFn -d cwd -p '. a:pid)
-            return split(l:lsof, '\n')[-1][1:]
-        endif
-        throw 'Fail to get terminal working direcroty, "lsof" is not executable!'
-    endfunction
-else
-    function s:SlimeGetTermianlCwd(pid) abort
-        if executable('pwdx')
-            let l:pwdx = system('pwdx '. a:pid)
-            return l:pwdx[stridx(l:pwdx, '/') : -2]
-        elseif isdirectory('/proc/')
-            return system('readlink /proc/'. a:pid .'/cwd')[:-2]
-        endif
-        throw 'Fail to get terminal working direcroty!'
-    endfunction
-endif
-
-function s:SlimeGetTerminalCommand(pid) abort
-    let l:command = system('ps -o command= '. a:pid)
-    let l:idx = strridx(l:command, '/') + 1
-    return l:command[l:idx : -2]
-endfunction
-
-function s:SlimeGetTerminalPID(bufnr) abort
-    if has('nvim')
-        let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
-        let l:tty = system('ps -o tty= '. l:pid)[:-2]
-    else
-        let l:tty = term_gettty(a:bufnr)
-    endif
-
-    let l:ps = system('ps -o stat= -o pid= -t '. l:tty)
-    for l:item in split(l:ps, '\n')
-        let [l:stat, l:pid] = split(l:item)
-        if l:stat =~# '+'
-            return l:pid
-        endif
-    endfor
-    throw 'Fail to get foreground terminal PID!'
-endfunction
-
 function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
     execute 'lcd '. a:root_cwd
     let l:filepath = fnameescape(expand('%:.'))
@@ -152,9 +108,7 @@ function s:SlimeRun() abort
     call s:SlimeSelectTerminal(v:true)
 
     let l:bufnr = b:slime_config.run
-    let l:pid = s:SlimeGetTerminalPID(l:bufnr)
-
-    let l:terminal_cwd = s:SlimeGetTermianlCwd(l:pid)
+    let l:terminal_cwd = terminal#GetCwd(l:bufnr)
     let l:root_cwd = FindRootDirectory()
     if empty(l:root_cwd)
         let l:root_cwd = getcwd()
@@ -211,8 +165,7 @@ function s:SlimeAvailableTerminals(cmds) abort
 
     if s:slime_smart_mode
         for l:bufnr in l:bufnrs
-            let l:pid = s:SlimeGetTerminalPID(l:bufnr)
-            let l:cmd = s:SlimeGetTerminalCommand(l:pid)
+            let l:cmd = terminal#GetCommand(l:bufnr)
             if index(a:cmds, l:cmd) == -1
                 call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
             endif
