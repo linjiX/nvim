@@ -78,14 +78,3 @@ augroup myQuickFix
     autocmd QuickFixCmdPost [^l]* nested belowright cwindow
     autocmd QuickFixCmdPost    l* nested belowright lwindow
 augroup END
-
-augroup myTerminal
-    autocmd!
-    if has('nvim')
-        autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd TermClose * quit
-        autocmd BufEnter term://* call terminal#AutoCmdNvimTerminal()
-    else
-        autocmd TerminalOpen * call terminal#AutoCmdTerminal()
-    endif
-augroup END

@@ -9,6 +9,14 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+if has('nvim')
+    function terminal#Navigate(cmd) abort
+        let l:esc = "\<C-\>\<C-n>"
+        let l:flag = ":let b:terminal_navigate = 1\<CR>"
+        return l:esc . l:flag . a:cmd
+    endfunction
+endif
+
 function terminal#AutoCmdTerminal() abort
     setlocal nonumber
     setlocal nobuflisted
@@ -61,11 +69,3 @@ function terminal#SmartTerminal(cmd) abort
 
     call s:OpenTerminal(v:true, a:cmd)
 endfunction
-
-if has('nvim')
-    function terminal#Navigate(cmd) abort
-        let l:esc = "\<C-\>\<C-n>"
-        let l:flag = ":let b:terminal_navigate = 1\<CR>"
-        return l:esc . l:flag . a:cmd
-    endfunction
-endif

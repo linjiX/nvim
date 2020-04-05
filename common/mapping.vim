@@ -49,27 +49,6 @@ inoremap <C-e> <End>
 inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
-" terminal mapping
-nnoremap <silent> <C-n> :call terminal#SmartTerminal('bash')<CR>
-nnoremap <silent> <leader>ei :call terminal#SmartTerminal('ipython')<CR>
-nnoremap <silent> <leader>eb :call terminal#SmartTerminal('bpython')<CR>
-nnoremap <silent> <leader>et :call terminal#SmartTerminal('ptpython')<CR>
-nnoremap <silent> <leader>eh :call terminal#SmartTerminal('htop')<CR>
-
-tnoremap <ESC><ESC> <C-\><C-n>
-if has('nvim')
-    tmap <expr><silent> <C-h> terminal#Navigate("\<C-h>")
-    tmap <expr><silent> <C-j> terminal#Navigate("\<C-j>")
-    tmap <expr><silent> <C-k> terminal#Navigate("\<C-k>")
-    tmap <expr><silent> <C-l> terminal#Navigate("\<C-k>")
-else
-    set termwinkey=<C-v>
-    tnoremap <C-h> <C-v>h
-    tnoremap <C-j> <C-v>j
-    tnoremap <C-k> <C-v>k
-    tnoremap <C-l> <C-v>l
-endif
-
 " quickfix mapping
 nnoremap <silent> <leader>co :call quickfix#ListToggle('copen')<CR>
 nnoremap <silent> <leader>lo :call quickfix#ListToggle('lopen')<CR>

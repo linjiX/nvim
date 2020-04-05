@@ -47,11 +47,13 @@ call plug#begin('~/.vim/plug')
 
 " Feature {{{
 if !exists('g:auto_installation')
+    let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+
     Plug $HOME .'/.vim/feature/arc'
     Plug $HOME .'/.vim/feature/buffer'
     Plug $HOME .'/.vim/feature/large'
     Plug $HOME .'/.vim/feature/linter'
-    let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+    Plug $HOME .'/.vim/feature/terminal'
 endif
 " }}}
 
