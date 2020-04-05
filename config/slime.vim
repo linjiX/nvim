@@ -139,7 +139,7 @@ endfunction
 function s:SlimeOpenTerminal(cmd) abort
     let l:winid = win_getid()
     try
-        call terminal#SmartTerminal(a:cmd)
+        call terminal#SmartOpen(a:cmd)
         if has('nvim')
             stopinsert
             let b:terminal_navigate = 1

@@ -44,14 +44,7 @@ function terminal#AutoCmdTerminal() abort
     endif
 endfunction
 
-function terminal#AutoCmdNvimTerminal() abort
-    if exists('b:terminal_navigate')
-        unlet b:terminal_navigate
-        startinsert
-    endif
-endfunction
-
-function s:OpenTerminal(is_vertical, cmd) abort
+function s:Open(is_vertical, cmd) abort
     if has('nvim')
         let l:precmd = a:is_vertical ? 'botright vsplit ' : 'belowright split '
         let l:postcmd = 'term://'. a:cmd
@@ -63,7 +56,7 @@ function s:OpenTerminal(is_vertical, cmd) abort
     execute l:precmd . l:postcmd
 endfunction
 
-function terminal#SmartTerminal(cmd) abort
+function terminal#SmartOpen(cmd) abort
     let [l:wintype, l:winlist] = winlayout()
 
     if l:wintype ==# 'row'
@@ -76,13 +69,13 @@ function terminal#SmartTerminal(cmd) abort
             let l:is_terminal = getwininfo(l:winid)[0].terminal
             if l:is_terminal
                 noautocmd call win_gotoid(l:winid)
-                call s:OpenTerminal(v:false, a:cmd)
+                call s:Open(v:false, a:cmd)
                 return
             endif
         endfor
     endif
 
-    call s:OpenTerminal(v:true, a:cmd)
+    call s:Open(v:true, a:cmd)
 endfunction
 
 function s:GetPID(bufnr) abort

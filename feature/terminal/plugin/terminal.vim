@@ -21,11 +21,11 @@ augroup myTerminal
     endif
 augroup END
 
-nnoremap <silent> <C-n> :call terminal#SmartTerminal('bash')<CR>
-nnoremap <silent> <leader>ei :call terminal#SmartTerminal('ipython')<CR>
-nnoremap <silent> <leader>eb :call terminal#SmartTerminal('bpython')<CR>
-nnoremap <silent> <leader>et :call terminal#SmartTerminal('ptpython')<CR>
-nnoremap <silent> <leader>eh :call terminal#SmartTerminal('htop')<CR>
+nnoremap <silent> <C-n> :call terminal#SmartOpen('bash')<CR>
+nnoremap <silent> <leader>ei :call terminal#SmartOpen('ipython')<CR>
+nnoremap <silent> <leader>eb :call terminal#SmartOpen('bpython')<CR>
+nnoremap <silent> <leader>et :call terminal#SmartOpen('ptpython')<CR>
+nnoremap <silent> <leader>eh :call terminal#SmartOpen('htop')<CR>
 
 tnoremap <ESC><ESC> <C-\><C-n>
 if has('nvim')
