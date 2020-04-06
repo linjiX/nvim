@@ -146,7 +146,7 @@ nmap <silent> [j <Plug>(coc-diagnostic-prev)
 
 nnoremap <silent> <leader>tt :call CocAction('doHover')<CR>
 
-nnoremap <leader>lu :CocUpdate<CR>
+nnoremap <silent> <leader>lu :CocUpdate<CR>
 nmap <silent> <leader>lr <Plug>(coc-rename)
 nmap <silent> <leader>lR <Plug>(coc-refactor)
 nmap <silent> <leader>lh <Plug>(coc-float-hide)
@@ -159,7 +159,7 @@ nnoremap <silent> <leader>le :CocList --normal extensions<CR>
 nnoremap <silent> <leader>lp :CocList --normal yank<CR>
 nnoremap <silent> <leader>lt :CocList --normal translation<CR>
 nnoremap <silent> <leader>ls :CocList --interactive symbols<CR>
-nnoremap <silent> <leader>lx :CocList commands<CR>
+nnoremap <silent> <leader>lc :CocList commands<CR>
 
 " coc-git
 nmap <leader>gp <Plug>(coc-git-chunkinfo)
