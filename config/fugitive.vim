@@ -21,12 +21,17 @@ augroup myGit
     autocmd FileType GV setlocal colorcolumn=0
 augroup END
 
-command! Gst vertical botright Gstatus
-command! Gd vertical botright Gdiffsplit
+command! -bar -bang Gst vertical botright Gstatus<bang>
+command! -bar -bang -nargs=* -complete=customlist,fugitive#EditComplete Gd
+            \ vertical botright Gdiffsplit<bang> <args>
+
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc
-            \ execute 'vertical botright Gcommit -v '. <q-args>
+            \ vertical botright Gcommit -v <args>
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
-            \ execute 'vertical botright Gcommit -v -a'. <q-args>
+            \ vertical botright Gcommit -v -a <args>
+
+command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
+            \ AsyncRun git push <args>
 
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1
