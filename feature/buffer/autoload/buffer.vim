@@ -75,9 +75,6 @@ function buffer#Navigate(is_backward) abort
 
     for l:index in l:range
         let l:item = l:jumplist[l:index]
-        if !bufexists(l:item.bufnr)
-            continue
-        endif
 
         let l:count += 1
         if buflisted(l:item.bufnr) && l:item.bufnr != l:bufnr
