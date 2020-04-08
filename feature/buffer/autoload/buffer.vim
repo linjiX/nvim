@@ -74,13 +74,11 @@ function buffer#Navigate(is_backward) abort
     endtry
 
     for l:index in l:range
-        let l:item = l:jumplist[l:index]
+        let l:jump_bufnr = l:jumplist[l:index].bufnr
 
         let l:count += 1
-        if buflisted(l:item.bufnr) && l:item.bufnr != l:bufnr
-            let l:cmd = a:is_backward ? "\<C-o>"
-                        \             : "\<C-i>"
-            execute 'normal! '. l:count . l:cmd
+        if l:jump_bufnr != l:bufnr && buflisted(l:jump_bufnr)
+            execute 'normal! '. l:count . (a:is_backward ? "\<C-o>" : "\<C-i>")
 
             if l:bufnr == bufnr()
                 " protect code
