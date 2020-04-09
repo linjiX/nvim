@@ -10,21 +10,17 @@ set -v
 ############################
 
 VERSION="3.5.4"
+TARGET_PHPCS="/usr/local/bin/phpcs"
+TARGET_PHPCBF="/usr/local/bin/phpcbf"
 
 if ! dpkg -s wget 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y wget
 fi
 
-TMPDIR="$(mktemp -d /tmp/install_phpcs.XXXX)"
-pushd "$TMPDIR" >/dev/null
+sudo wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcs.phar \
+    -O $TARGET_PHPCS
+sudo wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcbf.phar \
+    -O $TARGET_PHPCBF
 
-wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcs.phar \
-    -O phpcs
-wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcbf.phar \
-    -O phpcbf
-
-chmod +x phpcs phpcbf
-sudo mv phpcs phpcbf /usr/local/bin
-
-popd >/dev/null
+sudo chmod +x $TARGET_PHPCS $TARGET_PHPCBF
