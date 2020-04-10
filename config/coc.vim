@@ -50,6 +50,39 @@ function s:CocToggle() abort
                 \        : ":CocEnable\<CR>"
 endfunction
 
+function s:ToggleService(name) abort
+    call CocAction('toggleService', a:name)
+    echo 'Toggle '. a:name
+endfunction
+
+function s:EnableExtension(name) abort
+    call CocAction('reloadExtension', a:name)
+    echo 'Enable '. a:name
+endfunction
+
+function s:DisableExtension(name) abort
+    call CocAction('deactivateExtension', a:name)
+    echo 'Disable '. a:name
+endfunction
+
+function s:ToggleExtension(name) abort
+    let l:list = CocAction('extensionStats')
+    for l:item in l:list
+        if l:item.id ==# a:name
+            let l:state = l:item.state
+        endif
+    endfor
+    if !exists('l:state')
+        call utility#LogWarning('No coc extension: '. a:name)
+        return
+    endif
+    if l:state ==# 'activated'
+        call s:DisableExtension(a:name)
+    else
+        call s:EnableExtension(a:name)
+    endif
+endfunction
+
 let s:coc_lsp = {
             \   'python': 'coc-python',
             \   'json': 'coc-json',
@@ -67,22 +100,9 @@ function s:ToggleLSP() abort
     let l:name = s:coc_lsp[&filetype]
 
     if l:name =~# '\v^coc-'
-        let l:list = CocAction('extensionStats')
-        for l:item in l:list
-            if l:item.id ==# l:name
-                let l:state = l:item.state
-            endif
-        endfor
-        if l:state ==# 'activated'
-            echo 'Disable '. l:name
-            call CocAction('deactivateExtension', l:name)
-        else
-            echo 'Enable '. l:name
-            call CocAction('reloadExtension', l:name)
-        endif
+        call s:ToggleExtension(name)
     else
-        echo 'Toggle '. l:name
-        call CocAction('toggleService', l:name)
+        call s:ToggleService(name)
     endif
 endfunction
 
