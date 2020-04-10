@@ -49,6 +49,9 @@ augroup myBuffer
     autocmd FileType vim nnoremap <buffer><silent> <leader>h :call buffer#Switch()<CR>
 augroup END
 
+nnoremap <silent> <C-o> :call buffer#Jump(1)<CR>
+nnoremap <silent> <C-i> :call buffer#Jump(0)<CR>
+
 nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
 nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>
 nnoremap <silent> <leader>` <C-^>
