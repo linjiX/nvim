@@ -74,7 +74,9 @@ function workspace#Reveal() abort
     if !s:HasTagbar()
         call TagbarTrigger()
     endif
-    execute 'CocCommand explorer --no-toggle --width '. SiderBarWidth() .' --reveal='. expand('%:p')
+    execute 'CocCommand explorer --no-toggle'
+                \             .' --width '. SiderBarWidth()
+                \             .' --reveal '. fnameescape(expand('%:p'))
 endfunction
 
 function TagbarTrigger() abort
