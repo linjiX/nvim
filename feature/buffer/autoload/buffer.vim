@@ -61,36 +61,36 @@ function s:BPrevious() abort
     return l:bufnr != bufnr()
 endfunction
 
-function buffer#Navigate(is_backward) abort
+function s:JumpCount(is_older, lambda) abort
     let [l:jumplist, l:position] = getjumplist()
-    let l:bufnr = bufnr()
-    let l:count = 0
 
     try
-        let l:range = a:is_backward ? range(l:position - 1, 0, -1)
-                    \               : range(l:position + 1, len(l:jumplist) - 1)
+        let l:range = a:is_older ? range(l:position - 1, 0, -1)
+                    \            : range(l:position + 1, len(l:jumplist) - 1)
     catch /^Vim\%((\a\+)\)\=:E727/
         let l:range = []
     endtry
 
+    let l:count = 0
     for l:index in l:range
-        let l:jump_bufnr = l:jumplist[l:index].bufnr
-
         let l:count += 1
-        if l:jump_bufnr != l:bufnr && buflisted(l:jump_bufnr)
-            execute 'normal! '. l:count . (a:is_backward ? "\<C-o>" : "\<C-i>")
-
-            if l:bufnr == bufnr()
-                " protect code
-                throw 'Buffer not change in buffer#Navigate()'
-            endif
-
-            return v:true
+        if a:lambda(l:jumplist[l:index].bufnr)
+            return l:count
         endif
     endfor
-    echo a:is_backward ? 'No backward buffer'
-                \      : 'No forward buffer'
-    return v:false
+    return 0
+endfunction
+
+function buffer#Navigate(is_older) abort
+    let l:current_bufnr = bufnr()
+    let l:count = s:JumpCount(a:is_older,
+                \             {bufnr -> bufnr != l:current_bufnr && buflisted(bufnr)})
+    if l:count
+        execute 'normal! '. l:count . (a:is_older ? "\<C-o>" : "\<C-i>")
+    else
+        echo a:is_older ? 'No older buffer'
+                    \   : 'No newer buffer'
+    endif
 endfunction
 
 function buffer#Close(cmd) abort
