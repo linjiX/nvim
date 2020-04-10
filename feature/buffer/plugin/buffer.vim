@@ -49,11 +49,11 @@ augroup myBuffer
     autocmd FileType vim nnoremap <buffer><silent> <leader>h :call buffer#Switch()<CR>
 augroup END
 
-nnoremap <silent> <C-o> :call buffer#Jump(1)<CR>
-nnoremap <silent> <C-i> :call buffer#Jump(0)<CR>
+nnoremap <silent> <C-o> :<C-u>call buffer#Jump(1)<CR>
+nnoremap <silent> <C-i> :<C-u>call buffer#Jump(0)<CR>
 
-nnoremap <silent> <leader>o :call buffer#Navigate(1)<CR>
-nnoremap <silent> <leader>i :call buffer#Navigate(0)<CR>
+nnoremap <silent> <leader>o :<C-u>call buffer#Navigate(1)<CR>
+nnoremap <silent> <leader>i :<C-u>call buffer#Navigate(0)<CR>
 nnoremap <silent> <leader>` <C-^>
 
 nnoremap <expr><silent> + utility#Open(":bn\<CR>")
@@ -61,6 +61,6 @@ nnoremap <expr><silent> _ utility#Open(":bp\<CR>")
 xnoremap <expr><silent> + utility#Open(":\<C-u>bn\<CR>")
 xnoremap <expr><silent> _ utility#Open(":\<C-u>bp\<CR>")
 
-nnoremap <silent> <leader>q :call buffer#Close('bwipeout')<CR>
-nnoremap <silent> <leader>Q :call buffer#Close('bdelete')<CR>
-nnoremap <silent> <leader>u :call buffer#Reopen()<CR>
+nnoremap <silent> <leader>q :<C-u>call buffer#Close('bwipeout')<CR>
+nnoremap <silent> <leader>Q :<C-u>call buffer#Close('bdelete')<CR>
+nnoremap <silent> <leader>u :<C-u>call buffer#Reopen()<CR>

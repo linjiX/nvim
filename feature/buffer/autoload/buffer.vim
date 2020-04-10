@@ -71,11 +71,16 @@ function s:JumpCount(is_older, lambda) abort
         let l:range = []
     endtry
 
+    let l:normal_count = v:count1
     let l:count = 0
+
     for l:index in l:range
         let l:count += 1
         if a:lambda(l:jumplist[l:index].bufnr)
-            return l:count
+            let l:normal_count -= 1
+            if l:normal_count == 0
+                return l:count
+            endif
         endif
     endfor
     return 0
@@ -97,9 +102,14 @@ function buffer#Navigate(is_older) abort
                 \             {bufnr -> bufnr != l:current_bufnr && buflisted(bufnr)})
     if l:count
         execute 'normal! '. l:count . (a:is_older ? "\<C-o>" : "\<C-i>")
+        if bufnr() == l:current_bufnr
+            throw 'Buffer not change after navigate'
+        endif
+        return v:true
     else
         echo a:is_older ? 'No older buffer'
                     \   : 'No newer buffer'
+        return v:false
     endif
 endfunction
 
