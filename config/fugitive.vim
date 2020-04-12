@@ -31,7 +31,7 @@ command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
             \ vertical botright Gcommit -v -a <args>
 
 command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
-            \ AsyncRun -silent git push <args>
+            \  let g:asyncrun_silent_mode = 1 | AsyncRun git push <args>
 
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1

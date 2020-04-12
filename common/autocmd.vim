@@ -76,6 +76,6 @@ augroup END
 augroup myQuickFix
     autocmd!
     autocmd FileType qf call quickfix#AutoCmdQuickFix()
-    autocmd QuickFixCmdPost [^l]* nested belowright cwindow
-    autocmd QuickFixCmdPost    l* nested belowright lwindow
+    " autocmd QuickFixCmdPost [^l]* nested belowright cwindow
+    " autocmd QuickFixCmdPost    l* nested belowright lwindow
 augroup END
