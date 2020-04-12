@@ -22,16 +22,7 @@ else
 endif
 
 let g:asyncrun_rootmarks = ['.git']
-
-function s:AutoCmdCWindow() abort
-    if exists('g:asyncrun_silent_mode')
-        unlet g:asyncrun_silent_mode
-        if g:asyncrun_code == 0
-            return
-        endif
-    endif
-    belowright cwindow
-endfunction
+let g:asyncrun_status = ''
 
 function s:AsyncGrep(cmd, args)
     let l:args = empty(a:args) ? expand('<cword>') .' %' : escape(a:args, '#%')
@@ -59,6 +50,16 @@ function s:AsyncStarCommand(is_visual, is_global, is_g) abort
     let l:starcmd = ":\<C-u>call AsyncStar(". l:args .")\<CR>"
 
     return l:starcmd . l:setpos . l:setlz
+endfunction
+
+function s:AutoCmdCWindow() abort
+    if exists('g:asyncrun_silent_mode')
+        unlet g:asyncrun_silent_mode
+        if g:asyncrun_code == 0
+            return
+        endif
+    endif
+    belowright cwindow
 endfunction
 
 augroup myAsyncRun

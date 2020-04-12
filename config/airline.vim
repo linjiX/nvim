@@ -17,6 +17,12 @@ let g:airline_solarized_dark_inactive_background = 1
 call airline#parts#define_accent('coc_status', 'none')
 call airline#parts#define_minwidth('coc_status', 100)
 
+call airline#parts#define('asyncrun', {
+            \   'function': 'AsyncRunStatus',
+            \   'accent': 'none',
+            \   'minwidth': '60'
+            \})
+
 let g:airline_powerline_fonts = 1
 let g:airline_filetype_overrides = {
             \   'coc-explorer':  ['coc-explorer', ''],
@@ -61,6 +67,22 @@ let g:airline#extensions#whitespace#conflicts_format = 'C[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'I[%s]'
 let g:airline#extensions#whitespace#skip_indent_check_ft = {'markdown': ['trailing']}
+
+let s:status_symbol = {
+            \   'success': '  ',
+            \   'running': '  ',
+            \   'failure': '  ',
+            \   '': '',
+            \}
+function AsyncRunStatus() abort
+    return s:status_symbol[g:asyncrun_status]
+endfunction
+
+augroup myAirline
+    autocmd!
+    autocmd User AirlineAfterInit let g:airline_section_x =
+                \ airline#section#create(['asyncrun', g:airline_section_x])
+augroup END
 
 nmap <expr> <leader>1 utility#Open('<Plug>AirlineSelectTab1')
 nmap <expr> <leader>2 utility#Open('<Plug>AirlineSelectTab2')
