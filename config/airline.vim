@@ -19,7 +19,6 @@ call airline#parts#define_minwidth('coc_status', 100)
 
 call airline#parts#define('asyncrun', {
             \   'function': 'AsyncRunStatus',
-            \   'accent': 'none',
             \   'minwidth': '60'
             \})
 
@@ -68,14 +67,28 @@ let g:airline#extensions#whitespace#mixed_indent_format = 'i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'I[%s]'
 let g:airline#extensions#whitespace#skip_indent_check_ft = {'markdown': ['trailing']}
 
+let g:airline_asyncrun_countdown = 500
 let s:status_symbol = {
-            \   'success': '  ',
-            \   'running': '  ',
-            \   'failure': '  ',
-            \   '': '',
+            \   'success': [v:false, '  '],
+            \   'running': [v:true, '  '],
+            \   'failure': [v:false, '  '],
             \}
 function AsyncRunStatus() abort
-    return s:status_symbol[g:asyncrun_status]
+    if !exists('g:asyncrun_status') || empty(g:asyncrun_status)
+        return ''
+    endif
+
+    let [l:keep, l:symbol] = s:status_symbol[g:asyncrun_status]
+    if l:keep
+        let s:countdown = g:airline_asyncrun_countdown
+    else
+        if s:countdown > 0
+            let s:countdown -= 1
+        else
+            return ''
+        endif
+    endif
+    return l:symbol
 endfunction
 
 augroup myAirline
