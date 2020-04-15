@@ -88,6 +88,7 @@ let s:coc_lsp = {
             \   'json': 'coc-json',
             \   'vim': 'coc-vimlsp',
             \   'xml': 'coc-xml',
+            \   'yaml': 'coc-yaml',
             \   'c': 'languageserver.ccls',
             \   'cpp': 'languageserver.ccls',
             \   'sh': 'languageserver.bash',
