@@ -23,6 +23,7 @@ let g:ale_linters = {
             \   'cmake': ['cmakelint'],
             \   'markdown': ['markdownlint-cli'],
             \   'xml': ['xmllint'],
+            \   'yaml': ['yamllint'],
             \   'php': ['php', 'phpcs'],
             \}
 let g:ale_cpp_CppCheck_options = join([

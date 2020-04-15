@@ -33,6 +33,7 @@ let g:formatdef_jq = "'jq -M --indent 4'"
 " let g:formatters_json = ['jq']
 let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
+let g:formatters_yaml = ['prettier']
 
 let g:formatdef_prettydiff = "$MY_LINTER_PATH .'/prettydiff.sh beautify ".
             \                "warp:100 indent_size:4 preserve:2 space_close:true'"
