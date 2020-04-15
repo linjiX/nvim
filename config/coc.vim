@@ -212,7 +212,6 @@ xmap <silent> <leader>tr <Plug>(coc-translator-rv)
 let g:coc_explorer_global_presets = {
             \   'floating': {
             \       'position': 'floating',
-            \       'floating-width': 50,
             \       'floating-position': 'center',
             \       'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] '.
             \                              '[diagnosticError & 1][filename][modified][readonly] '.
@@ -222,7 +221,15 @@ let g:coc_explorer_global_presets = {
 
 nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
 nnoremap <silent> <leader>W :call workspace#Reveal()<CR>
-nnoremap <silent> <leader>lf :CocCommand explorer --preset=floating<CR>
+nnoremap <silent> <leader>lf :CocCommand explorer
+            \ --preset=floating
+            \ --floating-width=<C-r>=SiderBarWidth()+10<CR>
+            \ <CR>
+nnoremap <silent> <leader>lF :CocCommand explorer
+            \ --preset=floating
+            \ --floating-width=<C-r>=SiderBarWidth()+10<CR>
+            \ --reveal=<C-r>=fnameescape(expand('%:p'))<CR>
+            \ <CR>
 
 " ccls
 function s:AutoCmdCcls() abort
