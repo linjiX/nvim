@@ -209,8 +209,20 @@ nmap <silent> <leader>tr <Plug>(coc-translator-r)
 xmap <silent> <leader>tr <Plug>(coc-translator-rv)
 
 " coc-explorer
+let g:coc_explorer_global_presets = {
+            \   'floating': {
+            \       'position': 'floating',
+            \       'floating-width': 50,
+            \       'floating-position': 'center',
+            \       'file-child-template': '[git | 2] [selection | clip | 1] [indent][icon | 1] '.
+            \                              '[diagnosticError & 1][filename][modified][readonly] '.
+            \                              '[linkIcon & 1][link growRight 1 omitCenter 5]',
+            \   }
+            \}
+
 nnoremap <silent> <leader>w :call workspace#Toggle()<CR>
 nnoremap <silent> <leader>W :call workspace#Reveal()<CR>
+nnoremap <silent> <leader>lf :CocCommand explorer --preset=floating<CR>
 
 " ccls
 function s:AutoCmdCcls() abort
