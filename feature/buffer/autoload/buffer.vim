@@ -87,7 +87,9 @@ function s:JumpCount(is_older, lambda) abort
 endfunction
 
 function buffer#Jump(is_older) abort
-    let l:count = s:JumpCount(a:is_older, {bufnr -> buflisted(bufnr)})
+    let l:Lambda = buflisted(bufnr()) ? {bufnr -> buflisted(bufnr)}
+                \                     : {bufnr -> !buflisted(bufnr)}
+    let l:count = s:JumpCount(a:is_older, l:Lambda)
     if l:count
         execute 'normal! '. l:count . (a:is_older ? "\<C-o>" : "\<C-i>")
     else
