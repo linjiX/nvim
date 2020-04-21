@@ -10,6 +10,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function terminal#Navigate(direction) abort
+    if terminal#GetCommand(bufnr()) ==# 'fzf'
+        if a:direction ==# 'j'
+            return "\<C-j>"
+        elseif a:direction ==# 'k'
+            return "\<C-k>"
+        endif
+    endif
     if has('nvim')
         let l:esc = "\<C-\>\<C-n>"
         let l:flag = ":let b:terminal_navigate = 1\<CR>"
@@ -83,7 +90,7 @@ function terminal#SmartOpen(cmd) abort
     call s:Open(v:true, a:cmd)
 endfunction
 
-function s:GetPID(bufnr) abort
+function s:GetProcessStatus(bufnr) abort
     if has('nvim')
         let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
         let l:tty = system('ps -o tty= '. l:pid)[:-2]
@@ -91,25 +98,41 @@ function s:GetPID(bufnr) abort
         let l:tty = term_gettty(a:bufnr)
     endif
 
-    let l:ps = system('ps -o stat= -o pid= -t '. l:tty)
-    for l:item in split(l:ps, '\n')
-        let [l:stat, l:pid] = split(l:item)
-        if l:stat =~# '+'
-            return l:pid
+    let l:ps = system('ps -o stat= -o pid= -o command= -t '. l:tty)
+    for l:item in reverse(split(l:ps, '\n'))
+        let l:split_item = split(l:item)
+        let l:stat = l:split_item[0]
+        if l:stat !~# '+'
+            continue
+        endif
+
+        let l:foreground_ps = {
+                    \   'pid': l:split_item[1],
+                    \   'cmd': l:split_item[2:],
+                    \}
+        if l:foreground_ps.cmd[0] ==# 'fzf'
+            return [l:foreground_ps.pid, 'fzf']
         endif
     endfor
-    throw 'Fail to get foreground terminal PID!'
+
+    if !exists('l:foreground_ps')
+        throw 'Fail to get terminal foreground process!'
+    endif
+
+    let l:cmd = fnamemodify(l:foreground_ps.cmd[0], ':t')
+    if l:cmd =~? '\v^python' && exists('l:foreground_ps.cmd[1]')
+        let l:cmd = fnamemodify(l:foreground_ps.cmd[1], ':t')
+    endif
+
+    return [l:foreground_ps.pid, l:cmd]
 endfunction
 
 function terminal#GetCommand(bufnr) abort
-    let l:pid = s:GetPID(a:bufnr)
-    let l:command = system('ps -o command= '. l:pid)
-    let l:idx = strridx(l:command, '/') + 1
-    return l:command[l:idx : -2]
+    return s:GetProcessStatus(a:bufnr)[1]
 endfunction
 
 function terminal#GetCwd(bufnr) abort
-    let l:pid = s:GetPID(a:bufnr)
+    let l:pid = s:GetProcessStatus(a:bufnr)[0]
 
     if has('macunix')
         if executable('lsof')
