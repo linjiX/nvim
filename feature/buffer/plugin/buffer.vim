@@ -10,6 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:buffer_reopen_ignore_filetype = ['gitcommit', 'help']
+let g:buffer_local_jump_filetype = ['gitcommit', 'help']
 let g:buffer_reopen = []
 
 function s:UpdateBufferUndo() abort

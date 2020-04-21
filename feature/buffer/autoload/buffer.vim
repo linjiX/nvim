@@ -87,8 +87,14 @@ function s:JumpCount(is_older, lambda) abort
 endfunction
 
 function buffer#Jump(is_older) abort
-    let l:Lambda = buflisted(bufnr()) ? {bufnr -> buflisted(bufnr)}
-                \                     : {bufnr -> !buflisted(bufnr)}
+    if index(g:buffer_local_jump_filetype, &filetype) != -1
+        let l:Lambda = {bufnr -> getbufvar(bufnr, '&filetype') ==# &filetype}
+    else
+        let l:current_bufnr = bufnr()
+        let l:Lambda = buflisted(l:current_bufnr) ? {bufnr -> buflisted(bufnr)}
+                    \                             : {bufnr -> bufnr == l:current_bufnr}
+    endif
+
     let l:count = s:JumpCount(a:is_older, l:Lambda)
     if l:count
         execute 'normal! '. l:count . (a:is_older ? "\<C-o>" : "\<C-i>")
