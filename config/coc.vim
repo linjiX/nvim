@@ -31,8 +31,8 @@ let s:java_home =
 call coc#config('xml.java.home', s:java_home)
 
 function! s:ShowDocumentation()
-    if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
+    if (index(['vim','help'], &filetype) != -1)
+        execute 'help '. expand('<cword>')
     else
         call CocAction('doHover')
     endif
