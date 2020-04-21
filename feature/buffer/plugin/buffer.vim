@@ -9,8 +9,8 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let g:buffer_reopen_ignore_filetype = ['gitcommit', 'help']
 let g:buffer_reopen = []
-let s:reopen_ignore_filetype = ['gitcommit', 'help']
 
 function s:UpdateBufferUndo() abort
     let l:filename = expand('<afile>:p')
@@ -20,7 +20,7 @@ function s:UpdateBufferUndo() abort
 
     let l:bufnr = str2nr(expand('<abuf>'))
     let l:filetype = getbufvar(l:bufnr, '&filetype')
-    if index(s:reopen_ignore_filetype, l:filetype) != -1
+    if index(g:buffer_reopen_ignore_filetype, l:filetype) != -1
         return
     endif
 
