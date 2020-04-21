@@ -9,25 +9,31 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has_key(g:plugs, 'vim-tmux-navigator')
-    " Plug 'christoomey/vim-tmux-navigator'
-    let g:tmux_navigator_no_mappings = 1
+" Plug 'christoomey/vim-tmux-navigator'
+let g:tmux_navigator_no_mappings = 1
+let s:tmux_navigator_cmd = {
+            \   'h': ':TmuxNavigateLeft',
+            \   'j': ':TmuxNavigateDown',
+            \   'k': ':TmuxNavigateUp',
+            \   'l': ':TmuxNavigateRight',
+            \   'p': ':TmuxNavigatePrevious',
+            \}
 
-    nnoremap <silent> <C-\> :TmuxNavigatePrevious<CR>
-    nnoremap <silent> <C-h> :TmuxNavigateLeft<CR>
-    nnoremap <silent> <C-l> :TmuxNavigateRight<CR>
-    nnoremap <silent> <C-k> :TmuxNavigateUp<CR>
-    nmap <silent><expr> <C-j>
-                \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
-                \                      : ':TmuxNavigateDown<CR>'
-else
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
-    nmap <silent><expr> <C-j>
-                \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
-                \                      : "\<C-w>j"
-endif
+function NavigateCmd(direction) abort
+    let l:cmd = s:tmux_navigator_cmd[a:direction]
+    if !exists(l:cmd)
+        let l:cmd = ':wincmd '. a:direction
+    endif
+    return l:cmd ."\<CR>"
+endfunction
+
+nnoremap <expr><silent> <C-\> NavigateCmd('p')
+nnoremap <expr><silent> <C-h> NavigateCmd('h')
+nnoremap <expr><silent> <C-l> NavigateCmd('l')
+nnoremap <expr><silent> <C-k> NavigateCmd('k')
+nnoremap <expr><silent> <C-j>
+            \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
+            \                      : NavigateCmd('j')
 
 " normal mode mapping
 nnoremap Y y$

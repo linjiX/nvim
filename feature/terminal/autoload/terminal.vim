@@ -9,13 +9,18 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-if has('nvim')
-    function terminal#Navigate(cmd) abort
+function terminal#Navigate(direction) abort
+    if has('nvim')
         let l:esc = "\<C-\>\<C-n>"
         let l:flag = ":let b:terminal_navigate = 1\<CR>"
-        return l:esc . l:flag . a:cmd
-    endfunction
+        let l:cmd = NavigateCmd(a:direction)
+        return l:esc . l:flag . l:cmd
+    else
+        return "\<C-v>". NavigateCmd(a:direction)
+    endif
+endfunction
 
+if has('nvim')
     function terminal#AutoCmdNavigate() abort
         if exists('b:terminal_navigate')
             unlet b:terminal_navigate
