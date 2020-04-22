@@ -86,9 +86,8 @@ function TagbarTrigger() abort
 endfunction
 
 function s:OpenTagbar() abort
-    clearjumps
     let l:line = line('.')
-    noautocmd execute '1'
+    noautocmd 1
 
     let l:workspace_config = {
                 \   'g:tagbar_left': 0,
