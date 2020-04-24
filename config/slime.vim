@@ -159,7 +159,7 @@ function s:SlimeAvailableTerminals(cmds) abort
 
     if s:slime_smart_mode
         for l:bufnr in l:bufnrs
-            let l:cmd = terminal#GetCommand(l:bufnr)
+            let l:cmd = terminal#PS(l:bufnr).cmd
             if index(a:cmds, l:cmd) == -1
                 call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
             endif

@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function terminal#Navigate(direction) abort
-    if terminal#GetCommand(bufnr()) ==# 'fzf'
+    if terminal#PS(bufnr()).cmd ==# 'fzf'
         if a:direction ==# 'j'
             return "\<C-j>"
         elseif a:direction ==# 'k'
@@ -90,7 +90,7 @@ function terminal#SmartOpen(cmd) abort
     call s:Open(v:true, a:cmd)
 endfunction
 
-function s:GetProcessStatus(bufnr) abort
+function terminal#PS(bufnr) abort
     if has('nvim')
         let l:pid = getbufvar(a:bufnr, 'terminal_job_pid')
         let l:tty = system('ps -o tty= '. l:pid)[:-2]
@@ -111,7 +111,7 @@ function s:GetProcessStatus(bufnr) abort
                     \   'cmd': l:split_item[2:],
                     \}
         if l:foreground_ps.cmd[0] ==# 'fzf'
-            return [l:foreground_ps.pid, 'fzf']
+            break
         endif
     endfor
 
@@ -124,15 +124,11 @@ function s:GetProcessStatus(bufnr) abort
         let l:cmd = fnamemodify(l:foreground_ps.cmd[1], ':t')
     endif
 
-    return [l:foreground_ps.pid, l:cmd]
-endfunction
-
-function terminal#GetCommand(bufnr) abort
-    return s:GetProcessStatus(a:bufnr)[1]
+    return {'pid': l:foreground_ps.pid, 'cmd': l:cmd}
 endfunction
 
 function terminal#GetCwd(bufnr) abort
-    let l:pid = s:GetProcessStatus(a:bufnr)[0]
+    let l:pid = terminal#PS(a:bufnr).pid
 
     if has('macunix')
         if executable('lsof')
