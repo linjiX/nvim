@@ -127,20 +127,18 @@ function terminal#PS(bufnr) abort
     return {'pid': l:foreground_ps.pid, 'cmd': l:cmd}
 endfunction
 
-function terminal#GetCwd(bufnr) abort
-    let l:pid = terminal#PS(a:bufnr).pid
-
+function terminal#GetCwd(pid) abort
     if has('macunix')
         if executable('lsof')
-            let l:lsof = system('lsof -aFn -d cwd -p '. l:pid)
+            let l:lsof = system('lsof -aFn -d cwd -p '. a:pid)
             return split(l:lsof, '\n')[-1][1:]
         endif
     else
         if executable('pwdx')
-            let l:pwdx = system('pwdx '. l:pid)
+            let l:pwdx = system('pwdx '. a:pid)
             return l:pwdx[stridx(l:pwdx, '/') : -2]
         elseif isdirectory('/proc/')
-            return system('readlink /proc/'. l:pid .'/cwd')[:-2]
+            return system('readlink /proc/'. a:pid .'/cwd')[:-2]
         endif
     endif
 

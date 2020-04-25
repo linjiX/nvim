@@ -32,26 +32,32 @@ function s:SlimeGetFiletypeCommand(is_run) abort
     return l:cmds
 endfunction
 
-function s:SlimeGetConfigKey(is_run) abort
-    return a:is_run ? 'run' : 'repl'
+function s:SlimeGetConfig(is_run) abort
+    if !exists('b:slime_config')
+        let b:slime_config = {}
+    endif
+
+    let l:key = a:is_run ? 'run' : 'repl'
+    if !has_key(b:slime_config, l:key)
+        let b:slime_config[l:key] = {}
+    endif
+
+    return b:slime_config[l:key]
 endfunction
 
 function s:SlimeUserConfig(is_run) abort
     let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
-    let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
-    if empty(l:bufnrs)
+    let l:terminals = s:SlimeAvailableTerminals(l:cmds)
+    if empty(l:terminals)
         echo 'No available terminal!'
         return
     endif
 
-    if !exists('b:slime_config')
-        let b:slime_config = {}
-    endif
-    let l:key = s:SlimeGetConfigKey(a:is_run)
-    let l:current_bufnr = get(b:slime_config, l:key, 0)
+    let l:config = s:SlimeGetConfig(a:is_run)
+    let l:current_bufnr = get(l:config, 'bufnr', 0)
 
     let l:input_message = "Available terminals: \n"
-    for l:bufnr in l:bufnrs
+    for l:bufnr in keys(l:terminals)
         let l:bufnr_message = (l:bufnr == l:current_bufnr) ? '['. l:bufnr .']'
                     \                                      : ' '. l:bufnr .' '
         let l:input_message .= printf("%6s: %s\n", l:bufnr_message, bufname(l:bufnr))
@@ -59,24 +65,24 @@ function s:SlimeUserConfig(is_run) abort
     let l:input_message .= 'Select targat terminal: '
 
     call inputsave()
-    let b:slime_config[l:key] = input(l:input_message, l:current_bufnr)
+    let l:config.bufnr = input(l:input_message, l:current_bufnr)
     call inputrestore()
 endfunction
 
-function s:SlimeConfig(bufnrs, is_run) abort
-    if !exists('b:slime_config')
-        let b:slime_config = {}
+function s:SlimeConfig(terminals, is_run) abort
+    let l:bufnrs = keys(a:terminals)
+    let l:config = s:SlimeGetConfig(a:is_run)
+    if index(l:bufnrs, get(l:config, 'bufnr', 0)) == -1
+        let l:config.bufnr = min(l:bufnrs)
     endif
 
-    let l:key = s:SlimeGetConfigKey(a:is_run)
-    if !has_key(b:slime_config, l:key) || index(a:bufnrs, b:slime_config[l:key]) == -1
-        let b:slime_config[l:key] = min(a:bufnrs)
-    endif
+    let l:bufnr = l:config.bufnr
+    let l:config.pid = a:terminals[l:bufnr]
 
     if has('nvim')
-        let b:slime_config.jobid = getbufvar(b:slime_config[l:key], 'terminal_job_id')
+        let b:slime_config.jobid = getbufvar(l:bufnr, 'terminal_job_id')
     else
-        let b:slime_config.bufnr = b:slime_config[l:key]
+        let b:slime_config.bufnr = l:bufnr
     endif
 endfunction
 
@@ -113,8 +119,8 @@ endfunction
 function s:SlimeRun() abort
     call s:SlimeSelectTerminal(v:true)
 
-    let l:bufnr = b:slime_config.run
-    let l:terminal_cwd = terminal#GetCwd(l:bufnr)
+    let l:pid = s:SlimeGetConfig(v:true).pid
+    let l:terminal_cwd = terminal#GetCwd(l:pid)
     let l:root_cwd = FindRootDirectory()
     if empty(l:root_cwd)
         let l:root_cwd = getcwd()
@@ -148,7 +154,8 @@ function s:SlimeOpenTerminal(cmd) abort
         let l:sleep = (a:cmd ==# 'bash') ? s:slime_sleep_time_ms
                     \                    : s:slime_sleep_time_ms * 2
         execute 'sleep'. l:sleep .'m'
-        return [bufnr()]
+        let l:bufnr = bufnr()
+        return {l:bufnr : terminal#PS(l:bufnr).pid}
     finally
         noautocmd call win_gotoid(l:winid)
     endtry
@@ -157,25 +164,29 @@ endfunction
 function s:SlimeAvailableTerminals(cmds) abort
     let l:bufnrs = utility#TerminalList()
 
-    if s:slime_smart_mode
-        for l:bufnr in l:bufnrs
-            let l:cmd = terminal#PS(l:bufnr).cmd
-            if index(a:cmds, l:cmd) == -1
-                call remove(l:bufnrs, index(l:bufnrs, l:bufnr))
-            endif
-        endfor
-    endif
+    let l:terminals = {}
 
-    return l:bufnrs
+    for l:bufnr in l:bufnrs
+        if s:slime_smart_mode
+            let l:ps = terminal#PS(l:bufnr)
+            if index(a:cmds, l:ps.cmd) != -1
+                let l:terminals[l:bufnr] = l:ps.pid
+            endif
+        else
+            let l:terminals[l:bufnr] = 0
+        endif
+    endfor
+
+    return l:terminals
 endfunction
 
 function s:SlimeSelectTerminal(is_run) abort
     let l:cmds = s:SlimeGetFiletypeCommand(a:is_run)
-    let l:bufnrs = s:SlimeAvailableTerminals(l:cmds)
-    if empty(l:bufnrs)
-        let l:bufnrs = s:SlimeOpenTerminal(l:cmds[0])
+    let l:terminals = s:SlimeAvailableTerminals(l:cmds)
+    if empty(l:terminals)
+        let l:terminals = s:SlimeOpenTerminal(l:cmds[0])
     endif
-    call s:SlimeConfig(l:bufnrs, a:is_run)
+    call s:SlimeConfig(l:terminals, a:is_run)
 endfunction
 
 function s:SlimeModeSwitch() abort
