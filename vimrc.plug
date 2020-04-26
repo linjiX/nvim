@@ -60,6 +60,9 @@ endif
 
 " Help {{{
 Plug 'yianwillis/vimcdoc', has('nvim') ? {'on': []} : {}
+if has('macunix')
+    Plug 'rizzatti/dash.vim', {'on': ['Dash', 'DashKeywords', '<Plug>Dash']}
+endif
 " }}}
 
 " Menu {{{
