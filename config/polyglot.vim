@@ -24,3 +24,9 @@ let g:csv_nomap_space = 1
 " Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_auto_insert_bullets = 0
+
+" Plug 'Vimjas/vim-python-pep8-indent'
+augroup myPolyglot
+    autocmd!
+    autocmd FileType bzl setlocal indentexpr=GetPythonPEPIndent(v:lnum)
+augroup END
