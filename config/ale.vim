@@ -57,6 +57,7 @@ let g:ale_python_mypy_options = join([
             \   '--strict-equality',
             \   '--strict',
             \])
+let g:ale_yaml_yamllint_options = '-d "{extends: default, rules: {line-length: {max: 100}}}"'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 let g:ale_markdown_markdownlint_cli_options = '--config='. $MY_LINTER_PATH .'/markdownlint.json'
 

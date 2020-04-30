@@ -133,6 +133,12 @@ npm install --global dockerfile-language-server-nodejs
 npm install --global prettydiff
 ```
 
+#### Yaml
+
+```bash
+pip3 install yamllint
+```
+
 #### VimScript
 
 ```bash
