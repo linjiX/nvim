@@ -2,10 +2,10 @@
 
 # https://github.com/bazelbuild/buildtools/tree/master/buildifier
 
-set -e
+set -euo pipefail
 set -v
 
-VERSION="2.2.1"
+readonly VERSION="2.2.1"
 
 if ! command -v go 1>/dev/null 2>&1; then
     if ! dpkg -s software-properties-common 1>/dev/null 2>&1; then
@@ -17,7 +17,7 @@ if ! command -v go 1>/dev/null 2>&1; then
     sudo apt-get install -y golang-go
 fi
 
-GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
+readonly GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
 export GOPATH
 export GO111MODULE=on
 go get github.com/bazelbuild/buildtools/buildifier@$VERSION

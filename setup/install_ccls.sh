@@ -5,14 +5,14 @@
 # https://wiki.ubuntu.com/ToolChain
 # https://github.com/MaskRay/ccls
 
-set -e
+set -euo pipefail
 set -v
 
 ################
 # Install ccls #
 ################
 
-VERSION="0.20190823.5"
+readonly VERSION="0.20190823.5"
 
 if ! dpkg -s software-properties-common wget 1>/dev/null 2>&1; then
     sudo apt-get update
@@ -37,7 +37,7 @@ sudo apt-get install -y \
     llvm-9 libclang-9-dev clang-9 \
     zlib1g-dev libncurses5-dev
 
-TMPDIR="$(mktemp -d /tmp/install_ccls.XXXX)"
+readonly TMPDIR="$(mktemp -d /tmp/install_ccls.XXXX)"
 pushd "$TMPDIR" >/dev/null
 git clone -b $VERSION --recurse-submodules --depth=1 https://github.com/MaskRay/ccls.git
 pushd ccls >/dev/null

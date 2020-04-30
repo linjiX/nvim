@@ -2,16 +2,16 @@
 
 # https://github.com/squizlabs/PHP_CodeSniffer
 
-set -e
+set -euo pipefail
 set -v
 
 ############################
 # Install php-code-sniffer #
 ############################
 
-VERSION="3.5.4"
-TARGET_PHPCS="/usr/local/bin/phpcs"
-TARGET_PHPCBF="/usr/local/bin/phpcbf"
+readonly VERSION="3.5.4"
+readonly TARGET_PHPCS="/usr/local/bin/phpcs"
+readonly TARGET_PHPCBF="/usr/local/bin/phpcbf"
 
 if ! dpkg -s wget 1>/dev/null 2>&1; then
     sudo apt-get update

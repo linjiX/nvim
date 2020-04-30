@@ -6,7 +6,7 @@ if [ -f ~/.vimrc ]; then
 fi
 
 pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
-set -e
+set -euo pipefail
 set -v
 
 if ! dpkg -s software-properties-common curl 1>/dev/null 2>&1; then

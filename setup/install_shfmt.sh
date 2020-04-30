@@ -2,7 +2,7 @@
 
 # https://github.com/mvdan/sh
 
-set -e
+set -euo pipefail
 set -v
 
 if ! command -v go 1>/dev/null 2>&1; then
@@ -17,7 +17,7 @@ if ! command -v go 1>/dev/null 2>&1; then
     sudo apt-get install -y golang-go
 fi
 
-GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
+readonly GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
 export GOPATH
 export GO111MODULE=on
 go get mvdan.cc/sh/v3/cmd/shfmt

@@ -3,16 +3,16 @@
 # http://cppcheck.sourceforge.net/
 # https://github.com/danmar/cppcheck
 
-set -e
+set -euo pipefail
 set -v
 
 ####################
 # Install cppcheck #
 ####################
 
-VERSION="1.90"
-TARFILE="$VERSION.tar.gz"
-DIR="cppcheck-$VERSION"
+readonly VERSION="1.90"
+readonly TARFILE="$VERSION.tar.gz"
+readonly DIR="cppcheck-$VERSION"
 
 if ! dpkg -s cmake make php7.0-xml wget 1>/dev/null 2>&1; then
     sudo apt-get update
@@ -23,7 +23,7 @@ if ! dpkg -s cmake make php7.0-xml wget 1>/dev/null 2>&1; then
         php7.0-xml
 fi
 
-TMPDIR="$(mktemp -d /tmp/install_cppcheck.XXXX)"
+readonly TMPDIR="$(mktemp -d /tmp/install_cppcheck.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget -c https://github.com/danmar/cppcheck/archive/$TARFILE
 tar -xf $TARFILE

@@ -2,16 +2,16 @@
 
 # https://www.gnu.org/software/global/
 
-set -e
+set -euo pipefail
 set -v
 
 ######################
 # Install GNU Global #
 ######################
 
-VERSION="6.6.4"
-TARFILE=global-$VERSION.tar.gz
-DIR=global-$VERSION
+readonly VERSION="6.6.4"
+readonly TARFILE=global-$VERSION.tar.gz
+readonly DIR=global-$VERSION
 
 if ! dpkg -s autoconf wget make bison flex gperf libtool-bin libncurses5-dev texinfo \
     1>/dev/null 2>&1; then
@@ -28,7 +28,7 @@ if ! dpkg -s autoconf wget make bison flex gperf libtool-bin libncurses5-dev tex
         texinfo
 fi
 
-TMPDIR="$(mktemp -d /tmp/install_global.XXXX)"
+readonly TMPDIR="$(mktemp -d /tmp/install_global.XXXX)"
 pushd "$TMPDIR" >/dev/null
 wget -c http://tamacom.com/global/$TARFILE
 tar -xf $TARFILE
