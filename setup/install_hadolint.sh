@@ -3,7 +3,7 @@
 # https://github.com/hadolint/hadolint
 
 set -euo pipefail
-set -v
+set -x
 
 ####################
 # Install hadolint #

@@ -3,7 +3,7 @@
 # https://github.com/universal-ctags/ctags
 
 set -euo pipefail
-set -v
+set -x
 
 ###########################
 # Install Universal Ctags #

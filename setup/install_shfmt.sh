@@ -3,7 +3,7 @@
 # https://github.com/mvdan/sh
 
 set -euo pipefail
-set -v
+set -x
 
 if ! command -v go 1>/dev/null 2>&1; then
     if ! dpkg -s git software-properties-common 1>/dev/null 2>&1; then

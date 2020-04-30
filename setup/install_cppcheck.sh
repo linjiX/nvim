@@ -4,7 +4,7 @@
 # https://github.com/danmar/cppcheck
 
 set -euo pipefail
-set -v
+set -x
 
 ####################
 # Install cppcheck #

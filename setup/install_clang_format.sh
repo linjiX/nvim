@@ -4,7 +4,7 @@
 # http://releases.llvm.org/download.html
 
 set -euo pipefail
-set -v
+set -x
 
 ########################
 # Install clang-format #

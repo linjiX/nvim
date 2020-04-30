@@ -3,7 +3,7 @@
 # https://www.gnu.org/software/global/
 
 set -euo pipefail
-set -v
+set -x
 
 ######################
 # Install GNU Global #

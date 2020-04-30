@@ -3,7 +3,7 @@
 # https://github.com/bazelbuild/buildtools/tree/master/buildifier
 
 set -euo pipefail
-set -v
+set -x
 
 readonly VERSION="2.2.1"
 

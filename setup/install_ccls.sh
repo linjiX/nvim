@@ -6,7 +6,7 @@
 # https://github.com/MaskRay/ccls
 
 set -euo pipefail
-set -v
+set -x
 
 ################
 # Install ccls #

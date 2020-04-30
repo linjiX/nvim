@@ -7,7 +7,7 @@ fi
 
 pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -euo pipefail
-set -v
+set -x
 
 if ! dpkg -s software-properties-common curl 1>/dev/null 2>&1; then
     sudo apt-get update

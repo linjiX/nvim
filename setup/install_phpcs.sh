@@ -3,7 +3,7 @@
 # https://github.com/squizlabs/PHP_CodeSniffer
 
 set -euo pipefail
-set -v
+set -x
 
 ############################
 # Install php-code-sniffer #

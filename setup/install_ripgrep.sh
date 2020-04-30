@@ -3,7 +3,7 @@
 # https://github.com/BurntSushi/ripgrep/releases
 
 set -euo pipefail
-set -v
+set -x
 
 ###################
 # Install Riggrep #

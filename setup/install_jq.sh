@@ -3,7 +3,7 @@
 # https://stedolan.github.io/jq/
 
 set -euo pipefail
-set -v
+set -x
 
 ##############
 # Install jq #
