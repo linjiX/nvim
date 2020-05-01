@@ -11,8 +11,8 @@
 
 function s:AutoCmdPlugInstall() abort
     let g:plug_window = 'buffer'
+    let g:coc_channel_timeout = 3600
     PlugInstall --sync
-    source $MYVIMRC
     execute 'CocInstall -sync '. join(g:coc_global_extensions)
     while !empty(utility#TerminalList())
         sleep 1

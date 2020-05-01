@@ -27,10 +27,11 @@ let g:coc_global_extensions = [
 if has('macunix')
     let g:coc_global_extensions += ['coc-imselect']
 endif
+
 " }}}
 
 " vim-plug config {{{
-if empty(glob('~/.vim/autoload/plug.vim'))
+if !filereadable($HOME .'/.vim/autoload/plug.vim')
     call setup#AutoInstallation()
 endif
 

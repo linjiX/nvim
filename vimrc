@@ -20,13 +20,13 @@ endif
 " source all configurations
 source ~/.vim/defaults.vim
 source ~/.vim/vimrc.plug
-let s:configs = split(glob('~/.vim/common/*.vim'))
 if !exists('g:auto_installation')
+    let s:configs = split(glob('~/.vim/common/*.vim'))
     let s:configs += split(glob('~/.vim/config/*.vim'))
+    for s:config in s:configs
+        execute 'source '. s:config
+    endfor
 endif
-for s:config in s:configs
-    execute 'source '. s:config
-endfor
 
 silent! colorscheme solarized
 " silent! colorscheme molokai
