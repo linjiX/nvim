@@ -5,7 +5,7 @@
 set -euo pipefail
 set -x
 
-readonly VERSION="2.2.1"
+readonly VERSION="3.0.0"
 
 if ! command -v go 1>/dev/null 2>&1; then
     if ! dpkg -s software-properties-common 1>/dev/null 2>&1; then
