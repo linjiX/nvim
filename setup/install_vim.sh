@@ -2,7 +2,7 @@
 
 if [ -f ~/.vimrc ]; then
     echo 'Please remove your ~/.vimrc file first'
-    exit
+    exit 1
 fi
 
 pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
@@ -35,11 +35,7 @@ sudo apt-get install -y \
     vim-gtk \
     neovim \
     nodejs \
-    python3-dev \
-    python3-pip \
     libjansson-dev
-
-/usr/bin/pip3 install neovim
 
 ./install_ctags.sh
 ./install_global.sh
