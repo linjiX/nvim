@@ -9,6 +9,13 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let s:PRECMD = has('nvim') ? "\<C-\>\<C-n>" . ":let b:terminal_navigate = 1\<CR>"
+               \           : "\<C-v>"
+
+function terminal#Detach() abort
+    return s:PRECMD . ":quit\<CR>"
+endfunction
+
 function terminal#Navigate(direction) abort
     if terminal#PS(bufnr()).cmd ==# 'fzf'
         if a:direction ==# 'j'
@@ -17,14 +24,7 @@ function terminal#Navigate(direction) abort
             return "\<C-k>"
         endif
     endif
-    if has('nvim')
-        let l:esc = "\<C-\>\<C-n>"
-        let l:flag = ":let b:terminal_navigate = 1\<CR>"
-        let l:cmd = NavigateCmd(a:direction)
-        return l:esc . l:flag . l:cmd
-    else
-        return "\<C-v>". NavigateCmd(a:direction)
-    endif
+    return s:PRECMD . NavigateCmd(a:direction)
 endfunction
 
 if has('nvim')
@@ -46,17 +46,13 @@ function terminal#AutoCmdTerminal() abort
     setlocal nonumber
     setlocal nobuflisted
 
-    nnoremap <silent><buffer> <leader>q :q!<CR>
-    nnoremap <silent><buffer> q :q!<CR>
-    cnoreabbrev <buffer> q q!
-
     if has('nvim')
-        setlocal bufhidden=wipe
+        " setlocal bufhidden=wipe
         startinsert
     endif
 endfunction
 
-function s:Open(is_vertical, cmd) abort
+function s:Create(is_vertical, cmd) abort
     if has('nvim')
         let l:precmd = a:is_vertical ? 'botright vsplit ' : 'belowright split '
         let l:postcmd = 'term://'. a:cmd
@@ -68,8 +64,34 @@ function s:Open(is_vertical, cmd) abort
     execute l:precmd . l:postcmd
 endfunction
 
+function s:Reuse(is_vertical, bufnr) abort
+    let l:precmd = a:is_vertical ? 'botright vsplit ' : 'belowright split '
+    let l:postcmd = '| buffer '. a:bufnr
+    execute l:precmd . l:postcmd
+endfunction
+
+function s:Open(is_vertical, cmd, bufnr) abort
+    if a:bufnr
+        call s:Reuse(a:is_vertical, a:bufnr)
+    else
+        call s:Create(a:is_vertical, a:cmd)
+    endif
+endfunction
+
+function s:BackgroundTerminal(cmd) abort
+    let l:bufnrs = utility#InactiveTerminalList()
+    for l:bufnr in l:bufnrs
+        let l:cmd = terminal#PS(l:bufnr).cmd
+        if l:cmd ==? a:cmd
+            return l:bufnr
+        endif
+    endfor
+    return 0
+endfunction
+
 function terminal#SmartOpen(cmd) abort
     let [l:wintype, l:winlist] = winlayout()
+    let l:bufnr = s:BackgroundTerminal(a:cmd)
 
     if l:wintype ==# 'row'
         call reverse(l:winlist)
@@ -81,13 +103,13 @@ function terminal#SmartOpen(cmd) abort
             let l:is_terminal = getwininfo(l:winid)[0].terminal
             if l:is_terminal
                 noautocmd call win_gotoid(l:winid)
-                call s:Open(v:false, a:cmd)
+                call s:Open(v:false, a:cmd, l:bufnr)
                 return
             endif
         endfor
     endif
 
-    call s:Open(v:true, a:cmd)
+    call s:Open(v:true, a:cmd, l:bufnr)
 endfunction
 
 function terminal#PS(bufnr) abort

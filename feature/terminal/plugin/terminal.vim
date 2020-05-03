@@ -17,7 +17,7 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd TermClose * quit
+        autocmd TermClose * setlocal bufhidden=wipe | quit
         autocmd BufEnter term://* call terminal#AutoCmdNavigate()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTerminal()
@@ -32,6 +32,7 @@ nnoremap <silent> <leader>et :call terminal#SmartOpen('ptpython')<CR>
 nnoremap <silent> <leader>eh :call terminal#SmartOpen('htop')<CR>
 
 tnoremap <ESC><ESC> <C-\><C-n>
+tnoremap <expr><silent> <C-d> terminal#Detach()
 tnoremap <expr><silent> <C-h> terminal#Navigate('h')
 tnoremap <expr><silent> <C-j> terminal#Navigate('j')
 tnoremap <expr><silent> <C-k> terminal#Navigate('k')

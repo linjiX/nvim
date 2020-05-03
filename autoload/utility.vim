@@ -43,6 +43,31 @@ function utility#SetConfig(config) abort
     return l:old_config
 endfunction
 
+function s:InactiveTerminalFilter(index, value) abort
+    if !bufexists(a:value)
+        return v:false
+    endif
+    if getbufvar(a:value, '&buftype') !=# 'terminal'
+        return v:false
+    endif
+    if bufwinid(a:value) != -1
+        return v:false
+    endif
+    let b:job_id = getbufvar(a:value, 'terminal_job_id')
+    if jobwait([b:job_id], 0)[0] != -1
+        return v:false
+    endif
+    return v:true
+endfunction
+
+function utility#InactiveTerminalList() abort
+    if has('nvim')
+        return filter(range(1, bufnr('$')), function('s:InactiveTerminalFilter'))
+    else
+        return []
+    endif
+endfunction
+
 function utility#TerminalList() abort
     if has('nvim')
         let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
