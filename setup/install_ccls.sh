@@ -24,7 +24,7 @@ fi
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main'
 wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | sudo apt-key add -
 # ppa for LLVM
-sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main'
+sudo apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-10 main'
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 # ppa for gcc
 sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
@@ -34,7 +34,7 @@ sudo apt-get install -y \
     git \
     cmake \
     g++-9 \
-    llvm-9 libclang-9-dev clang-9 \
+    llvm-10 libclang-10-dev clang-10 \
     zlib1g-dev libncurses5-dev
 
 readonly TMPDIR="$(mktemp -d /tmp/install_ccls.XXXX)"
@@ -47,9 +47,9 @@ export CC=/usr/bin/gcc-9
 export CXX=/usr/bin/g++-9
 
 cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-9 \
-    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-9/include \
-    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-9/
+    -DCMAKE_PREFIX_PATH=/usr/lib/llvm-10 \
+    -DLLVM_INCLUDE_DIR=/usr/lib/llvm-10/include \
+    -DLLVM_BUILD_INCLUDE_DIR=/usr/include/llvm-10/
 
 cmake --build Release -j
 sudo cmake --build Release --target install
