@@ -16,11 +16,11 @@ endif
 augroup myTerminal
     autocmd!
     if has('nvim')
-        autocmd TermOpen * call terminal#AutoCmdTerminal()
-        autocmd TermClose * setlocal bufhidden=wipe | quit
+        autocmd TermOpen * call terminal#AutoCmdTermOpen()
+        autocmd TermClose * call terminal#AutoCmdTermClose()
         autocmd BufEnter term://* call terminal#AutoCmdNavigate()
     else
-        autocmd TerminalOpen * call terminal#AutoCmdTerminal()
+        autocmd TerminalOpen * call terminal#AutoCmdTermOpen()
         autocmd QuitPre * call terminal#AutoCmdWipeTerminal()
     endif
 augroup END

@@ -10,7 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let s:PRECMD = has('nvim') ? "\<C-\>\<C-n>" . ":let b:terminal_navigate = 1\<CR>"
-               \           : "\<C-v>"
+            \              : "\<C-v>"
 
 function terminal#Detach() abort
     return s:PRECMD . ":quit\<CR>"
@@ -28,6 +28,13 @@ function terminal#Navigate(direction) abort
 endfunction
 
 if has('nvim')
+    function terminal#AutoCmdTermClose() abort
+        setlocal bufhidden=wipe
+        if bufwinid(str2nr(expand('<abuf>'))) != -1
+            quit
+        endif
+    endfunction
+
     function terminal#AutoCmdNavigate() abort
         if exists('b:terminal_navigate')
             unlet b:terminal_navigate
@@ -42,12 +49,11 @@ else
     endfunction
 endif
 
-function terminal#AutoCmdTerminal() abort
+function terminal#AutoCmdTermOpen() abort
     setlocal nonumber
     setlocal nobuflisted
 
     if has('nvim')
-        " setlocal bufhidden=wipe
         startinsert
     endif
 endfunction
