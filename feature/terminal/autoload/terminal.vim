@@ -54,12 +54,6 @@ if has('nvim')
             startinsert
         endif
     endfunction
-else
-    function terminal#AutoCmdWipeTerminal() abort
-        if &buftype ==# 'terminal'
-            set bufhidden=wipe
-        endif
-    endfunction
 endif
 
 function s:IsTerminal(bufnr) abort
@@ -85,7 +79,7 @@ function s:Create(is_vertical, cmd) abort
         let l:postcmd = 'term://'. a:cmd
     else
         let l:precmd = a:is_vertical ? 'vertical botright ' : 'belowright '
-        let l:postcmd = 'terminal ++close '. a:cmd
+        let l:postcmd = 'terminal ++close ++kill=kill '. a:cmd
     endif
 
     execute l:precmd . l:postcmd

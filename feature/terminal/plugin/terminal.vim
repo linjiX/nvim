@@ -21,7 +21,6 @@ augroup myTerminal
         autocmd BufEnter term://* call terminal#AutoCmdNavigate()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTermOpen()
-        autocmd QuitPre * call terminal#AutoCmdWipeTerminal()
     endif
 augroup END
 
