@@ -14,7 +14,7 @@ function s:AutoCmdPlugInstall() abort
     let g:coc_channel_timeout = 3600
     PlugInstall --sync
     execute 'CocInstall -sync '. join(g:coc_global_extensions)
-    while !empty(utility#TerminalList())
+    while !empty(terminal#ActiveList())
         sleep 1
     endwhile
     quitall

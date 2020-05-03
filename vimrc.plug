@@ -48,6 +48,7 @@ nnoremap <silent> <leader>vs :PlugStatus<CR>
 call plug#begin('~/.vim/plug')
 
 " Feature {{{
+Plug $HOME .'/.vim/feature/terminal'
 if !exists('g:auto_installation')
     let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
 
@@ -55,7 +56,6 @@ if !exists('g:auto_installation')
     Plug $HOME .'/.vim/feature/buffer'
     Plug $HOME .'/.vim/feature/large'
     Plug $HOME .'/.vim/feature/linter'
-    Plug $HOME .'/.vim/feature/terminal'
 endif
 " }}}
 

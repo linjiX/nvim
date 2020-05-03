@@ -27,7 +27,20 @@ function terminal#Navigate(direction) abort
     return s:PRECMD . NavigateCmd(a:direction)
 endfunction
 
+function terminal#AutoCmdTermOpen() abort
+    setlocal nonumber
+    setlocal nobuflisted
+
+    if has('nvim')
+        startinsert
+    endif
+endfunction
+
 if has('nvim')
+    function terminal#GetJobID(bufnr) abort
+        return getbufvar(a:bufnr, 'terminal_job_id')
+    endfunction
+
     function terminal#AutoCmdTermClose() abort
         setlocal bufhidden=wipe
         if bufwinid(str2nr(expand('<abuf>'))) != -1
@@ -49,13 +62,21 @@ else
     endfunction
 endif
 
-function terminal#AutoCmdTermOpen() abort
-    setlocal nonumber
-    setlocal nobuflisted
+function s:IsTerminal(bufnr) abort
+    if getbufvar(a:bufnr, '&buftype') !=# 'terminal'
+        return v:false
+    endif
 
     if has('nvim')
-        startinsert
+        return jobwait([terminal#GetJobID(a:bufnr)], 0)[0] == -1
+    else
+        return term_getstatus(a:bufnr) =~# 'running'
     endif
+endfunction
+
+function terminal#ActiveList() abort
+    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
+    return filter(l:bufnrs, {index, value -> s:IsTerminal(value)})
 endfunction
 
 function s:Create(is_vertical, cmd) abort
@@ -84,8 +105,15 @@ function s:Open(is_vertical, cmd, bufnr) abort
     endif
 endfunction
 
-function s:BackgroundTerminal(cmd) abort
-    let l:bufnrs = utility#InactiveTerminalList()
+function s:IsInactiveTerminal(bufnr) abort
+    if !bufexists(a:bufnr) || !s:IsTerminal(a:bufnr) || bufwinid(a:bufnr) != -1
+        return v:false
+    endif
+    return v:true
+endfunction
+
+function s:InactiveList(cmd) abort
+    let l:bufnrs = filter(range(1, bufnr('$')), {index, value -> s:IsInactiveTerminal(value)})
     for l:bufnr in l:bufnrs
         let l:cmd = terminal#PS(l:bufnr).cmd
         if l:cmd ==? a:cmd
@@ -97,7 +125,7 @@ endfunction
 
 function terminal#SmartOpen(cmd) abort
     let [l:wintype, l:winlist] = winlayout()
-    let l:bufnr = s:BackgroundTerminal(a:cmd)
+    let l:bufnr = s:InactiveList(a:cmd)
 
     if l:wintype ==# 'row'
         call reverse(l:winlist)

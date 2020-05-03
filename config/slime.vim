@@ -80,7 +80,7 @@ function s:SlimeConfig(terminals, is_run) abort
     let l:config.pid = a:terminals[l:bufnr]
 
     if has('nvim')
-        let b:slime_config.jobid = getbufvar(l:bufnr, 'terminal_job_id')
+        let b:slime_config.jobid = terminal#GetJobID(l:bufnr)
     else
         let b:slime_config.bufnr = l:bufnr
     endif
@@ -162,7 +162,7 @@ function s:SlimeOpenTerminal(cmd) abort
 endfunction
 
 function s:SlimeAvailableTerminals(cmds) abort
-    let l:bufnrs = utility#TerminalList()
+    let l:bufnrs = terminal#ActiveList()
 
     let l:terminals = {}
 
