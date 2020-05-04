@@ -65,7 +65,10 @@ let g:airline#extensions#whitespace#trailing_format = 'T[%s]'
 let g:airline#extensions#whitespace#conflicts_format = 'C[%s]'
 let g:airline#extensions#whitespace#mixed_indent_format = 'i[%s]'
 let g:airline#extensions#whitespace#mixed_indent_file_format = 'I[%s]'
-let g:airline#extensions#whitespace#skip_indent_check_ft = {'markdown': ['trailing']}
+let g:airline#extensions#whitespace#skip_indent_check_ft = {
+            \   'markdown': ['trailing'],
+            \   'ctrlsf': ['trailing'],
+            \}
 
 let g:airline_asyncrun_countdown = 500
 let s:status_symbol = {
