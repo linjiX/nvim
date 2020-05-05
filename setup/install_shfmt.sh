@@ -2,17 +2,25 @@
 
 # https://github.com/mvdan/sh
 
+[ -r /etc/lsb-release ] && source /etc/lsb-release
+if [[ "$DISTRIB_CODENAME" != 'xenial' && "$DISTRIB_CODENAME" != 'focal' ]]; then
+    echo 'Only support ubuntu 16.04 and 20.04'
+    exit 1
+fi
+
 set -euo pipefail
 set -x
 
 if ! command -v go 1>/dev/null 2>&1; then
-    if ! dpkg -s git software-properties-common 1>/dev/null 2>&1; then
-        sudo apt-get update
-        sudo apt-get install -y \
-            software-properties-common \
-            git
+    if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
+        if ! dpkg -s git software-properties-common 1>/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y \
+                software-properties-common \
+                git
+        fi
+        sudo apt-add-repository -y ppa:longsleep/golang-backports
     fi
-    sudo apt-add-repository -y ppa:longsleep/golang-backports
     sudo apt-get update
     sudo apt-get install -y golang-go
 fi

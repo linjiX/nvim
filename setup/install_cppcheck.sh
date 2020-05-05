@@ -3,6 +3,12 @@
 # http://cppcheck.sourceforge.net/
 # https://github.com/danmar/cppcheck
 
+[ -r /etc/lsb-release ] && source /etc/lsb-release
+if [ "$DISTRIB_CODENAME" != 'xenial' ]; then
+    echo 'Only support ubuntu 16.04'
+    exit 1
+fi
+
 set -euo pipefail
 set -x
 
