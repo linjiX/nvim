@@ -31,7 +31,7 @@ nnoremap <expr><silent> <C-\> NavigateCmd('p')
 nnoremap <expr><silent> <C-h> NavigateCmd('h')
 nnoremap <expr><silent> <C-l> NavigateCmd('l')
 nnoremap <expr><silent> <C-k> NavigateCmd('k')
-nnoremap <expr><silent> <C-j>
+nmap <expr><silent> <C-j>
             \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
             \                      : NavigateCmd('j')
 
