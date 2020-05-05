@@ -23,7 +23,7 @@ if ! dpkg -s software-properties-common curl 1>/dev/null 2>&1; then
 fi
 
 #######################################
-# Install Vim 8.1 && NeoVim && Nodejs #
+# Install Vim 8 && NeoVim && Nodejs #
 #######################################
 
 sudo apt-add-repository -y ppa:jonathonf/vim
