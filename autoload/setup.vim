@@ -24,7 +24,7 @@ function setup#AutoInstallation() abort
     let g:auto_installation = 1
     call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs '.
                 \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    call mkdir('~/.config', 'p')
+    call system('mkdir -p ~/.config')
     call system('ln -sf ~/.vim ~/.config/nvim')
     call system('ln -sf ~/.vim/vimrc ~/.config/nvim/init.vim')
     augroup mySetup
