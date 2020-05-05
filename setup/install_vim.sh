@@ -32,18 +32,20 @@ sudo apt-add-repository -y ppa:neovim-ppa/unstable
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 # sudo apt-get update
 sudo apt-get install -y \
-    autoconf \
-    make \
-    wget \
     vim \
     vim-scripts \
     vim-doc \
     vim-gtk \
     neovim \
-    nodejs \
-    libjansson-dev
+    nodejs
 
 if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
+    sudo apt-get install -y \
+        autoconf \
+        make \
+        wget \
+        libjansson-dev
+
     ./install_ctags.sh
     ./install_global.sh
     ./install_ripgrep.sh
