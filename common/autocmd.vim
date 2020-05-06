@@ -45,6 +45,7 @@ augroup END
 
 augroup myFileType
     autocmd!
+    autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=Dockerfile
     autocmd BufNewFile,BufRead *.launch setlocal filetype=xml
     autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
     autocmd BufNewFile,BufRead .clang-format setlocal filetype=yaml
@@ -54,6 +55,7 @@ augroup myFileType
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
     autocmd FileType gitcommit setlocal colorcolumn=72
+    autocmd FileType conf setlocal commentstring=#%s
 
     autocmd FileType json setlocal foldmethod=syntax
     autocmd FileType markdown setlocal foldmethod=expr | setlocal foldexpr=fold#markdown#Expr()
