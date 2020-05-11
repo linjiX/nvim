@@ -16,6 +16,13 @@ function terminal#Detach() abort
     return s:PRECMD . ":quit\<CR>"
 endfunction
 
+function terminal#DetachBash() abort
+    if terminal#PS(bufnr()).cmd ==# 'bash'
+        return terminal#Detach()
+    endif
+    return "\<C-d>"
+endfunction
+
 function terminal#Navigate(direction) abort
     if terminal#PS(bufnr()).cmd ==# 'fzf'
         if a:direction ==# 'j'
