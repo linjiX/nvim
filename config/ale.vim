@@ -43,7 +43,7 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='. join([
             \   '-whitespace/indent',
             \   '-runtime/references',
             \], ',')
-let g:ale_python_flake8_options = '--max-line-length=100'
+let g:ale_python_flake8_options = '--max-line-length=100 --ignore=E203'
 let g:ale_python_pylint_options = join([
             \   '--disable=bad-continuation',
             \   '--generated-members=torch.*,cv2.*',
