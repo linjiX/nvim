@@ -109,6 +109,8 @@ endfunction
 function s:Run() abort
     if &filetype ==# 'markdown'
         MarkdownPreview
+    elseif &filetype ==# 'html' && has('macunix')
+        call system('open '. expand('%'))
     elseif index(s:slime_run_filetype, &filetype) != -1
         call s:SlimeRun()
     else
