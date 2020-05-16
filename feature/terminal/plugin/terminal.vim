@@ -17,7 +17,7 @@ augroup myTerminal
     autocmd!
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTermOpen()
-        autocmd TermClose * call terminal#AutoCmdTermClose()
+        autocmd TermClose * bwipeout!
         autocmd BufEnter term://* call terminal#AutoCmdInsert()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTermOpen()

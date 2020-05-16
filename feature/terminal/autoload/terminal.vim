@@ -14,13 +14,6 @@ if has('nvim')
         return getbufvar(a:bufnr, 'terminal_job_id')
     endfunction
 
-    function terminal#AutoCmdTermClose() abort
-        setlocal bufhidden=wipe
-        if bufwinid(str2nr(expand('<abuf>'))) != -1
-            quit
-        endif
-    endfunction
-
     function terminal#AutoCmdInsert() abort
         if !exists('g:insert_skip') && exists('b:terminal_navigate')
             unlet b:terminal_navigate
