@@ -13,10 +13,10 @@ function s:AutoCmdPlugInstall() abort
     let g:plug_window = 'buffer'
     let g:coc_channel_timeout = 3600
     PlugInstall --sync
-    execute 'CocInstall -sync '. join(g:coc_global_extensions)
     while !empty(terminal#ActiveList())
         sleep 1
     endwhile
+    execute 'CocInstall -sync '. join(g:coc_global_extensions)
     quitall
 endfunction
 
