@@ -133,8 +133,7 @@ function terminal#SmartOpen(cmd) abort
             if l:wintype !=# 'leaf'
                 continue
             endif
-            let l:is_terminal = getwininfo(l:winid)[0].terminal
-            if l:is_terminal
+            if !buflisted(getwininfo(l:winid)[0].bufnr)
                 noautocmd call win_gotoid(l:winid)
                 call s:Open(v:false, a:cmd, l:bufnr)
                 return
