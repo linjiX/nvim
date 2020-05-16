@@ -18,7 +18,7 @@ augroup myTerminal
     if has('nvim')
         autocmd TermOpen * call terminal#AutoCmdTermOpen()
         autocmd TermClose * call terminal#AutoCmdTermClose()
-        autocmd BufEnter term://* call terminal#AutoCmdNavigate()
+        autocmd BufEnter term://* call terminal#AutoCmdInsert()
     else
         autocmd TerminalOpen * call terminal#AutoCmdTermOpen()
     endif

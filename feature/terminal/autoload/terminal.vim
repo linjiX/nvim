@@ -9,11 +9,36 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:PRECMD = has('nvim') ? "\<C-\>\<C-n>" . ":let b:terminal_navigate = 1\<CR>"
-            \              : "\<C-v>"
+if has('nvim')
+    function terminal#GetJobID(bufnr) abort
+        return getbufvar(a:bufnr, 'terminal_job_id')
+    endfunction
+
+    function terminal#AutoCmdTermClose() abort
+        setlocal bufhidden=wipe
+        if bufwinid(str2nr(expand('<abuf>'))) != -1
+            quit
+        endif
+    endfunction
+
+    function terminal#AutoCmdInsert() abort
+        if !exists('g:insert_skip') && exists('b:terminal_navigate')
+            unlet b:terminal_navigate
+            startinsert
+        endif
+    endfunction
+
+    let s:ESC = "\<C-\>\<C-n>" . ":let b:terminal_navigate = 1\<CR>"
+    let s:INSERT_PRE = ":let g:insert_skip = 1\<CR>"
+    let s:INSERT_POST = ":unlet g:insert_skip\<CR>" . ":call terminal#AutoCmdInsert()\<CR>"
+else
+    let s:ESC = "\<C-v>"
+    let s:INSERT_PRE = ''
+    let s:INSERT_POST = ''
+endif
 
 function terminal#Detach() abort
-    return s:PRECMD . ":quit\<CR>"
+    return s:ESC . ":quit\<CR>"
 endfunction
 
 function terminal#DetachBash() abort
@@ -31,7 +56,7 @@ function terminal#Navigate(direction) abort
             return "\<C-k>"
         endif
     endif
-    return s:PRECMD . NavigateCmd(a:direction)
+    return s:ESC . s:INSERT_PRE . NavigateCmd(a:direction) . s:INSERT_POST
 endfunction
 
 function terminal#AutoCmdTermOpen() abort
@@ -42,26 +67,6 @@ function terminal#AutoCmdTermOpen() abort
         startinsert
     endif
 endfunction
-
-if has('nvim')
-    function terminal#GetJobID(bufnr) abort
-        return getbufvar(a:bufnr, 'terminal_job_id')
-    endfunction
-
-    function terminal#AutoCmdTermClose() abort
-        setlocal bufhidden=wipe
-        if bufwinid(str2nr(expand('<abuf>'))) != -1
-            quit
-        endif
-    endfunction
-
-    function terminal#AutoCmdNavigate() abort
-        if exists('b:terminal_navigate')
-            unlet b:terminal_navigate
-            startinsert
-        endif
-    endfunction
-endif
 
 function s:IsTerminal(bufnr) abort
     if getbufvar(a:bufnr, '&buftype') !=# 'terminal'
