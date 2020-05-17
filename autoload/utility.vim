@@ -32,7 +32,7 @@ function utility#SetConfig(config) abort
         let l:old_value = exists(l:key) ? eval(l:key) : v:null
         let l:old_config[l:key] = l:old_value
 
-        if l:value is v:null
+        if l:value is v:null && exists(l:key)
             execute printf('unlet %s', l:key)
         elseif type(l:value) == v:t_string
             execute printf('let %s = "%s"', l:key, l:value)
