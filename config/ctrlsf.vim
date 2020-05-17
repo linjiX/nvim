@@ -11,8 +11,6 @@
 
 if executable('rg')
     let g:ctrlsf_ackprg = 'rg'
-elseif executable('ag')
-    let g:ctrlsf_ackprg = 'ag'
 endif
 
 let g:ctrlsf_position = 'right'

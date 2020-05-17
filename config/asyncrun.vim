@@ -13,10 +13,6 @@ if executable('rg')
     set grepprg=rg\ --vimgrep
     set grepformat=%f:%l:%c:%m
     let g:asyncgrepprg = 'rg --vimgrep -F -U'
-elseif executable('ag')
-    set grepprg=ag\ --vimgrep
-    set grepformat=%f:%l:%c:%m
-    let g:asyncgrepprg = 'ag --vimgrep -Q'
 else
     let g:asyncgrepprg = 'grep -H -n'
 endif
