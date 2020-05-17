@@ -31,14 +31,7 @@ else
 endif
 
 function terminal#Detach() abort
-    return s:ESC . ":quit\<CR>"
-endfunction
-
-function terminal#DetachBash() abort
-    if terminal#PS(bufnr()).cmd ==# 'bash'
-        return terminal#Detach()
-    endif
-    return "\<C-d>"
+    return s:ESC .":quit\<CR>"
 endfunction
 
 function terminal#Navigate(direction) abort

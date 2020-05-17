@@ -33,7 +33,6 @@ nnoremap <silent> <leader>eh :call terminal#SmartOpen('htop')<CR>
 
 tnoremap <ESC><ESC> <C-\><C-n>
 tnoremap <expr><silent> <C-o> terminal#Detach()
-tnoremap <expr><silent> <C-d> terminal#DetachBash()
 tnoremap <expr><silent> <C-h> terminal#Navigate('h')
 tnoremap <expr><silent> <C-j> terminal#Navigate('j')
 tnoremap <expr><silent> <C-k> terminal#Navigate('k')
