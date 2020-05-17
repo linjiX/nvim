@@ -131,16 +131,12 @@ function s:SlimeRun() abort
 
     let l:cmd = s:SlimeGetRunCommand(l:terminal_cwd, l:root_cwd)
 
-    if exists('g:slime_python_ipython')
-        let l:ipython_config = g:slime_python_ipython
-        unlet g:slime_python_ipython
-    endif
+    let l:old_config = utility#SetConfig({'g:slime_python_ipython': v:null})
+    echo l:old_config
     try
         execute 'SlimeSend1 '. l:cmd
     finally
-        if exists('l:ipython_config')
-            let g:slime_python_ipython = l:ipython_config
-        endif
+        call utility#SetConfig(l:old_config)
     endtry
 endfunction
 
