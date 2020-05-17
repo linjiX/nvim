@@ -50,6 +50,7 @@ function terminal#AutoCmdTermOpen() abort
     setlocal nobuflisted
 
     if has('nvim')
+        setlocal nocursorcolumn
         startinsert
     endif
 endfunction

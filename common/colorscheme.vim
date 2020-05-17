@@ -48,6 +48,10 @@ function s:AutoCmdColorScheme() abort
     highlight ALEInfo NONE
 
     highlight link ExtraWhitespace Visual
+
+    if has('nvim')
+        highlight TermCursorNC cterm=reverse ctermfg=1 gui=reverse guifg=#800000
+    endif
 endfunction
 
 function s:AutoCmdSolarzed() abort
