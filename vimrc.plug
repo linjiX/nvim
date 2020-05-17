@@ -177,7 +177,7 @@ Plug 'tpope/vim-endwise'
 " Plug 'google/vim-maktaba'
 " Plug 'jalvesaq/vimcmdline'
 " Plug 'rhysd/reply.vim'
-Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend1']}
+Plug 'jpalardy/vim-slime', {'on': ['<Plug>Slime', 'SlimeSend', 'SlimeSend1']}
 Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " }}}
 

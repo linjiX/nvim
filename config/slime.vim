@@ -195,8 +195,7 @@ endfunction
 
 command! SlimeRunConfig call <SID>SlimeUserConfig(v:true)
 command! SlimeReplConfig call <SID>SlimeUserConfig(v:false)
-nmap <silent> <leader>ea
-            \ :call <SID>SlimeSelectTerminal(v:false)<CR>:call slime#send_range(1, line('$'))<CR>
+nmap <silent> <leader>ea :call <SID>SlimeSelectTerminal(v:false)<CR>:1,$SlimeSend<CR>
 xmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeRegionSend
 nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeLineSend
 nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeParagraphSend
