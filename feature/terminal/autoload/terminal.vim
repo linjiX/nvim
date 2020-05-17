@@ -96,36 +96,16 @@ function s:Reuse(is_vertical, bufnr) abort
     execute l:precmd . l:postcmd
 endfunction
 
-function s:Open(is_vertical, cmd, bufnr) abort
-    if a:bufnr
-        call s:Reuse(a:is_vertical, a:bufnr)
+function s:Open(is_vertical, union) abort
+    if type(a:union) == v:t_number
+        call s:Reuse(a:is_vertical, a:union)
     else
-        call s:Create(a:is_vertical, a:cmd)
+        call s:Create(a:is_vertical, a:union)
     endif
 endfunction
 
-function s:IsInactiveTerminal(bufnr) abort
-    if !bufexists(a:bufnr) || !s:IsTerminal(a:bufnr) || bufwinid(a:bufnr) != -1
-        return v:false
-    endif
-    return v:true
-endfunction
-
-function s:InactiveList(cmd) abort
-    let l:bufnrs = filter(range(1, bufnr('$')), {index, value -> s:IsInactiveTerminal(value)})
-    for l:bufnr in l:bufnrs
-        let l:cmd = terminal#PS(l:bufnr).cmd
-        if l:cmd ==? a:cmd
-            return l:bufnr
-        endif
-    endfor
-    return 0
-endfunction
-
-function terminal#SmartOpen(cmd) abort
+function s:SmartOpen(union) abort
     let [l:wintype, l:winlist] = winlayout()
-    let l:bufnr = s:InactiveList(a:cmd)
-
     if l:wintype ==# 'row'
         call reverse(l:winlist)
 
@@ -135,13 +115,65 @@ function terminal#SmartOpen(cmd) abort
             endif
             if !buflisted(getwininfo(l:winid)[0].bufnr)
                 noautocmd call win_gotoid(l:winid)
-                call s:Open(v:false, a:cmd, l:bufnr)
+                call s:Open(v:false, a:union)
                 return
             endif
         endfor
     endif
 
-    call s:Open(v:true, a:cmd, l:bufnr)
+    call s:Open(v:true, a:union)
+endfunction
+
+function s:IsInactiveTerminal(bufnr) abort
+    if !bufexists(a:bufnr) || !s:IsTerminal(a:bufnr) || bufwinid(a:bufnr) != -1
+        return v:false
+    endif
+    return v:true
+endfunction
+
+function s:InactiveList() abort
+    return filter(range(1, bufnr('$')), {index, value -> s:IsInactiveTerminal(value)})
+endfunction
+
+function terminal#SmartOpen(cmd) abort
+    let l:bufnrs = s:InactiveList()
+    let l:union = strlen(a:cmd) ? a:cmd : 'bash'
+    for l:bufnr in l:bufnrs
+        let l:cmd = terminal#PS(l:bufnr).cmd
+        if l:cmd ==? l:union
+            let l:union = l:bufnr
+            break
+        endif
+    endfor
+    call s:SmartOpen(l:union)
+endfunction
+
+function terminal#Attach() abort
+    let l:bufnrs = s:InactiveList()
+    if empty(l:bufnrs)
+        echo 'No detached terminal!'
+        return
+    endif
+
+    if len(l:bufnrs) == 1
+        call s:SmartOpen(l:bufnrs[0])
+        return
+    endif
+
+    let l:input_message = "Detached terminals: \n"
+    for l:bufnr in l:bufnrs
+        let l:input_message .= printf("%6s: %s \n", l:bufnr, terminal#PS(l:bufnr).cmd)
+    endfor
+    let l:input_message .= 'Select targat terminal: '
+
+    call inputsave()
+    let l:bufnr = input(l:input_message)
+    call inputrestore()
+    if !l:bufnr
+        return
+    endif
+
+    call s:SmartOpen(str2nr(l:bufnr))
 endfunction
 
 function terminal#PS(bufnr) abort
