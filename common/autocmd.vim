@@ -54,7 +54,7 @@ augroup myFileType
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
-    autocmd FileType gitcommit setlocal colorcolumn=72 | set nobuflisted
+    autocmd FileType gitcommit setlocal colorcolumn=72
     autocmd FileType git set nobuflisted
     autocmd FileType conf setlocal commentstring=#%s
 
