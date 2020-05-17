@@ -60,7 +60,7 @@ function s:SlimeUserConfig(is_run) abort
     for l:bufnr in keys(l:terminals)
         let l:bufnr_message = (l:bufnr == l:current_bufnr) ? '['. l:bufnr .']'
                     \                                      : ' '. l:bufnr .' '
-        let l:input_message .= printf("%6s: %s\n", l:bufnr_message, bufname(l:bufnr))
+        let l:input_message .= printf("%6s: %s\n", l:bufnr_message, bufname(str2nr(l:bufnr)))
     endfor
     let l:input_message .= 'Select targat terminal: '
 
