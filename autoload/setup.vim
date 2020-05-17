@@ -22,11 +22,12 @@ endfunction
 
 function setup#AutoInstallation() abort
     let g:auto_installation = 1
-    call system('curl -fLo ~/.vim/autoload/plug.vim --create-dirs '.
+    let $MY_CONFIG = $HOME .'/.config'
+    call system('curl -fLo $MY_PLUG_VIM --create-dirs '.
                 \ 'https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim')
-    call system('mkdir -p ~/.config')
-    call system('ln -sf ~/.vim ~/.config/nvim')
-    call system('ln -sf ~/.vim/vimrc ~/.config/nvim/init.vim')
+    call system('mkdir -p $MY_CONFIG')
+    call system('ln -sf $VIM_HOME $MY_CONFIG/nvim')
+    call system('ln -sf $VIM_HOME/vimrc $MY_CONFIG/nvim/init.vim')
     augroup mySetup
         autocmd!
         autocmd VimEnter * call s:AutoCmdPlugInstall()

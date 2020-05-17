@@ -31,7 +31,8 @@ endif
 " }}}
 
 " vim-plug config {{{
-if !filereadable($HOME .'/.vim/autoload/plug.vim')
+let $MY_PLUG_VIM = $VIM_HOME .'/autoload/plug.vim'
+if !filereadable($MY_PLUG_VIM)
     call setup#AutoInstallation()
 endif
 
@@ -45,17 +46,17 @@ nnoremap <silent> <leader>vd :PlugDiff<CR>
 nnoremap <silent> <leader>vs :PlugStatus<CR>
 " }}}
 
-call plug#begin('~/.vim/plug')
+call plug#begin($VIM_HOME .'/plug')
 
 " Feature {{{
-Plug $HOME .'/.vim/feature/terminal'
+Plug $VIM_HOME .'/feature/terminal'
 if !exists('g:auto_installation')
-    let $MY_LINTER_PATH = $HOME .'/.vim/feature/linter/config'
+    let $MY_LINTER_PATH = $VIM_HOME .'/feature/linter/config'
 
-    Plug $HOME .'/.vim/feature/arc'
-    Plug $HOME .'/.vim/feature/buffer'
-    Plug $HOME .'/.vim/feature/large'
-    Plug $HOME .'/.vim/feature/linter'
+    Plug $VIM_HOME .'/feature/arc'
+    Plug $VIM_HOME .'/feature/buffer'
+    Plug $VIM_HOME .'/feature/large'
+    Plug $VIM_HOME .'/feature/linter'
 endif
 " }}}
 

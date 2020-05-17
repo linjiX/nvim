@@ -10,6 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader="\<Space>"
 
+let $VIM_HOME = expand('<sfile>:p:h')
 " create cache directory
 let $MY_CACHE_PATH = has('macunix') ? $HOME .'/Library/Caches/vim_cache'
             \                       : $HOME .'/.cache/vim_cache'
@@ -18,11 +19,11 @@ if !isdirectory($MY_CACHE_PATH)
 endif
 
 " source all configurations
-source ~/.vim/defaults.vim
-source ~/.vim/vimrc.plug
+source $VIM_HOME/defaults.vim
+source $VIM_HOME/vimrc.plug
 if !exists('g:auto_installation')
-    let s:configs = split(glob('~/.vim/common/*.vim'))
-    let s:configs += split(glob('~/.vim/config/*.vim'))
+    let s:configs = split(glob($VIM_HOME .'/common/*.vim'))
+    let s:configs += split(glob($VIM_HOME .'/config/*.vim'))
     for s:config in s:configs
         execute 'source '. s:config
     endfor

@@ -9,7 +9,7 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:protodefprotogetter = '~/.vim/plug/vim-protodef/pullproto.pl'
+let g:protodefprotogetter = $VIM_HOME .'/plug/vim-protodef/pullproto.pl'
 let g:disable_protodef_mapping = 1
 
 function s:ProtoDef(includeNS) abort

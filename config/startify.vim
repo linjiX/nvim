@@ -20,7 +20,7 @@ let g:startify_bookmarks = [
             \   {'g': '~/.config/dotfiles/gitconfig'},
             \]
 let g:startify_skiplist = [
-            \   $HOME .'/.vim',
+            \   $VIM_HOME,
             \   $HOME .'/.bashrc',
             \   '/usr/share/vim',
             \   '/usr/share/nvim',
