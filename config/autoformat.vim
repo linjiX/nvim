@@ -35,7 +35,7 @@ let g:formatters_json = ['prettier']
 let g:formatters_markdown = ['prettier']
 let g:formatters_yaml = ['prettier']
 
-let g:formatdef_prettydiff = "$MY_LINTER_PATH .'/prettydiff.sh beautify ".
+let g:formatdef_prettydiff = "'$MY_LINTER_PATH/prettydiff.sh beautify ".
             \                "warp:100 indent_size:4 preserve:2 space_close:true'"
 let g:formatters_xml = ['prettydiff']
 
@@ -45,7 +45,7 @@ let g:formatdef_cmake_format = "'cmake-format --line-width=100 --tab-size=4 ".
             \                  "--enable-markup=false -'"
 let g:formatters_cmake = ['cmake_format']
 
-let g:formatdef_phpcbf = "'phpcbf --standard='. $MY_LINTER_PATH .'/phpcs.xml -; true'"
+let g:formatdef_phpcbf = "'phpcbf --standard=$MY_LINTER_PATH/phpcs.xml -; true'"
 let g:formatters_php = ['phpcbf']
 
 let g:autoformat_verbosemode = 0
