@@ -13,3 +13,4 @@ let g:matchup_matchparen_offscreen = {}
 let g:matchup_text_obj_linewise_operators = ['y', 'd', 'v']
 
 let g:matchup_matchparen_deferred = 1
+let g:matchup_delim_stopline = 5000
