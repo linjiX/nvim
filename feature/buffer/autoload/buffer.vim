@@ -145,6 +145,8 @@ function buffer#Close(cmd) abort
             let &l:buflisted = l:old_buflisted
         endtry
     endif
+
+    AirlineRefresh
 endfunction
 
 function buffer#Reopen() abort
