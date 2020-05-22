@@ -10,14 +10,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let g:which_key_use_floating_win = 1
-let g:which_key_map = {
-            \   '`' :'BufKillAlt',
-            \   'i' :'BufKillForward',
-            \   'o' :'BufKillBack',
-            \   'q' :'BufKillBw',
-            \   'Q' :'BufKillBd',
-            \   'u' :'BufKillUndo',
-            \}
+let g:which_key_map = {}
 let g:which_key_map.c = {'name':'+prefix TComment && Conflict'}
 let g:which_key_map.e = {'name':'+prefix Slime'}
 let g:which_key_map.f = {'name':'+prefix LeaderF'}
