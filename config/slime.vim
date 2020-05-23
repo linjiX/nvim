@@ -66,6 +66,7 @@ function s:SlimeUserConfig(is_run) abort
 
     call inputsave()
     let l:config.bufnr = input(l:input_message, l:current_bufnr)
+    let l:config.pid = l:terminals[l:config.bufnr]
     call inputrestore()
 endfunction
 

@@ -11,7 +11,7 @@
 
 if has('nvim')
     function terminal#GetJobID(bufnr) abort
-        return getbufvar(a:bufnr, 'terminal_job_id')
+        return getbufvar(str2nr(a:bufnr), 'terminal_job_id')
     endfunction
 
     function terminal#AutoCmdInsert() abort
