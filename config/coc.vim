@@ -55,6 +55,11 @@ function s:ToggleService(name) abort
     echo 'Toggle '. a:name
 endfunction
 
+function s:RestartExtension(name) abort
+    call CocAction('reloadExtension', a:name)
+    echo 'Restart '. a:name
+endfunction
+
 function s:EnableExtension(name) abort
     call CocAction('reloadExtension', a:name)
     echo 'Enable '. a:name
@@ -94,14 +99,23 @@ let s:coc_lsp = {
             \   'sh': 'languageserver.bash',
             \   'Dockerfile': 'languageserver.dockerfile',
             \}
-function s:ToggleLSP() abort
-    if !has_key(s:coc_lsp, &filetype)
+
+let s:coc_action = {
+            \   'toggle': function('s:ToggleExtension'),
+            \   'enable': function('s:EnableExtension'),
+            \   'disable': function('s:DisableExtension'),
+            \   'restart': function('s:RestartExtension'),
+            \}
+
+function s:LSPAction(action) abort
+    let l:name = get(s:coc_lsp, &filetype, v:null)
+    if l:name is v:null
+        echo &filetype .' LSP is not registered'
         return
     endif
-    let l:name = s:coc_lsp[&filetype]
 
     if l:name =~# '\v^coc-'
-        call s:ToggleExtension(name)
+        call s:coc_action[a:action](l:name)
     else
         call s:ToggleService(name)
     endif
@@ -147,7 +161,11 @@ nmap [rc :CocEnable<CR>
 nmap ]rc :CocDisable<CR>
 nmap <expr> yrc <SID>CocToggle()
 nnoremap <silent> yrC :call <SID>CocRestart()<CR>
-nnoremap <silent> yrl :call <SID>ToggleLSP()<CR>
+
+nnoremap <silent> [rl :call <SID>LSPAction('enable')<CR>
+nnoremap <silent> ]rl :call <SID>LSPAction('disable')<CR>
+nnoremap <silent> yrl :call <SID>LSPAction('toggle')<CR>
+nnoremap <silent> yrL :call <SID>LSPAction('restart')<CR>
 
 nmap <silent> <leader>jj <Plug>(coc-definition)
 nmap <silent> <leader>jd <Plug>(coc-declaration)
