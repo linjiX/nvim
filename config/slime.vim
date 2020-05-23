@@ -15,7 +15,7 @@ let g:slime_python_ipython = 1
 let g:slime_paste_file = $MY_CACHE_PATH .'/slime_paste'
 
 let s:slime_smart_mode = 1
-let s:slime_sleep_time_ms = 200
+let s:slime_sleep_time_ms = 400
 let s:slime_run_filetype = ['python', 'sh']
 let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
@@ -149,9 +149,9 @@ function s:SlimeOpenTerminal(cmd) abort
             let b:terminal_navigate = 1
         endif
 
-        let l:sleep = (a:cmd ==# 'bash') ? s:slime_sleep_time_ms
-                    \                    : s:slime_sleep_time_ms * 2
-        execute 'sleep'. l:sleep .'m'
+        if a:cmd !=# 'bash'
+            execute 'sleep'. s:slime_sleep_time_ms .'m'
+        endif
         let l:bufnr = bufnr()
         return {l:bufnr : terminal#PS(l:bufnr).pid}
     finally
