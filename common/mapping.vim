@@ -51,10 +51,10 @@ cnoreabbrev <silent> w!! w !sudo tee % >/dev/null
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
 
+cnoremap <expr> <C-k> pumvisible() ? "<C-p>" : "<Up>"
+cnoremap <expr> <C-j> pumvisible() ? "<C-n>" : "<Down>"
 cnoremap <C-o> <C-f>
 cnoremap <C-a> <Home>
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
 cnoremap <C-f> <Right>
 cnoremap <C-b> <Left>
 cnoremap <C-h> <S-Left>
