@@ -25,9 +25,9 @@ fi
 git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
 pushd "$HOME/.vim/setup/" >/dev/null
 
-#######################################
+#####################################
 # Install Vim 8 && NeoVim && Nodejs #
-#######################################
+#####################################
 
 sudo apt-add-repository -y ppa:jonathonf/vim
 sudo apt-add-repository -y ppa:neovim-ppa/unstable

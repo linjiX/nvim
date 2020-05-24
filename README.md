@@ -2,16 +2,10 @@
 
 ![preview image](preview.png)
 
-## Clone Vim configuration
-
-```bash
-git clone --depth=1 https://github.com/linjiX/.vim.git ~/.vim
-```
-
 ## Installation (Ubuntu 16.04 & 20.04)
 
 ```bash
-~/.vim/setup/install_vim.sh
+curl -sS https://raw.githubusercontent.com/linjiX/.vim/master/setup/setup.sh | bash
 ```
 
 It will take a long time, make sure your network is unblocked and be patient.
