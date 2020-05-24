@@ -6,21 +6,24 @@ if [[ "$DISTRIB_CODENAME" != 'xenial' && "$DISTRIB_CODENAME" != 'focal' ]]; then
     exit 1
 fi
 
-if [ -f ~/.vimrc ]; then
-    echo 'Please remove your ~/.vimrc file first'
+if [[ -f $HOME/.vimrc || -d $HOME/.vim ]]; then
+    echo 'Please remove your ~/.vimrc and ~/.vim/ first'
     exit 1
 fi
 
-pushd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null
 set -euo pipefail
 set -x
 
-if ! dpkg -s software-properties-common curl 1>/dev/null 2>&1; then
+if ! dpkg -s git curl software-properties-common 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
-        software-properties-common \
-        curl
+        git \
+        curl \
+        software-properties-common
 fi
+
+git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
+pushd "$HOME/.vim/setup/" >/dev/null
 
 #######################################
 # Install Vim 8 && NeoVim && Nodejs #
