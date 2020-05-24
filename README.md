@@ -2,13 +2,13 @@
 
 ![preview image](preview.png)
 
-## Installation (Ubuntu 16.04 & 20.04)
+## Installation (Support MacOS & Ubuntu 16.04/20.04)
 
 ```bash
 curl -sS https://raw.githubusercontent.com/linjiX/.vim/master/setup/setup.sh | bash
 ```
 
-It will take a long time, make sure your network is unblocked and be patient.
+It may take a long time, make sure your network is unblocked and be patient.
 
 ## Fonts
 
