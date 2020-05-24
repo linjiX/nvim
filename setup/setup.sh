@@ -14,16 +14,12 @@ fi
 set -euo pipefail
 set -x
 
-if ! dpkg -s git curl software-properties-common 1>/dev/null 2>&1; then
+if ! dpkg -s curl software-properties-common 1>/dev/null 2>&1; then
     sudo apt-get update
     sudo apt-get install -y \
-        git \
         curl \
         software-properties-common
 fi
-
-git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
-pushd "$HOME/.vim/setup/" >/dev/null
 
 #####################################
 # Install Vim 8 && NeoVim && Nodejs #
@@ -35,6 +31,7 @@ sudo apt-add-repository -y ppa:neovim-ppa/unstable
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 # sudo apt-get update
 sudo apt-get install -y \
+    git \
     vim \
     vim-scripts \
     vim-doc \
@@ -42,6 +39,11 @@ sudo apt-get install -y \
     neovim \
     nodejs
 
+git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
+
+########################
+# Install Useful tools #
+########################
 if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
     sudo apt-get install -y \
         autoconf \
@@ -49,9 +51,11 @@ if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
         wget \
         libjansson-dev
 
+    pushd "$HOME/.vim/setup/" >/dev/null
     ./install_ctags.sh
     ./install_global.sh
     ./install_ripgrep.sh
+    popd >/dev/null
 else
     sudo apt-get install -y \
         universal-ctags \
@@ -62,7 +66,4 @@ fi
 #######################
 # Install Vim Plugins #
 #######################
-
 vim
-
-popd >/dev/null
