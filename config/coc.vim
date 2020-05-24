@@ -75,6 +75,7 @@ function s:ToggleExtension(name) abort
     for l:item in l:list
         if l:item.id ==# a:name
             let l:state = l:item.state
+            break
         endif
     endfor
     if !exists('l:state')

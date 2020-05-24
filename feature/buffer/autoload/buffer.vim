@@ -54,7 +54,6 @@ function s:CheckModified() abort
     return v:true
 endfunction
 
-
 function s:BPrevious() abort
     let l:bufnr = bufnr()
     bprevious
