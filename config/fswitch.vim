@@ -11,7 +11,7 @@
 
 let g:fsnonewfiles = 1
 
-let s:source_locs = join([
+let s:cpp_source_locs = join([
             \   '.',
             \   '../src',
             \   '../source',
@@ -21,7 +21,7 @@ let s:source_locs = join([
             \   'reg:/include.*/source/',
             \], ',')
 
-let s:header_locs = join([
+let s:cpp_header_locs = join([
             \   '.',
             \   '../include',
             \   'reg:/src/include/',
@@ -30,12 +30,19 @@ let s:header_locs = join([
             \   'reg:|source|include/**|',
             \], ',')
 
+let s:vim_locs = join([
+            \   'reg:/autoload/plugin/',
+            \   'reg:/plugin/autoload',
+            \], ',')
+
 augroup myFSwitch
     autocmd!
     autocmd BufEnter *.h,*.hpp,*.hh let b:fswitchdst = 'cc,cpp,c'
-                \| let b:fswitchlocs = s:source_locs
+                \| let b:fswitchlocs = s:cpp_source_locs
     autocmd BufEnter *.cc,*.cpp,*.c let b:fswitchdst = 'h,hpp,hh'
-                \| let b:fswitchlocs = s:header_locs
+                \| let b:fswitchlocs = s:cpp_header_locs
+    autocmd FileType vim let b:fswitchdst = 'vim'
+                \| let b:fswitchlocs = s:vim_locs
 augroup END
 
 nnoremap <silent> <leader>h :FSHere<CR>
