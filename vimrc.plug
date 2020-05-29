@@ -164,7 +164,7 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'tpope/vim-commentary'
 Plug 'Shougo/echodoc.vim'
 Plug 'dense-analysis/ale'
-Plug 'derekwyatt/vim-fswitch', {'on': 'FSHere'}
+Plug 'linjiX/vim-fswitch', {'on': 'FSHere'}
 Plug 'derekwyatt/vim-protodef', {'for': ['c', 'cpp']}
 Plug 'honza/vim-snippets'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
