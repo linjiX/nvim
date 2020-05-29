@@ -11,11 +11,6 @@
 
 let g:fsnonewfiles = 1
 
-let s:vim_locs = join([
-            \   'reg:/autoload/plugin/',
-            \   'reg:/plugin/autoload',
-            \], ',')
-
 function s:AutoCmdFSwitchCPP() abort
     let l:extension = expand('<afile>:e')
     if index(['h', 'hpp', 'hh'], l:extension) != -1
@@ -44,11 +39,18 @@ function s:AutoCmdFSwitchCPP() abort
     endif
 endfunction
 
+function s:AutoCmdFSwitchVIM() abort
+    let b:fswitchdst = 'vim'
+    let b:fswitchlocs = join([
+                \   'reg:/autoload/plugin/',
+                \   'reg:/plugin/autoload',
+                \], ',')
+endfunction
+
 augroup myFSwitch
     autocmd!
     autocmd FileType c,cpp call s:AutoCmdFSwitchCPP()
-    autocmd FileType vim let b:fswitchdst = 'vim'
-                \| let b:fswitchlocs = s:vim_locs
+    autocmd FileType vim call s:AutoCmdFSwitchVIM()
 augroup END
 
 nnoremap <silent> <leader>h :FSHere<CR>
