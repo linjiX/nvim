@@ -11,36 +11,42 @@
 
 let g:fsnonewfiles = 1
 
-let s:cpp_source_locs = join([
-            \   '.',
-            \   '../src',
-            \   '../source',
-            \   'reg:/include/src/',
-            \   'reg:/include.*/src/',
-            \   'reg:/include/source/',
-            \   'reg:/include.*/source/',
-            \], ',')
-
-let s:cpp_header_locs = join([
-            \   '.',
-            \   '../include',
-            \   'reg:/src/include/',
-            \   'reg:|src|include/**|',
-            \   'reg:/source/include/',
-            \   'reg:|source|include/**|',
-            \], ',')
-
 let s:vim_locs = join([
             \   'reg:/autoload/plugin/',
             \   'reg:/plugin/autoload',
             \], ',')
 
+function s:AutoCmdFSwitchCPP() abort
+    let l:extension = expand('<afile>:e')
+    if index(['h', 'hpp', 'hh'], l:extension) != -1
+        let b:fswitchdst = 'cc,cpp,c'
+        let b:fswitchlocs = join([
+                    \   '.',
+                    \   '../src',
+                    \   '../source',
+                    \   'reg:/include/src/',
+                    \   'reg:/include.*/src/',
+                    \   'reg:/include/source/',
+                    \   'reg:/include.*/source/',
+                    \], ',')
+    elseif index(['cc', 'cpp', 'c'], l:extension) != -1
+        let b:fswitchdst = 'h,hpp,hh'
+        let b:fswitchlocs = join([
+                    \   '.',
+                    \   '../include',
+                    \   'reg:/src/include/',
+                    \   'reg:|src|include/**|',
+                    \   'reg:/source/include/',
+                    \   'reg:|source|include/**|',
+                    \], ',')
+    else
+        throw 'CPP file extension not recognized'
+    endif
+endfunction
+
 augroup myFSwitch
     autocmd!
-    autocmd BufEnter *.h,*.hpp,*.hh let b:fswitchdst = 'cc,cpp,c'
-                \| let b:fswitchlocs = s:cpp_source_locs
-    autocmd BufEnter *.cc,*.cpp,*.c let b:fswitchdst = 'h,hpp,hh'
-                \| let b:fswitchlocs = s:cpp_header_locs
+    autocmd FileType c,cpp call s:AutoCmdFSwitchCPP()
     autocmd FileType vim let b:fswitchdst = 'vim'
                 \| let b:fswitchlocs = s:vim_locs
 augroup END
