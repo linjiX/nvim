@@ -2,5 +2,4 @@ plug/
 autoload/plug.vim
 autoload/plug.vim.old
 
-init.vim
 vimrc.bak

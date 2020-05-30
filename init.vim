@@ -19,7 +19,6 @@ if !isdirectory($MY_CACHE_PATH)
 endif
 
 " source all configurations
-source $VIM_HOME/defaults.vim
 source $VIM_HOME/vimrc.plug
 if !exists('g:auto_installation')
     let s:configs = split(glob($VIM_HOME .'/common/*.vim'))

@@ -59,4 +59,11 @@ if !isdirectory(&directory)
     call mkdir(&directory, 'p')
 endif
 
+set runtimepath-=$HOME/.vim
+set runtimepath-=$HOME/.vim/after
+
+let $VIM_HOME = $HOME .'/.config/nvim'
+set runtimepath^=$VIM_HOME
+source $VIM_HOME/init.vim
+
 scriptencoding utf-8

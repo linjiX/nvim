@@ -33,9 +33,9 @@ augroup END
 
 augroup mySource
     autocmd!
-    if has('nvim')
-        autocmd BufWritePost $MYVIMRC source %
-    endif
+    " if has('nvim')
+    " autocmd BufWritePost $MYVIMRC source %
+    " endif
     autocmd BufWritePost $VIM_HOME/vimrc.plug source %
     autocmd BufWritePost $VIM_HOME/common/*.vim source %
     autocmd BufWritePost $VIM_HOME/config/*.vim source %
