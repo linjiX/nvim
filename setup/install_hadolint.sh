@@ -13,7 +13,7 @@ readonly VERSION="v1.17.6"
 readonly FILE="hadolint-Linux-x86_64"
 readonly TARGET="/usr/local/bin/hadolint"
 
-if ! dpkg -s wget 1>/dev/null 2>&1; then
+if ! dpkg -s wget &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y wget
 fi

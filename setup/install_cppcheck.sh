@@ -20,7 +20,7 @@ readonly VERSION="1.90"
 readonly TARFILE="$VERSION.tar.gz"
 readonly DIR="cppcheck-$VERSION"
 
-if ! dpkg -s cmake make wget g++ libpcre3-dev 1>/dev/null 2>&1; then
+if ! dpkg -s cmake make wget g++ libpcre3-dev &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y \
         wget \

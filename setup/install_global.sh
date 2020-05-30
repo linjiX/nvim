@@ -20,7 +20,7 @@ readonly TARFILE=global-$VERSION.tar.gz
 readonly DIR=global-$VERSION
 
 if ! dpkg -s autoconf wget make bison flex gperf libtool-bin libncurses5-dev texinfo \
-    1>/dev/null 2>&1; then
+    &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y \
         autoconf \

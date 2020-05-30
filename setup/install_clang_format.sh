@@ -17,7 +17,7 @@ set -x
 # Install clang-format #
 ########################
 
-if ! dpkg -s wget software-properties-common apt-transport-https 1>/dev/null 2>&1; then
+if ! dpkg -s wget software-properties-common apt-transport-https &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y \
         wget \

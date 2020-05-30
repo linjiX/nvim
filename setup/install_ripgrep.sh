@@ -18,7 +18,7 @@ set -x
 readonly VERSION="12.0.1"
 readonly DEBFILE=ripgrep_${VERSION}_amd64.deb
 
-if ! dpkg -s wget 1>/dev/null 2>&1; then
+if ! dpkg -s wget &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y wget
 fi

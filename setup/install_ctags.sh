@@ -15,7 +15,7 @@ set -x
 # Install Universal Ctags #
 ###########################
 
-if ! dpkg -s autoconf git make libjansson-dev 1>/dev/null 2>&1; then
+if ! dpkg -s autoconf git make libjansson-dev &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y \
         autoconf \

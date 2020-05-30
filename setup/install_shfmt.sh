@@ -11,9 +11,9 @@ fi
 set -euo pipefail
 set -x
 
-if ! command -v go 1>/dev/null 2>&1; then
+if ! command -v go &>/dev/null; then
     if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
-        if ! dpkg -s git software-properties-common 1>/dev/null 2>&1; then
+        if ! dpkg -s git software-properties-common &>/dev/null; then
             sudo apt-get update
             sudo apt-get install -y \
                 software-properties-common \

@@ -19,7 +19,7 @@ readonly VERSION="3.5.4"
 readonly TARGET_PHPCS="/usr/local/bin/phpcs"
 readonly TARGET_PHPCBF="/usr/local/bin/phpcbf"
 
-if ! dpkg -s wget 1>/dev/null 2>&1; then
+if ! dpkg -s wget &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y wget
 fi

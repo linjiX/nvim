@@ -19,7 +19,7 @@ readonly VERSION="1.6"
 readonly FILE="jq-linux64"
 readonly TARGET="/usr/local/bin/jq"
 
-if ! dpkg -s wget 1>/dev/null 2>&1; then
+if ! dpkg -s wget &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y wget
 fi

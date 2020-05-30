@@ -3,7 +3,7 @@
 readonly VIM_HOME=$HOME/.config/nvim
 
 setup_ubuntu() {
-    if ! dpkg -s curl software-properties-common 1>/dev/null 2>&1; then
+    if ! dpkg -s curl software-properties-common &>/dev/null; then
         sudo apt-get update
         sudo apt-get install -y \
             curl \
@@ -71,7 +71,7 @@ setup_macos() {
 }
 
 if [ "$(uname)" == Darwin ]; then
-    if ! command -v brew 1>/dev/null 2>&1; then
+    if ! command -v brew &>/dev/null; then
         echo 'Install homebrew (https://brew.sh) first'
         exit 1
     fi
