@@ -38,7 +38,7 @@ setup_ubuntu() {
             wget \
             libjansson-dev
 
-        pushd "$HOME/.vim/setup/" >/dev/null
+        pushd "$VIM_HOME/setup" >/dev/null
         ./install_ctags.sh
         ./install_global.sh
         ./install_ripgrep.sh
