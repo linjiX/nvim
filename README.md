@@ -5,10 +5,23 @@
 ## Installation (Support MacOS & Ubuntu 16.04/20.04)
 
 ```bash
+# Python3 environment and 'neovim' package is needed
+pip3 install neovim
+
+# One line setup script
 curl -sS https://raw.githubusercontent.com/linjiX/.vim/master/setup/setup.sh | bash
 ```
 
 It may take a long time, make sure your network is unblocked and be patient.
+
+## Vim8 Support (Optional)
+
+This neovim configuration also supports Vim8
+
+```bash
+# Install Vim8 & Link Vim8's configuration to neovim
+~/.config/nvim/setup/vim8.sh
+```
 
 ## Fonts
 
@@ -34,12 +47,9 @@ Then enable it in your terminal.
 ## How to update
 
 ```bash
-cd ~/.vim
+cd ~/.config/nvim
 git pull
-vim ~/.vim/vimrc.plug
-:PlugUpdate
-:CocUpdateSync
-:qa
+nvim -c PlugUpdate -c quitall
 ```
 
 ## Language Support
