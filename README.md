@@ -2,7 +2,13 @@
 
 ![preview image](preview.png)
 
-## Installation (Support MacOS & Ubuntu 16.04/20.04)
+## Setup
+
+Support OS:
+
+-   Ubuntu 16.04
+-   Ubuntu 20.04
+-   MacOS
 
 ```bash
 # Python3 environment and 'neovim' package is needed
@@ -23,6 +29,15 @@ This neovim configuration also supports Vim8
 ~/.config/nvim/setup/vim8.sh
 ```
 
+## Language Support (Optional)
+
+The auto format and static check for different language needs external tools  
+Here is how to install them:
+
+-   [Ubuntu 16.04](setup/README_xenial.md)
+-   [Ubuntu 20.04](setup/README_focal.md)
+-   [MacOS](setup/README_macos.md)
+
 ## Fonts
 
 Vim may meet some display issues in your machine.  
@@ -40,7 +55,7 @@ Then enable it in your terminal.
 
 ---
 
-#### Select a colorscheme for yourself, then enjoy your Vim!
+#### Select a colorscheme for yourself, then enjoy your vim!
 
 ---
 
@@ -51,12 +66,3 @@ cd ~/.config/nvim
 git pull
 nvim -c PlugUpdate -c quitall
 ```
-
-## Language Support
-
-The language format and static check feature needs external tools  
-Here is how to install them:
-
--   [Ubuntu 16.04](setup/README_xenial.md)
--   [Ubuntu 20.04](setup/README_focal.md)
--   [MacOS](setup/README_macos.md)
