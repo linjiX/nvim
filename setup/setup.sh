@@ -11,25 +11,20 @@ setup_ubuntu() {
     #####################################
     # Install Vim 8 && NeoVim && Nodejs #
     #####################################
-    sudo apt-add-repository -y ppa:jonathonf/vim
     sudo apt-add-repository -y ppa:neovim-ppa/unstable
     # https://github.com/nodesource/distributions#debinstall
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
     # sudo apt-get update
     sudo apt-get install -y \
         git \
-        vim \
-        vim-scripts \
-        vim-doc \
-        vim-gtk \
         neovim \
         nodejs
 
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
-    vim
+    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.config/nvim"
+    nvim
 
     ########################
     # Install Useful tools #
@@ -62,7 +57,6 @@ setup_macos() {
     brew install \
         git \
         node \
-        vim \
         neovim \
         global \
         ripgrep
@@ -70,13 +64,13 @@ setup_macos() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.vim"
-    vim
+    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.config/nvim"
+    nvim
 }
 
 if [ "$(uname)" == Darwin ]; then
     if ! command -v brew 1>/dev/null 2>&1; then
-        echo "Install homebrew (https://brew.sh) first"
+        echo 'Install homebrew (https://brew.sh) first'
         exit 1
     fi
 else
@@ -89,6 +83,11 @@ fi
 
 if [[ -f $HOME/.vimrc || -d $HOME/.vim ]]; then
     echo 'Please remove your ~/.vimrc and ~/.vim/ first'
+    exit 1
+fi
+
+if ! python3 -c "import neovim" &>/dev/null; then
+    echo 'Neovim needs python3 and "neovim" package, run "pip3 install neovim" first'
     exit 1
 fi
 
