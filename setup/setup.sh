@@ -1,5 +1,7 @@
 #!/bin/bash
 
+readonly VIM_HOME=$HOME/.config/nvim
+
 setup_ubuntu() {
     if ! dpkg -s curl software-properties-common 1>/dev/null 2>&1; then
         sudo apt-get update
@@ -8,9 +10,9 @@ setup_ubuntu() {
             software-properties-common
     fi
 
-    #####################################
-    # Install Vim 8 && NeoVim && Nodejs #
-    #####################################
+    ############################
+    # Install NeoVim && Nodejs #
+    ############################
     sudo apt-add-repository -y ppa:neovim-ppa/unstable
     # https://github.com/nodesource/distributions#debinstall
     curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
@@ -23,7 +25,7 @@ setup_ubuntu() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.config/nvim"
+    git clone --depth=1 https://github.com/linjiX/.vim.git "$VIM_HOME"
     nvim
 
     ########################
@@ -64,7 +66,7 @@ setup_macos() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$HOME/.config/nvim"
+    git clone --depth=1 https://github.com/linjiX/.vim.git "$VIM_HOME"
     nvim
 }
 
@@ -81,8 +83,8 @@ else
     fi
 fi
 
-if [[ -f $HOME/.vimrc || -d $HOME/.vim ]]; then
-    echo 'Please remove your ~/.vimrc and ~/.vim/ first'
+if [ -d "$VIM_HOME" ]; then
+    echo 'Please remove your "~/.config/nvim" first'
     exit 1
 fi
 
