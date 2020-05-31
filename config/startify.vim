@@ -11,10 +11,10 @@
 
 let g:startify_change_to_vcs_root = 1
 let g:startify_bookmarks = [
-            \   {'v': '~/.vim/vimrc'},
-            \   {'p': '~/.vim/vimrc.plug'},
-            \   {'c': '~/.vim/coc-settings.json'},
-            \   {'s': '~/.vim/plug/coc.nvim/data/schema.json'},
+            \   {'v': '~/.config/nvim/init.vim'},
+            \   {'p': '~/.config/nvim/plugs.vim'},
+            \   {'c': '~/.config/nvim/coc-settings.json'},
+            \   {'s': '~/.config/nvim/plug/coc.nvim/data/schema.json'},
             \   {'b': '~/.config/dotfiles/bashrc'},
             \   {'t': '~/.config/dotfiles/tmux.conf'},
             \   {'g': '~/.config/dotfiles/gitconfig'},
