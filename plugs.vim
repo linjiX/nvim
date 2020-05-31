@@ -55,6 +55,7 @@ if !exists('g:auto_installation')
 
     Plug $VIM_HOME .'/feature/arc'
     Plug $VIM_HOME .'/feature/buffer'
+    Plug $VIM_HOME .'/feature/fold'
     Plug $VIM_HOME .'/feature/large'
     Plug $VIM_HOME .'/feature/linter'
 endif

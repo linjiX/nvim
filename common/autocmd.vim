@@ -58,11 +58,6 @@ augroup myFileType
     autocmd FileType git set nobuflisted
     autocmd FileType conf setlocal commentstring=#%s
 
-    autocmd FileType json setlocal foldmethod=syntax
-    autocmd FileType markdown setlocal foldmethod=expr | setlocal foldexpr=fold#markdown#Expr()
-    autocmd FileType vim setlocal foldmethod=expr | setlocal foldexpr=fold#vimscript#Expr()
-    autocmd FileType python setlocal foldmethod=expr | setlocal foldexpr=fold#python#Expr()
-
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro
 augroup END
