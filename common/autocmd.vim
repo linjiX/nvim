@@ -46,6 +46,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=Dockerfile
     autocmd BufNewFile,BufRead *.launch setlocal filetype=xml
     autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
+    autocmd BufNewFile,BufRead *.conf setlocal filetype=conf
     autocmd BufNewFile,BufRead .clang-format setlocal filetype=yaml
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl

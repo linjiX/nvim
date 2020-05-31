@@ -18,6 +18,7 @@ let g:startify_bookmarks = [
             \   {'b': '~/.config/dotfiles/bash/bashrc'},
             \   {'t': '~/.config/dotfiles/tmux/tmux.conf'},
             \   {'g': '~/.config/dotfiles/git/gitconfig'},
+            \   {'r': '~/.config/dotfiles/ranger/rc.conf'},
             \]
 let g:startify_skiplist = [
             \   $VIM_HOME,
