@@ -15,9 +15,9 @@ let g:startify_bookmarks = [
             \   {'p': '~/.config/nvim/plugs.vim'},
             \   {'c': '~/.config/nvim/coc-settings.json'},
             \   {'s': '~/.config/nvim/plug/coc.nvim/data/schema.json'},
-            \   {'b': '~/.config/dotfiles/bashrc'},
-            \   {'t': '~/.config/dotfiles/tmux.conf'},
-            \   {'g': '~/.config/dotfiles/gitconfig'},
+            \   {'b': '~/.config/dotfiles/bash/bashrc'},
+            \   {'t': '~/.config/dotfiles/tmux/tmux.conf'},
+            \   {'g': '~/.config/dotfiles/git/gitconfig'},
             \]
 let g:startify_skiplist = [
             \   $VIM_HOME,
