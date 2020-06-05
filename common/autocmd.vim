@@ -34,7 +34,7 @@ augroup END
 augroup mySource
     autocmd!
     " autocmd BufWritePost $MYVIMRC source %
-    autocmd BufWritePost $VIM_HOME/vimrc.plug source %
+    autocmd BufWritePost $VIM_HOME/plugs.vim source %
     autocmd BufWritePost $VIM_HOME/autoload/*.vim source %
     autocmd BufWritePost $VIM_HOME/common/*.vim source %
     autocmd BufWritePost $VIM_HOME/config/*.vim source %
