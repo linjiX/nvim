@@ -15,7 +15,7 @@ Support OS:
 pip3 install neovim
 
 # One line setup script
-curl -sS https://raw.githubusercontent.com/linjiX/.vim/master/setup/setup.sh | bash
+curl -sS https://raw.githubusercontent.com/linjiX/nvim/master/setup/setup.sh | bash
 ```
 
 It may take a long time, make sure your network is unblocked and be patient.

@@ -25,7 +25,7 @@ setup_ubuntu() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$VIM_HOME"
+    git clone --depth=1 https://github.com/linjiX/nvim.git "$VIM_HOME"
     nvim
 
     ########################
@@ -66,7 +66,7 @@ setup_macos() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/.vim.git "$VIM_HOME"
+    git clone --depth=1 https://github.com/linjiX/nvim.git "$VIM_HOME"
     nvim
 }
 
@@ -105,5 +105,5 @@ fi
 set +x
 echo
 echo '###################################'
-echo '  "linjiX/.vim" setup successful!  '
+echo '  "linjiX/nvim" setup successful!  '
 echo '###################################'
