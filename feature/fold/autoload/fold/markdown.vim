@@ -10,6 +10,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function fold#markdown#Expr()
+    if &buftype ==# 'terminal'
+        return
+    endif
+
     let l:line = getline(v:lnum)
     let l:level = len(matchstr(l:line, '^\zs#\{1,6}\ze\s'))
 

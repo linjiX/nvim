@@ -10,6 +10,10 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function fold#vimscript#Expr() abort
+    if &buftype ==# 'terminal'
+        return
+    endif
+
     let l:line = getline(v:lnum)
 
     if l:line !~# '\v^\s*[aef]'
