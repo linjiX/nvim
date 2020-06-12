@@ -1,4 +1,4 @@
-# .vim
+# nvim
 
 ![preview image](preview.png)
 
