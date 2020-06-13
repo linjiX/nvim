@@ -25,7 +25,7 @@ setup_ubuntu() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/nvim.git "$VIM_HOME"
+    git clone --depth=1 "$REPOSITORY" "$VIM_HOME"
     nvim
 
     ########################
@@ -66,7 +66,7 @@ setup_macos() {
     #######################
     # Install Vim Plugins #
     #######################
-    git clone --depth=1 https://github.com/linjiX/nvim.git "$VIM_HOME"
+    git clone --depth=1 "$REPOSITORY" "$VIM_HOME"
     nvim
 }
 
@@ -92,6 +92,15 @@ if ! python3 -c "import neovim" &>/dev/null; then
     echo 'Neovim needs python3 and "neovim" package, run "pip3 install neovim" first'
     exit 1
 fi
+
+REPOSITORY="https://github.com/linjiX/nvim.git"
+
+while getopts "g" opt; do
+    case "$opt" in
+    g) REPOSITORY="git@github.com:linjiX/nvim.git" ;;
+    ?) echo "Invalid flag!" && exit 1 ;;
+    esac
+done
 
 set -euo pipefail
 set -x
