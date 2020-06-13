@@ -31,14 +31,6 @@ let s:java_home =
             \                : '/usr/lib/jvm/java-8-openjdk-amd64'
 call coc#config('xml.java.home', s:java_home)
 
-function! s:ShowDocumentation()
-    if (index(['vim','help'], &filetype) != -1)
-        execute 'help '. expand('<cword>')
-    else
-        call CocAction('doHover')
-    endif
-endfunction
-
 function s:CocRestart() abort
     if workspace#Disable()
         autocmd myCoc User CocNvimInit ++once call workspace#Toggle()
@@ -156,8 +148,9 @@ imap <silent><expr> <TAB>
             \                                                         : coc#refresh()
 inoremap <silent><expr> <S-TAB> coc#refresh()
 
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
+nnoremap <silent><expr> K
+            \ index(['vim','help'], &filetype) != -1 ? 'K'
+            \                                        : ":call CocAction('doHover')\<CR>"
 
 nmap [rc :CocEnable<CR>
 nmap ]rc :CocDisable<CR>
