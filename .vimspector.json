@@ -1,0 +1,23 @@
+{
+    "configurations": {
+        "Python: Launch": {
+            "adapter": "debugpy",
+            "breakpoints": {
+                "exception": {
+                    "raised": "N",
+                    "uncaught": "Y",
+                    "userUnhandled": "Y"
+                }
+            },
+            "configuration": {
+                "name": "Python: Launch",
+                "type": "python",
+                "request": "launch",
+                "python": "python3",
+                "cwd": "${workspaceFolder}",
+                "program": "${file}",
+                "console": "externalTerminal"
+            }
+        }
+    }
+}

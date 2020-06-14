@@ -9,7 +9,23 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nmap <silent> <leader>df <Plug>VimspectorContinue
+let $VIMSPECTOR_CONFIG = $VIM_HOME .'/.vimspector.json'
+
+function s:LinkConfig() abort
+    let l:root = FindRootDirectory()
+    if empty(l:root)
+        let l:root = expand('%:p:h')
+    endif
+    let l:config_path = l:root .'/.vimspector.json'
+
+    if filereadable(l:config_path)
+        return
+    endif
+
+    call system('ln -s $VIMSPECTOR_CONFIG '. l:config_path)
+endfunction
+
+nmap <silent> <leader>df :call <SID>LinkConfig()<CR><Plug>VimspectorContinue
 nmap <silent> <leader>dq <Plug>VimspectorStop
 nmap <silent> <leader>dr <Plug>VimspectorRestart
 nmap <silent> <leader>dp <Plug>VimspectorPause
