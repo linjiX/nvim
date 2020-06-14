@@ -14,7 +14,6 @@ let g:coc_global_extensions = [
             \   'coc-word',
             \   'coc-highlight',
             \   'coc-snippets',
-            \   'coc-git',
             \   'coc-json',
             \   'coc-python',
             \   'coc-vimlsp',
@@ -184,10 +183,10 @@ Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " }}}
 
 " Git {{{
-" Plug 'airblade/vim-gitgutter'
 " Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 " Plug 'mhinz/vim-signify'
 " Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'rhysd/git-messenger.vim', {'on': ['<Plug>(git-messenger)', 'GitMessenger']}
