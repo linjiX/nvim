@@ -44,8 +44,6 @@
     "suggest.echodocSupport": true,
 
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.messageTarget": "float",
-    "diagnostic.locationlist": false,
     "diagnostic.signOffset": 100000,
     "diagnostic.errorSign": "E",
     "diagnostic.warningSign": "W",
