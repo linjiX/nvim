@@ -9,12 +9,22 @@
 "                                                             "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:gitgutter_preview_win_location = 'belowright'
+let g:gitgutter_preview_win_floating = 1
+
+function s:SetPopupWinColor() abort
+    if has('nvim')
+        return
+    endif
+    let l:pos = getpos('.')[1:2]
+    let l:screenpos = screenpos(win_getid(), l:pos[0], l:pos[1])
+    let l:popup_id = popup_locate(l:screenpos.row + 1, l:screenpos.col)
+    call popup_setoptions(l:popup_id, {'highlight': 'NormalFloat'})
+endfunction
 
 nnoremap <silent> <leader>gl :GitGutter<CR>
 nnoremap <silent> <leader>gf :GitGutterFold<CR>
 nnoremap <silent> <leader>gq :GitGutterQuickFix<CR>:belowright copen<CR>
-nmap <leader>gp <Plug>(GitGutterPreviewHunk)
+nmap <leader>gp <Plug>(GitGutterPreviewHunk):call <SID>SetPopupWinColor()<CR>
 nmap <leader>ga <Plug>(GitGutterStageHunk)
 nmap <leader>gu <Plug>(GitGutterUndoHunk)
 
