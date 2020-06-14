@@ -102,11 +102,12 @@ let s:coc_action = {
             \}
 
 function s:LSPAction(action) abort
-    let l:name = get(s:coc_lsp, &filetype, v:null)
-    if l:name is v:null
+    try
+        let l:name = s:coc_lsp[&filetype]
+    catch /^Vim\%((\a\+)\)\=:E716/
         echo &filetype .' LSP is not registered'
         return
-    endif
+    endtry
 
     if l:name =~# '\v^coc-'
         call s:coc_action[a:action](l:name)
