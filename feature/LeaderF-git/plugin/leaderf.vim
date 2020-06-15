@@ -22,3 +22,13 @@ let g:Lf_Extensions.gstatus = {
             \   'source': {'command': 'git status -s -u'},
             \   'accept': 'gstatus#Accept',
             \}
+
+let g:Lf_Extensions.commit = {
+            \   'source': {'command': function('commit#Command')},
+            \   'accept': 'commit#Accept',
+            \}
+
+let g:Lf_Extensions.bcommit = {
+            \   'source': {'command': function('commit#BCommand')},
+            \   'accept': 'commit#Accept',
+            \}
