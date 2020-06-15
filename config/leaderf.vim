@@ -121,13 +121,19 @@ nnoremap <silent> <leader>fc :MyLeaderf colorscheme<CR>
 nnoremap <silent> <leader>fo :MyLeaderf --recall<CR>
 
 nnoremap <silent> <leader>go :MyLeaderf! gtags --recall<CR>
-nnoremap <silent> <leader>gc :MyLeaderf! gtags --update<CR>
-nnoremap <silent> <leader>gC :MyLeaderf! gtags --remove<CR>
+nnoremap <silent> <leader>gx :MyLeaderf! gtags --update<CR>
+nnoremap <silent> <leader>gX :MyLeaderf! gtags --remove<CR>
 nnoremap <silent> <leader>gg :MyLeaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gr :MyLeaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
-nnoremap <silent> <leader>gs :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
-nnoremap <silent> <leader>gt :MyLeaderf! gtags --grep <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gt :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
+nnoremap <silent> <leader>gT :MyLeaderf! gtags --grep <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gi :MyLeaderf! gtags --grep <C-r>=expand("<cfile>:t")<CR> --auto-jump <CR>
 nnoremap <silent> <leader>gI :MyLeaderf! gtags --grep <C-r>=fnameescape(expand("%:t"))<CR> --auto-jump <CR>
+
+nnoremap <silent> <leader>gf :MyLeaderf gfile<CR>
+nnoremap <silent> <leader>gs :MyLeaderf gstatus<CR>
+nnoremap <silent> <leader>gc :MyLeaderf bcommit<CR>
+nnoremap <silent> <leader>gC :MyLeaderf commit<CR>
+nnoremap <silent> <leader>gb :MyLeaderf branch<CR>
 
 scriptencoding utf-8

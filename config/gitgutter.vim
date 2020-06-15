@@ -22,7 +22,7 @@ function s:SetPopupWinColor() abort
 endfunction
 
 nnoremap <silent> <leader>gl :GitGutter<CR>
-nnoremap <silent> <leader>gf :GitGutterFold<CR>
+nnoremap <silent> <leader>gF :GitGutterFold<CR>
 nnoremap <silent> <leader>gq :GitGutterQuickFix<CR>:belowright copen<CR>
 nmap <leader>gp <Plug>(GitGutterPreviewHunk):call <SID>SetPopupWinColor()<CR>
 nmap <leader>ga <Plug>(GitGutterStageHunk)
