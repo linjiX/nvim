@@ -32,3 +32,9 @@ let g:Lf_Extensions.bcommit = {
             \   'source': {'command': function('commit#BCommand')},
             \   'accept': 'commit#Accept',
             \}
+
+let g:Lf_Extensions.gfile = {
+            \   'source': {'command': 'git ls-files'},
+            \   'accept': 'gfile#Accept',
+            \   'supports_name_only': 1,
+            \}
