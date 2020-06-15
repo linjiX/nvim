@@ -113,7 +113,7 @@
         "K": ["toggleSelection", "normal:k"],
         "gl": "expandRecursive",
         "gh": "collapseRecursive",
-        "<CR>": ["expandable?", "expandOrCollapse", "open"],
+        "<CR>": ["expandable?", ["expanded?", "collapse", "expand"], "open"],
         "e": "open",
         "s": "open:split",
         "v": "open:vsplit",
