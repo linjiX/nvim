@@ -21,6 +21,8 @@ let g:Lf_Extensions.branch = {
 let g:Lf_Extensions.gstatus = {
             \   'source': {'command': 'git status -s -u'},
             \   'accept': 'gstatus#Accept',
+            \   'get_digest': 'gstatus#GetDigest',
+            \   'supports_name_only': 1,
             \}
 
 let g:Lf_Extensions.commit = {
@@ -36,5 +38,6 @@ let g:Lf_Extensions.bcommit = {
 let g:Lf_Extensions.gfile = {
             \   'source': {'command': 'git ls-files'},
             \   'accept': 'gfile#Accept',
+            \   'get_digest': 'gfile#GetDigest',
             \   'supports_name_only': 1,
             \}
