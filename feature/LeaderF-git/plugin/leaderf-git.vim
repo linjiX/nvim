@@ -23,6 +23,7 @@ let g:Lf_Extensions.gstatus = {
             \   'accept': 'gstatus#Accept',
             \   'get_digest': 'gstatus#GetDigest',
             \   'supports_name_only': 1,
+            \   'highlights_def': {'Lf_hl_match1': '^.\S'},
             \}
 
 let g:Lf_Extensions.commit = {
