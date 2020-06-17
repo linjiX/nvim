@@ -29,11 +29,13 @@ let g:Lf_Extensions.gstatus = {
 let g:Lf_Extensions.commit = {
             \   'source': {'command': function('commit#Command')},
             \   'accept': 'commit#Accept',
+            \   'highlights_def': commit#hightlight_def,
             \}
 
 let g:Lf_Extensions.bcommit = {
             \   'source': {'command': function('commit#BCommand')},
             \   'accept': 'commit#Accept',
+            \   'highlights_def': commit#hightlight_def,
             \}
 
 let g:Lf_Extensions.gfile = {

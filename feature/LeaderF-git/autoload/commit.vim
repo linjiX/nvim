@@ -9,12 +9,17 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let commit#hightlight_def = {
+            \   'Lf_hl_match4': '^\x*',
+            \   'Lf_hl_match1': '\v\(((HEAD -\> \w*|origin\/\w*|ref\/\w*)(, )?)+\)',
+            \}
+
 function commit#Command(args) abort
-    return 'git log --oneline'
+    return 'git log --oneline --decorate'
 endfunction
 
 function commit#BCommand(args) abort
-    return 'git log --oneline '. expand('%:p')
+    return 'git log --oneline --decorate '. expand('%:p')
 endfunction
 
 function commit#Accept(line, args) abort
