@@ -15,7 +15,7 @@ augroup myArc
     autocmd BufNewFile,BufRead new-commit,differential-update-comments setlocal filetype=arcdiff
     autocmd BufNewFile,BufRead *.diviner setlocal filetype=markdown
 
-    autocmd FileType arcdiff setlocal colorcolumn=72 | setlocal commentstring=#%s
+    autocmd FileType arcdiff setlocal colorcolumn=72 commentstring=#%s
 augroup END
 
 command! Abrowse call arc#Browse()
