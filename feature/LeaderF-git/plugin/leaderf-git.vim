@@ -44,3 +44,20 @@ let g:Lf_Extensions.gfile = {
             \   'get_digest': 'gfile#GetDigest',
             \   'supports_name_only': 1,
             \}
+
+let g:Lf_SelfContent = get(g:, 'Lf_SelfContent', {})
+
+command! -bar -nargs=0 LeaderfBranch Leaderf branch
+let g:Lf_SelfContent['LeaderfBranch'] = 'search git branches'
+
+command! -bar -nargs=0 LeaderfGstatus Leaderf gstatus
+let g:Lf_SelfContent['LeaderfGstatus'] = 'search git status files'
+
+command! -bar -nargs=0 LeaderfCommit Leaderf commit
+let g:Lf_SelfContent['LeaderfCommit'] = 'search git commits'
+
+command! -bar -nargs=0 LeaderfBCommit Leaderf bcommit
+let g:Lf_SelfContent['LeaderfBCommit'] = 'search git commits for current buffer'
+
+command! -bar -nargs=0 LeaderfGfile Leaderf gfile
+let g:Lf_SelfContent['LeaderfGfile'] = 'search git ls-files'
