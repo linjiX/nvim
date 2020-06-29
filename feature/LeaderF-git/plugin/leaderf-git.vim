@@ -13,35 +13,35 @@ let g:Lf_Extensions = get(g:, 'Lf_Extensions', {})
 
 let g:Lf_Extensions.branch = {
             \   'source': {'command': 'git branch'},
-            \   'accept': 'branch#Accept',
-            \   'format_list': 'branch#FormatList',
-            \   'format_line': 'branch#FormatLine',
+            \   'accept': 'leaderf#branch#Accept',
+            \   'format_list': 'leaderf#branch#FormatList',
+            \   'format_line': 'leaderf#branch#FormatLine',
             \}
 
 let g:Lf_Extensions.gstatus = {
             \   'source': {'command': 'git status -s -u'},
-            \   'accept': 'gstatus#Accept',
-            \   'get_digest': 'gstatus#GetDigest',
+            \   'accept': 'leaderf#gstatus#Accept',
+            \   'get_digest': 'leaderf#gstatus#GetDigest',
             \   'supports_name_only': 1,
             \   'highlights_def': {'Lf_hl_match1': '^.\S'},
             \}
 
 let g:Lf_Extensions.commit = {
-            \   'source': {'command': function('commit#Command')},
-            \   'accept': 'commit#Accept',
-            \   'highlights_def': commit#hightlight_def,
+            \   'source': {'command': function('leaderf#commit#Command')},
+            \   'accept': 'leaderf#commit#Accept',
+            \   'highlights_def': leaderf#commit#hightlight_def,
             \}
 
 let g:Lf_Extensions.bcommit = {
-            \   'source': {'command': function('commit#BCommand')},
-            \   'accept': 'commit#Accept',
-            \   'highlights_def': commit#hightlight_def,
+            \   'source': {'command': function('leaderf#commit#BCommand')},
+            \   'accept': 'leaderf#commit#Accept',
+            \   'highlights_def': leaderf#commit#hightlight_def,
             \}
 
 let g:Lf_Extensions.gfile = {
             \   'source': {'command': 'git ls-files'},
-            \   'accept': 'gfile#Accept',
-            \   'get_digest': 'gfile#GetDigest',
+            \   'accept': 'leaderf#gfile#Accept',
+            \   'get_digest': 'leaderf#gfile#GetDigest',
             \   'supports_name_only': 1,
             \}
 

@@ -9,19 +9,20 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:start = 3
+let leaderf#commit#hightlight_def = {
+            \   'Lf_hl_match4': '^\x*',
+            \   'Lf_hl_match1': '\v\(((HEAD -\> \w*|origin\/\w*|ref\/\w*)(, )?)+\)',
+            \}
 
-function gstatus#Accept(line, args) abort
-    let l:file = a:line[s:start :]
-    execute 'edit '. l:file
+function leaderf#commit#Command(args) abort
+    return 'git log --oneline --decorate'
 endfunction
 
-function gstatus#GetDigest(line, mode)
-    let l:file = a:line[s:start :]
-    let l:result = gfile#GetDigest(l:file, a:mode)
-    if empty(l:result[0])
-        return l:result
-    endif
-    let l:result[1] += s:start
-    return l:result
+function leaderf#commit#BCommand(args) abort
+    return 'git log --oneline --decorate '. expand('%:p')
+endfunction
+
+function leaderf#commit#Accept(line, args) abort
+    let l:commit = split(a:line, ' ')[0]
+    execute 'Gedit '. l:commit
 endfunction

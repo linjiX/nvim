@@ -9,20 +9,21 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let commit#hightlight_def = {
-            \   'Lf_hl_match4': '^\x*',
-            \   'Lf_hl_match1': '\v\(((HEAD -\> \w*|origin\/\w*|ref\/\w*)(, )?)+\)',
-            \}
-
-function commit#Command(args) abort
-    return 'git log --oneline --decorate'
+function leaderf#gfile#Accept(line, args) abort
+    execute 'edit '. a:line
 endfunction
 
-function commit#BCommand(args) abort
-    return 'git log --oneline --decorate '. expand('%:p')
-endfunction
-
-function commit#Accept(line, args) abort
-    let l:commit = split(a:line, ' ')[0]
-    execute 'Gedit '. l:commit
+function leaderf#gfile#GetDigest(line, mode)
+    if a:mode == 0
+        return [a:line, 0]
+    elseif a:mode == 1
+        let l:idx = strridx(a:line, '/') + 1
+        return [a:line[l:idx :], l:idx]
+    else
+        let l:idx = strridx(a:line, '/')
+        if l:idx == -1
+            return ['', 0]
+        endif
+        return [a:line[: l:idx], 0]
+    endif
 endfunction

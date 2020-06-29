@@ -9,15 +9,19 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function branch#Accept(line, args) abort
-    call system('git switch ' . a:line)
-    echo 'Switched to branch: '. a:line
+let s:start = 3
+
+function leaderf#gstatus#Accept(line, args) abort
+    let l:file = a:line[s:start :]
+    execute 'edit '. l:file
 endfunction
 
-function branch#FormatList(list, args) abort
-    return filter(copy(a:list), 'v:val[0] !=# "*"')
-endfunction
-
-function branch#FormatLine(line, args) abort
-    return trim(a:line)
+function leaderf#gstatus#GetDigest(line, mode)
+    let l:file = a:line[s:start :]
+    let l:result = leaderf#gfile#GetDigest(l:file, a:mode)
+    if empty(l:result[0])
+        return l:result
+    endif
+    let l:result[1] += s:start
+    return l:result
 endfunction

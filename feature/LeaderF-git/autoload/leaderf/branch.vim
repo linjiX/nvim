@@ -9,21 +9,15 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function gfile#Accept(line, args) abort
-    execute 'edit '. a:line
+function leaderf#branch#Accept(line, args) abort
+    call system('git switch ' . a:line)
+    echo 'Switched to branch: '. a:line
 endfunction
 
-function gfile#GetDigest(line, mode)
-    if a:mode == 0
-        return [a:line, 0]
-    elseif a:mode == 1
-        let l:idx = strridx(a:line, '/') + 1
-        return [a:line[l:idx :], l:idx]
-    else
-        let l:idx = strridx(a:line, '/')
-        if l:idx == -1
-            return ['', 0]
-        endif
-        return [a:line[: l:idx], 0]
-    endif
+function leaderf#branch#FormatList(list, args) abort
+    return filter(copy(a:list), 'v:val[0] !=# "*"')
+endfunction
+
+function leaderf#branch#FormatLine(line, args) abort
+    return trim(a:line)
 endfunction
