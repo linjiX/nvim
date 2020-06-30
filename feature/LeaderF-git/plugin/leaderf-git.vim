@@ -21,6 +21,7 @@ let g:Lf_Extensions.branch = {
 let g:Lf_Extensions.gstatus = {
             \   'source': {'command': 'git status -s -u'},
             \   'accept': 'leaderf#gstatus#Accept',
+            \   'preview': 'leaderf#gstatus#Preview',
             \   'get_digest': 'leaderf#gstatus#GetDigest',
             \   'supports_name_only': 1,
             \   'highlights_def': {'Lf_hl_match1': '^.\S'},
@@ -41,6 +42,7 @@ let g:Lf_Extensions.bcommit = {
 let g:Lf_Extensions.gfile = {
             \   'source': {'command': 'git ls-files'},
             \   'accept': 'leaderf#gfile#Accept',
+            \   'preview': 'leaderf#gfile#Preview',
             \   'get_digest': 'leaderf#gfile#GetDigest',
             \   'supports_name_only': 1,
             \}

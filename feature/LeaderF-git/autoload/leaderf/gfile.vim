@@ -13,6 +13,11 @@ function leaderf#gfile#Accept(line, args) abort
     execute 'edit '. a:line
 endfunction
 
+function leaderf#gfile#Preview(orig_bufnr, orig_cursor, line, args) abort
+    let bufnr = bufadd(a:line)
+    return [bufnr, 0, '']
+endfunction
+
 function leaderf#gfile#GetDigest(line, mode)
     if a:mode == 0
         return [a:line, 0]

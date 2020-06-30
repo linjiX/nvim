@@ -16,6 +16,12 @@ function leaderf#gstatus#Accept(line, args) abort
     execute 'edit '. l:file
 endfunction
 
+function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
+    let l:file = a:line[s:start :]
+    let bufnr = bufadd(l:file)
+    return [bufnr, 0, '']
+endfunction
+
 function leaderf#gstatus#GetDigest(line, mode)
     let l:file = a:line[s:start :]
     let l:result = leaderf#gfile#GetDigest(l:file, a:mode)
