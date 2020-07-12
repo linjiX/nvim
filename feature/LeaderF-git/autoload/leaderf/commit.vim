@@ -26,3 +26,10 @@ function leaderf#commit#Accept(line, args) abort
     let l:commit = split(a:line, ' ')[0]
     execute 'Gedit '. l:commit
 endfunction
+
+function leaderf#commit#Preview(orig_bufnr, orig_cursor, line, args) abort
+    let l:commit = split(a:line, ' ')[0]
+    let l:object = fugitive#Open('', 0, '', '', [l:commit])
+    let bufnr = bufadd(l:object[1:])
+    return [bufnr, 0, '']
+endfunction

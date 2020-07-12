@@ -30,12 +30,14 @@ let g:Lf_Extensions.gstatus = {
 let g:Lf_Extensions.commit = {
             \   'source': {'command': function('leaderf#commit#Command')},
             \   'accept': 'leaderf#commit#Accept',
+            \   'preview': 'leaderf#commit#Preview',
             \   'highlights_def': leaderf#commit#hightlight_def,
             \}
 
 let g:Lf_Extensions.bcommit = {
             \   'source': {'command': function('leaderf#commit#BCommand')},
             \   'accept': 'leaderf#commit#Accept',
+            \   'preview': 'leaderf#commit#Preview',
             \   'highlights_def': leaderf#commit#hightlight_def,
             \}
 
