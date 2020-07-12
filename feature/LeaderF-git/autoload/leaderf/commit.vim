@@ -23,13 +23,32 @@ function leaderf#commit#BCommand(args) abort
 endfunction
 
 function leaderf#commit#Accept(line, args) abort
+    if !s:CheckFugitive()
+        return
+    endif
+
     let l:commit = split(a:line, ' ')[0]
     execute 'Gedit '. l:commit
 endfunction
 
 function leaderf#commit#Preview(orig_bufnr, orig_cursor, line, args) abort
+    if !s:CheckFugitive()
+        return
+    endif
+
     let l:commit = split(a:line, ' ')[0]
     let l:object = fugitive#Open('', 0, '', '', [l:commit])
     let bufnr = bufadd(l:object[1:])
     return [bufnr, 0, '']
+endfunction
+
+function s:CheckFugitive() abort
+    if exists(':Gedit') == 2
+        return v:true
+    endif
+
+    echohl WarningMsg
+    echo 'vim-fugitive not found'
+    echohl None
+    return v:false
 endfunction
