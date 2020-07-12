@@ -10,14 +10,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function leaderf#branch#Accept(line, args) abort
-    call system('git switch ' . a:line)
-    echo 'Switched to branch: '. a:line
-endfunction
-
-function leaderf#branch#FormatList(list, args) abort
-    return filter(copy(a:list), 'v:val[0] !=# "*"')
-endfunction
-
-function leaderf#branch#FormatLine(line, args) abort
-    return trim(a:line)
+    let l:branch = a:line[2:]
+    echo system('git switch ' . l:branch)
 endfunction

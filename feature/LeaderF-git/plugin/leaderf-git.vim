@@ -14,8 +14,6 @@ let g:Lf_Extensions = get(g:, 'Lf_Extensions', {})
 let g:Lf_Extensions.branch = {
             \   'source': {'command': 'git branch'},
             \   'accept': 'leaderf#branch#Accept',
-            \   'format_list': 'leaderf#branch#FormatList',
-            \   'format_line': 'leaderf#branch#FormatLine',
             \}
 
 let g:Lf_Extensions.gstatus = {
