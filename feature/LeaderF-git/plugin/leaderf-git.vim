@@ -22,8 +22,9 @@ let g:Lf_Extensions.gstatus = {
             \   'accept': 'leaderf#gstatus#Accept',
             \   'preview': 'leaderf#gstatus#Preview',
             \   'get_digest': 'leaderf#gstatus#GetDigest',
-            \   'supports_name_only': 1,
             \   'highlights_def': {'Lf_hl_match1': '^.\S'},
+            \   'supports_name_only': 1,
+            \   'supports_multi': 1,
             \}
 
 let g:Lf_Extensions.commit = {
@@ -31,6 +32,7 @@ let g:Lf_Extensions.commit = {
             \   'accept': 'leaderf#commit#Accept',
             \   'preview': 'leaderf#commit#Preview',
             \   'highlights_def': leaderf#commit#hightlight_def,
+            \   'supports_multi': 1,
             \}
 
 let g:Lf_Extensions.bcommit = {
@@ -38,6 +40,7 @@ let g:Lf_Extensions.bcommit = {
             \   'accept': 'leaderf#commit#Accept',
             \   'preview': 'leaderf#commit#Preview',
             \   'highlights_def': leaderf#commit#hightlight_def,
+            \   'supports_multi': 1,
             \}
 
 let g:Lf_Extensions.gfile = {
@@ -46,6 +49,7 @@ let g:Lf_Extensions.gfile = {
             \   'preview': 'leaderf#gfile#Preview',
             \   'get_digest': 'leaderf#gfile#GetDigest',
             \   'supports_name_only': 1,
+            \   'supports_multi': 1,
             \}
 
 let g:Lf_SelfContent = get(g:, 'Lf_SelfContent', {})
