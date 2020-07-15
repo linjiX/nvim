@@ -90,6 +90,7 @@ function s:OpenTagbar() abort
     noautocmd 1
 
     let l:workspace_config = {
+                \   '&l:cursorline': 0,
                 \   'g:tagbar_left': 0,
                 \   'g:tagbar_autofocus': 0,
                 \   'g:tagbar_vertical': (winheight(0) - 1)/2,
