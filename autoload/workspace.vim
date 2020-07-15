@@ -81,7 +81,8 @@ endfunction
 
 function TagbarTrigger() abort
     autocmd! myWorkspace
-    autocmd myWorkspace User CocExplorerOpenPre ++once call s:OpenTagbar()
+    autocmd myWorkspace BufWinEnter \[coc-explorer\]* ++once
+                \ autocmd myWorkspace CursorMoved * ++once call s:OpenTagbar()
 endfunction
 
 function s:OpenTagbar() abort
