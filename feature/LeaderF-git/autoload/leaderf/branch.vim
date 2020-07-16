@@ -13,3 +13,8 @@ function leaderf#branch#Accept(line, args) abort
     let l:branch = a:line[2:]
     echo system('git switch ' . l:branch)
 endfunction
+
+function leaderf#branch#Preview(orig_bufnr, orig_cursor, line, args) abort
+    let l:branch = a:line[2:]
+    return leaderf#commit#CommitPreview(l:branch)
+endfunction

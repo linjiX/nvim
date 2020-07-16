@@ -32,12 +32,15 @@ function leaderf#commit#Accept(line, args) abort
 endfunction
 
 function leaderf#commit#Preview(orig_bufnr, orig_cursor, line, args) abort
+    let l:commit = split(a:line, ' ')[0]
+    return leaderf#commit#CommitPreview(l:commit)
+endfunction
+
+function leaderf#commit#CommitPreview(commit) abort
     if !s:CheckFugitive()
         return
     endif
-
-    let l:commit = split(a:line, ' ')[0]
-    let l:object = fugitive#Open('', 0, '', '', [l:commit])
+    let l:object = fugitive#Open('', 0, '', '', [a:commit])
     let bufnr = bufadd(l:object[1:])
     return [bufnr, 0, '']
 endfunction

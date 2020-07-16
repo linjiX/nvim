@@ -14,6 +14,7 @@ let g:Lf_Extensions = get(g:, 'Lf_Extensions', {})
 let g:Lf_Extensions.branch = {
             \   'source': {'command': 'git branch'},
             \   'accept': 'leaderf#branch#Accept',
+            \   'preview': 'leaderf#branch#Preview',
             \   'highlights_def': {'Lf_hl_match4': '^\* .*'},
             \}
 
