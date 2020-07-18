@@ -9,7 +9,7 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:offset = 8
+let s:offset = 10
 function s:ParserLine(line) abort
     return a:line[s:offset :]
 endfunction

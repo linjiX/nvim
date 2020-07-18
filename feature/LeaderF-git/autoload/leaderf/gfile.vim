@@ -11,7 +11,7 @@
 
 execute g:Lf_py 'from leaderf.devicons import webDevIconsGetFileTypeSymbol'
 
-let s:offset = 3
+let s:offset = 5
 function s:ParserLine(line) abort
     return a:line[s:offset :]
 endfunction
