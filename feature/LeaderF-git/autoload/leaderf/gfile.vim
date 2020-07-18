@@ -11,8 +11,12 @@
 
 execute g:Lf_py 'from leaderf.devicons import webDevIconsGetFileTypeSymbol'
 
-let s:offset = 5
 function s:ParserLine(line) abort
+    if get(g:, 'Lf_ShowDevIcons', 1)
+        let s:offset = 5
+    else
+        let s:offset = 0
+    endif
     return a:line[s:offset :]
 endfunction
 
@@ -28,6 +32,9 @@ function! leaderf#gfile#GetDevIcon(filename) abort
 endfunction
 
 function leaderf#gfile#FormatLine(line, args) abort
+    if !get(g:, 'Lf_ShowDevIcons', 1)
+        return a:line
+    endif
     let l:devicon = leaderf#gfile#GetDevIcon(a:line)
     return l:devicon . a:line
 endfunction

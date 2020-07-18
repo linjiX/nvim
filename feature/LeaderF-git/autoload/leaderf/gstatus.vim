@@ -9,12 +9,19 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:offset = 10
 function s:ParserLine(line) abort
+    if get(g:, 'Lf_ShowDevIcons', 1)
+        let s:offset = 10
+    else
+        let s:offset = 3
+    endif
     return a:line[s:offset :]
 endfunction
 
 function leaderf#gstatus#FormatLine(line, args) abort
+    if !get(g:, 'Lf_ShowDevIcons', 1)
+        return a:line
+    endif
     let l:offset = 3
     let l:file = a:line[l:offset :]
     let l:devicon = leaderf#gfile#GetDevIcon(l:file)
