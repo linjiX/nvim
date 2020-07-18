@@ -15,20 +15,21 @@ function lint#markdown#GetMarkdownlintCommand(buffer) abort
 endfunction
 
 function lint#markdown#HandleMarkdownlintFormat(buffer, lines) abort
-    let l:pattern='\v(.+):(\d+) (MD\d{3})/(.{-}) (.{-})( \[Context: .+\])?$'
+    let l:pattern='\v(.{-}):(\d+):?(\d+)? (MD\d{3})/(.{-}) (.{-})( \[Context: .+\])?$'
     let l:output=[]
 
     for l:match in ale#util#GetMatches(a:lines, l:pattern)
         call add(l:output, {
                     \   'lnum': str2nr(l:match[2]),
+                    \   'col': str2nr(l:match[3]),
                     \   'type': 'W',
-                    \   'code': l:match[3],
-                    \   'text': '('. l:match[4] .') '. l:match[5],
+                    \   'code': l:match[4],
+                    \   'text': '('. l:match[5] .') '. l:match[6],
                     \   'detail': l:match[1] .':'. l:match[2]
                     \             ."\ntype: W"
-                    \             ."\ncode: ". l:match[3]
-                    \             ."\nname: ". l:match[4]
-                    \             ."\ntext: ". l:match[5].l:match[6]
+                    \             ."\ncode: ". l:match[4]
+                    \             ."\nname: ". l:match[5]
+                    \             ."\ntext: ". l:match[6].l:match[7]
                     \})
     endfor
 
