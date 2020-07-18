@@ -9,25 +9,23 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:start = 3
+let s:offset = 3
+function s:ParserLine(line) abort
+    return a:line[s:offset :]
+endfunction
 
 function leaderf#gstatus#Accept(line, args) abort
-    let l:file = a:line[s:start :]
+    let l:file = s:ParserLine(a:line)
     execute 'edit '. l:file
 endfunction
 
 function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
-    let l:file = a:line[s:start :]
+    let l:file = s:ParserLine(a:line)
     let bufnr = bufadd(l:file)
     return [bufnr, 0, '']
 endfunction
 
 function leaderf#gstatus#GetDigest(line, mode)
-    let l:file = a:line[s:start :]
-    let l:result = leaderf#gfile#GetDigest(l:file, a:mode)
-    if empty(l:result[0])
-        return l:result
-    endif
-    let l:result[1] += s:start
-    return l:result
+    let l:file = s:ParserLine(a:line)
+    return leaderf#gfile#GetDigestInternal(l:file, s:offset, a:mode)
 endfunction
