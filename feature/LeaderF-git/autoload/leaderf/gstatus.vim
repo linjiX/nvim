@@ -9,9 +9,16 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:offset = 3
+let s:offset = 8
 function s:ParserLine(line) abort
     return a:line[s:offset :]
+endfunction
+
+function leaderf#gstatus#FormatLine(line, args) abort
+    let l:offset = 3
+    let l:file = a:line[l:offset :]
+    let l:devicon = leaderf#gfile#GetDevIcon(l:file)
+    return a:line[: l:offset - 1] . '  ' . l:devicon . l:file
 endfunction
 
 function leaderf#gstatus#Accept(line, args) abort

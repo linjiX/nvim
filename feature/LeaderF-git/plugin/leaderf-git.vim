@@ -20,6 +20,7 @@ let g:Lf_Extensions.branch = {
 
 let g:Lf_Extensions.gstatus = {
             \   'source': {'command': 'git status -s -u'},
+            \   'format_line': 'leaderf#gstatus#FormatLine',
             \   'accept': 'leaderf#gstatus#Accept',
             \   'preview': 'leaderf#gstatus#Preview',
             \   'get_digest': 'leaderf#gstatus#GetDigest',

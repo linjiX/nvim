@@ -16,7 +16,7 @@ function s:ParserLine(line) abort
     return a:line[s:offset :]
 endfunction
 
-function! s:GetDevIcon(filename) abort
+function! leaderf#gfile#GetDevIcon(filename) abort
     let l:python_cmd = printf('webDevIconsGetFileTypeSymbol("%s")', a:filename)
     if g:Lf_PythonVersion == 3
         return py3eval(l:python_cmd)
@@ -28,7 +28,7 @@ function! s:GetDevIcon(filename) abort
 endfunction
 
 function leaderf#gfile#FormatLine(line, args) abort
-    let l:devicon = s:GetDevIcon(a:line)
+    let l:devicon = leaderf#gfile#GetDevIcon(a:line)
     return l:devicon . a:line
 endfunction
 
