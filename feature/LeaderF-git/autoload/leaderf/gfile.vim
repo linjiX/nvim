@@ -9,7 +9,8 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-execute g:Lf_py 'from leaderf.devicons import webDevIconsGetFileTypeSymbol'
+execute g:Lf_py 'from leaderf.devicons import (matchaddDevIconsDefault, matchaddDevIconsExact,'.
+            \ 'matchaddDevIconsExtension, webDevIconsGetFileTypeSymbol)'
 
 function s:ParserLine(line) abort
     if get(g:, 'Lf_ShowDevIcons', 1)
@@ -68,4 +69,13 @@ endfunction
 function leaderf#gfile#GetDigest(line, mode) abort
     let l:file = s:ParserLine(a:line)
     return leaderf#gfile#GetDigestInternal(l:file, s:offset, a:mode)
+endfunction
+
+function leaderf#gfile#AfterEnter(orig_buf_nr, orig_cursor, args) abort
+    if !get(g:, 'Lf_ShowDevIcons', 1)
+        return
+    endif
+    execute g:Lf_py 'matchaddDevIconsExtension(r"__icon__")'
+    execute g:Lf_py 'matchaddDevIconsExact(r"__icon__")'
+    execute g:Lf_py 'matchaddDevIconsDefault(r"__icon__")'
 endfunction

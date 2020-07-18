@@ -40,6 +40,7 @@ let g:Lf_Extensions.gfile = {
             \   'accept': 'leaderf#gfile#Accept',
             \   'preview': 'leaderf#gfile#Preview',
             \   'get_digest': 'leaderf#gfile#GetDigest',
+            \   'after_enter': 'leaderf#gfile#AfterEnter',
             \   'supports_name_only': 1,
             \   'supports_multi': 1,
             \}
@@ -50,6 +51,7 @@ let g:Lf_Extensions.gstatus = {
             \   'accept': 'leaderf#gstatus#Accept',
             \   'preview': 'leaderf#gstatus#Preview',
             \   'get_digest': 'leaderf#gstatus#GetDigest',
+            \   'after_enter': 'leaderf#gfile#AfterEnter',
             \   'highlights_def': {'Lf_hl_match1': '^.\S'},
             \   'supports_name_only': 1,
             \   'supports_multi': 1,
