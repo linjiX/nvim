@@ -28,11 +28,11 @@ endfunction
 
 function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
     let l:file = s:ParserLine(a:line)
-    let bufnr = bufadd(l:file)
-    return [bufnr, 0, '']
+    let l:bufnr = bufadd(l:file)
+    return [l:bufnr, 0, '']
 endfunction
 
-function leaderf#gstatus#GetDigest(line, mode)
+function leaderf#gstatus#GetDigest(line, mode) abort
     let l:file = s:ParserLine(a:line)
     return leaderf#gfile#GetDigestInternal(l:file, s:offset, a:mode)
 endfunction

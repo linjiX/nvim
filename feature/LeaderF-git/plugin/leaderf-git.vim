@@ -18,17 +18,6 @@ let g:Lf_Extensions.branch = {
             \   'highlights_def': {'Lf_hl_match4': '^\* .*'},
             \}
 
-let g:Lf_Extensions.gstatus = {
-            \   'source': {'command': 'git status -s -u'},
-            \   'format_line': 'leaderf#gstatus#FormatLine',
-            \   'accept': 'leaderf#gstatus#Accept',
-            \   'preview': 'leaderf#gstatus#Preview',
-            \   'get_digest': 'leaderf#gstatus#GetDigest',
-            \   'highlights_def': {'Lf_hl_match1': '^.\S'},
-            \   'supports_name_only': 1,
-            \   'supports_multi': 1,
-            \}
-
 let g:Lf_Extensions.commit = {
             \   'source': {'command': function('leaderf#commit#Command')},
             \   'accept': 'leaderf#commit#Accept',
@@ -46,11 +35,22 @@ let g:Lf_Extensions.bcommit = {
             \}
 
 let g:Lf_Extensions.gfile = {
-            \   'format_line': 'leaderf#gfile#FormatLine',
             \   'source': {'command': 'git ls-files'},
+            \   'format_line': 'leaderf#gfile#FormatLine',
             \   'accept': 'leaderf#gfile#Accept',
             \   'preview': 'leaderf#gfile#Preview',
             \   'get_digest': 'leaderf#gfile#GetDigest',
+            \   'supports_name_only': 1,
+            \   'supports_multi': 1,
+            \}
+
+let g:Lf_Extensions.gstatus = {
+            \   'source': {'command': 'git status -s -u'},
+            \   'format_line': 'leaderf#gstatus#FormatLine',
+            \   'accept': 'leaderf#gstatus#Accept',
+            \   'preview': 'leaderf#gstatus#Preview',
+            \   'get_digest': 'leaderf#gstatus#GetDigest',
+            \   'highlights_def': {'Lf_hl_match1': '^.\S'},
             \   'supports_name_only': 1,
             \   'supports_multi': 1,
             \}
