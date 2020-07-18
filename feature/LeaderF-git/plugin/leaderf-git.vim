@@ -45,6 +45,7 @@ let g:Lf_Extensions.bcommit = {
             \}
 
 let g:Lf_Extensions.gfile = {
+            \   'format_line': 'leaderf#gfile#FormatLine',
             \   'source': {'command': 'git ls-files'},
             \   'accept': 'leaderf#gfile#Accept',
             \   'preview': 'leaderf#gfile#Preview',

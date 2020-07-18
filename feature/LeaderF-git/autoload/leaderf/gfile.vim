@@ -9,9 +9,27 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let s:offset = 0
+execute g:Lf_py 'from leaderf.devicons import webDevIconsGetFileTypeSymbol'
+
+let s:offset = 3
 function s:ParserLine(line) abort
     return a:line[s:offset :]
+endfunction
+
+function! s:GetDevIcon(filename) abort
+    let l:python_cmd = printf('webDevIconsGetFileTypeSymbol("%s")', a:filename)
+    if g:Lf_PythonVersion == 3
+        return py3eval(l:python_cmd)
+    elseif g:Lf_PythonVersion == 2
+        return pyeval(l:python_cmd)
+    else
+        throw 'Unknown "g:Lf_PythonVersion"!'
+    endif
+endfunction
+
+function leaderf#gfile#FormatLine(line, args) abort
+    let l:devicon = s:GetDevIcon(a:line)
+    return l:devicon . a:line
 endfunction
 
 function leaderf#gfile#Accept(line, args) abort
