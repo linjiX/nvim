@@ -25,6 +25,13 @@ let g:Lf_ShowHidden = 1
 let g:Lf_CacheDirectory = $MY_CACHE_PATH
 let g:Lf_IgnoreCurrentBufferName = 1
 
+let g:Lf_DevIconsExactSymbols = {
+            \   '.arcconfig': '',
+            \   '.arclint': '',
+            \   '.bazelrc': '',
+            \   '.clang-format': '',
+            \}
+
 if executable('gtags')
     let g:Lf_GtagsAutoGenerate = 1
 else

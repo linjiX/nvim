@@ -89,6 +89,19 @@
     "imselect.enableStatusItem": false,
 
     "explorer.icon.enableNerdfont": true,
+    "explorer.icon.customIcons": {
+        "icons": {},
+        "extensions": {},
+        "filenames": {
+            ".arcconfig": "json",
+            ".arclint": "json",
+            ".bazelrc": "conf",
+            ".clang-format": "conf"
+        },
+        "dirnames": {},
+        "patternMatches": {},
+        "dirPatternMatches": {}
+    },
     "explorer.previewAction.onHover": false,
     "explorer.openAction.strategy": "sourceWindow",
     "explorer.file.autoReveal": false,

@@ -50,6 +50,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead .clang-format setlocal filetype=yaml
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
+    autocmd BufNewFile,BufRead .bazelrc setlocal filetype=conf
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
