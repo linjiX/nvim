@@ -10,5 +10,5 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function arc#Browse() abort
-    call system('arc browse '. bufname())
+    call system('arc browse -- '. bufname())
 endfunction
