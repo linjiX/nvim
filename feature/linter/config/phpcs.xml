@@ -25,4 +25,10 @@
         </properties>
     </rule>
 
+    <rule ref="Squiz.Strings.ConcatenationSpacing">
+        <properties>
+            <property name="ignoreNewlines" value="true" />
+        </properties>
+    </rule>
+
 </ruleset>
