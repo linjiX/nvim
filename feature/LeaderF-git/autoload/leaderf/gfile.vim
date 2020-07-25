@@ -46,7 +46,7 @@ function leaderf#gfile#FormatLine(line, args) abort
 endfunction
 
 function leaderf#gfile#Accept(line, args) abort
-    let l:file = fnamemodify(s:ParserLine(a:line), ':p')
+    let l:file = s:ParserLine(a:line)
     execute 'edit '. l:file
 endfunction
 
