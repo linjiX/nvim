@@ -21,6 +21,11 @@ function s:ParserLine(line) abort
     return a:line[s:offset :]
 endfunction
 
+function leaderf#gfile#Command(args) abort
+    let l:cmd = 'git ls-files'
+    return leaderf#utility#Command(l:cmd)
+endfunction
+
 function! leaderf#gfile#GetDevIcon(filename) abort
     let l:python_cmd = printf('webDevIconsGetFileTypeSymbol("%s")', a:filename)
     if g:Lf_PythonVersion == 3
@@ -41,7 +46,7 @@ function leaderf#gfile#FormatLine(line, args) abort
 endfunction
 
 function leaderf#gfile#Accept(line, args) abort
-    let l:file = s:ParserLine(a:line)
+    let l:file = fnamemodify(s:ParserLine(a:line), ':p')
     execute 'edit '. l:file
 endfunction
 

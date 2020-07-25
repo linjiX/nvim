@@ -15,11 +15,13 @@ let leaderf#commit#hightlight_def = {
             \}
 
 function leaderf#commit#Command(args) abort
-    return 'git log --oneline --decorate'
+    let l:cmd = 'git log --oneline --decorate'
+    return leaderf#utility#Command(l:cmd)
 endfunction
 
 function leaderf#commit#BCommand(args) abort
-    return 'git log --oneline --decorate '. expand('%:p')
+    let l:cmd = 'git log --oneline --decorate '. expand('%:p')
+    return leaderf#utility#Command(l:cmd)
 endfunction
 
 function leaderf#commit#Accept(line, args) abort

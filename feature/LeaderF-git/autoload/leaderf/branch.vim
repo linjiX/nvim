@@ -9,6 +9,11 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+function leaderf#branch#Command(args) abort
+    let l:cmd = 'git branch'
+    return leaderf#utility#Command(l:cmd)
+endfunction
+
 function leaderf#branch#Accept(line, args) abort
     let l:branch = a:line[2:]
     echo system('git switch ' . l:branch)

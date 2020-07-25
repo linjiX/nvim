@@ -18,6 +18,11 @@ function s:ParserLine(line) abort
     return a:line[s:offset :]
 endfunction
 
+function leaderf#gstatus#Command(args) abort
+    let l:cmd = 'git status -s -u'
+    return leaderf#utility#Command(l:cmd)
+endfunction
+
 function leaderf#gstatus#FormatLine(line, args) abort
     if !get(g:, 'Lf_ShowDevIcons', 1)
         return a:line
