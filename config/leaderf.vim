@@ -30,6 +30,7 @@ let g:Lf_DevIconsExactSymbols = {
             \   '.arclint': '',
             \   '.bazelrc': '',
             \   '.clang-format': '',
+            \   'vimrc': '',
             \}
 
 if executable('gtags')
