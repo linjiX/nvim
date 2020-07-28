@@ -13,13 +13,13 @@ function leaderf#utility#Command(cmd) abort
     return 'cd ' . s:cwd . ' && ' . a:cmd
 endfunction
 
-function leaderf#utility#BeforeEnter(args) abort
-    let s:oldpwd = getcwd()
+function leaderf#utility#Wrap(lambda, args) abort
     execute 'cd ' . s:cwd
-endfunction
-
-function leaderf#utility#AfterExit(args) abort
-    execute 'cd ' . s:oldpwd
+    try
+        return a:lambda(a:args)
+    finally
+        cd -
+    endtry
 endfunction
 
 function leaderf#utility#GetWorkDirectory() abort

@@ -33,15 +33,23 @@ function leaderf#gstatus#FormatLine(line, args) abort
     return a:line[: l:offset - 1] . '  ' . l:devicon . l:file
 endfunction
 
-function leaderf#gstatus#Accept(line, args) abort
+function s:Accept(line) abort
     let l:file = s:ParserLine(a:line)
-    execute 'edit '. l:file
+    execute 'edit ' . l:file
 endfunction
 
-function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
+function leaderf#gstatus#Accept(line, args) abort
+    call leaderf#utility#Wrap(function('s:Accept'), a:line)
+endfunction
+
+function s:Preview(line) abort
     let l:file = s:ParserLine(a:line)
     let l:bufnr = bufadd(l:file)
     return [l:bufnr, 0, '']
+endfunction
+
+function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
+    return leaderf#utility#Wrap(function('s:Preview'), a:line)
 endfunction
 
 function leaderf#gstatus#GetDigest(line, mode) abort

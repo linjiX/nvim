@@ -19,7 +19,10 @@ function leaderf#branch#Accept(line, args) abort
     echo system('git switch ' . l:branch)
 endfunction
 
+function s:Preview(line)
+    let l:commit = split(a:line, ' ')[0]
+endfunction
+
 function leaderf#branch#Preview(orig_bufnr, orig_cursor, line, args) abort
-    let l:branch = a:line[2:]
-    return leaderf#commit#CommitPreview(l:branch)
+    return leaderf#utility#Wrap(function('s:Preview'), a:line)
 endfunction

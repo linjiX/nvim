@@ -26,7 +26,7 @@ function leaderf#gfile#Command(args) abort
     return leaderf#utility#Command(l:cmd)
 endfunction
 
-function! leaderf#gfile#GetDevIcon(filename) abort
+function leaderf#gfile#GetDevIcon(filename) abort
     let l:python_cmd = printf('webDevIconsGetFileTypeSymbol("%s")', a:filename)
     if g:Lf_PythonVersion == 3
         return py3eval(l:python_cmd)
@@ -45,15 +45,23 @@ function leaderf#gfile#FormatLine(line, args) abort
     return l:devicon . a:line
 endfunction
 
-function leaderf#gfile#Accept(line, args) abort
+function s:Accept(line) abort
     let l:file = s:ParserLine(a:line)
-    execute 'edit '. l:file
+    execute 'edit ' . l:file
 endfunction
 
-function leaderf#gfile#Preview(orig_bufnr, orig_cursor, line, args) abort
+function leaderf#gfile#Accept(line, args) abort
+    call leaderf#utility#Wrap(function('s:Accept'), a:line)
+endfunction
+
+function s:Preview(line) abort
     let l:file = s:ParserLine(a:line)
     let l:bufnr = bufadd(l:file)
     return [l:bufnr, 0, '']
+endfunction
+
+function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
+    return leaderf#utility#Wrap(function('s:Preview'), a:line)
 endfunction
 
 function leaderf#gfile#GetDigestInternal(file, offset, mode) abort

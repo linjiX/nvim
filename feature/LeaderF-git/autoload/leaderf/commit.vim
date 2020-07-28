@@ -24,7 +24,7 @@ function leaderf#commit#BCommand(args) abort
     return leaderf#utility#Command(l:cmd)
 endfunction
 
-function leaderf#commit#Accept(line, args) abort
+function s:Accept(line) abort
     if !s:CheckFugitive()
         return
     endif
@@ -33,18 +33,26 @@ function leaderf#commit#Accept(line, args) abort
     execute 'Gedit '. l:commit
 endfunction
 
-function leaderf#commit#Preview(orig_bufnr, orig_cursor, line, args) abort
+function leaderf#commit#Accept(line, args) abort
+    call leaderf#utility#Wrap(function('s:Accept'), a:line)
+endfunction
+
+function s:Preview(line)
     let l:commit = split(a:line, ' ')[0]
     return leaderf#commit#CommitPreview(l:commit)
+endfunction
+
+function leaderf#commit#Preview(orig_bufnr, orig_cursor, line, args) abort
+    return leaderf#utility#Wrap(function('s:Preview'), a:line)
 endfunction
 
 function leaderf#commit#CommitPreview(commit) abort
     if !s:CheckFugitive()
         return
     endif
-    let l:object = fugitive#Open('', 0, '', '', [a:commit])
-    let bufnr = bufadd(l:object[1:])
-    return [bufnr, 0, '']
+    let l:object = fugitive#Open('', 0, '', '', [a:commit])[1:]
+    let l:bufnr = bufadd(l:object)
+    return [l:bufnr, 0, '']
 endfunction
 
 function s:CheckFugitive() abort
