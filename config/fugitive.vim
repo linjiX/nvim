@@ -38,3 +38,7 @@ command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1
 nmap <Leader>gm <Plug>(git-messenger)
+
+" Plug 'tpope/vim-rhubarb'
+nnoremap <leader>gx :.GBrowse<CR>
+vnoremap <leader>gx :GBrowse<CR>

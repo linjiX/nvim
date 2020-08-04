@@ -186,12 +186,12 @@ Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " Git {{{
 " Plug 'cohama/agit.vim', {'on': ['Agit', 'AgitFile']}
 " Plug 'mhinz/vim-signify'
-" Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/gv.vim', {'on': 'GV'}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'rhysd/git-messenger.vim', {'on': ['<Plug>(git-messenger)', 'GitMessenger']}
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 " }}}
 
 " Searcher {{{

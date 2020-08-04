@@ -129,8 +129,8 @@ nnoremap <silent> <leader>fc :MyLeaderf colorscheme<CR>
 nnoremap <silent> <leader>fo :MyLeaderf --recall<CR>
 
 nnoremap <silent> <leader>go :MyLeaderf! gtags --recall<CR>
-nnoremap <silent> <leader>gx :MyLeaderf! gtags --update<CR>
-nnoremap <silent> <leader>gX :MyLeaderf! gtags --remove<CR>
+nnoremap <silent> <leader>gn :MyLeaderf! gtags --update<CR>
+nnoremap <silent> <leader>gN :MyLeaderf! gtags --remove<CR>
 nnoremap <silent> <leader>gg :MyLeaderf! gtags --definition <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gr :MyLeaderf! gtags --reference <C-r><C-w> --auto-jump <CR>
 nnoremap <silent> <leader>gt :MyLeaderf! gtags --symbol <C-r><C-w> --auto-jump <CR>
