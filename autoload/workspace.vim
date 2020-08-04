@@ -92,11 +92,6 @@ function workspace#Reveal() abort
                 \             .' --reveal '. fnameescape(expand('%:p'))
 endfunction
 
-function TagbarTrigger() abort
-    autocmd! myWorkspace
-    autocmd myWorkspace User CocExplorerOpenPre ++once call s:OpenTagbar()
-endfunction
-
 function s:OpenTagbar() abort
     let l:line = line('.')
     noautocmd 1
