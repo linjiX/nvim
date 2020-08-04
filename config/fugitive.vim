@@ -28,16 +28,16 @@ command! -bar -bang -nargs=* -complete=customlist,fugitive#EditComplete Gd
             \ vertical botright Gdiffsplit<bang> <args>
 
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gc
-            \ vertical botright Gcommit -v <args>
+            \ vertical botright Git commit -v <args>
 command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
-            \ vertical botright Gcommit -v -a <args>
+            \ vertical botright Git commit -v -a <args>
 
 command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
             \  let g:asyncrun_silent_mode = 1 | AsyncRun git push <args>
 
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1
-nmap <Leader>gm <Plug>(git-messenger)
+nmap <leader>gm <Plug>(git-messenger)
 
 " Plug 'tpope/vim-rhubarb'
 nnoremap <leader>gx :.GBrowse<CR>
