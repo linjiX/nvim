@@ -149,6 +149,7 @@
         ".": "toggleHidden",
         "zh": "toggleHidden",
         "r": "refresh",
+        "R": "reveal",
 
         "?": "help",
         "q": "quit",

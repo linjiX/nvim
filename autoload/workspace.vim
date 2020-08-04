@@ -52,8 +52,8 @@ function workspace#Disable() abort
 endfunction
 
 function workspace#Toggle() abort
+    autocmd! myWorkspace
     if !exists('g:coc_init')
-        autocmd! myWorkspace
         autocmd myWorkspace User CocNvimInit ++once call workspace#Toggle()
         return
     endif
@@ -61,18 +61,31 @@ function workspace#Toggle() abort
         return
     endif
     call s:GetWinID()
-    call TagbarTrigger()
+    autocmd myWorkspace User CocExplorerOpenPre ++once call s:OpenTagbar()
     execute 'CocCommand explorer --width '. SiderBarWidth()
 endfunction
 
 function workspace#Reveal() abort
+    autocmd! myWorkspace
     if !exists('g:coc_init')
-        autocmd! myWorkspace
         autocmd myWorkspace User CocNvimInit ++once call workspace#Reveal()
         return
     endif
-    if !s:HasTagbar()
-        call TagbarTrigger()
+
+    let l:has_explorer = s:HasExplorer()
+
+    if !l:has_explorer
+        if s:HasTagbar()
+            TagbarClose
+        endif
+        autocmd myWorkspace User CocExplorerOpenPre ++once call s:OpenTagbar()
+    else
+        autocmd myWorkspace BufEnter \[coc-explorer\]-* ++once
+                    \ call CocAction('runCommand',
+                    \                'explorer.doAction',
+                    \                0,
+                    \                ['reveal'],
+                    \                [['relative', 0, 'file']])
     endif
     execute 'CocCommand explorer --no-toggle'
                 \             .' --width '. SiderBarWidth()
