@@ -9,6 +9,11 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-function arc#Browse() abort
-    call system('arc browse -- '. bufname())
+function arc#Browse(args) abort
+    if empty(a:args)
+        let l:args = bufname()
+    else
+        let l:args = a:args
+    endif
+    call system('arc browse -- ' . l:args)
 endfunction

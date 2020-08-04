@@ -18,4 +18,4 @@ augroup myArc
     autocmd FileType arcdiff setlocal colorcolumn=72 commentstring=#%s
 augroup END
 
-command! Abrowse call arc#Browse()
+command! -nargs=? ABrowse call arc#Browse(<q-args>)
