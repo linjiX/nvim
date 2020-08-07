@@ -60,7 +60,7 @@ function s:Preview(line) abort
     return [l:bufnr, 0, '']
 endfunction
 
-function leaderf#gstatus#Preview(orig_bufnr, orig_cursor, line, args) abort
+function leaderf#gfile#Preview(orig_bufnr, orig_cursor, line, args) abort
     return leaderf#utility#Wrap(function('s:Preview'), a:line)
 endfunction
 
