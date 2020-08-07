@@ -9,8 +9,12 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-execute g:Lf_py 'from leaderf.devicons import (matchaddDevIconsDefault, matchaddDevIconsExact,'.
-            \ 'matchaddDevIconsExtension, webDevIconsGetFileTypeSymbol)'
+execute g:Lf_py 'from leaderf.devicons import ('.
+            \ 'matchaddDevIconsDefault,'.
+            \ 'matchaddDevIconsExact,'.
+            \ 'matchaddDevIconsExtension,'.
+            \ 'webDevIconsGetFileTypeSymbol,'.
+            \ ')'
 
 function s:ParserLine(line) abort
     if get(g:, 'Lf_ShowDevIcons', 1)
