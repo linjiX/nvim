@@ -57,7 +57,6 @@ if !exists('g:auto_installation')
     Plug $VIM_HOME .'/feature/fold'
     Plug $VIM_HOME .'/feature/large'
     Plug $VIM_HOME .'/feature/linter'
-    Plug $VIM_HOME .'/feature/LeaderF-git'
 endif
 " }}}
 
@@ -212,6 +211,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
 Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
+Plug 'linjiX/LeaderF-git', {'on': 'Leaderf'}
 Plug 'linjiX/vim-star'
 " }}}
 
