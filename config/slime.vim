@@ -16,7 +16,6 @@ let g:slime_paste_file = $MY_CACHE_PATH .'/slime_paste'
 
 let s:slime_smart_mode = 1
 let s:slime_sleep_time_ms = 400
-let s:slime_run_filetype = ['python', 'sh']
 let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
             \ 'default': ['bash'],
@@ -87,50 +86,15 @@ function s:SlimeConfig(terminals, is_run) abort
     endif
 endfunction
 
-function s:SlimeGetRunCommand(terminal_cwd, root_cwd) abort
-    execute 'lcd '. a:root_cwd
-    let l:filepath = fnameescape(expand('%:.'))
-    lcd -
-
-    if &filetype ==# 'python'
-        let l:run_cmd = 'python3 '. l:filepath
-    elseif &filetype ==# 'sh'
-        let l:run_cmd = 'bash '. l:filepath
-    else
-        throw 'Filetype not support!'
-    endif
-
-    if a:terminal_cwd !=# a:root_cwd
-        let l:cd_cmd = 'cd '. fnameescape(a:root_cwd)
-        return l:cd_cmd ." && \\\n". l:run_cmd
-    endif
-    return l:run_cmd
-endfunction
-
-function s:Run() abort
-    if &filetype ==# 'markdown'
-        MarkdownPreview
-    elseif &filetype ==# 'html' && has('macunix')
-        call system('open '. expand('%'))
-    elseif index(s:slime_run_filetype, &filetype) != -1
-        call s:SlimeRun()
-    else
-        echo 'Filetype not supported!'
-    endif
-endfunction
-
-function s:SlimeRun() abort
+function SlimeRun(root, cmd) abort
     call s:SlimeSelectTerminal(v:true)
-
     let l:pid = s:SlimeGetConfig(v:true).pid
-    let l:terminal_cwd = terminal#GetCwd(l:pid)
-    let l:root_cwd = FindRootDirectory()
-    if empty(l:root_cwd)
-        let l:root_cwd = getcwd()
-        echom l:root_cwd
-    endif
 
-    let l:cmd = s:SlimeGetRunCommand(l:terminal_cwd, l:root_cwd)
+    if terminal#GetCwd(l:pid) !=# a:root
+        let l:cmd = 'cd '. fnameescape(a:root) ." && \\\n". a:cmd
+    else
+        let l:cmd = a:cmd
+    endif
 
     let l:old_config = utility#SetConfig({'g:slime_python_ipython': v:null})
     try
@@ -201,4 +165,3 @@ nmap <silent> <leader>ee :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeL
 nmap <silent> <leader>ep :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeParagraphSend
 nmap <silent> <leader>em :call <SID>SlimeSelectTerminal(v:false)<CR><Plug>SlimeMotionSend
 nmap <silent> <leader>es :call <SID>SlimeModeSwitch()<CR>
-nmap <silent> <leader>r :call <SID>Run()<CR>

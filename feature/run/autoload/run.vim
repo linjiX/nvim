@@ -1,0 +1,57 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    https://github.com/linjiX/nvim                                "
+"     _  _          _  _ __  __    __             _                "
+"    | |(_) _ __   (_)(_)\ \/ /   / /_ __ __   __(_) _ __ ___      "
+"    | || || '_ \  | || | \  /   / /| '_ \\ \ / /| || '_ ` _ \     "
+"    | || || | | | | || | /  \  / / | | | |\ V / | || | | | | |    "
+"    |_||_||_| |_|_/ ||_|/_/\_\/_/  |_| |_| \_/  |_||_| |_| |_|    "
+"                |__/                                              "
+"                                                                  "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let s:binary_mapping = {
+            \   'python': 'python3',
+            \   'sh' : 'bash',
+            \}
+
+function s:GetCommand(expand) abort
+    let l:executor = s:binary_mapping[&filetype]
+    if !a:expand
+        return l:executor . ' %'
+    endif
+
+    let l:root = FindRootDirectory()
+    if empty(l:root)
+        let l:root = getcwd()
+    endif
+    execute 'lcd '. l:root
+    let l:cmd = l:executor . ' ' . fnameescape(expand('%:.'))
+    lcd -
+    return [l:root, l:cmd]
+endfunction
+
+function run#Run() abort
+    if &filetype ==# 'markdown'
+        MarkdownPreview
+        return
+    endif
+    if &filetype ==# 'html' && has('macunix')
+        call system('open '. expand('%'))
+        return
+    endif
+    try
+        let [l:root, l:cmd] = s:GetCommand(v:true)
+        call SlimeRun(l:root, l:cmd)
+    catch /^Vim\%((\a\+)\)\=:E176/
+        echo 'Filetype not supported!'
+    endtry
+endfunction
+
+function run#AsyncRun() abort
+    try
+        let l:cmd = s:GetCommand(v:false)
+        execute 'AsyncRun -cwd=<root> '. l:cmd
+    catch /^Vim\%((\a\+)\)\=:E716/
+        echo 'Filetype not supported!'
+    endtry
+endfunction
