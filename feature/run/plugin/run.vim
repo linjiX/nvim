@@ -11,3 +11,4 @@
 
 nnoremap <silent> <leader>r :call run#Run()<CR>
 nnoremap <silent> <leader>R :call run#AsyncRun()<CR>
+xnoremap <silent><expr> <leader>R run#AsyncRunBlock()
