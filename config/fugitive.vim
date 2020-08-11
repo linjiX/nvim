@@ -40,5 +40,5 @@ let g:git_messenger_no_default_mappings = 1
 nmap <leader>gm <Plug>(git-messenger)
 
 " Plug 'tpope/vim-rhubarb'
-nnoremap <leader>gx :.GBrowse<CR>
-vnoremap <leader>gx :GBrowse<CR>
+nnoremap gb :.GBrowse<CR>
+vnoremap gb :GBrowse<CR>
