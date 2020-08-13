@@ -13,7 +13,8 @@ function fold#Text()
     let l:line = s:GetText(v:foldstart, v:foldend) .' '
     let l:info = printf('--- lines:%3d', v:foldend - v:foldstart + 1)
 
-    let l:text_width = &colorcolumn - len(l:info) - 1
+    let l:colorcolumn = empty(&l:colorcolumn) ? 100 : &l:colorcolumn
+    let l:text_width = l:colorcolumn - len(l:info) - 1
     let l:space = l:text_width - len(l:line)
     if l:space > 0
         let l:text = l:line . repeat('-', l:space)
@@ -27,8 +28,8 @@ endfunction
 function s:GetText(foldstart, foldend) abort
     let l:line = getline(a:foldstart)
 
-    if &foldmethod ==# 'marker'
-        let [l:start_marker, l:end_marker] = split(&foldmarker, ',')
+    if &l:foldmethod ==# 'marker'
+        let [l:start_marker, l:end_marker] = split(&l:foldmarker, ',')
         let l:regex = '"\?\s*'. l:start_marker .'\d*\s*$'
         let l:text = substitute(l:line, l:regex, '' , '')
         if match(l:text, '^\s*$') != -1
@@ -40,8 +41,8 @@ function s:GetText(foldstart, foldend) abort
             endif
         endif
         return l:text
-    elseif &foldmethod ==# 'syntax'
-        if &filetype ==# 'json'
+    elseif &l:foldmethod ==# 'syntax'
+        if &l:filetype ==# 'json'
             let [l:pair_start, l:start, l:end] =
                         \ matchstrpos(l:line, '\v^%([^"]|"%([^"]|\")*"){-}\zs[{[]')
             let l:pair_end = l:pair_start ==# '[' ? ']' : '}'
@@ -54,7 +55,7 @@ function s:GetText(foldstart, foldend) abort
         endif
     endif
 
-    return l:line
+    return substitute(l:line, '	', repeat(' ', &l:tabstop), 'g')
 endfunction
 
 scriptencoding utf-8
