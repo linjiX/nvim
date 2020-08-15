@@ -14,7 +14,15 @@ let s:binary_mapping = {
             \   'sh' : 'bash',
             \}
 
-function s:GetCommand(expand) abort
+let s:cmdline_mapping = {
+            \   'markdown': 'MarkdownPreview',
+            \   'vim': 'source %',
+            \}
+if has('macunix')
+    let s:cmdline_mapping['html'] = "call system('open '. expand('%'))"
+endif
+
+function s:GetShellCommand(expand) abort
     let l:executor = s:binary_mapping[&filetype]
     if !a:expand
         return l:executor . ' %'
@@ -30,17 +38,23 @@ function s:GetCommand(expand) abort
     return [l:root, l:cmd]
 endfunction
 
+function s:GetCmdline() abort
+    try
+        return s:cmdline_mapping[&l:filetype]
+    catch /^Vim\%((\a\+)\)\=:E176/
+        return ''
+    endtry
+endfunction
+
 function run#Run() abort
-    if &filetype ==# 'markdown'
-        MarkdownPreview
-        return
-    endif
-    if &filetype ==# 'html' && has('macunix')
-        call system('open '. expand('%'))
+    let l:cmdline = s:GetCmdline()
+    if !empty(l:cmd)
+        execute l:cmd
+        echo l:cmd
         return
     endif
     try
-        let [l:root, l:cmd] = s:GetCommand(v:true)
+        let [l:root, l:cmd] = s:GetShellCommand(v:true)
         call SlimeRun(l:root, l:cmd)
     catch /^Vim\%((\a\+)\)\=:E176/
         echo 'Filetype not supported!'
@@ -49,7 +63,7 @@ endfunction
 
 function run#AsyncRun() abort
     try
-        let l:cmd = s:GetCommand(v:false)
+        let l:cmd = s:GetShellCommand(v:false)
         execute 'AsyncRun -cwd=<root> '. l:cmd
     catch /^Vim\%((\a\+)\)\=:E716/
         echo 'Filetype not supported!'
