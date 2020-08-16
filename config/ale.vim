@@ -54,6 +54,7 @@ let g:ale_python_mypy_options = join([
             \   '--ignore-missing-imports',
             \   '--follow-imports=silent',
             \   '--warn-unreachable',
+            \   '--show-error-codes',
             \   '--strict-equality',
             \   '--strict',
             \])
