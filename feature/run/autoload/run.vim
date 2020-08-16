@@ -41,22 +41,22 @@ endfunction
 function s:GetCmdline() abort
     try
         return s:cmdline_mapping[&l:filetype]
-    catch /^Vim\%((\a\+)\)\=:E176/
+    catch /^Vim\%((\a\+)\)\=:E716/
         return ''
     endtry
 endfunction
 
 function run#Run() abort
     let l:cmdline = s:GetCmdline()
-    if !empty(l:cmd)
-        execute l:cmd
-        echo l:cmd
+    if !empty(l:cmdline)
+        execute l:cmdline
+        echo l:cmdline
         return
     endif
     try
         let [l:root, l:cmd] = s:GetShellCommand(v:true)
         call SlimeRun(l:root, l:cmd)
-    catch /^Vim\%((\a\+)\)\=:E176/
+    catch /^Vim\%((\a\+)\)\=:E716/
         echo 'Filetype not supported!'
     endtry
 endfunction
