@@ -26,6 +26,7 @@ augroup myTarget
                 \   'b': {'pair': s:pairs},
                 \   'v': {'pair': s:pairs, 'quote': s:quotes},
                 \   'd': {'separator': s:separators},
+                \   'a': {'argument': [{'o': '[({[]', 'c': '[]})]', 's': ','}]},
                 \   'o': {
                 \       'pair': s:pairs,
                 \       'quote': s:quotes,
