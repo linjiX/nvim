@@ -11,6 +11,15 @@
 
 let g:polyglot_disabled = ['sh']
 
+" Plug 'StanAngeloff/php.vim'
+let g:php_html_load = 0
+let g:php_html_in_heredoc = 0
+let g:php_html_in_nowdoc = 0
+
+let g:php_sql_query = 0
+let g:php_sql_heredoc = 0
+let g:php_sql_nowdoc = 0
+
 " Plug 'octol/vim-cpp-enhanced-highlight'
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
