@@ -98,7 +98,7 @@ function s:OpenTagbar() abort
 
     let l:workspace_config = {
                 \   '&l:cursorline': 0,
-                \   'g:tagbar_position': 'bottom',
+                \   'g:tagbar_position': 'rightbelow',
                 \   'g:tagbar_autofocus': 0,
                 \   'g:tagbar_height': (winheight(0) - 1)/2,
                 \}
