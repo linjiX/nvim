@@ -18,4 +18,12 @@ augroup myArc
     autocmd FileType arcdiff setlocal colorcolumn=72 commentstring=#%s
 augroup END
 
+if !exists('g:fugitive_browse_handlers')
+    let g:fugitive_browse_handlers = []
+endif
+
+if index(g:fugitive_browse_handlers, function('arc#FugitiveUrl')) == -1
+    call insert(g:fugitive_browse_handlers, function('arc#FugitiveUrl'))
+endif
+
 command! -nargs=? ABrowse call arc#Browse(<q-args>)
