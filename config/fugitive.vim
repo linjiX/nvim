@@ -15,12 +15,18 @@ function s:AutoCmdFugitive() abort
     nmap <silent><buffer> q gq
 endfunction
 
+function s:AutoCmdGit() abort
+    setlocal nobuflisted
+    nnoremap <silent><buffer> <leader>q :q<CR>
+    nnoremap <silent><buffer> q :q<CR>
+endfunction
+
 augroup myGit
     autocmd!
     autocmd FileType fugitive,fugitiveblame call s:AutoCmdFugitive()
-    autocmd FileType GV setlocal colorcolumn=0
-    autocmd FileType git setlocal nobuflisted
+    autocmd FileType git call s:AutoCmdGit()
     autocmd FileType gitcommit setlocal colorcolumn=72
+    autocmd FileType GV setlocal colorcolumn=0
 augroup END
 
 command! -bar -bang Gst vertical botright Gstatus<bang>
