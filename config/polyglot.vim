@@ -8,9 +8,6 @@
 "                |__/                                              "
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-let g:polyglot_disabled = ['sh']
-
 " Plug 'StanAngeloff/php.vim'
 let g:php_html_load = 0
 let g:php_html_in_heredoc = 0

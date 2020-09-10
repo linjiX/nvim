@@ -18,6 +18,9 @@ if !isdirectory($MY_CACHE_PATH)
     call mkdir($MY_CACHE_PATH, 'p')
 endif
 
+" Plug 'sheerun/vim-polyglot'
+let g:polyglot_disabled = ['sh']
+
 " source all configurations
 source $VIM_HOME/plugs.vim
 if !exists('g:auto_installation')
