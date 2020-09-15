@@ -53,7 +53,7 @@ set wildmode=longest:full,full
 set scrolloff=1
 set history=30
 set updatetime=10
-set synmaxcol=300
+set synmaxcol=500
 
 set expandtab
 set tabstop=4
