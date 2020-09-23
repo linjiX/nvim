@@ -60,14 +60,24 @@ augroup myFileType
     autocmd FileType * setlocal formatoptions-=cro
 augroup END
 
+function s:AutoCmdRestoreCursor() abort
+    " Locate cursor to the last position
+    let l:bufnr = str2nr(expand('<abuf>'))
+    if getbufvar(l:bufnr, 'restore_cursor', v:false)
+        return
+    endif
+    call setbufvar(l:bufnr, 'restore_cursor', v:true)
+
+    let l:line = line("'\"")
+    if l:line > 1 && l:line <= line('$') && &filetype !~# 'commit'
+        execute "normal! g`\""
+    endif
+endfunction
+
 augroup myCommon
     autocmd!
     autocmd VimEnter * clearjumps
-    " Locate cursor to the last position
-    autocmd BufReadPost *
-                \ if line("'\"") > 1 && line("'\"") <= line("$") && &filetype !~# 'commit' |
-                \     execute "normal! g`\"" |
-                \ endif
+    autocmd BufReadPost * call s:AutoCmdRestoreCursor()
 augroup END
 
 augroup myQuickFix
