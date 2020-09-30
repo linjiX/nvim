@@ -73,7 +73,7 @@ endfunction
 function run#AsyncRunBlock() abort
     try
         let l:executor = s:binary_mapping[&filetype]
-        return ':AsyncRun '. l:executor ."\<CR>"
+        return ':AsyncRun -raw '. l:executor ."\<CR>"
     catch /^Vim\%((\a\+)\)\=:E716/
         echo 'Filetype not supported!'
     endtry

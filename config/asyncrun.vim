@@ -55,7 +55,7 @@ function s:AutoCmdCWindow() abort
             return
         endif
     endif
-    belowright cwindow
+    belowright copen
 endfunction
 
 augroup myAsyncRun
