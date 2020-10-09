@@ -32,7 +32,6 @@ function s:HomepageForUrl(url) abort
                 \ '\)\/diffusion[/:][^/]\{-\}\ze[/:].\{-\}\%(\.git\)\=$'
 
     let l:base = matchstr(a:url, l:base_pattern)
-    echom l:base
     if !empty(l:base)
         let l:base = substitute(l:base, ':\d\{4}', '', '')
         return 'https://' . tr(l:base, ':', '/')
@@ -41,7 +40,7 @@ function s:HomepageForUrl(url) abort
 endfunction
 
 function arc#FugitiveUrl(...) abort
-    if a:0 == 1 || type(a:1) == type({})
+    if a:0 == 1 || type(a:1) == v:t_dict
         let l:opts = a:1
         let l:root = s:HomepageForUrl(get(l:opts, 'remote', ''))
     else
@@ -60,7 +59,7 @@ function arc#FugitiveUrl(...) abort
     endif
     let l:branch = substitute(FugitiveHead(), '/', '%252F7', 'g')
     if empty(l:branch)
-        return ''
+        let l:branch = 'master'
     endif
     let l:commit = l:opts.commit
     if l:commit =~# '^\d\=$'
@@ -76,7 +75,7 @@ function arc#FugitiveUrl(...) abort
             let l:url .= '$' . l:opts.line1 . '-' . l:opts.line2
         endif
     else
-        let l:url = substitute(l:root, '/diffusion/', '/r', '') . l:commit
+        let l:url = substitute(l:root, '/diffusion/', '/R', '') . ':' . l:commit
     endif
     return l:url
 endfunction
