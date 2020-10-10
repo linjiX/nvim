@@ -26,7 +26,7 @@ augroup myGit
     autocmd FileType fugitive,fugitiveblame call s:AutoCmdFugitive()
     autocmd FileType git call s:AutoCmdGit()
     autocmd FileType gitcommit setlocal colorcolumn=72
-    autocmd FileType GV setlocal colorcolumn=0
+    autocmd FileType GV setlocal colorcolumn=0 | setlocal nobuflisted
 augroup END
 
 command! -bar -bang Gst vertical botright Gstatus<bang>
