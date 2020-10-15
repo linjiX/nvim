@@ -19,7 +19,7 @@ if !isdirectory($MY_CACHE_PATH)
 endif
 
 " Plug 'sheerun/vim-polyglot'
-let g:polyglot_disabled = ['sh']
+let g:polyglot_disabled = ['sh', 'python-compiler']
 
 " source all configurations
 source $VIM_HOME/plugs.vim

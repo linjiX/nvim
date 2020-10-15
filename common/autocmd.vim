@@ -55,6 +55,7 @@ augroup myFileType
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
     autocmd FileType conf setlocal commentstring=#%s
+    autocmd FileType python compile python
 
     " Disable automatic comment insertion
     autocmd FileType * setlocal formatoptions-=cro
