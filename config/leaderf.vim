@@ -18,7 +18,7 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PopupHeight = s:WindowHeight
 let g:Lf_PopupPosition = [s:PositionLine, s:PositionCol]
 let g:Lf_StlSeparator = {'left': '', 'right': ''}
-let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WorkingDirectoryMode = 'AFc'
 let g:Lf_ReverseOrder = 1
 let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_ShowHidden = 1
@@ -48,6 +48,10 @@ let g:Lf_Gtagslabel = 'native-pygments'
 let g:Lf_PreviewInPopup = 1
 let g:Lf_PreviewHorizontalPosition = 'right'
 let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0}
+let g:Lf_WildIgnore = {
+            \ 'dir': ['__pycache__'],
+            \ 'file': [],
+            \}
 
 function s:NormalMap() abort
     let l:subcommands = [
