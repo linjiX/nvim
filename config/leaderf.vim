@@ -20,7 +20,6 @@ let g:Lf_PopupPosition = [s:PositionLine, s:PositionCol]
 let g:Lf_StlSeparator = {'left': '', 'right': ''}
 let g:Lf_WorkingDirectoryMode = 'AFc'
 let g:Lf_ReverseOrder = 1
-let g:Lf_DefaultMode = 'NameOnly'
 let g:Lf_ShowHidden = 1
 let g:Lf_CacheDirectory = $MY_CACHE_PATH
 let g:Lf_IgnoreCurrentBufferName = 1
