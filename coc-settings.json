@@ -109,7 +109,7 @@
         "patternMatches": ["^\\.", "^bazel-"]
     },
     "explorer.keyMappingMode": "none",
-    "explorer.keyMappings": {
+    "explorer.keyMappings.global": {
         "k": "nodePrev",
         "j": "nodeNext",
         "gk": "expandablePrev",
