@@ -24,5 +24,5 @@ if ! dpkg -s wget &>/dev/null; then
     sudo apt-get install -y wget
 fi
 
-sudo wget -c https://github.com/stedolan/jq/releases/download/jq-$VERSION/$FILE -O $TARGET
+sudo wget https://github.com/stedolan/jq/releases/download/jq-$VERSION/$FILE -O $TARGET
 sudo chmod +x $TARGET

@@ -24,9 +24,9 @@ if ! dpkg -s wget &>/dev/null; then
     sudo apt-get install -y wget
 fi
 
-sudo wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcs.phar \
+sudo wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcs.phar \
     -O $TARGET_PHPCS
-sudo wget -c https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcbf.phar \
+sudo wget https://github.com/squizlabs/PHP_CodeSniffer/releases/download/$VERSION/phpcbf.phar \
     -O $TARGET_PHPCBF
 
 sudo chmod +x $TARGET_PHPCS $TARGET_PHPCBF
