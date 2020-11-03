@@ -32,8 +32,8 @@ nnoremap <expr><silent> <C-h> NavigateCmd('h')
 nnoremap <expr><silent> <C-l> NavigateCmd('l')
 nnoremap <expr><silent> <C-k> NavigateCmd('k')
 nmap <expr><silent> <C-j>
-            \ coc#util#has_float() ? '<Plug>(coc-float-jump)'
-            \                      : NavigateCmd('j')
+            \ coc#float#has_float() ? '<Plug>(coc-float-jump)'
+            \                       : NavigateCmd('j')
 
 " normal mode mapping
 nnoremap Y y$
