@@ -88,7 +88,7 @@ endif
 "     Plug 'roxma/vim-hug-neovim-rpc'
 " endif
 Plug 'liuchengxu/vim-which-key'
-Plug 'majutsushi/tagbar', {'on': ['Tagbar', 'TagbarOpen', 'TagbarToggle']}
+Plug 'preservim/tagbar', {'on': ['Tagbar', 'TagbarOpen', 'TagbarToggle']}
 Plug 'mbbill/undotree', {'on': ['UndotreeToggle', 'UndotreeShow']}
 Plug 'mhinz/vim-startify'
 " }}}
