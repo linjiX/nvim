@@ -11,7 +11,7 @@ fi
 set -euo pipefail
 set -x
 
-readonly VERSION="3.0.0"
+readonly VERSION="3.5.0"
 
 if ! command -v go &>/dev/null; then
     if [ "$DISTRIB_CODENAME" == 'xenial' ]; then

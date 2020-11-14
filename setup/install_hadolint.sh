@@ -9,7 +9,7 @@ set -x
 # Install hadolint #
 ####################
 
-readonly VERSION="v1.17.6"
+readonly VERSION="v1.18.0"
 readonly FILE="hadolint-Linux-x86_64"
 readonly TARGET="/usr/local/bin/hadolint"
 
