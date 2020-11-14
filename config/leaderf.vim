@@ -147,4 +147,7 @@ nnoremap <silent> <leader>gc :MyLeaderf bcommit<CR>
 nnoremap <silent> <leader>gC :MyLeaderf commit<CR>
 nnoremap <silent> <leader>gb :MyLeaderf branch<CR>
 
+nnoremap <silent> ]g :Leaderf --next
+nnoremap <silent> [g :Leaderf --previous
+
 scriptencoding utf-8
