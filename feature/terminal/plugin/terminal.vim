@@ -24,7 +24,7 @@ augroup myTerminal
     endif
 augroup END
 
-nnoremap <silent> <C-n> :call terminal#SmartOpen('bash')<CR>
+nnoremap <silent> <C-n> :call terminal#SmartOpen('')<CR>
 nnoremap <silent> <leader>ed :call terminal#Attach()<CR>
 nnoremap <silent> <leader>ei :call terminal#SmartOpen('ipython')<CR>
 nnoremap <silent> <leader>eb :call terminal#SmartOpen('bpython')<CR>

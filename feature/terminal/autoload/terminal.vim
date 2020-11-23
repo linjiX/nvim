@@ -30,6 +30,12 @@ else
     let s:INSERT_POST = ''
 endif
 
+function s:CmdModify(cmd) abort
+    return fnamemodify(a:cmd, ':t')
+endfunction
+
+let s:SHELL = s:CmdModify($SHELL)
+
 function terminal#Detach() abort
     return s:ESC .":quit\<CR>"
 endfunction
@@ -131,7 +137,7 @@ endfunction
 
 function terminal#SmartOpen(cmd) abort
     let l:bufnrs = s:InactiveList()
-    let l:union = strlen(a:cmd) ? a:cmd : 'bash'
+    let l:union = strlen(a:cmd) ? a:cmd : s:SHELL
     for l:bufnr in l:bufnrs
         let l:cmd = terminal#PS(l:bufnr).cmd
         if l:cmd ==? l:union
@@ -199,9 +205,9 @@ function terminal#PS(bufnr) abort
         throw 'Fail to get terminal foreground process!'
     endif
 
-    let l:cmd = fnamemodify(l:foreground_ps.cmd[0], ':t')
+    let l:cmd = s:CmdModify(l:foreground_ps.cmd[0])
     if l:cmd =~? '\v^python' && exists('l:foreground_ps.cmd[1]')
-        let l:cmd = fnamemodify(l:foreground_ps.cmd[1], ':t')
+        let l:cmd = s:CmdModify(l:foreground_ps.cmd[1])
     endif
 
     return {'pid': l:foreground_ps.pid, 'cmd': l:cmd}
