@@ -72,3 +72,17 @@ function utility#Quit(cmd) abort
         return l:is_write ? 'wq' : 'q'
     endif
 endfunction
+
+function utility#ScriptSNR(bufname) abort
+    redir => l:scriptnames
+    silent scriptnames
+    redir END
+
+    for l:scriptname in split(l:scriptnames, '\n')
+        let [l:snr, l:name] = split(l:scriptname, ': ')
+        if l:name =~# a:bufname
+            return str2nr(l:snr)
+        endif
+    endfor
+    return -1
+endfunction
