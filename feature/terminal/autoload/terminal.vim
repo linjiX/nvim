@@ -22,10 +22,12 @@ if has('nvim')
     endfunction
 
     let s:ESC = "\<C-\>\<C-n>" . ":let b:terminal_navigate = 1\<CR>"
+    let s:INSERT = ":call terminal#AutoCmdInsert()\<CR>"
     let s:INSERT_PRE = ":let g:insert_skip = 1\<CR>"
-    let s:INSERT_POST = ":unlet g:insert_skip\<CR>" . ":call terminal#AutoCmdInsert()\<CR>"
+    let s:INSERT_POST = ":unlet g:insert_skip\<CR>" . s:INSERT
 else
     let s:ESC = "\<C-v>"
+    let s:INSERT = ''
     let s:INSERT_PRE = ''
     let s:INSERT_POST = ''
 endif
@@ -229,4 +231,42 @@ function terminal#GetCwd(pid) abort
     endif
 
     throw 'Fail to get terminal working direcroty!'
+endfunction
+
+let s:switch_mode = {
+            \   'first': [{-> range(1, bufnr('$'))}, 'No termianl', '-t^'],
+            \   'last': [{-> range(bufnr('$'), 1, -1)}, 'No terminal', '-t\{end\}'],
+            \   'next': [{-> range(bufnr() + 1, bufnr('$'))}, 'No next terminal', '-n'],
+            \   'previous': [{-> range(bufnr() - 1, 1, -1)}, 'No previous terminal', '-p'],
+            \ }
+
+call plug#load('vim-tmux-navigator')
+
+function s:GetTmuxCommand() abort
+    if exists('s:TmuxCommand')
+        return s:TmuxCommand
+    endif
+    let l:file = 'vim-tmux-navigator/plugin/tmux_navigator.vim'
+    let l:snr = utility#ScriptSNR(l:file)
+    let s:TmuxCommand = function(printf('<SNR>%d_TmuxCommand', l:snr))
+    return s:TmuxCommand
+endfunction
+
+function terminal#Select(mode) abort
+    let [l:Range, l:msg, l:flag] = s:switch_mode[a:mode]
+    if !s:IsTerminal(bufnr())
+        let l:TmuxCommand = s:GetTmuxCommand()
+        call l:TmuxCommand('select-window ' . l:flag)
+        return
+    endif
+
+    let l:range = l:Range()
+    for l:bufnr in l:range
+        if !s:IsTerminal(l:bufnr)
+            continue
+        endif
+        return s:ESC . ':buffer ' . l:bufnr . "\<CR>"
+    endfor
+
+    return s:ESC . ":echo '" . l:msg . "'\<CR>" . s:INSERT
 endfunction
