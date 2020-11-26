@@ -48,3 +48,5 @@ tnoremap <expr><silent> <C-h> terminal#Navigate('h')
 tnoremap <expr><silent> <C-j> terminal#Navigate('j')
 tnoremap <expr><silent> <C-k> terminal#Navigate('k')
 tnoremap <expr><silent> <C-l> terminal#Navigate('l')
+
+command! -nargs=* Terminal call terminal#Open(<q-mods>, <q-args>)

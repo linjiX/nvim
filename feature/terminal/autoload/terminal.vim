@@ -10,6 +10,12 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 if has('nvim')
+    function terminal#Open(mods, cmd) abort
+        let l:cmd = empty(a:cmd) ? s:SHELL : a:cmd
+        let l:mods = empty(a:mods) ? 'edit' : a:mods . ' split'
+        execute l:mods . ' term://' . l:cmd
+    endfunction
+
     function terminal#GetJobID(bufnr) abort
         return getbufvar(str2nr(a:bufnr), 'terminal_job_id')
     endfunction
@@ -26,6 +32,12 @@ if has('nvim')
     let s:INSERT_PRE = ":let g:insert_skip = 1\<CR>"
     let s:INSERT_POST = ":unlet g:insert_skip\<CR>" . s:INSERT
 else
+    function terminal#Open(mods, cmd) abort
+        let l:cmd = empty(a:cmd) ? s:SHELL : a:cmd
+        let l:curwin = empty(a:mods) ? '++curwin ' : ''
+        execute a:mods . ' terminal ++close ++kill=kill ' . l:curwin . l:cmd
+    endfunction
+
     let s:ESC = "\<C-v>"
     let s:INSERT = ''
     let s:INSERT_PRE = ''
@@ -81,21 +93,13 @@ function terminal#ActiveList() abort
 endfunction
 
 function s:Create(is_vertical, cmd) abort
-    if has('nvim')
-        let l:precmd = a:is_vertical ? 'botright vsplit ' : 'belowright split '
-        let l:postcmd = 'term://'. a:cmd
-    else
-        let l:precmd = a:is_vertical ? 'vertical botright ' : 'belowright '
-        let l:postcmd = 'terminal ++close ++kill=kill '. a:cmd
-    endif
-
-    execute l:precmd . l:postcmd
+    let l:mods = a:is_vertical ? 'vertical botright' : 'belowright'
+    call terminal#Open(l:mods, a:cmd)
 endfunction
 
 function s:Reuse(is_vertical, bufnr) abort
-    let l:precmd = a:is_vertical ? 'botright vsplit ' : 'belowright split '
-    let l:postcmd = '| buffer '. a:bufnr
-    execute l:precmd . l:postcmd
+    let l:mods = a:is_vertical ? 'vertical botright' : 'belowright'
+    execute l:mods . ' split | buffer ' . a:bufnr
 endfunction
 
 function s:Open(is_vertical, union) abort
