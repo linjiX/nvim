@@ -21,10 +21,10 @@ function s:AutoCmdScroll() abort
         return
     endif
     nmap <buffer><expr> <C-f>
-                \ coc#float#has_float() ? coc#util#float_scroll(1)
+                \ coc#float#has_float() ? coc#float#scroll(1)
                 \                       : '<Plug>(ac-smooth-scroll-c-f)'
     nmap <buffer><expr> <C-b>
-                \ coc#float#has_float() ? coc#util#float_scroll(0)
+                \ coc#float#has_float() ? coc#float#scroll(0)
                 \                       : '<Plug>(ac-smooth-scroll-c-b)'
 endfunction
 
