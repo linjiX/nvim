@@ -46,6 +46,7 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='. join([
             \], ',')
 let g:ale_python_flake8_options = '--max-line-length=100 --ignore=E203,W503'
 let g:ale_python_pylint_options = join([
+            \   '--good-names=i,j,k,x,y,z,w,fp',
             \   '--disable=bad-continuation',
             \   '--generated-members=torch.*,cv2.*',
             \   '--ignored-modules=tensorflow.compat.v1'
