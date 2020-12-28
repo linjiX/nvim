@@ -44,7 +44,6 @@
     "suggest.echodocSupport": true,
 
     "diagnostic.checkCurrentLine": true,
-    "diagnostic.signOffset": 100000,
     "diagnostic.errorSign": "E",
     "diagnostic.warningSign": "W",
     "diagnostic.infoSign": "I",
