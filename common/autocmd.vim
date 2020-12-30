@@ -46,12 +46,11 @@ augroup myFileType
     autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=Dockerfile
     autocmd BufNewFile,BufRead *.launch setlocal filetype=xml
     autocmd BufNewFile,BufRead *.urdf setlocal filetype=xml
-    autocmd BufNewFile,BufRead *.conf setlocal filetype=conf
+    autocmd BufNewFile,BufRead *.conf,.*config setlocal filetype=conf
     autocmd BufNewFile,BufRead .clang-format setlocal filetype=yaml
     autocmd BufNewFile,BufRead *.BUILD setlocal filetype=bzl
     autocmd BufNewFile,BufRead BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead .bazelrc setlocal filetype=conf
-    autocmd BufNewFile,BufRead .*config setlocal filetype=conf
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
