@@ -150,8 +150,7 @@ endfunction
 
 function buffer#Reopen() abort
     while !empty(g:buffer_reopen)
-        let l:filename = g:buffer_reopen[-1]
-        call remove(g:buffer_reopen, -1)
+        let l:filename = remove(g:buffer_reopen, -1)
 
         if !buflisted(l:filename)
             execute 'edit '. l:filename
