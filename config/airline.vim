@@ -110,6 +110,7 @@ nmap <expr> <leader>6 utility#Open('<Plug>AirlineSelectTab6')
 nmap <expr> <leader>7 utility#Open('<Plug>AirlineSelectTab7')
 nmap <expr> <leader>8 utility#Open('<Plug>AirlineSelectTab8')
 nmap <expr> <leader>9 utility#Open('<Plug>AirlineSelectTab9')
+nmap <expr> <leader>0 utility#Open('<Plug>AirlineSelectTab0')
 
 " Plug 'edkolev/tmuxline.vim'
 let g:airline#extensions#tmuxline#enabled = 0
