@@ -23,7 +23,9 @@ let g:Lf_ReverseOrder = 1
 let g:Lf_ShowHidden = 1
 let g:Lf_CacheDirectory = $MY_CACHE_PATH
 let g:Lf_IgnoreCurrentBufferName = 1
-
+let g:Lf_MruWildIgnore = {
+            \    'dir': ['.git', 'plug/*/doc'],
+            \}
 let g:Lf_DevIconsExactSymbols = {
             \   '.arcconfig': '',
             \   '.arclint': '',
