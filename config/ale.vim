@@ -44,7 +44,13 @@ let g:ale_cpp_cpplint_options = '--linelength=100 --filter='. join([
             \   '-whitespace/indent',
             \   '-runtime/references',
             \], ',')
-let g:ale_python_flake8_options = '--max-line-length=100 --ignore=E203,W503'
+let g:ale_python_flake8_options = join([
+            \   '--max-line-length=100',
+            \   '--docstring-style=google',
+            \   '--docstring-convention=google',
+            \   '--ignore-decorators=overload',
+            \   '--ignore=E203,W503,D105,D107',
+            \])
 let g:ale_python_pylint_options = join([
             \   '--good-names=i,j,k,x,y,z,w,fp',
             \   '--disable=bad-continuation',

@@ -24,6 +24,8 @@ pip3 install \
     ipython \
     pylint \
     flake8 \
+    flake8-docstrings \
+    darglint \
     mypy
 ```
 
