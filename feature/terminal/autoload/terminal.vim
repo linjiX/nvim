@@ -113,18 +113,12 @@ endfunction
 function s:SmartOpen(union) abort
     let [l:wintype, l:winlist] = winlayout()
     if l:wintype ==# 'row'
-        call reverse(l:winlist)
-
-        for [l:wintype, l:winid] in l:winlist
-            if l:wintype !=# 'leaf'
-                continue
-            endif
-            if !buflisted(getwininfo(l:winid)[0].bufnr)
-                noautocmd call win_gotoid(l:winid)
-                call s:Open(v:false, a:union)
-                return
-            endif
-        endfor
+        let [l:wintype, l:winid] = l:winlist[-1]
+        if l:wintype ==# 'leaf' && !buflisted(getwininfo(l:winid)[0].bufnr)
+            noautocmd call win_gotoid(l:winid)
+            call s:Open(v:false, a:union)
+            return
+        endif
     endif
 
     call s:Open(v:true, a:union)
