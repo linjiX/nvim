@@ -150,6 +150,7 @@
 
         "?": "help",
         "q": "quit",
+        "<leader>q": "quit",
         "<ESC>": "esc",
         "O": "systemExecute",
         "gd": "listDrive",
