@@ -21,12 +21,26 @@ function s:AutoCmdGit() abort
     nnoremap <silent><buffer> q :q<CR>
 endfunction
 
+let s:script = 'vim-fugitive/autoload/fugitive.vim'
+
+function s:VSplitBlame() abort
+    let l:BlameCommit = utility#ScriptFunction('BlameCommit', s:script)
+    let l:old_config = utility#SetConfig({'&l:splitbelow': 1})
+    try
+        execute l:BlameCommit('vsplit')
+    finally
+        call utility#SetConfig(l:old_config)
+    endtry
+endfunction
+
 augroup myGit
     autocmd!
     autocmd FileType fugitive,fugitiveblame call s:AutoCmdFugitive()
     autocmd FileType git call s:AutoCmdGit()
     autocmd FileType gitcommit setlocal colorcolumn=72
     autocmd FileType GV setlocal colorcolumn=0 | setlocal nobuflisted
+    autocmd BufAdd *fugitiveblame ++once autocmd myGit FileType fugitiveblame
+                \ nnoremap <silent><buffer> <CR> :call <SID>VSplitBlame()<CR>
 augroup END
 
 command! -bar -bang Gst vertical botright Gstatus<bang>

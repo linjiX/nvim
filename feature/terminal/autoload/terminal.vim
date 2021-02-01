@@ -239,21 +239,12 @@ let s:switch_mode = {
             \ }
 
 call plug#load('vim-tmux-navigator')
-
-function s:GetTmuxCommand() abort
-    if exists('s:TmuxCommand')
-        return s:TmuxCommand
-    endif
-    let l:file = 'vim-tmux-navigator/plugin/tmux_navigator.vim'
-    let l:snr = utility#ScriptSNR(l:file)
-    let s:TmuxCommand = function(printf('<SNR>%d_TmuxCommand', l:snr))
-    return s:TmuxCommand
-endfunction
+let s:script = 'vim-tmux-navigator/plugin/tmux_navigator.vim'
 
 function terminal#Select(mode) abort
     let [l:Range, l:msg, l:flag] = s:switch_mode[a:mode]
     if !s:IsTerminal(bufnr())
-        let l:TmuxCommand = s:GetTmuxCommand()
+        let l:TmuxCommand = utility#ScriptFunction('TmuxCommand', s:script)
         call l:TmuxCommand('select-window ' . l:flag)
         return
     endif

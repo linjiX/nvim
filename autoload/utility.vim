@@ -73,7 +73,9 @@ function utility#Quit(cmd) abort
     endif
 endfunction
 
-function utility#ScriptSNR(bufname) abort
+let s:script_functions = {}
+
+function s:ScriptSNR(bufname) abort
     redir => l:scriptnames
     silent scriptnames
     redir END
@@ -85,4 +87,13 @@ function utility#ScriptSNR(bufname) abort
         endif
     endfor
     return -1
+endfunction
+
+function utility#ScriptFunction(name, filename) abort
+    if has_key(s:script_functions, a:name)
+        return s:script_functions[a:name]
+    endif
+    let l:snr = s:ScriptSNR(a:filename)
+    let s:script_functions[a:name] = function(printf('<SNR>%d_%s', l:snr, a:name))
+    return s:script_functions[a:name]
 endfunction
