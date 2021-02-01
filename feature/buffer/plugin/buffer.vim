@@ -9,7 +9,7 @@
 "                                                                  "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:buffer_reopen_ignore_filetype = ['gitcommit', 'help']
+let g:buffer_reopen_ignore_filetype = ['gitcommit']
 let g:buffer_local_jump_filetype = ['gitcommit', 'help']
 let g:buffer_reopen = []
 
@@ -20,6 +20,11 @@ function s:UpdateBufferUndo() abort
     endif
 
     let l:bufnr = str2nr(expand('<abuf>'))
+
+    if !buflisted(l:bufnr)
+        return
+    endif
+
     let l:filetype = getbufvar(l:bufnr, '&filetype')
     if index(g:buffer_reopen_ignore_filetype, l:filetype) != -1
         return
