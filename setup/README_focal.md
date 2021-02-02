@@ -25,7 +25,9 @@ pip3 install \
     flake8 \
     flake8-docstrings \
     darglint \
-    mypy
+    mypy \
+    rstcheck \
+    rstfmt
 ```
 
 #### C/C++
