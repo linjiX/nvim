@@ -21,6 +21,7 @@ brew install \
 pip3 install \
     black \
     isort \
+    docformatter \
     ipython \
     pylint \
     flake8 \

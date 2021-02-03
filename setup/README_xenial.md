@@ -20,6 +20,7 @@ snap install shellcheck
 pip3 install \
     black \
     isort \
+    docformatter \
     ipython \
     pylint \
     flake8 \
