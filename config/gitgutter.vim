@@ -24,9 +24,9 @@ endfunction
 nnoremap <silent> <leader>gl :GitGutter<CR>
 nnoremap <silent> <leader>gF :GitGutterFold<CR>
 nnoremap <silent> <leader>gq :GitGutterQuickFix<CR>:belowright copen<CR>
-nmap <leader>gp <Plug>(GitGutterPreviewHunk):call <SID>SetPopupWinColor()<CR>
-nmap <leader>ga <Plug>(GitGutterStageHunk)
-nmap <leader>gu <Plug>(GitGutterUndoHunk)
+nmap <silent> <leader>gp <Plug>(GitGutterPreviewHunk):call <SID>SetPopupWinColor()<CR>
+nmap <silent> <leader>ga <Plug>(GitGutterStageHunk)
+nmap <silent> <leader>gu <Plug>(GitGutterUndoHunk)
 
 omap ig <Plug>(GitGutterTextObjectInnerPending)
 omap ag <Plug>(GitGutterTextObjectOuterPending)
