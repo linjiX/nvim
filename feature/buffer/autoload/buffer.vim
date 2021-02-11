@@ -136,12 +136,11 @@ function buffer#Close(cmd) abort
     endfor
 
     if bufexists(l:bufnr)
-        let l:old_buflisted = &l:buflisted
-        let &l:buflisted = 1
+        let l:old_config = utility#SetConfig({'&l:buflisted': 1})
         try
             execute a:cmd . l:bufnr
         finally
-            let &l:buflisted = l:old_buflisted
+            call utility#SetConfig(l:old_config)
         endtry
     endif
 
