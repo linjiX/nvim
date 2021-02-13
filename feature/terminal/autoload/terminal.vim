@@ -65,6 +65,16 @@ function terminal#Navigate(direction) abort
     return s:ESC . s:INSERT_PRE . NavigateCmd(a:direction) . s:INSERT_POST
 endfunction
 
+function terminal#New() abort
+    if !s:IsTerminal(bufnr())
+        let l:TmuxCommand = utility#ScriptFunction('TmuxCommand', s:script)
+        call l:TmuxCommand('new-window -c "#{pane_current_path}"')
+        return
+    endif
+
+    return s:ESC .":call terminal#Open('', '')\<CR>"
+endfunction
+
 function terminal#AutoCmdTermOpen() abort
     setlocal nonumber
     setlocal nobuflisted
