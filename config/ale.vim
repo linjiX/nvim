@@ -27,7 +27,7 @@ let g:ale_linters = {
             \   'yaml': ['yamllint'],
             \   'php': ['php', 'phpcs'],
             \}
-let g:ale_gitcommit_gitlint_options = '--config='. $MY_LINTER_PATH .'/gitlint'
+let g:ale_gitcommit_gitlint_options = '--config='. $MY_LINTER_PATH .'/.gitlint'
 let g:ale_cpp_CppCheck_options = join([
             \   '--language=c++',
             \   '--std=c++17',
