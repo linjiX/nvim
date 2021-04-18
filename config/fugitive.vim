@@ -43,7 +43,7 @@ augroup myGit
                 \ nnoremap <silent><buffer> <CR> :call <SID>VSplitBlame()<CR>
 augroup END
 
-command! -bar -bang Gst vertical botright Gstatus<bang>
+command! -bar -bang Gst vertical botright Git<bang>
 command! -bar -bang -nargs=* -complete=customlist,fugitive#EditComplete Gd
             \ vertical botright Gdiffsplit<bang> <args>
 
