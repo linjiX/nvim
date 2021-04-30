@@ -61,7 +61,6 @@
 
     "workspace.ignoredFiletypes": ["log", "help"],
 
-    "coc.preferences.hoverTarget": "float",
     "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".git"],
     "coc.preferences.maxFileSize": "3MB",
@@ -78,8 +77,6 @@
 
     "yank.list.maxsize": 20,
     "yank.highlight.duration": 350,
-
-    "translator.maxsize": 100,
 
     "imselect.defaultInput": "com.apple.keylayout.ABC",
     "imselect.enableFloating": false,
