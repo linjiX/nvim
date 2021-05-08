@@ -88,13 +88,19 @@ if has('nvim')
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 else
     set signcolumn=number
-    set guifont=Consolas-with-Yahei:h14
     " Change cursor shape in different modes
     let &t_EI .= "\e[1 q"  " EI = NORMAL mode (ELSE)
     let &t_SR .= "\e[3 q"  " SR = REPLACE mode
     let &t_SI .= "\e[5 q"  " SI = INSERT mode
 
     let &t_Co = 256
+endif
+
+if has('gui_running')
+    set guifont=Consolas-with-Yahei:h14
+    if has('macunix')
+        set macmeta
+    endif
 endif
 
 scriptencoding utf-8
