@@ -43,6 +43,8 @@ let g:airline#parts#ffenc#skip_expected_string = 'utf-8[unix]'
 let g:airline#extensions#hunks#coc_git = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 
+let g:airline#extensions#scrollbar#enabled = 0
+
 let g:airline#extensions#ale#show_line_numbers = 0
 
 let g:airline#extensions#tabline#enabled = 1
