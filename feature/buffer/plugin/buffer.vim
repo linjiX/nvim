@@ -61,10 +61,19 @@ nnoremap <silent> <leader>o :<C-u>call buffer#Navigate(1)<CR>
 nnoremap <silent> <leader>i :<C-u>call buffer#Navigate(0)<CR>
 nnoremap <silent> <leader>` <C-^>
 
-nnoremap <expr><silent> + utility#Open(":bn\<CR>")
-nnoremap <expr><silent> _ utility#Open(":bp\<CR>")
-xnoremap <expr><silent> + utility#Open(":\<C-u>bn\<CR>")
-xnoremap <expr><silent> _ utility#Open(":\<C-u>bp\<CR>")
+if has('nvim') || has('gui_running')
+    nnoremap <expr><silent> <M-]> utility#Open(":bn\<CR>")
+    nnoremap <expr><silent> <M-[> utility#Open(":bp\<CR>")
+    xnoremap <expr><silent> <M-]> utility#Open(":\<C-u>bn\<CR>")
+    xnoremap <expr><silent> <M-[> utility#Open(":\<C-u>bp\<CR>")
+else
+    nnoremap <expr><silent> <ESC>] utility#Open(":bn\<CR>")
+    nnoremap <expr><silent> <ESC>[ utility#Open(":bp\<CR>")
+    xnoremap <expr><silent> <ESC>] utility#Open(":\<C-u>bn\<CR>")
+    xnoremap <expr><silent> <ESC>[ utility#Open(":\<C-u>bp\<CR>")
+    nnoremap <silent><nowait> <ESC> <ESC>
+    xnoremap <silent><nowait> <ESC> <ESC>
+endif
 
 nnoremap <silent> <leader>q :<C-u>call buffer#Close('bwipeout')<CR>
 nnoremap <silent> <leader>Q :<C-u>call buffer#Close('bdelete')<CR>

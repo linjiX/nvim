@@ -24,19 +24,16 @@ augroup myTerminal
     endif
 augroup END
 
-if !has('nvim')
-    execute "set <M-a>=\ea"
-    execute "set <M-->=\e-"
-    execute "set <M-=>=\e="
-endif
-
 nnoremap <expr><silent> <M-a> terminal#New()
-nnoremap <expr><silent> <M--> terminal#Select('previous')
-nnoremap <expr><silent> <M-=> terminal#Select('next')
-
 tnoremap <expr><silent> <M-a> terminal#New()
-tnoremap <expr><silent> <M--> terminal#Select('previous')
-tnoremap <expr><silent> <M-=> terminal#Select('next')
+
+if has('nvim') || has('gui_running')
+    tnoremap <expr><silent> <M-[> terminal#Select('previous')
+    tnoremap <expr><silent> <M-]> terminal#Select('next')
+else
+    tnoremap <expr><silent> <ESC>[ terminal#Select('previous')
+    tnoremap <expr><silent> <ESC>] terminal#Select('next')
+endif
 
 nnoremap <silent> <C-n> :call terminal#SmartOpen('')<CR>
 nnoremap <silent> <leader>ed :call terminal#Attach()<CR>
