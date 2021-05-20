@@ -52,6 +52,8 @@ augroup myBuffer
     autocmd!
     autocmd BufLeave * call s:WipeEmptyBuffer()
     autocmd BufUnload * call s:UpdateBufferUndo()
+    " keep <Tab> works in coc-list
+    autocmd FileType list nnoremap <C-i> <C-i>
 augroup END
 
 nnoremap <silent> <C-o> :<C-u>call buffer#Jump(1)<CR>
