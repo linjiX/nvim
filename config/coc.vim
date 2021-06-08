@@ -83,7 +83,7 @@ function s:ToggleExtension(name) abort
 endfunction
 
 let s:coc_lsp = {
-            \   'python': 'coc-python',
+            \   'python': 'coc-pyright',
             \   'json': 'coc-json',
             \   'vim': 'coc-vimlsp',
             \   'xml': 'coc-xml',

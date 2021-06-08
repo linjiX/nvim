@@ -15,7 +15,7 @@ let g:coc_global_extensions = [
             \   'coc-highlight',
             \   'coc-snippets',
             \   'coc-json',
-            \   'coc-python',
+            \   'coc-pyright',
             \   'coc-vimlsp',
             \   'coc-translator',
             \   'coc-explorer',
@@ -23,6 +23,7 @@ let g:coc_global_extensions = [
             \   'coc-yaml',
             \]
 " \   'coc-xml',
+" \   'coc-python',
 if has('macunix')
     let g:coc_global_extensions += ['coc-imselect']
 endif
