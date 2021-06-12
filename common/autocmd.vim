@@ -49,6 +49,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.BUILD,BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead *.conf,.*config setlocal filetype=conf
     autocmd BufNewFile,BufRead .bazelrc,.pypirc,.gitlint setlocal filetype=conf
+    autocmd BufNewFile,BufRead tmux.* setlocal filetype=tmux
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
