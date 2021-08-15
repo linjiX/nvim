@@ -77,7 +77,7 @@ let g:ale_php_phpcs_options = '--standard='. $MY_LINTER_PATH .'/phpcs.xml'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0
-let g:ale_set_loclist = 0
+let g:ale_set_loclist = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_lint_on_text_changed = 'normal'

@@ -68,5 +68,5 @@ inoremap <C-f> <Right>
 inoremap <C-b> <Left>
 
 " quickfix mapping
-nnoremap <silent> <leader>co :call quickfix#ListToggle('copen')<CR>
-nnoremap <silent> <leader>lo :call quickfix#ListToggle('lopen')<CR>
+nnoremap <silent> <leader>cw :call quickfix#ListToggle('copen')<CR>
+nnoremap <silent> <leader>lw :call quickfix#ListToggle('lopen')<CR>
