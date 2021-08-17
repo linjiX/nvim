@@ -15,14 +15,9 @@ augroup myWorkspace
     autocmd!
 augroup END
 
-function s:HasExplorer() abort
-    let l:bufnrs = map(range(1, winnr('$')), 'winbufnr(v:val)')
-    let l:bufnrs = filter(l:bufnrs, 'getbufvar(v:val, "&filetype") ==# "coc-explorer"')
-    return !empty(l:bufnrs)
-endfunction
-
-function s:HasTagbar() abort
-    return bufwinnr('__Tagbar__') != -1
+function s:HasExplorerAndTagbar() abort
+    let l:filetypes = map(range(1, winnr('$')), {_, val -> getbufvar(winbufnr(val), '&filetype')})
+    return [index(l:filetypes, 'tagbar') != -1, index(l:filetypes, 'coc-explorer') != -1]
 endfunction
 
 function s:GetWinID() abort
@@ -38,12 +33,11 @@ function s:GotoWinID() abort
 endfunction
 
 function workspace#Disable() abort
-    let l:has_explorer = s:HasExplorer()
+    let [l:has_explorer, l:has_tagbar] = s:HasExplorerAndTagbar()
     if l:has_explorer
         CocCommand explorer --toggle
     endif
 
-    let l:has_tagbar = s:HasTagbar()
     if l:has_tagbar
         TagbarClose
     endif
@@ -72,10 +66,10 @@ function workspace#Reveal() abort
         return
     endif
 
-    let l:has_explorer = s:HasExplorer()
+    let [l:has_explorer, l:has_tagbar] = s:HasExplorerAndTagbar()
 
     if !l:has_explorer
-        if s:HasTagbar()
+        if l:has_tagbar
             TagbarClose
         endif
         autocmd myWorkspace User CocExplorerOpenPre ++once call s:OpenTagbar()
