@@ -33,6 +33,14 @@ function s:AutoCmdBlame() abort
     endif
 endfunction
 
+function s:AutoCmdFlog() abort
+    setlocal colorcolumn=0
+    nnoremap <buffer> gb :call flog#run_command("GBrowse %(h)")<CR>
+    nmap <silent><buffer> <leader>q gq
+    nmap <silent><buffer> q gq
+endfunction
+
+
 let s:script = 'vim-fugitive/autoload/fugitive.vim'
 
 function s:VSplitBlame() abort
@@ -51,7 +59,7 @@ augroup myGit
     autocmd FileType fugitiveblame call s:AutoCmdBlame()
     autocmd FileType git call s:AutoCmdGit()
     autocmd FileType gitcommit setlocal colorcolumn=72
-    autocmd FileType GV setlocal colorcolumn=0 | setlocal nobuflisted
+    autocmd FileType floggraph call s:AutoCmdFlog()
 augroup END
 
 command! -bar -bang Gst vertical botright Git<bang>
@@ -76,3 +84,8 @@ nmap <leader>gm <Plug>(git-messenger)
 " Plug 'tpope/vim-rhubarb'
 nnoremap gb :.GBrowse<CR>
 vnoremap gb :GBrowse<CR>
+
+" Plug 'rbong/vim-flog'
+let g:flog_permanent_default_arguments = {
+            \   'date': 'short',
+            \}
