@@ -17,7 +17,7 @@ augroup END
 
 function s:HasExplorerAndTagbar() abort
     let l:filetypes = map(range(1, winnr('$')), {_, val -> getbufvar(winbufnr(val), '&filetype')})
-    return [index(l:filetypes, 'tagbar') != -1, index(l:filetypes, 'coc-explorer') != -1]
+    return [index(l:filetypes, 'coc-explorer') != -1, index(l:filetypes, 'tagbar') != -1]
 endfunction
 
 function s:GetWinID() abort
