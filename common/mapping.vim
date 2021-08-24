@@ -27,6 +27,12 @@ function NavigateCmd(direction) abort
     return l:cmd ."\<CR>"
 endfunction
 
+function Tabopen() abort
+    let l:view = winsaveview()
+    tabedit %
+    call winrestview(l:view)
+endfunction
+
 nnoremap <expr><silent> <C-\> NavigateCmd('p')
 nnoremap <expr><silent> <C-h> NavigateCmd('h')
 nnoremap <expr><silent> <C-l> NavigateCmd('l')
@@ -40,8 +46,8 @@ nnoremap Y y$
 nnoremap <C-p> "0p
 xnoremap <C-p> "0p
 
-nnoremap <silent> <C-w>m :tabnew %<CR>
-nnoremap <silent> <C-w><C-m> :tabnew %<CR>
+nnoremap <silent> <C-w>m :call Tabopen()<CR>
+nnoremap <silent> <C-w><C-m> :call Tabopen()<CR>
 xnoremap <silent> <C-m> :sort<CR>
 
 " command mapping
