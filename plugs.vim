@@ -189,7 +189,7 @@ Plug 'skywind3000/asyncrun.vim', {'on': ['AsyncRun', 'AsyncStop']}
 " Plug 'junegunn/gv.vim', {'on': 'GV'}
 " Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
-Plug 'rbong/vim-flog'
+Plug 'rbong/vim-flog', {'on': ['Flog', 'Flogsplit']}
 Plug 'rhysd/conflict-marker.vim'
 Plug 'rhysd/git-messenger.vim', {'on': ['<Plug>(git-messenger)', 'GitMessenger']}
 Plug 'tpope/vim-fugitive'
