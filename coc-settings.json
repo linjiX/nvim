@@ -61,7 +61,6 @@
 
     "workspace.ignoredFiletypes": ["log", "help"],
 
-    "coc.preferences.currentFunctionSymbolAutoUpdate": true,
     "coc.preferences.rootPatterns": [".git"],
     "coc.preferences.maxFileSize": "3MB",
 
