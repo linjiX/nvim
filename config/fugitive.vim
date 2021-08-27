@@ -23,14 +23,8 @@ endfunction
 
 function s:AutoCmdBlame() abort
     nnoremap <silent><buffer> <CR> :call <SID>VSplitBlame()<CR>
-    if exists('g:fugitiveblame_tab')
-        nnoremap <silent><buffer> <leader>q :tabclose<CR>
-        nnoremap <silent><buffer> q :tabclose<CR>
-        cnoreabbrev <silent><buffer> q tabclose
-    else
-        nmap <silent><buffer> <leader>q gq
-        nmap <silent><buffer> q gq
-    endif
+    nmap <silent><buffer> <leader>q gq
+    nmap <silent><buffer> q gq
 endfunction
 
 function s:AutoCmdFlog() abort
@@ -40,6 +34,13 @@ function s:AutoCmdFlog() abort
     nmap <silent><buffer> q gq
 endfunction
 
+function s:TabBlame(args) abort
+    call Tabopen()
+    execute 'Git blame '. a:args
+    nnoremap <silent><buffer> <leader>q :tabclose<CR>
+    nnoremap <silent><buffer> q :tabclose<CR>
+    cnoreabbrev <silent><buffer> q tabclose
+endfunction
 
 let s:script = 'vim-fugitive/autoload/fugitive.vim'
 
@@ -74,8 +75,7 @@ command! -nargs=? -complete=customlist,fugitive#CommitComplete Gca
 command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
             \  let g:asyncrun_silent_mode = 1 | AsyncRun git push <args>
 
-command! -nargs=? -complete=customlist,fugitive#BlameComplete Gblame
-            \ let g:fugitiveblame_tab = 1 | tab Git blame <args> | unlet g:fugitiveblame_tab
+command! -nargs=? -complete=customlist,fugitive#BlameComplete Gblame call s:TabBlame(<q-args>)
 
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1
