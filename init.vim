@@ -41,6 +41,7 @@ set confirm
 set cursorline
 set cursorcolumn
 set colorcolumn=100
+set signcolumn=number
 set textwidth=0
 set splitright
 set lazyredraw
@@ -87,7 +88,6 @@ if has('nvim')
                 \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
                 \,sm:block-blinkwait175-blinkoff150-blinkon175
 else
-    set signcolumn=number
     " Change cursor shape in different modes
     let &t_EI .= "\e[1 q"  " EI = NORMAL mode (ELSE)
     let &t_SR .= "\e[3 q"  " SR = REPLACE mode
