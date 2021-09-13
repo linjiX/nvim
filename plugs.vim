@@ -38,6 +38,10 @@ endif
 
 let g:plug_window = 'botright vertical new'
 
+augroup myPlugs
+    autocmd FileType vim-plug nmap <leader>q q
+augroup END
+
 nnoremap <silent> <leader>vv :PlugUpdate<CR>
 nnoremap <silent> <leader>vi :PlugInstall<CR>
 nnoremap <silent> <leader>vc :PlugClean<CR>
