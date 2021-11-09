@@ -59,7 +59,7 @@ let g:ale_python_pylint_options = join([
             \   '--disable=bad-continuation',
             \   '--generated-members=torch.*,cv2.*',
             \   '--ignored-modules=tensorflow.compat.v1'
-            \], ',')
+            \])
 let g:ale_python_mypy_options = join([
             \   '--cache-dir=/tmp/mypy_cache',
             \   '--ignore-missing-imports',
