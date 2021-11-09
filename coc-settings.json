@@ -70,9 +70,9 @@
         "cpp": ["c"]
     },
 
-    "python.jediEnabled": false,
     "python.linting.enabled": false,
     "python.pythonPath": "python3",
+    "python.analysis.diagnosticMode": "openFilesOnly",
 
     "yank.list.maxsize": 20,
     "yank.highlight.duration": 350,
