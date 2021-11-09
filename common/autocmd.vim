@@ -45,7 +45,7 @@ augroup myFileType
     autocmd!
     autocmd BufNewFile,BufRead Dockerfile.* setlocal filetype=Dockerfile
     autocmd BufNewFile,BufRead *.launch,*urdf setlocal filetype=xml
-    autocmd BufNewFile,BufRead .clang-format,yamllint setlocal filetype=yaml
+    autocmd BufNewFile,BufRead .clang-format,.yamllint setlocal filetype=yaml
     autocmd BufNewFile,BufRead *.BUILD,BUILD.* setlocal filetype=bzl
     autocmd BufNewFile,BufRead *.conf,.*config setlocal filetype=conf
     autocmd BufNewFile,BufRead .bazelrc,.pypirc,.gitlint setlocal filetype=conf
