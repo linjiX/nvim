@@ -6,3 +6,5 @@ rules:
     max: 100
   truthy:
     check-keys: false
+  comments:
+    min-spaces-from-content: 1
