@@ -31,7 +31,7 @@ endfunction
 
 function s:SidebarOn() abort
     setlocal number
-    setlocal signcolumn=auto
+    setlocal signcolumn=number
     IndentLinesEnable
 endfunction
 
