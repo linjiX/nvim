@@ -11,9 +11,9 @@
 
 let g:star_echo_search_pattern = 0
 
-xmap <silent> * <Plug>(star-*):SearchIndex<CR>
-xmap <silent> # <Plug>(star-#):SearchIndex<CR>
-nmap <silent> * <Plug>(star-*):SearchIndex<CR>
-nmap <silent> # <Plug>(star-#):SearchIndex<CR>
-nmap <silent> g* <Plug>(star-g*):SearchIndex<CR>
-nmap <silent> g# <Plug>(star-g#):SearchIndex<CR>
+xmap <silent> * <Plug>(star-*):call utility#SearchIndex()<CR>
+xmap <silent> # <Plug>(star-#):call utility#SearchIndex()<CR>
+nmap <silent> * <Plug>(star-*):call utility#SearchIndex()<CR>
+nmap <silent> # <Plug>(star-#):call utility#SearchIndex()<CR>
+nmap <silent> g* <Plug>(star-g*):call utility#SearchIndex()<CR>
+nmap <silent> g# <Plug>(star-g#):call utility#SearchIndex()<CR>

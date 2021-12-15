@@ -97,3 +97,19 @@ function utility#ScriptFunction(name, filename) abort
     let s:script_functions[a:name] = function(printf('<SNR>%d_%s', l:snr, a:name))
     return s:script_functions[a:name]
 endfunction
+
+function utility#SearchIndex() abort
+    let l:result = searchcount({'maxcount': 1000})
+    if l:result.incomplete == 0
+        let l:count = printf('[%d/%d]', l:result.current, l:result.total)
+    elseif l:result.incomplete == 1
+        let l:count = '[?/??]'
+    elseif l:result.total > l:result.maxcount && l:result.current > l:result.maxcount
+        let l:count = printf('[>%d/>%d]', l:result.current, l:result.total)
+    elseif l:result.total > l:result.maxcount
+        let l:count = printf('[%d/>%d]', l:result.current, l:result.total)
+    endif
+    let l:direction = v:searchforward == 1 ? '/' : '?'
+    redraw
+    echo l:count . '  ' . l:direction . @/
+endfunction

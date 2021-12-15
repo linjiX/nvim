@@ -215,9 +215,9 @@ Plug 'tpope/vim-rhubarb'
 "     Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
 " endif
 " Plug 'junegunn/fzf.vim'
+" Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
 Plug 'Yggdroot/LeaderF', {'do': './install.sh', 'on': 'Leaderf'}
 Plug 'dyng/ctrlsf.vim', {'on': ['<Plug>CtrlSF', 'CtrlSF', 'CtrlSFToggle', 'CtrlSFOpen']}
-Plug 'google/vim-searchindex', {'on': 'SearchIndex'}
 Plug 'linjiX/LeaderF-git', {'on': 'Leaderf'}
 Plug 'linjiX/vim-star'
 " }}}
