@@ -50,6 +50,7 @@ augroup myFileType
     autocmd BufNewFile,BufRead *.conf,.*config setlocal filetype=conf
     autocmd BufNewFile,BufRead .bazelrc,.pypirc,.gitlint setlocal filetype=conf
     autocmd BufNewFile,BufRead tmux.* setlocal filetype=tmux
+    autocmd BufNewFile,BufRead requirement*.txt setlocal filetype=requirements
 
     autocmd FileType c,cpp setlocal cindent
     autocmd FileType proto setlocal shiftwidth=4
