@@ -21,6 +21,7 @@ pip3 install \
     black \
     isort \
     docformatter \
+    pyupgrade \
     ipython \
     pylint \
     flake8 \

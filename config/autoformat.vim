@@ -27,9 +27,11 @@ let g:formatdef_isort = "'isort -w 100 -'"
 let g:formatdef_docformatter =
             \ "'docformatter --wrap-summaries 100 --wrap-descriptions 100 --blank -'"
 let g:formatdef_black = "'black -q -l 100 -'"
+let g:formatdef_pyupgrade = "'pyupgrade --py36-plus -'"
 let g:formatdef_python_format = join([
             \   g:formatdef_isort[:-2],
             \   g:formatdef_docformatter[1:-2],
+            \   g:formatdef_pyupgrade[1:-2],
             \   g:formatdef_black[1:],
             \ ], ' | ')
 let g:formatters_python = ['python_format']

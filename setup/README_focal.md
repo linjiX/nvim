@@ -20,6 +20,7 @@ apt install shellcheck
 pip3 install \
     black \
     isort \
+    pyupgrade \
     docformatter \
     ipython \
     pylint \
