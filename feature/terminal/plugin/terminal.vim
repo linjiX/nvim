@@ -24,9 +24,6 @@ augroup myTerminal
     endif
 augroup END
 
-nnoremap <expr><silent> <M-a> terminal#New()
-tnoremap <expr><silent> <M-a> terminal#New()
-
 if has('nvim') || has('gui_running')
     tnoremap <expr><silent> <M-[> terminal#Select('previous')
     tnoremap <expr><silent> <M-]> terminal#Select('next')

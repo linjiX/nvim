@@ -59,8 +59,6 @@ if !isdirectory(&directory)
     call mkdir(&directory, 'p')
 endif
 
-execute "set <M-a>=\ea"
-
 set runtimepath-=$HOME/.vim
 set runtimepath-=$HOME/.vim/after
 
