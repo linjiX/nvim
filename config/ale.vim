@@ -51,7 +51,7 @@ let g:ale_python_flake8_options = join([
             \   '--docstring-convention=google',
             \   '--rst-roles=class',
             \   '--ignore-decorators=overload',
-            \   '--ignore=E203,W503,D105,D107,DAR203,RST,D,DAR',
+            \   '--ignore=E203,W503,D105,D107,DAR203,RST',
             \])
 let g:ale_python_pylint_options = join([
             \   '--min-public-methods=0',
