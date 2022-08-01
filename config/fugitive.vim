@@ -77,6 +77,9 @@ command! -nargs=? -complete=customlist,fugitive#PushComplete Gpush
 
 command! -nargs=? -complete=customlist,fugitive#BlameComplete Gblame call s:TabBlame(<q-args>)
 
+command! -nargs=? -complete=customlist,fugitive#BlameComplete Grebase
+            \ vertical botright Git rebase <args>
+
 " Plug 'rhysd/git-messenger.vim'
 let g:git_messenger_no_default_mappings = 1
 nmap <leader>gm <Plug>(git-messenger)
