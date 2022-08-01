@@ -135,18 +135,18 @@ augroup myCoc
     autocmd FileType c,cpp call s:AutoCmdCcls()
 augroup END
 
-inoremap <silent><expr> <C-j>
-            \ pumvisible() ? "\<C-n>"
-            \              : coc#refresh()
+inorem <silent><expr> <C-j>
+            \ coc#pum#visible() ? coc#pum#next(1)
+            \                   : coc#refresh()
 inoremap <silent><expr> <C-k>
-            \ pumvisible() ? "\<C-p>"
-            \              : "\<C-k>"
+            \ coc#pum#visible() ? coc#pum#prev(1)
+            \                   : "\<C-k>"
 imap <silent><expr> <TAB>
-            \ pumvisible() ? coc#expandable() ? "\<C-e><Plug>(coc-snippets-expand)"
-            \                                 : coc#_select_confirm()
-            \              : coc#expandable() ? "<Plug>(coc-snippets-expand)"
-            \                                 : <SID>CheckBackSpace() ? "\<TAB>"
+            \ coc#pum#visible() ? coc#pum#confirm()
+            \                   : coc#expandable() ? "<Plug>(coc-snippets-expand)"
+            \                                      : <SID>CheckBackSpace() ? "\<TAB>"
             \                                                         : coc#refresh()
+
 inoremap <silent><expr> <S-TAB> coc#refresh()
 
 nnoremap <silent><expr> K
