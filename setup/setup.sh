@@ -55,17 +55,14 @@ setup_macos() {
     #######################
     # Install Dependicies #
     #######################
+    brew unlink ctags
     brew install \
         git \
         node \
         neovim \
         global \
-        ripgrep
-
-    brew unlink ctags
-    brew tap universal-ctags/universal-ctags
-    brew install --with-jansson --HEAD universal-ctags/universal-ctags/universal-ctags
-    brew link universal-ctags
+        ripgrep \
+        universal-ctags
 
     #######################
     # Install Vim Plugins #
