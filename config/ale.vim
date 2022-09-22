@@ -55,7 +55,7 @@ let g:ale_python_flake8_options = join([
             \])
 let g:ale_python_pylint_options = join([
             \   '--min-public-methods=0',
-            \   '--good-names=i,j,m,n,k,x,y,z,w,fp',
+            \   '--good-names=i,j,m,n,k,x,y,z,w,fp,df',
             \   '--disable=bad-continuation',
             \   '--generated-members=torch.*,cv2.*',
             \   '--ignored-modules=tensorflow.compat.v1'
