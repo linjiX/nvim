@@ -12,21 +12,19 @@ set -euo pipefail
 set -x
 
 if ! command -v go &>/dev/null; then
-    if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
-        if ! dpkg -s git software-properties-common &>/dev/null; then
-            sudo apt-get update
-            sudo apt-get install -y \
-                software-properties-common \
-                git
-        fi
-        sudo apt-add-repository -y ppa:longsleep/golang-backports
+    if ! dpkg -s git software-properties-common &>/dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y \
+            software-properties-common \
+            git
     fi
+    sudo apt-add-repository -y ppa:longsleep/golang-backports
+
     sudo apt-get update
     sudo apt-get install -y golang-go
 fi
 
 readonly GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
 export GOPATH
-export GO111MODULE=on
-go get mvdan.cc/sh/v3/cmd/shfmt
+go install mvdan.cc/sh/v3/cmd/shfmt@latest
 sudo mv "$GOPATH/bin/shfmt" /usr/local/bin

@@ -14,19 +14,17 @@ set -x
 readonly VERSION="3.5.0"
 
 if ! command -v go &>/dev/null; then
-    if [ "$DISTRIB_CODENAME" == 'xenial' ]; then
-        if ! dpkg -s software-properties-common &>/dev/null; then
-            sudo apt-get update
-            sudo apt-get install -y software-properties-common
-        fi
-        sudo apt-add-repository -y ppa:longsleep/golang-backports
+    if ! dpkg -s software-properties-common &>/dev/null; then
+        sudo apt-get update
+        sudo apt-get install -y software-properties-common
     fi
+    sudo apt-add-repository -y ppa:longsleep/golang-backports
+
     sudo apt-get update
     sudo apt-get install -y golang-go
 fi
 
 readonly GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
 export GOPATH
-export GO111MODULE=on
-go get github.com/bazelbuild/buildtools/buildifier@$VERSION
+go install github.com/bazelbuild/buildtools/buildifier@$VERSION
 sudo mv "$GOPATH/bin/buildifier" /usr/local/bin
