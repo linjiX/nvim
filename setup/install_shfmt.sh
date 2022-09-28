@@ -24,7 +24,8 @@ if ! command -v go &>/dev/null; then
     sudo apt-get install -y golang-go
 fi
 
-readonly GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
+GOPATH="$(mktemp -d /tmp/install_shfmt.XXXX)"
+readonly GOPATH
 export GOPATH
 go install mvdan.cc/sh/v3/cmd/shfmt@latest
 sudo mv "$GOPATH/bin/shfmt" /usr/local/bin

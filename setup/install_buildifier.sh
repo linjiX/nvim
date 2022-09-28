@@ -24,7 +24,8 @@ if ! command -v go &>/dev/null; then
     sudo apt-get install -y golang-go
 fi
 
-readonly GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
+GOPATH="$(mktemp -d /tmp/install_buildifier.XXXX)"
+readonly GOPATH
 export GOPATH
 go install github.com/bazelbuild/buildtools/buildifier@$VERSION
 sudo mv "$GOPATH/bin/buildifier" /usr/local/bin
