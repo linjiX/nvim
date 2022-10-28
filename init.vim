@@ -45,6 +45,7 @@ set signcolumn=number
 set textwidth=0
 set splitright
 set lazyredraw
+set mouse=
 
 set list
 set listchars=tab:-->,nbsp:+,precedes:<,extends:>
