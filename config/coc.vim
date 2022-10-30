@@ -142,7 +142,7 @@ inoremap <silent><expr> <C-k>
             \ coc#pum#visible() ? coc#pum#prev(1)
             \                   : "\<C-k>"
 imap <silent><expr> <TAB>
-            \ coc#pum#visible() ? coc#pum#confirm()
+            \ coc#pum#visible() ? coc#_select_confirm()
             \                   : coc#expandable() ? "<Plug>(coc-snippets-expand)"
             \                                      : <SID>CheckBackSpace() ? "\<TAB>"
             \                                                              : coc#refresh()

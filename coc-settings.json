@@ -41,6 +41,7 @@
     "suggest.minTriggerInputLength": 1,
     "suggest.lowPrioritySourceLimit": 8,
     "suggest.highPrioritySourceLimit": 12,
+    "suggest.noselect": true,
     "suggest.echodocSupport": true,
 
     "diagnostic.checkCurrentLine": true,
