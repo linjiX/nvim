@@ -57,6 +57,7 @@ endfunction
 function s:AutoCmdSolarzed() abort
     highlight CursorLineNr cterm=bold ctermfg=11 gui=bold guifg=#657b83
     highlight UserFloating ctermbg=232 guibg=#080808
+    highlight CocMenuSel ctermbg=236 guibg=#303030
     highlight link CocFloating UserFloating
     highlight link EchoDocFloat UserFloating
     highlight link WhichKeyFloating UserFloating
@@ -68,10 +69,7 @@ endfunction
 function s:AutoCmdMolokai() abort
     highlight Visual ctermbg=238 guibg=#444444
     highlight! link CursorLine CursorColumn
-    highlight link CocFloating Visual
-    highlight link EchoDocFloat Visual
-    highlight link WhichKeyFloating Visual
-    highlight link NormalFloat Visual
+    highlight link CocMenuSel ColorColumn
 endfunction
 
 augroup myColorScheme
