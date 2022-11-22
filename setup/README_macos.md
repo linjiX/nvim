@@ -29,7 +29,7 @@ pip3 install \
     flake8-docstrings \
     darglint \
     mypy \
-    rstcheck
+    rstcheck \
     rstfmt
 ```
 
