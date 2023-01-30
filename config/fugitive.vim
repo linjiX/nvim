@@ -89,6 +89,6 @@ nnoremap gb :.GBrowse<CR>
 vnoremap gb :GBrowse<CR>
 
 " Plug 'rbong/vim-flog'
-let g:flog_permanent_default_arguments = {
+let g:flog_permanent_default_opts = {
             \   'date': 'short',
             \}
