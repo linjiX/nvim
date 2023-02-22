@@ -15,7 +15,7 @@ setup_ubuntu() {
     ############################
     sudo apt-add-repository -y ppa:neovim-ppa/unstable
     # https://github.com/nodesource/distributions#debinstall
-    curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
     # sudo apt-get update
     sudo apt-get install -y \
         git \
