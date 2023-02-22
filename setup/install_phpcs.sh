@@ -15,7 +15,7 @@ set -x
 # Install php-code-sniffer #
 ############################
 
-readonly VERSION="3.5.4"
+readonly VERSION="3.7.1"
 readonly TARGET_PHPCS="/usr/local/bin/phpcs"
 readonly TARGET_PHPCBF="/usr/local/bin/phpcbf"
 

@@ -11,7 +11,7 @@ fi
 set -euo pipefail
 set -x
 
-readonly VERSION="3.5.0"
+readonly VERSION="6.0.1"
 
 if ! command -v go &>/dev/null; then
     if ! dpkg -s software-properties-common &>/dev/null; then

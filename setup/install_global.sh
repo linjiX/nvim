@@ -15,7 +15,7 @@ set -x
 # Install GNU Global #
 ######################
 
-readonly VERSION="6.6.4"
+readonly VERSION="6.6.9"
 readonly TARFILE=global-$VERSION.tar.gz
 readonly DIR=global-$VERSION
 

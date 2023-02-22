@@ -18,7 +18,7 @@ set -x
 # Install ccls #
 ################
 
-readonly VERSION="0.20190823.6"
+readonly VERSION="0.20220729"
 
 if ! dpkg -s software-properties-common wget &>/dev/null; then
     sudo apt-get update

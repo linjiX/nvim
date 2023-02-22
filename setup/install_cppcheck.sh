@@ -16,7 +16,7 @@ set -x
 # Install cppcheck #
 ####################
 
-readonly VERSION="1.90"
+readonly VERSION="2.10"
 readonly TARFILE="$VERSION.tar.gz"
 readonly DIR="cppcheck-$VERSION"
 

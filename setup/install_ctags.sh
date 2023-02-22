@@ -15,6 +15,8 @@ set -x
 # Install Universal Ctags #
 ###########################
 
+readonly VERSION="v6.0.0"
+
 if ! dpkg -s autoconf git make libjansson-dev &>/dev/null; then
     sudo apt-get update
     sudo apt-get install -y \
@@ -26,7 +28,7 @@ fi
 
 readonly TMPDIR="$(mktemp -d /tmp/install_ctags.XXXX)"
 pushd "$TMPDIR" >/dev/null
-git clone --depth=1 https://github.com/universal-ctags/ctags.git
+git clone -b $VERSION --depth=1 https://github.com/universal-ctags/ctags.git
 pushd ctags >/dev/null
 
 ./autogen.sh

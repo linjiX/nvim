@@ -15,7 +15,7 @@ set -x
 # Install Riggrep #
 ###################
 
-readonly VERSION="12.0.1"
+readonly VERSION="13.0.0"
 readonly DEBFILE=ripgrep_${VERSION}_amd64.deb
 
 if ! dpkg -s wget &>/dev/null; then

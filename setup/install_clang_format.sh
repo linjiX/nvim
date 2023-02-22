@@ -29,5 +29,5 @@ sudo apt-add-repository -y 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenia
 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
 
 sudo apt-get update
-sudo apt-get install -y clang-format-10
-sudo ln -sf /usr/bin/clang-format-10 /usr/bin/clang-format
+sudo apt-get install -y clang-format-13
+sudo ln -sf /usr/bin/clang-format-13 /usr/bin/clang-format
