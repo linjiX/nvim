@@ -20,7 +20,7 @@ let g:ale_linters = {
             \   'python': ['flake8', 'pylint', 'mypy'],
             \   'rst': ['rstcheck'],
             \   'json': ['Jsonlint'],
-            \   'Dockerfile': ['hadolint'],
+            \   'dockerfile': ['hadolint'],
             \   'cmake': ['cmakelint'],
             \   'markdown': ['markdownlint-cli'],
             \   'xml': ['xmllint'],
