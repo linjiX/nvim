@@ -51,7 +51,7 @@ apt install \
 #### Json
 
 ```bash
-pip3 install demjson
+pip3 install demjson3
 npm install --global prettier
 apt install jq
 ```

@@ -52,7 +52,7 @@ brew install buildifier
 #### Json
 
 ```bash
-pip3 install demjson
+pip3 install demjson3
 brew install \
     prettier \
     jq

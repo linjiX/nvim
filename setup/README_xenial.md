@@ -50,7 +50,7 @@ pip3 install cpplint
 #### Json
 
 ```bash
-pip3 install demjson
+pip3 install demjson3
 npm install --global prettier
 ./setup/install_jq.sh
 ```
