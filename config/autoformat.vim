@@ -47,6 +47,7 @@ let g:formatdef_jq = "'jq -M --indent 4'"
 " let g:formatters_json = ['json_tool']
 " let g:formatters_json = ['jq']
 let g:formatters_markdown = ['prettier']
+let g:formatters_html = ['prettier']
 let g:formatters_yaml = ['prettier_yaml']
 let g:formatters_json = ['prettier_json']
 let g:formatters_jsonc = ['prettier_json']
