@@ -42,7 +42,6 @@
     "suggest.lowPrioritySourceLimit": 8,
     "suggest.highPrioritySourceLimit": 12,
     "suggest.noselect": true,
-    "suggest.echodocSupport": true,
 
     "diagnostic.checkCurrentLine": true,
     "diagnostic.errorSign": "E",
@@ -62,8 +61,8 @@
 
     "workspace.ignoredFiletypes": ["log", "help"],
     "workspace.openResourceCommand": "drop",
+    "workspace.rootPatterns": [".git"],
 
-    "coc.preferences.rootPatterns": [".git"],
     "coc.preferences.maxFileSize": "3MB",
 
     "coc.source.file.ignoreHidden": false,
