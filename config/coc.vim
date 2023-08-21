@@ -92,6 +92,8 @@ let s:coc_lsp = {
             \   'cpp': 'languageserver.ccls',
             \   'sh': 'languageserver.bash',
             \   'Dockerfile': 'languageserver.dockerfile',
+            \   'javascript': 'coc-tsserver',
+            \   'html': 'coc-html',
             \}
 
 let s:coc_action = {

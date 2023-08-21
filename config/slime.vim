@@ -18,6 +18,8 @@ let s:slime_smart_mode = 1
 let s:slime_sleep_time_ms = 400
 let s:slime_repl = {
             \ 'python': ['ipython3', 'python3', 'ipython', 'python', 'bpython', 'ptpython'],
+            \ 'javascript': ['node'],
+            \ 'html': ['node'],
             \ 'default': ['bash'],
             \ }
 

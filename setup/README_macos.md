@@ -80,6 +80,21 @@ npm install --global dockerfile-language-server-nodejs
 brew install hadolint
 ```
 
+#### HTML
+
+```bash
+npm install --global htmlhint
+brew install prettier
+```
+
+#### JavaScript
+
+```bash
+brew install \
+    eslint \
+    prettier
+```
+
 #### Php
 
 ```bash

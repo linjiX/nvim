@@ -27,6 +27,8 @@ let g:ale_linters = {
             \   'xml': ['xmllint'],
             \   'yaml': ['yamllint'],
             \   'php': ['php', 'phpcs'],
+            \   'html': ['htmlhint'],
+            \   'javascript': ['eslint'],
             \}
 let g:ale_gitcommit_gitlint_options = '--config='. $MY_LINTER_PATH .'/.gitlint'
 let g:ale_cpp_CppCheck_options = join([

@@ -42,12 +42,15 @@ let g:formatters_rst = ['rstfmt']
 let g:formatdef_prettier = "'prettier --print-width=100 --tab-width=4 --parser='.&filetype"
 let g:formatdef_prettier_json = "'prettier --print-width=100 --tab-width=4 --parser=json'"
 let g:formatdef_prettier_yaml = "'prettier --print-width=100 --tab-width=2 --parser='.&filetype"
+let g:formatdef_prettier_javascript = "'prettier --print-width=100 --tab-width=4 --parser=babel'"
 let g:formatdef_json_tool = "'python3 -m json.tool'"
 let g:formatdef_jq = "'jq -M --indent 4'"
 " let g:formatters_json = ['json_tool']
 " let g:formatters_json = ['jq']
 let g:formatters_markdown = ['prettier']
 let g:formatters_html = ['prettier']
+let g:formatters_css = ['prettier']
+let g:formatters_javascript = ['prettier_javascript']
 let g:formatters_yaml = ['prettier_yaml']
 let g:formatters_json = ['prettier_json']
 let g:formatters_jsonc = ['prettier_json']

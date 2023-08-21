@@ -77,6 +77,20 @@ npm install --global dockerfile-language-server-nodejs
 ./setup/install_hadolint.sh
 ```
 
+#### HTML
+
+```bash
+npm install --global htmlhint
+npm install --global prettier
+```
+
+#### JavaScript
+
+```bash
+npm install --global eslint
+npm install --global prettier
+```
+
 #### Php
 
 ```bash
