@@ -168,5 +168,6 @@
         "]c": "gitNext",
         "<<": "gitStage",
         ">>": "gitUnstage"
-    }
+    },
+    "snippets.ultisnips.pythonPrompt": false
 }

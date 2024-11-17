@@ -93,6 +93,8 @@ let s:coc_lsp = {
             \   'sh': 'languageserver.bash',
             \   'Dockerfile': 'languageserver.dockerfile',
             \   'javascript': 'coc-tsserver',
+            \   'typescript': 'coc-tsserver',
+            \   'vue': 'coc-vetur',
             \   'html': 'coc-html',
             \}
 

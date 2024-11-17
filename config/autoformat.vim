@@ -27,13 +27,13 @@ let g:formatdef_isort = "'isort -w 100 -'"
 let g:formatdef_docformatter =
             \ "'docformatter --wrap-summaries 100 --wrap-descriptions 100 --blank -'"
 let g:formatdef_black = "'black -q -l 100 -'"
-let g:formatdef_pyupgrade = "'pyupgrade --py36-plus -'"
+let g:formatdef_pyupgrade = "'pyupgrade --py310-plus -'"
 let g:formatdef_python_format = join([
             \   g:formatdef_isort[:-2],
             \   g:formatdef_pyupgrade[1:-2],
             \   g:formatdef_black[1:],
             \ ], ' | ')
-            " \   g:formatdef_docformatter[1:-2],
+" \   g:formatdef_docformatter[1:-2],
 let g:formatters_python = ['python_format']
 
 let g:formatdef_rstfmt = "'rstfmt -w 100'"
@@ -50,6 +50,8 @@ let g:formatdef_jq = "'jq -M --indent 4'"
 let g:formatters_markdown = ['prettier']
 let g:formatters_html = ['prettier']
 let g:formatters_css = ['prettier']
+let g:formatters_vue = ['prettier']
+let g:formatters_typescript = ['prettier']
 let g:formatters_javascript = ['prettier_javascript']
 let g:formatters_yaml = ['prettier_yaml']
 let g:formatters_json = ['prettier_json']
@@ -67,6 +69,12 @@ let g:formatters_cmake = ['cmake_format']
 
 let g:formatdef_phpcbf = "'phpcbf --standard=$MY_LINTER_PATH/phpcs.xml -; true'"
 let g:formatters_php = ['phpcbf']
+
+let g:formatdef_sqlformatter = "'sql-formatter'"
+let g:formatters_sql = ['sqlformatter']
+
+" let g:formatdef_stylua = "'stylua'"
+let g:formatters_lua = ['stylua']
 
 let g:autoformat_verbosemode = 0
 

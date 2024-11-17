@@ -29,6 +29,10 @@ let g:ale_linters = {
             \   'php': ['php', 'phpcs'],
             \   'html': ['htmlhint'],
             \   'javascript': ['eslint'],
+            \   'typescript': ['eslint'],
+            \   'vue': ['eslint'],
+            \   'lua': ['luacheck'],
+            \   'sql': ['sqlfluff'],
             \}
 let g:ale_gitcommit_gitlint_options = '--config='. $MY_LINTER_PATH .'/.gitlint'
 let g:ale_cpp_CppCheck_options = join([
@@ -58,11 +62,12 @@ let g:ale_python_flake8_options = join([
             \])
 let g:ale_python_pylint_options = join([
             \   '--min-public-methods=0',
-            \   '--good-names=i,j,m,n,k,x,y,z,w,fp,df,tz',
+            \   '--good-names=i,j,m,n,k,x,y,z,w,fp,df,tz,db',
             \   '--generated-members=torch.*,cv2.*',
             \   '--ignored-modules=tensorflow.compat.v1'
             \])
 let g:ale_python_mypy_options = join([
+            \   '--enable-incomplete-feature=NewGenericSyntax',
             \   '--cache-dir=/tmp/mypy_cache',
             \   '--ignore-missing-imports',
             \   '--follow-imports=silent',
@@ -71,11 +76,17 @@ let g:ale_python_mypy_options = join([
             \   '--strict-equality',
             \   '--strict',
             \])
+" https://github.com/dense-analysis/ale/issues/2144
+" let g:ale_rst_rstcheck_options = join([
+"             \   '--ignore-directives=automodule',
+"             \   '--ignore-messages="Hyperlink target \".+?\" is not referenced."'
+"             \])
 let g:ale_yaml_yamllint_options = '--config-file='. $MY_LINTER_PATH .'/.yamllint'
 let g:ale_cmake_cmakelint_options = '--linelength=100'
 let g:ale_markdown_markdownlint_cli_options = '--config='. $MY_LINTER_PATH .'/markdownlint.json'
 
 let g:ale_php_phpcs_options = '--standard='. $MY_LINTER_PATH .'/phpcs.xml'
+let g:ale_sql_sqlfluff_options = '--config='. $MY_LINTER_PATH .'/sqlfluff.cfg'
 
 let g:ale_echo_msg_format = '[%linter%][%severity%][%code%] %s'
 let g:ale_set_quickfix = 0

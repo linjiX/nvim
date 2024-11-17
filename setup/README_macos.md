@@ -118,3 +118,11 @@ pip3 install yamllint
 ```bash
 pip3 install vim-vint
 ```
+
+#### Lua
+
+```bash
+brew install \
+    stylua \
+    luacheck
+```
